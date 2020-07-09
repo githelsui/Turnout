@@ -1,3 +1,6 @@
+Original App Design Project - Githel Suico
+===
+
 # Turnout 
 
 ## Table of Contents
@@ -45,9 +48,12 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
     * Users can view their own past reports
     * Users can save details from the Information Section to view on their profile
 * Information Section: 
-    * Users can fetch data on voting procedures, voting locations/dates with this [API](https://developers.google.com/civic-information).
-    * Depending on user's zip code, fetch data (candidate, party, past projects, etc) on state, municipal, national gov. elections with this [API](https://www.democracy.works/elections-api) 
-    * Embed a Calendar from the open-source external library FSCalendar that includes the upcoming election dates for that zipcode 
+    * 1 calendar + 4 different screens depending on [API endpoint](https://www.democracy.works/elections-api): Voter Guide, Elections, Representatives, and Bills/Propositions
+    *  Voter Guide: directs User to Vote.org's links for voter registration 
+    *  Elections: presents list of upcoming elections with their dates + locations for polling station. Also presents running candidates
+    *  Representatives: list of representatives based on zipcod. Tapping on details leads to info on rep + bills they cosponsor
+    *  Bills: list of bills and tapping on cell redirects to its details + representatives cosponsoring it
+    * Embed a Calendar from open-source external library FSCalendar that includes the upcoming election dates (based on the Elections Screen)
 
 **Optional Nice-to-have Stories**
 * The ability to share posts to other social media services
@@ -113,10 +119,108 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
 <img src="https://media1.giphy.com/media/f5Mn72etEsTtTv6dno/giphy.gif" width=250>
 
 ## Schema 
-[This section will be completed in Unit 9]
-### Models
-[Add table of models]
-### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+### Models (Parse Classes + NSObjects)
+
+#### User
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the |
+   | username      | String   | name for the user |
+   | zipcode        | Pointer to Zipcode| Zipcode of post's user |
+   
+   
+#### Post
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | author        | Pointer to User| image author |
+   | image         | File     | image attached to user posts |
+   | status       | String   | text/status by author |
+   | likesCount    | Number   | number of likes for the post |
+   | likedByUser    | Boolean   | whether current user liked the post |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+   | zipcode        | Pointer to Zipcode| Zipcode of post's user |
+
+
+#### Reference (Current user's bookmarked data from API)
+- only save API data into Parse db when user adds it to bookmarks/saved
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for reference |
+   | tile      | String   | title for the reference fetched from the API endpoint |
+   | info | String | List of strings for website urls |
+   | photoUrl     | String | url of the fetched reference's image |
+   | date | String | date of event if applicable |
+   | location | String |location of event if applicable |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | links | Array | List of strings for website urls |
+   | supporters | Array | List of strings for website urls |
+   | savedByUser     | Boolean   | whether current user has saved the reference |
+   
+- a different iteration
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for reference |
+   | fetchedData      | Object   | NSDictionary of the fetched data from the API |
+   | savers      | Array   | list of User objects that have bookmarked the reference |
+
+#### Zipcode
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for reference |
+   | zipcode      | String   | current zipcode |
+   | neighbors      | Array   | list of neighboring zipcodes |
+   
+## Networking
+
+### List of network requests by screen (Parse DB)
+ - Live Feed Screen
+      - (Read/GET) Query all Posts sorted in weights of likesCount and zipcdoe
+      - (Create/POST) Create a new like on a Post
+      - (Delete) Delete existing like
+- Creation Screen
+    - (Create/POST) Create a new Post object
+ - Index Screen
+      - (Create/POST) Create a new Reference when user bookmarks a reference from the Index Screen
+      - (Delete) When user unbookmarks a reference, remove user from array property and delete row if array count is now 0
+- Profile Screen
+     - (Read/GET) Query logged in User object
+     - (Read/GET) Query all Posts where user is author
+     - (Read/GET) Query all References where user is inside the savers property array
+
+### Existing API Endpoints
+
+##### Google Maps Geocoding API
+- Base URL - [http://maps.googleapis.com/maps/api](http://maps.googleapis.com/maps/api) 
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /geocode/json?address={zipcode} | get zipcode lat,lng coord from the  key 'location'
+    
+    
+##### Google Civic Information API
+- Base URL - [https://www.googleapis.com/civicinfo/v2](https://www.googleapis.com/civicinfo/v2)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /elections | List of available elections to query
+    `GET`    | /voterinfo | Looks up information relevant to a voter based on the voter's registered address
+    `GET`    | /representatives  | Looks up political geography and representative information for a single address
+    
+##### OpenFEC API
+- Base URL - [https://api.open.fec.gov](https://api.open.fec.gov/)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /candidates/{candidate_id} | fetch most recent information about that candidate
+    `GET`    | /candidates/{candidate_id}/history | fetches a candidate's characteristics over time
+    
+##### ProPublica Congress API
+- Base URL - [https://api.propublica.org/congress/v1](https://api.propublica.org/congress/v1)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /{congress}/{chamber}/members.json | get a list of members of a particular chamber in a particular Congress
+    `GET`    | /members/{member-id}/bills/{type}.json | get recent bills by a specific member
