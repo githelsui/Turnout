@@ -9,6 +9,7 @@ target 'Turnout' do
     	pod 'Parse' 
 	pod 'AFNetworking'
 	pod 'DateTools'
+	pod 'FBSDKLoginKit'
 
   target 'TurnoutTests' do
     inherit! :search_paths

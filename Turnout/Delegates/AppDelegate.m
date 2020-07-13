@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +19,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-     ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-         configuration.applicationId = @"parseChatID";
-         configuration.server = @"https://blooming-thicket-89345.herokuapp.com/parse";
-       }];
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
+//        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//
+//         if ([FBSDKAccessToken currentAccessToken]) {
+//           AccountViewController *accountViewController = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+//           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountViewController];
+//           self.window.rootViewController = navController;
+//         } else {
+//           LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//           self.window.rootViewController = loginViewController;
+//         }
+//
+//         [self.window makeKeyAndVisible];
+    
+    ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"Turnout";
+        configuration.server = @"https://turnout-server1.herokuapp.com/parse";
+    }];
     [Parse initializeWithConfiguration:configuration];
     return YES;
 }

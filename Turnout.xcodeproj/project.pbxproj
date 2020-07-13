@@ -20,6 +20,7 @@
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
+		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		CAC2B06424BCD99C00F3B23A /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveFeedController.h; sourceTree = "<group>"; };
+		CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveFeedController.m; sourceTree = "<group>"; };
 		E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.debug.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,18 +150,15 @@
 		CA5F03D324BCD58600F599CF /* Turnout */ = {
 			isa = PBXGroup;
 			children = (
+				CAC2B06624BCE1C900F3B23A /* Delegates */,
 				CAC2B05F24BCD8D700F3B23A /* Views */,
 				CAC2B05E24BCD8CE00F3B23A /* ViewControllers */,
 				CAC2B05D24BCD8C700F3B23A /* Models */,
-				CA5F03D424BCD58600F599CF /* AppDelegate.h */,
-				CA5F03D524BCD58600F599CF /* AppDelegate.m */,
-				CA5F03D724BCD58600F599CF /* SceneDelegate.h */,
-				CA5F03D824BCD58600F599CF /* SceneDelegate.m */,
 				CA5F03DD24BCD58600F599CF /* Main.storyboard */,
-				CA5F03E024BCD58600F599CF /* Assets.xcassets */,
 				CA5F03E224BCD58600F599CF /* LaunchScreen.storyboard */,
 				CA5F03E524BCD58600F599CF /* Info.plist */,
 				CA5F03E624BCD58600F599CF /* main.m */,
+				CA5F03E024BCD58600F599CF /* Assets.xcassets */,
 			);
 			path = Turnout;
 			sourceTree = "<group>";
@@ -195,6 +195,8 @@
 			children = (
 				CAC2B06024BCD96E00F3B23A /* LoginViewController.h */,
 				CAC2B06124BCD96E00F3B23A /* LoginViewController.m */,
+				CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */,
+				CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -204,6 +206,17 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CAC2B06624BCE1C900F3B23A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CA5F03D424BCD58600F599CF /* AppDelegate.h */,
+				CA5F03D524BCD58600F599CF /* AppDelegate.m */,
+				CA5F03D724BCD58600F599CF /* SceneDelegate.h */,
+				CA5F03D824BCD58600F599CF /* SceneDelegate.m */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +460,7 @@
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
+				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
 			);

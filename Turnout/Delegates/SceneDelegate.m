@@ -8,6 +8,7 @@
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface SceneDelegate ()
 
@@ -17,10 +18,23 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-//    if (PFUser.currentUser) {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuBarController"];
-//    }
+    //    if (PFUser.currentUser) {
+    //        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuBarController"];
+    //    }
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                    ];
+    // Add any custom logic here.
+    return handled;
 }
 
 
