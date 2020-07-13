@@ -81,7 +81,7 @@
                                 <action selector="logoutTapped:" destination="03w-tc-kLs" id="t84-Ma-uFf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="AUw-jZ-rc5"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-email-send-30" id="AUw-jZ-rc5"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adx-6B-XdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -127,4 +127,7 @@
             <point key="canvasLocation" x="525" y="157"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-email-send-30" width="30" height="30"/>
+    </resources>
 </document>
