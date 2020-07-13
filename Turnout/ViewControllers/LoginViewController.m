@@ -55,7 +55,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     } else if (result.declinedPermissions.count > 0) {
         NSLog(@"User has declined permission.");
     } else {
-        //        [self getFBUser];
+        [self getFBUser];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
@@ -127,19 +127,19 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     [self presentViewController:alert animated:YES completion:^{}];
 }
 
-//- (void)getFBUser{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [FBSDKProfile loadCurrentProfileWithCompletion:
-//         ^(FBSDKProfile *profile, NSError *error) {
-//            if (profile) {
-//                self.fbsdkProfile = profile;
-//                NSString *name = profile.firstName;
-//                NSString *pass = profile.userID;
-//                [self saveParseUser:name password:pass];
-//            }
-//        }];
-//    });
-//}
+- (void)getFBUser{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [FBSDKProfile loadCurrentProfileWithCompletion:
+         ^(FBSDKProfile *profile, NSError *error) {
+            if (profile) {
+                self.fbsdkProfile = profile;
+                NSString *name = profile.firstName;
+                NSString *pass = profile.userID;
+                [self saveParseUser:name password:pass];
+            }
+        }];
+    });
+}
 
 /*
  #pragma mark - Navigation
