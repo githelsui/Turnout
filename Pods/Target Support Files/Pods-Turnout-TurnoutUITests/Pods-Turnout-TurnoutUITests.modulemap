@@ -1,0 +1,6 @@
+framework module Pods_Turnout_TurnoutUITests {
+  umbrella header "Pods-Turnout-TurnoutUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

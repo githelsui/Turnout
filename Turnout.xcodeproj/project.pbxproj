@@ -3,19 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		246C9E54078CC2A06CDF5591 /* Pods_Turnout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */; };
+		2B3AE7CFE44696813576D605 /* Pods_Turnout_TurnoutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */; };
+		35FAB2407407AFA7D833B00F /* Pods_TurnoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */; };
 		CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D524BCD58600F599CF /* AppDelegate.m */; };
 		CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D824BCD58600F599CF /* SceneDelegate.m */; };
-		CA5F03DC24BCD58600F599CF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03DB24BCD58600F599CF /* ViewController.m */; };
 		CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5F03DD24BCD58600F599CF /* Main.storyboard */; };
 		CA5F03E124BCD58600F599CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA5F03E024BCD58600F599CF /* Assets.xcassets */; };
 		CA5F03E424BCD58600F599CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5F03E224BCD58600F599CF /* LaunchScreen.storyboard */; };
 		CA5F03E724BCD58600F599CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03E624BCD58600F599CF /* main.m */; };
 		CA5F03F124BCD58700F599CF /* TurnoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03F024BCD58700F599CF /* TurnoutTests.m */; };
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
+		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
+		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +40,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		014E3A60FF6953FCADD8269C /* Pods-TurnoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TurnoutTests.release.xcconfig"; path = "Target Support Files/Pods-TurnoutTests/Pods-TurnoutTests.release.xcconfig"; sourceTree = "<group>"; };
+		0E09E9CCC7E48DF5B3F44D96 /* Pods-TurnoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TurnoutTests.debug.xcconfig"; path = "Target Support Files/Pods-TurnoutTests/Pods-TurnoutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TurnoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turnout_TurnoutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D7E8525B0C4A8990C41230 /* Pods-Turnout-TurnoutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout-TurnoutUITests.release.xcconfig"; path = "Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests.release.xcconfig"; sourceTree = "<group>"; };
+		79866296059B931C4559BD7F /* Pods-Turnout-TurnoutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout-TurnoutUITests.debug.xcconfig"; path = "Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turnout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8869820F72CD319A69A7B942 /* Pods-Turnout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.release.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.release.xcconfig"; sourceTree = "<group>"; };
 		CA5F03D124BCD58600F599CF /* Turnout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turnout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5F03D424BCD58600F599CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA5F03D524BCD58600F599CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CA5F03D724BCD58600F599CF /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		CA5F03D824BCD58600F599CF /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		CA5F03DA24BCD58600F599CF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CA5F03DB24BCD58600F599CF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CA5F03DE24BCD58600F599CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA5F03E024BCD58600F599CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA5F03E324BCD58600F599CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +64,11 @@
 		CA5F03F724BCD58700F599CF /* TurnoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurnoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnoutUITests.m; sourceTree = "<group>"; };
 		CA5F03FD24BCD58700F599CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CAC2B06424BCD99C00F3B23A /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.debug.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				246C9E54078CC2A06CDF5591 /* Pods_Turnout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FAB2407407AFA7D833B00F /* Pods_TurnoutTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3AE7CFE44696813576D605 /* Pods_Turnout_TurnoutUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DE67187F039F6E866D0A086 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */,
+				8869820F72CD319A69A7B942 /* Pods-Turnout.release.xcconfig */,
+				79866296059B931C4559BD7F /* Pods-Turnout-TurnoutUITests.debug.xcconfig */,
+				56D7E8525B0C4A8990C41230 /* Pods-Turnout-TurnoutUITests.release.xcconfig */,
+				0E09E9CCC7E48DF5B3F44D96 /* Pods-TurnoutTests.debug.xcconfig */,
+				014E3A60FF6953FCADD8269C /* Pods-TurnoutTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D2B280519A5CEA4FD6E38B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */,
+				469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */,
+				25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CA5F03C824BCD58600F599CF = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +129,8 @@
 				CA5F03EF24BCD58700F599CF /* TurnoutTests */,
 				CA5F03FA24BCD58700F599CF /* TurnoutUITests */,
 				CA5F03D224BCD58600F599CF /* Products */,
+				0DE67187F039F6E866D0A086 /* Pods */,
+				2D2B280519A5CEA4FD6E38B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +147,13 @@
 		CA5F03D324BCD58600F599CF /* Turnout */ = {
 			isa = PBXGroup;
 			children = (
+				CAC2B05F24BCD8D700F3B23A /* Views */,
+				CAC2B05E24BCD8CE00F3B23A /* ViewControllers */,
+				CAC2B05D24BCD8C700F3B23A /* Models */,
 				CA5F03D424BCD58600F599CF /* AppDelegate.h */,
 				CA5F03D524BCD58600F599CF /* AppDelegate.m */,
 				CA5F03D724BCD58600F599CF /* SceneDelegate.h */,
 				CA5F03D824BCD58600F599CF /* SceneDelegate.m */,
-				CA5F03DA24BCD58600F599CF /* ViewController.h */,
-				CA5F03DB24BCD58600F599CF /* ViewController.m */,
 				CA5F03DD24BCD58600F599CF /* Main.storyboard */,
 				CA5F03E024BCD58600F599CF /* Assets.xcassets */,
 				CA5F03E224BCD58600F599CF /* LaunchScreen.storyboard */,
@@ -137,6 +181,31 @@
 			path = TurnoutUITests;
 			sourceTree = "<group>";
 		};
+		CAC2B05D24BCD8C700F3B23A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAC2B06324BCD99C00F3B23A /* User.h */,
+				CAC2B06424BCD99C00F3B23A /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAC2B05E24BCD8CE00F3B23A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CAC2B06024BCD96E00F3B23A /* LoginViewController.h */,
+				CAC2B06124BCD96E00F3B23A /* LoginViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CAC2B05F24BCD8D700F3B23A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA5F040024BCD58700F599CF /* Build configuration list for PBXNativeTarget "Turnout" */;
 			buildPhases = (
+				0EBB6158861650B6A49ECF56 /* [CP] Check Pods Manifest.lock */,
 				CA5F03CD24BCD58600F599CF /* Sources */,
 				CA5F03CE24BCD58600F599CF /* Frameworks */,
 				CA5F03CF24BCD58600F599CF /* Resources */,
+				58A88C92E526144F68D0F736 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +232,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA5F040324BCD58700F599CF /* Build configuration list for PBXNativeTarget "TurnoutTests" */;
 			buildPhases = (
+				2AB093DD35830ED3C5EB3209 /* [CP] Check Pods Manifest.lock */,
 				CA5F03E824BCD58700F599CF /* Sources */,
 				CA5F03E924BCD58700F599CF /* Frameworks */,
 				CA5F03EA24BCD58700F599CF /* Resources */,
@@ -179,9 +251,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA5F040624BCD58700F599CF /* Build configuration list for PBXNativeTarget "TurnoutUITests" */;
 			buildPhases = (
+				09F7ABBCD9BEB049CAE3FC02 /* [CP] Check Pods Manifest.lock */,
 				CA5F03F324BCD58700F599CF /* Sources */,
 				CA5F03F424BCD58700F599CF /* Frameworks */,
 				CA5F03F524BCD58700F599CF /* Resources */,
+				DBAC2CC03D31C5B968CE4B5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,12 +336,116 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09F7ABBCD9BEB049CAE3FC02 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Turnout-TurnoutUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0EBB6158861650B6A49ECF56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Turnout-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2AB093DD35830ED3C5EB3209 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TurnoutTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58A88C92E526144F68D0F736 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Turnout/Pods-Turnout-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Turnout/Pods-Turnout-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Turnout/Pods-Turnout-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBAC2CC03D31C5B968CE4B5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CA5F03CD24BCD58600F599CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA5F03DC24BCD58600F599CF /* ViewController.m in Sources */,
+				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
+				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
@@ -437,9 +615,11 @@
 		};
 		CA5F040124BCD58700F599CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79AU84K8RV;
 				INFOPLIST_FILE = Turnout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,9 +633,11 @@
 		};
 		CA5F040224BCD58700F599CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8869820F72CD319A69A7B942 /* Pods-Turnout.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79AU84K8RV;
 				INFOPLIST_FILE = Turnout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -469,6 +651,7 @@
 		};
 		CA5F040424BCD58700F599CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E09E9CCC7E48DF5B3F44D96 /* Pods-TurnoutTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -488,6 +671,7 @@
 		};
 		CA5F040524BCD58700F599CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 014E3A60FF6953FCADD8269C /* Pods-TurnoutTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +691,7 @@
 		};
 		CA5F040724BCD58700F599CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79866296059B931C4559BD7F /* Pods-Turnout-TurnoutUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TurnoutUITests/Info.plist;
@@ -524,6 +709,7 @@
 		};
 		CA5F040824BCD58700F599CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56D7E8525B0C4A8990C41230 /* Pods-Turnout-TurnoutUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TurnoutUITests/Info.plist;
