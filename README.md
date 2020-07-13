@@ -47,19 +47,17 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
 * Profile Section:
     * Users can view their own past reports
     * Users can save details from the Information Section to view on their profile
-* Information Section: 
-    * 1 calendar + 4 different screens depending on [API endpoint](https://www.democracy.works/elections-api): Voter Guide, Elections, Representatives, and Bills/Propositions
-    *  Voter Guide: directs User to Vote.org's links for voter registration 
-    *  Elections: presents list of upcoming elections with their dates + locations for polling station. Also presents running candidates
-    *  Representatives: list of representatives based on zipcod. Tapping on details leads to info on rep + bills they cosponsor
+*  Voter Guide Section: fetches from Google Civic Info API and directs User to Vote.org's links for voter registration 
+*  Elections: presents list of upcoming elections with their dates + locations for polling station. Also presents running candidates
+*  Proposals: list of representatives based on zipcod. Tapping on details leads to info on rep + bills they cosponsor
     *  Bills: list of bills and tapping on cell redirects to its details + representatives cosponsoring it
-    * Embed a Calendar from open-source external library FSCalendar that includes the upcoming election dates (based on the Elections Screen)
 
 **Optional Nice-to-have Stories**
 * The ability to share posts to other social media services
 * Users can comment on a post
 * Posting videos and using a media player to view them
 * For each government candidate, users can leave a comment on their page, almost like a reviews section
+* Calendar
 * A user can save another users' posts in their Profile Section
 * The ability for a user to change their zip code (Settings Page)
 
@@ -95,7 +93,7 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
 * Profile Section
     => Each post leads to a Detail Screen
     => Top right navigation button leads to Creation Screen
-* Information Section
+* Information Sections
     => Each post leads to a Detail Screen
 
 ## Wireframes
@@ -135,10 +133,10 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
    | author        | Pointer to User| image author |
+   | context       | Relation | 
    | image         | File     | image attached to user posts |
    | status       | String   | text/status by author |
    | likesCount    | Number   | number of likes for the post |
-   | likedByUser    | Boolean   | whether current user liked the post |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
    | zipcode        | Pointer to Zipcode| Zipcode of post's user |
@@ -172,6 +170,13 @@ Turnout is an iOS mobile app designed to bring light to its users' civil liberti
    | objectId      | String   | unique id for reference |
    | zipcode      | String   | current zipcode |
    | neighbors      | Array   | list of neighboring zipcodes |
+   
+   #### Assoc
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for reference |
+   | typeId      | String   | whether it is like or bookmark |
+   | infoBoxId      | String   | ID to indicate if obj is a reference from api or a user post |
    
 ## Networking
 
