@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface User : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSNumber *zipcode;
-+ (void) createUser:( NSString * _Nullable )username zipCode:( NSNumber * _Nullable)zipcode withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) createUser:( NSString * _Nullable )username password:( NSString * _Nullable)password withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

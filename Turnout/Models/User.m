@@ -12,15 +12,16 @@
 
 @dynamic username;
 @dynamic zipcode;
+@dynamic password;
 
 + (nonnull NSString *)parseClassName {
     return @"User";
 }
 
-+ (void) createUser:( NSString * _Nullable )username zipCode:( NSNumber * _Nullable)zipcode withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) createUser:( NSString * _Nullable )username password:( NSString * _Nullable)password withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     User *newUser = [User new];
     newUser.username = username;
-    newUser.zipcode = zipcode;
+    newUser.password = password;
     [newUser saveInBackgroundWithBlock: completion];
 }
 
