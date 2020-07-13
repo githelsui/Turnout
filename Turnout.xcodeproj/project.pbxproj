@@ -21,6 +21,7 @@
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
+		CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		CAC2B06424BCD99C00F3B23A /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveFeedController.h; sourceTree = "<group>"; };
 		CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveFeedController.m; sourceTree = "<group>"; };
+		CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardViewController.h; sourceTree = "<group>"; };
+		CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardViewController.m; sourceTree = "<group>"; };
 		E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.debug.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +200,8 @@
 				CAC2B06124BCD96E00F3B23A /* LoginViewController.m */,
 				CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */,
 				CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */,
+				CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */,
+				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
+				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,

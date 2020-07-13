@@ -98,7 +98,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         } else {
             NSLog(@"User registered successfully");
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"OnboardViewController"];
         }
     }];
 }

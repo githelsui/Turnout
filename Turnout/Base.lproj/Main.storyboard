@@ -59,11 +59,12 @@
                         <outlet property="signUpButton" destination="FfY-LN-Txh" id="g61-a9-Qrb"/>
                         <outlet property="usernameField" destination="EOD-bl-qfU" id="y3x-FI-HfV"/>
                         <segue destination="JfA-qs-MeN" kind="show" identifier="TurnoutSegue" id="CgJ-YU-J4g"/>
+                        <segue destination="YdN-fs-onp" kind="show" id="rcF-rl-gAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-485.60000000000002" y="156.65024630541873"/>
+            <point key="canvasLocation" x="-1390" y="157"/>
         </scene>
         <!--Live Feed Controller-->
         <scene sceneID="Vcy-Qu-qx6">
@@ -124,9 +125,40 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kP-VX-8L3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="525" y="157"/>
+            <point key="canvasLocation" x="524" y="167"/>
+        </scene>
+        <!--Onboard View Controller-->
+        <scene sceneID="RRs-mp-UZp">
+            <objects>
+                <viewController storyboardIdentifier="OnboardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YdN-fs-onp" customClass="OnboardViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dzm-GU-3hk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome, user." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubu-dv-eBZ">
+                                <rect key="frame" x="80" y="276" width="215" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9FJ-ac-KdY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ESn-aU-ChE"/>
+                    <connections>
+                        <segue destination="JfA-qs-MeN" kind="show" id="hPc-1S-Tj9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9nH-ai-Bj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-463" y="157"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hPc-1S-Tj9"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="icons8-email-send-30" width="30" height="30"/>
     </resources>
