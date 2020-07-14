@@ -10,6 +10,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Parse/Parse.h>
+#import "LiveFeedController.h"
+#import "OnboardViewController.h"
 #import "User.h"
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
@@ -24,7 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([FBSDKAccessToken currentAccessToken]) {
-        NSLog(@"%s", "user loggedon");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
     [self setFBLogin];
 }
@@ -141,14 +144,19 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     });
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"OnboardSegue"]){
+        OnboardViewController *onboard = [segue destinationViewController];
+        onboard.currentUser = PFUser.currentUser;
+    } else if ([segue.identifier isEqualToString:@"TurnoutSegue"]) {
+        LiveFeedController *live = [segue destinationViewController];
+        live.currentUser = PFUser.currentUser;
+    }
+}
+
 
 @end
