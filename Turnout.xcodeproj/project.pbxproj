@@ -11,6 +11,8 @@
 		2B3AE7CFE44696813576D605 /* Pods_Turnout_TurnoutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */; };
 		35FAB2407407AFA7D833B00F /* Pods_TurnoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */; };
 		CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5C24BE23B600307BBD /* Zipcode.m */; };
+		CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5F24BE51B400307BBD /* ComposeViewController.m */; };
+		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
 		CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D524BCD58600F599CF /* AppDelegate.m */; };
 		CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D824BCD58600F599CF /* SceneDelegate.m */; };
 		CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5F03DD24BCD58600F599CF /* Main.storyboard */; };
@@ -53,6 +55,10 @@
 		8869820F72CD319A69A7B942 /* Pods-Turnout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.release.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.release.xcconfig"; sourceTree = "<group>"; };
 		CA15FA5B24BE23B600307BBD /* Zipcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Zipcode.h; sourceTree = "<group>"; };
 		CA15FA5C24BE23B600307BBD /* Zipcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Zipcode.m; sourceTree = "<group>"; };
+		CA15FA5E24BE51B400307BBD /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		CA15FA5F24BE51B400307BBD /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		CA15FA6124BE653B00307BBD /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		CA15FA6224BE653B00307BBD /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		CA5F03D124BCD58600F599CF /* Turnout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turnout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5F03D424BCD58600F599CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA5F03D524BCD58600F599CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 				CAC2B06424BCD99C00F3B23A /* User.m */,
 				CA15FA5B24BE23B600307BBD /* Zipcode.h */,
 				CA15FA5C24BE23B600307BBD /* Zipcode.m */,
+				CA15FA6124BE653B00307BBD /* Post.h */,
+				CA15FA6224BE653B00307BBD /* Post.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +215,8 @@
 				CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */,
 				CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */,
 				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
+				CA15FA5E24BE51B400307BBD /* ComposeViewController.h */,
+				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -470,7 +480,9 @@
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
+				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
+				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,

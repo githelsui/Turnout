@@ -82,12 +82,120 @@
                                 <action selector="logoutTapped:" destination="03w-tc-kLs" id="t84-Ma-uFf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-email-send-30" id="AUw-jZ-rc5"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="AUw-jZ-rc5">
+                            <connections>
+                                <segue destination="NMG-uD-ri0" kind="presentation" id="f4v-Kx-xeN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adx-6B-XdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="525" y="1530"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="xjR-vQ-je7">
+            <objects>
+                <viewController id="diD-SZ-OEx" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WfE-YZ-5Y5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="hfW-gH-mM9">
+                                <rect key="frame" x="10" y="126" width="349" height="177"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXJ-Qi-1kU" userLabel="Bar">
+                                <rect key="frame" x="13" y="118" width="343" height="0.33333333333333331"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yz2-GT-oIB">
+                                <rect key="frame" x="16" y="67" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-UT-IdF">
+                                <rect key="frame" x="16" y="89" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-Ul-QVC" userLabel="Bar">
+                                <rect key="frame" x="16" y="317" width="343" height="0.33333333333333331"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cx3-dd-LPr" userLabel="Bar">
+                                <rect key="frame" x="16" y="361" width="343" height="0.33333333333333331"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mu-cR-Qi7">
+                                <rect key="frame" x="16" y="317" width="48" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="camera" catalog="system"/>
+                                <connections>
+                                    <action selector="cameraTapped:" destination="diD-SZ-OEx" eventType="touchUpInside" id="eDn-Wc-B5H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qw-IJ-Qcv">
+                                <rect key="frame" x="72" y="317" width="43" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" image="photo.on.rectangle" catalog="system"/>
+                                <connections>
+                                    <action selector="photoTapped:" destination="diD-SZ-OEx" eventType="touchUpInside" id="2aU-xH-6KB"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j80-H7-J9p">
+                                <rect key="frame" x="16" y="370" width="343" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type status here..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNN-f6-WpA">
+                                <rect key="frame" x="13" y="126" width="230" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Qom-gR-1A4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Post" id="dyg-2d-3Kz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="gRd-4J-GZC">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelTapped:" destination="diD-SZ-OEx" id="Nz7-oo-uu6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icons8-email-send-30" id="YtH-vU-yqy">
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="postStatus:" destination="diD-SZ-OEx" id="zLC-rb-7Pj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="attachedImage" destination="j80-H7-J9p" id="7TP-kk-yLV"/>
+                        <outlet property="dateLabel" destination="yz2-GT-oIB" id="Mbx-HF-Tsk"/>
+                        <outlet property="textMessage" destination="eNN-f6-WpA" id="LZT-FT-pqU"/>
+                        <outlet property="textView" destination="hfW-gH-mM9" id="e2r-8o-qtM"/>
+                        <outlet property="timeLabel" destination="y7L-UT-IdF" id="Nva-z0-wXt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-wl-nxg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2255.1999999999998" y="1529.5566502463055"/>
         </scene>
         <!--Item-->
         <scene sceneID="vv6-Bm-0TH">
@@ -125,7 +233,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kP-VX-8L3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="524" y="167"/>
+            <point key="canvasLocation" x="524" y="144"/>
         </scene>
         <!--Onboard View Controller-->
         <scene sceneID="RRs-mp-UZp">
@@ -184,13 +292,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nH-ai-Bj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-440.80000000000001" y="531.2807881773399"/>
+            <point key="canvasLocation" x="-436" y="157"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cVm-L4-vRq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NMG-uD-ri0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OnW-Ed-a7B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="diD-SZ-OEx" kind="relationship" relationship="rootViewController" id="8Za-sh-62D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZN-CE-LdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1312.8" y="1529.5566502463055"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hPc-1S-Tj9"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="camera" catalog="system" width="128" height="96"/>
         <image name="icons8-email-send-30" width="30" height="30"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
     </resources>
 </document>
