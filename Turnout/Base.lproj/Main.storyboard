@@ -261,6 +261,15 @@
                         <viewLayoutGuide key="safeArea" id="yDS-HA-sD7"/>
                     </view>
                     <navigationItem key="navigationItem" id="yGu-CT-QEJ"/>
+                    <connections>
+                        <outlet property="attachedPhoto" destination="JcK-QS-Bn4" id="Fj4-Ry-011"/>
+                        <outlet property="dateLabel" destination="kXK-Dd-dpc" id="6G6-Gh-Ld5"/>
+                        <outlet property="likesBtn" destination="3zy-hP-dMp" id="yPD-tE-KKd"/>
+                        <outlet property="locationLabel" destination="xOB-9q-WJF" id="bM6-JJ-jIf"/>
+                        <outlet property="nameLabel" destination="Ia0-iO-nj6" id="x2j-KG-MvW"/>
+                        <outlet property="statusLabel" destination="23M-ak-UFJ" id="91z-Le-ec3"/>
+                        <outlet property="timeLabel" destination="UbS-P8-4Gi" id="rGH-Wx-VRm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoL-s3-81E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
