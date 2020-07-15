@@ -3,6 +3,20 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[PostCell checkIfUserLiked]:PostCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.assocs">
+            </PersistentString>
+            <PersistentString
+               value = "self.assoc">
+            </PersistentString>
+            <PersistentString
+               value = "self.assocs.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString

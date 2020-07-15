@@ -23,8 +23,8 @@
 }
 
 - (void)setCell{
-    [self queryLikes];
     [self updateLikes];
+    [self queryLikes];
     PFUser *user = self.post.author;
     [user fetchIfNeeded];
     self.nameLabel.text = user[@"username"];
@@ -62,6 +62,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
         if (assocs != nil) {
             self.assocs = assocs;
+            [self updateLikes];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -70,7 +71,7 @@
 
 -(void)updateLikes{
     UIImage *likeIcon;
-    if(self.assocs.count == 0 || [self checkIfUserLiked]){
+    if(![self checkIfUserLiked]){
         likeIcon = [UIImage imageNamed:@"notliked.png"];
     } else {
         likeIcon = [UIImage imageNamed:@"liked.png"];
@@ -81,7 +82,11 @@
 }
 
 - (IBAction)likeTapped:(id)sender {
-    [self createLikeAssoc];
+    if([self checkIfUserLiked]){
+        [self removeLikeAssoc];
+    } else {
+        [self createLikeAssoc];
+    }
 }
 
 - (void)createLikeAssoc{
@@ -93,7 +98,7 @@
     [likeAssoc saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The assoc was saved!");
-            [self updateLikes];
+            [self queryLikes];
         } else {
             NSLog(@"Problem saving assoc: %@", error.localizedDescription);
         }
@@ -101,17 +106,36 @@
 }
 
 - (void)removeLikeAssoc{
-    
+    Assoc *usersLike = [self usersLike];
+    [usersLike deleteInBackground];
+    [self queryLikes];
 }
 
 - (BOOL)checkIfUserLiked{
+    [self queryUsersLike];
+    if(self.userLiked.count == 0) return NO;
+    else return YES;
+}
+
+- (Assoc *)usersLike{
+    [self queryUsersLike];
+    return self.userLiked[0];
+}
+
+- (void)queryUsersLike{
     PFUser *currentUser = PFUser.currentUser;
-    for(Assoc *assoc in self.assocs){
-        if(assoc.user == currentUser){
-            return YES;
+    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"typeId" equalTo:@"Like"];
+    [query whereKey:@"likedPost" equalTo:self.post];
+    [query whereKey:@"user" equalTo:currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
+        if (assocs != nil) {
+            self.userLiked = assocs;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
         }
-    }
-    return NO;
+    }];
 }
 
 @end

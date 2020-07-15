@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *attachedPhoto;
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSArray *assocs;
+@property (nonatomic, strong) NSArray *userLiked;
 - (void)setCell;
 @end
 
