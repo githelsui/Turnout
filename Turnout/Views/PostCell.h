@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *attachedPhoto;
 @property (nonatomic, strong) Post *post;
+@property (nonatomic, strong) NSArray *assocs;
 - (void)setCell;
 @end
 

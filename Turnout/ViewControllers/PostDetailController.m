@@ -41,7 +41,7 @@
             NSLog(@"Print error!!! %@", error.localizedDescription);
         }
     }];
-    [self checkImageView];
+//    [self checkImageView];
 }
 
 - (void)checkImageView{
