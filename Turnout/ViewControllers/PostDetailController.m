@@ -46,12 +46,12 @@
 
 - (void)checkImageView{
     if(self.post.image == nil){
+        [self.attachedPhoto removeFromSuperview];
+        self.attachedPhoto = nil;
         CGFloat screenWidth = self.view.bounds.size.width;
         CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
         CGSize statusSize = self.statusLabel.layer.frame.size;
         CGPoint statusPos = self.statusLabel.layer.position;
-        [self.attachedPhoto removeFromSuperview];
-        self.attachedPhoto = nil;
         CGPoint locPoint;
         locPoint.x = (screenWidth + locationWidth - statusSize.width) / 2;
         locPoint.y = statusSize.height + statusPos.y + 10;

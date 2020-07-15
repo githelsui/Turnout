@@ -90,14 +90,22 @@
     } else {
         NSString *status = self.textView.text;
         UIImage *imageToPost = self.imagePost;
-        [Post postStatus:imageToPost withStatus:status date:self.dateString time:self.timeString withCompletion:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                [self showAlert:error.localizedDescription msg:@""];
-            } else {
-                [self dismissViewControllerAnimated:true completion:nil];
-            }
-        }];
+        [self postWithImage:status image:imageToPost];
     }
+}
+
+- (void)postWithImage:(NSString *)status image:(UIImage *)image{
+    BOOL imgAttached = NO;
+    if(image != nil){
+        imgAttached = YES;
+    }
+    [Post postStatus:image withStatus:status date:self.dateString time:self.timeString imgAttached:imgAttached withCompletion:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            [self showAlert:error.localizedDescription msg:@""];
+        } else {
+            [self dismissViewControllerAnimated:true completion:nil];
+        }
+    }];
 }
 
 - (void)showAlert:(NSString *)title msg:(NSString *)msg{

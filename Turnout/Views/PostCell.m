@@ -27,6 +27,20 @@
     self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
+    if(self.post.photoAttached){
+        [self loadImage];
+    } else {
+        [self checkImageView];
+    }
+//     [self loadImage];
+}
+
+- (void)checkImageView{
+    [self.attachedPhoto removeFromSuperview];
+    self.attachedPhoto = nil;
+}
+
+- (void)loadImage{
     [self.post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *img = [UIImage imageWithData:data];
@@ -35,14 +49,6 @@
             NSLog(@"Print error!!! %@", error.localizedDescription);
         }
     }];
-    [self checkImageView];
-}
-
-- (void)checkImageView{
-    if(self.post.image == nil){
-        [self.attachedPhoto removeFromSuperview];
-        self.attachedPhoto = nil;
-    }
 }
 
 @end

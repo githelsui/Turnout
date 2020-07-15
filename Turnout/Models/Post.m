@@ -15,6 +15,7 @@
 @dynamic author;
 @dynamic status;
 @dynamic image;
+@dynamic photoAttached;
 @dynamic datePosted;
 @dynamic timePosted;
 @dynamic timeAgo;
@@ -23,11 +24,12 @@
     return @"Post";
 }
 
-+ (void) postStatus:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postStatus:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time imgAttached:(BOOL)imgAttached withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Post *newPost = [Post new];
     newPost.image = [self getPFFileFromImage:image];
     newPost.author = [PFUser currentUser];
     newPost.status = status;
+    newPost.photoAttached = imgAttached;
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
     newPost.timePosted = time;
