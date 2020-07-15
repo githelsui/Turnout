@@ -17,7 +17,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -27,14 +27,14 @@
     self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
-    self.attachedPhoto.alpha = 0;
     [self.post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
-            UIImage *image = [UIImage imageWithData:data];
-            self.attachedPhoto.image = image;
-            self.attachedPhoto.alpha = 1;
+            UIImage *img = [UIImage imageWithData:data];
+            self.attachedPhoto.image = img;
         }else{
             NSLog(@"Print error!!! %@", error.localizedDescription);
+            [self.attachedPhoto removeFromSuperview];
+            self.attachedPhoto = nil;
         }
     }];
 }
