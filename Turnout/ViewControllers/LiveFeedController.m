@@ -12,16 +12,43 @@
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <Parse/Parse.h>
+#import "PostCell.h"
+#import "Post.h"
+#import "PostDetailController.h"
 
-@interface LiveFeedController ()
-
+@interface LiveFeedController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *posts;
 @end
 
 @implementation LiveFeedController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+}
+
+- (void)fetchPosts{
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = posts;
+            for(Post *post in self.posts){
+                NSLog(@"%s", "post object: ");
+                NSLog(@"status: %@", post.status);
+                NSLog(@"timeposted: %@", post.timePosted);
+                NSLog(@"date posted: %@", post.datePosted);
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        [self.tableView reloadData];
+    }];
 }
 
 - (IBAction)logoutTapped:(id)sender {
@@ -34,14 +61,32 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {}];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.posts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    Post *post = self.posts[indexPath.row];
+    cell.post = post;
+    [cell setCell];
+    return cell;
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    if ([segue.identifier isEqualToString:@"DetailSegue"]){
+        Post *post = self.posts[indexPath.row];
+        NSLog(@"post being passed %@", post);
+        PostDetailController *detailController = [segue destinationViewController];
+        detailController.post = post;
+    }
+}
+
 
 @end

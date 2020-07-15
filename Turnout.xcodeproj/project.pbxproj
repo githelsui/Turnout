@@ -13,6 +13,8 @@
 		CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5C24BE23B600307BBD /* Zipcode.m */; };
 		CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5F24BE51B400307BBD /* ComposeViewController.m */; };
 		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
+		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
+		CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */; };
 		CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D524BCD58600F599CF /* AppDelegate.m */; };
 		CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D824BCD58600F599CF /* SceneDelegate.m */; };
 		CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5F03DD24BCD58600F599CF /* Main.storyboard */; };
@@ -59,6 +61,10 @@
 		CA15FA5F24BE51B400307BBD /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		CA15FA6124BE653B00307BBD /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		CA15FA6224BE653B00307BBD /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		CA15FA6524BE6FA000307BBD /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		CA15FA6624BE6FA000307BBD /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailController.h; sourceTree = "<group>"; };
+		CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailController.m; sourceTree = "<group>"; };
 		CA5F03D124BCD58600F599CF /* Turnout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turnout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5F03D424BCD58600F599CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA5F03D524BCD58600F599CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +143,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA15FA6424BE6D5000307BBD /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		CA5F03C824BCD58600F599CF = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		CA5F03D324BCD58600F599CF /* Turnout */ = {
 			isa = PBXGroup;
 			children = (
+				CA15FA6424BE6D5000307BBD /* API */,
 				CAC2B06624BCE1C900F3B23A /* Delegates */,
 				CAC2B05F24BCD8D700F3B23A /* Views */,
 				CAC2B05E24BCD8CE00F3B23A /* ViewControllers */,
@@ -217,6 +231,8 @@
 				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
 				CA15FA5E24BE51B400307BBD /* ComposeViewController.h */,
 				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
+				CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */,
+				CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +240,8 @@
 		CAC2B05F24BCD8D700F3B23A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CA15FA6524BE6FA000307BBD /* PostCell.h */,
+				CA15FA6624BE6FA000307BBD /* PostCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -477,11 +495,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
 				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
+				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
