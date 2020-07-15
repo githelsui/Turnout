@@ -46,7 +46,6 @@
 
 - (void)checkImageView{
     if(self.post.image == nil){
-        NSLog(@"%s", "no image found");
         CGFloat screenWidth = self.view.bounds.size.width;
         CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
         CGSize statusSize = self.statusLabel.layer.frame.size;
