@@ -29,8 +29,17 @@
     self.timeLabel.text = self.post.timeAgo;
     [self.post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
+            CGPoint point;
+            point.x = self.center.x;
+            point.y = self.statusLabel.layer.frame.size.height + self.statusLabel.layer.position.y + 100;
+            int sides = self.statusLabel.layer.frame.size.width;
+            CGRect rect = CGRectMake(0, 0, sides, sides);
             UIImage *img = [UIImage imageWithData:data];
-            self.attachedPhoto.image = img;
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
+            imageView.center = point;
+            imageView.bounds = rect;
+            imageView.image = img;
+            [self addSubview:imageView];
         }else{
             NSLog(@"Print error!!! %@", error.localizedDescription);
             [self.attachedPhoto removeFromSuperview];
