@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Zipcode : PFObject<PFSubclassing>
 
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *zipcode;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *state;
 
 + (void) createZip:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 

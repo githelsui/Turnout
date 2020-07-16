@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeMsg;
 @property (weak, nonatomic) IBOutlet UILabel *instrucLabel;
+@property (nonatomic, strong)  NSArray *zipcodes;
 
 @end
 
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentUser = PFUser.currentUser;
+    [self queryZipcodes];
     [self presentUI];
 }
 
@@ -32,9 +34,7 @@
 - (IBAction)continueTapped:(id)sender {
     NSString *zipcode = self.zipcodeField.text;
     if(zipcode.length > 0){
-        Zipcode *zip = [Zipcode new];
-        zip.zipcode = zipcode;
-        self.currentUser[@"zipcode"] = zip;
+        self.currentUser[@"zipcode"] = [self zipcodeToSave:zipcode];
         [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
@@ -47,6 +47,30 @@
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
+}
+
+- (Zipcode *)zipcodeToSave:(NSString *)zipcode{
+    for(Zipcode *zip in self.zipcodes){
+        NSLog(@"zips: %@", zip);
+        if(zip.zipcode == zipcode)
+            return zip;
+    }
+    Zipcode *zip = [Zipcode new];
+    zip.zipcode = zipcode;
+    return zip;
+}
+
+- (void)queryZipcodes{
+    PFQuery *query = [PFQuery queryWithClassName:@"Zipcode"];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:20];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *zips, NSError *error) {
+        if (zips != nil) {
+            self.zipcodes = zips;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)showAlert:(NSString *)title subtitle:(NSString *)message{
