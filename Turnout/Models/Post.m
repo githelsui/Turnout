@@ -14,11 +14,13 @@
 @dynamic userID;
 @dynamic author;
 @dynamic status;
+@dynamic uiImage;
 @dynamic image;
 @dynamic photoAttached;
 @dynamic datePosted;
 @dynamic timePosted;
 @dynamic timeAgo;
+@dynamic likeAssocs;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -52,11 +54,48 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
++ (NSArray *)postsWithArray:(NSArray *)posts{
+    NSMutableArray *newPosts = [NSMutableArray array];
+    for (Post *post in posts) {
+        post.uiImage = [post fetchUIImage];
+//        post.likeCount = [post fetchLikeCount];
+        [newPosts addObject:post];
+    }
+    NSArray *arrPosts = [newPosts copy];
+    return arrPosts;
+}
+
+- (UIImage *)fetchUIImage{
+    [self.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            UIImage *img = [UIImage imageWithData:data];
+            self.uiImage = img;
+        }else{
+            NSLog(@"Print error!!! %@", error.localizedDescription);
+        }
+    }];
+    return self.uiImage;
+}
+
+- (void)fetchLikeAssocs{
+    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"typeId" equalTo:@"Like"];
+    [query whereKey:@"likedPost" equalTo:self];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *likes, NSError *error) {
+        if (likes != nil) {
+            self.likeAssocs = likes;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 - (NSString *)getTimeAgo: (Post *)post{
     NSDate *createdAt = post.createdAt;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm";
-//    NSString *date = [formatter stringFromDate:createdAt];
+    //    NSString *date = [formatter stringFromDate:createdAt];
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
     formatter.dateFormat = @"E MMM d";

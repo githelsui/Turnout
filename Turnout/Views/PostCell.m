@@ -24,7 +24,6 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    // Clear contentView
     BOOL hasContentView = [self.subviews containsObject:self.contentView];
     if (hasContentView) {
         [self.contentView removeFromSuperview];
@@ -33,59 +32,27 @@
 
 - (void)setCell{
     [self updateLikes];
-    [self queryLikes];
     PFUser *user = self.post.author;
     [user fetchIfNeeded];
     self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
-    //    if(self.post.photoAttached){
-    //        [self loadImage];
-    //    } else {
-    //        [self checkImageView];
-    //    }
     [self loadImage];
 }
 
-- (void)checkImageView{
-    [self.attachedPhoto removeFromSuperview];
-    self.attachedPhoto = nil;
-}
-
 - (void)loadImage{
-    [self.post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            UIImage *img = [UIImage imageWithData:data];
-            self.attachedPhoto.image = img;
-        }else{
-            NSLog(@"Print error!!! %@", error.localizedDescription);
-        }
-    }];
-}
-
-- (void)queryLikes{
-    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
-    [query orderByDescending:@"createdAt"];
-    [query whereKey:@"typeId" equalTo:@"Like"];
-    [query whereKey:@"likedPost" equalTo:self.post];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
-        if (assocs != nil) {
-            self.assocs = assocs;
-            [self updateLikes];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    self.attachedPhoto.file = self.post.image;
+    [self.attachedPhoto loadInBackground];
 }
 
 -(void)updateLikes{
     UIImage *likeIcon;
-    if(![self checkIfUserLiked]){
-        likeIcon = [UIImage imageNamed:@"notliked.png"];
+    if([self checkIfUserLiked]){
+         likeIcon = [UIImage imageNamed:@"liked.png"];
     } else {
-        likeIcon = [UIImage imageNamed:@"liked.png"];
+        likeIcon = [UIImage imageNamed:@"notliked.png"];
     }
-    NSString *likeCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.assocs.count];
+    NSString *likeCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likeAssocs.count];
     [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
     [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
 }
@@ -107,7 +74,7 @@
     [likeAssoc saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The assoc was saved!");
-            [self queryLikes];
+            [self updateLikes];
         } else {
             NSLog(@"Problem saving assoc: %@", error.localizedDescription);
         }
@@ -115,36 +82,24 @@
 }
 
 - (void)removeLikeAssoc{
-    Assoc *usersLike = [self usersLike];
+    Assoc *usersLike = [self queryUsersLike];
     [usersLike deleteInBackground];
-    [self queryLikes];
+    [self updateLikes];
 }
 
 - (BOOL)checkIfUserLiked{
-    [self queryUsersLike];
-    if(self.userLiked.count == 0) return NO;
-    else return YES;
+    if([self queryUsersLike]) return YES;
+    else return NO;
 }
 
-- (Assoc *)usersLike{
-    [self queryUsersLike];
-    return self.userLiked[0];
-}
-
-- (void)queryUsersLike{
+- (Assoc *)queryUsersLike{
     PFUser *currentUser = PFUser.currentUser;
-    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
-    [query orderByDescending:@"createdAt"];
-    [query whereKey:@"typeId" equalTo:@"Like"];
-    [query whereKey:@"likedPost" equalTo:self.post];
-    [query whereKey:@"user" equalTo:currentUser];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
-        if (assocs != nil) {
-            self.userLiked = assocs;
-        } else {
-            NSLog(@"%@", error.localizedDescription);
+    for(Assoc *like in self.post.likeAssocs){
+        if(like.user == currentUser){
+            return like;
         }
-    }];
+    }
+    return nil;
 }
 
 @end

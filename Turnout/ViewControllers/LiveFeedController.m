@@ -12,6 +12,7 @@
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <Parse/Parse.h>
+#import <Parse/PFImageView.h>
 #import "PostCell.h"
 #import "Post.h"
 #import "PostDetailController.h"
@@ -29,7 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
-    //    [self fetchPosts];
 }
 
 - (void)fetchPosts{
@@ -38,6 +38,7 @@
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            //            self.posts = [Post postsWithArray:posts];
             self.posts = posts;
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -65,7 +66,6 @@
     if (cell == nil) {
         cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
     }
-    // Restore contentView
     BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
     if (!hasContentView) {
         [cell addSubview:cell.contentView];

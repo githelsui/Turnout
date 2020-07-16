@@ -10,6 +10,7 @@ target 'Turnout' do
 	pod 'AFNetworking'
 	pod 'DateTools'
 	pod 'FBSDKLoginKit'
+	pod 'Parse/UI'
 
 
   target 'TurnoutTests' do

@@ -21,9 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *datePosted;
 @property (nonatomic, strong) NSString *timePosted;
 @property (nonatomic) BOOL photoAttached;
+//**Properties that are not saved into database
+@property (nonatomic, strong) UIImage *uiImage;
+@property (nonatomic, strong) NSArray *likeAssocs;
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 + (void) postStatus:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time imgAttached:(BOOL)imgAttached withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (NSArray *)postsWithArray:(NSArray *)posts;
 - (NSString *)getTimeAgo: (Post *)post;
 @end
 

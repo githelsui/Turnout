@@ -30,12 +30,15 @@ PODS:
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
+  - Parse/UI (1.18.0):
+    - Parse/Core
 
 DEPENDENCIES:
   - AFNetworking
   - DateTools
   - FBSDKLoginKit
   - Parse
+  - Parse/UI
 
 SPEC REPOS:
   trunk:
@@ -54,6 +57,6 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: 0394a374ec97c4d32bc3825d6575c8894bd71319
+PODFILE CHECKSUM: b7c43f0941fe3f370dcb1f7ea76825589a11f65a
 
 COCOAPODS: 1.9.3

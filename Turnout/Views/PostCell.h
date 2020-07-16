@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import <Parse/PFImageView.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostCell : UITableViewCell
@@ -16,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *attachedPhoto;
+@property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;
