@@ -11,6 +11,9 @@
 @implementation Zipcode
 
 @dynamic zipcode;
+@dynamic city;
+@dynamic state;
+@dynamic objectId;
 
 + (nonnull NSString *)parseClassName {
     return @"Zipcode";

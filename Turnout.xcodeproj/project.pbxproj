@@ -24,6 +24,7 @@
 		CA5F03F124BCD58700F599CF /* TurnoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03F024BCD58700F599CF /* TurnoutTests.m */; };
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
+		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
@@ -84,6 +85,8 @@
 		CA5F03FD24BCD58700F599CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA7CFA7B24BFAC9900AADA69 /* Assoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assoc.h; sourceTree = "<group>"; };
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
+		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
+		CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocodeManager.m; sourceTree = "<group>"; };
 		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 		CA15FA6424BE6D5000307BBD /* API */ = {
 			isa = PBXGroup;
 			children = (
+				CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */,
+				CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
+				CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */,
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
 				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
