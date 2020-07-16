@@ -243,6 +243,9 @@
                                 <state key="normal" title="100" image="notliked">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="likeTapped:" destination="alD-OT-Zmo" eventType="touchUpInside" id="LBk-dd-0BL"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXK-Dd-dpc">
                                 <rect key="frame" x="183.33333333333334" y="69" width="69.666666666666657" height="18"/>

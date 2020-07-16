@@ -28,7 +28,8 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+//    [self fetchPosts];
 }
 
 - (void)fetchPosts{
@@ -38,12 +39,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
-            for(Post *post in self.posts){
-                NSLog(@"%s", "post object: ");
-                NSLog(@"status: %@", post.status);
-                NSLog(@"timeposted: %@", post.timePosted);
-                NSLog(@"date posted: %@", post.datePosted);
-            }
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

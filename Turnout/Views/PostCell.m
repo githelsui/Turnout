@@ -35,7 +35,6 @@
     } else {
         [self checkImageView];
     }
-    //     [self loadImage];
 }
 
 - (void)checkImageView{
