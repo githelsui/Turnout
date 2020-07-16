@@ -38,8 +38,8 @@
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
+    [self checkImageView];
     [self loadImage];
-    //    [self checkImageView];
 }
 
 - (void)loadImage{
@@ -52,20 +52,22 @@
     if(self.post.image == nil){
         [self.attachedPhoto removeFromSuperview];
         self.attachedPhoto = nil;
+        self.locationLabel.translatesAutoresizingMaskIntoConstraints = YES;
         CGFloat screenWidth = self.view.bounds.size.width;
         CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
         CGSize statusSize = self.statusLabel.layer.frame.size;
         CGPoint statusPos = self.statusLabel.layer.position;
-        CGPoint locPoint;
-        locPoint.x = (screenWidth + locationWidth - statusSize.width) / 2;
-        locPoint.y = statusSize.height + statusPos.y + 10;
+        CGPoint pos;
+        pos.x = (screenWidth + locationWidth - statusSize.width) / 2;
+        pos.y = statusSize.height + statusPos.y + 75;
         CGPoint likePoint;
         likePoint.x = screenWidth - self.likesBtn.layer.frame.size.width;
-        likePoint.y = statusSize.height + statusPos.y + 10;
-        self.locationLabel.layer.position = locPoint;
-        self.likesBtn.center = likePoint;
+        likePoint.y = pos.y;
+        self.locationLabel.layer.position = pos;
+        self.likesBtn.layer.position = likePoint;
     }
 }
+
 
 -(void)updateLikes{
     UIImage *likeIcon;
