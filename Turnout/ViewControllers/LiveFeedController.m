@@ -29,13 +29,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
-//    [self fetchPosts];
+    //    [self fetchPosts];
 }
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
-    query.limit = 20;
+    [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
@@ -62,6 +62,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    if (cell == nil) {
+        cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
+    }
+    // Restore contentView
+    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+    if (!hasContentView) {
+        [cell addSubview:cell.contentView];
+    }
     Post *post = self.posts[indexPath.row];
     cell.post = post;
     [cell setCell];

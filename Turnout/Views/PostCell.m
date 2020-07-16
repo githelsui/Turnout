@@ -22,6 +22,15 @@
     // Configure the view for the selected state
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    // Clear contentView
+    BOOL hasContentView = [self.subviews containsObject:self.contentView];
+    if (hasContentView) {
+        [self.contentView removeFromSuperview];
+    }
+}
+
 - (void)setCell{
     [self updateLikes];
     [self queryLikes];
@@ -30,11 +39,12 @@
     self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
-    if(self.post.photoAttached){
-        [self loadImage];
-    } else {
-        [self checkImageView];
-    }
+    //    if(self.post.photoAttached){
+    //        [self loadImage];
+    //    } else {
+    //        [self checkImageView];
+    //    }
+    [self loadImage];
 }
 
 - (void)checkImageView{
