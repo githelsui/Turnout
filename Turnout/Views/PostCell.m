@@ -32,6 +32,7 @@
 
 - (void)setCell{
     [self updateLikes];
+    [self queryLikes];
     PFUser *user = self.post.author;
     [user fetchIfNeeded];
     self.nameLabel.text = user[@"username"];
@@ -46,14 +47,29 @@
     [self.attachedPhoto loadInBackground];
 }
 
+- (void)queryLikes{
+    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"typeId" equalTo:@"Like"];
+    [query whereKey:@"likedPost" equalTo:self.post];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
+        if (assocs != nil) {
+            self.assocs = assocs;
+            [self updateLikes];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 -(void)updateLikes{
     UIImage *likeIcon;
-    if([self checkIfUserLiked]){
-         likeIcon = [UIImage imageNamed:@"liked.png"];
-    } else {
+    if(![self checkIfUserLiked]){
         likeIcon = [UIImage imageNamed:@"notliked.png"];
+    } else {
+        likeIcon = [UIImage imageNamed:@"liked.png"];
     }
-    NSString *likeCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likeAssocs.count];
+    NSString *likeCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.assocs.count];
     [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
     [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
 }
@@ -82,25 +98,38 @@
     }];
 }
 
+
 - (void)removeLikeAssoc{
-    Assoc *usersLike = [self queryUsersLike];
+    Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];
-    [self updateLikes];
+    [self queryLikes];
 }
 
 - (BOOL)checkIfUserLiked{
-    if([self queryUsersLike]) return YES;
-    else return NO;
+    [self queryUsersLike];
+    if(self.userLiked.count == 0) return NO;
+    else return YES;
 }
 
-- (Assoc *)queryUsersLike{
+- (Assoc *)usersLike{
+    [self queryUsersLike];
+    return self.userLiked[0];
+}
+
+- (void)queryUsersLike{
     PFUser *currentUser = PFUser.currentUser;
-    for(Assoc *like in self.post.likeAssocs){
-        if(like.user == currentUser){
-            return like;
+    PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"typeId" equalTo:@"Like"];
+    [query whereKey:@"likedPost" equalTo:self.post];
+    [query whereKey:@"user" equalTo:currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
+        if (assocs != nil) {
+            self.userLiked = assocs;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
         }
-    }
-    return nil;
+    }];
 }
 
 @end

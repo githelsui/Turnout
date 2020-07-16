@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adx-6B-XdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="524" y="1638.9162561576356"/>
+            <point key="canvasLocation" x="-2495" y="1650"/>
         </scene>
         <!--Post Detail Controller-->
         <scene sceneID="4kT-bT-5Jz">
@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoL-s3-81E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="524" y="2324.6305418719212"/>
+            <point key="canvasLocation" x="-2495" y="2336"/>
         </scene>
         <!--Post-->
         <scene sceneID="xjR-vQ-je7">
@@ -413,13 +413,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-wl-nxg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1246" y="2325"/>
+            <point key="canvasLocation" x="-1774" y="2336"/>
         </scene>
-        <!--Item-->
+        <!--Vote-->
+        <scene sceneID="NUg-Kr-HXl">
+            <objects>
+                <viewController id="gvZ-vD-c8V" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uey-9b-LIt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Vote" image="votermenu" id="kUe-su-o9i">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNI-Zk-0A0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-663" y="1071"/>
+        </scene>
+        <!--Elections-->
+        <scene sceneID="QaZ-LM-qgu">
+            <objects>
+                <viewController id="4A0-iF-tT2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QsD-00-cQl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zKC-wf-Ff9"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Elections" image="electionsmenu" id="Ilz-GM-K8e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9r0-6y-gpV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="524" y="1072"/>
+        </scene>
+        <!--Live Feed-->
         <scene sceneID="vv6-Bm-0TH">
             <objects>
                 <navigationController storyboardIdentifier="navController" automaticallyAdjustsScrollViewInsets="NO" id="X1t-0x-5eW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="VPQ-Os-g5t"/>
+                    <tabBarItem key="tabBarItem" title="Live Feed" image="homemenu" id="VPQ-Os-g5t"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1x1-Be-M5p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -432,7 +466,41 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byX-id-1iY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="524" y="933"/>
+            <point key="canvasLocation" x="-2495" y="978"/>
+        </scene>
+        <!--Bills-->
+        <scene sceneID="wIA-Vj-z3y">
+            <objects>
+                <viewController id="d6r-X9-Mk8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8EE-q0-TRG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="0vm-da-Nv7"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Bills" image="billprop_menu" id="JUu-w1-U1V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="As7-cl-F3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1865" y="1071"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Ltz-fO-z0c">
+            <objects>
+                <viewController id="t8Q-vV-uXb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NzS-Th-s7H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LLs-j6-BMy"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-user-30" id="0DW-Nt-iee">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VtN-0X-yC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2958" y="1071"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="q9a-T3-gjm">
@@ -444,9 +512,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="X1t-0x-5eW" kind="relationship" relationship="viewControllers" id="gmX-V4-F3B"/>
+                        <segue destination="gvZ-vD-c8V" kind="relationship" relationship="viewControllers" id="Sbp-KA-ZYd"/>
+                        <segue destination="4A0-iF-tT2" kind="relationship" relationship="viewControllers" id="AC1-zz-B5l"/>
+                        <segue destination="d6r-X9-Mk8" kind="relationship" relationship="viewControllers" id="pYx-hz-pBd"/>
+                        <segue destination="t8Q-vV-uXb" kind="relationship" relationship="viewControllers" id="90x-6k-jAi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kP-VX-8L3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -528,16 +601,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZN-CE-LdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1246" y="1639"/>
+            <point key="canvasLocation" x="-1774" y="1650"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="billprop_menu" width="25" height="25"/>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="electionsmenu" width="30" height="30"/>
+        <image name="homemenu" width="25" height="25"/>
         <image name="icons8-email-send-30" width="30" height="30"/>
+        <image name="icons8-user-30" width="30" height="30"/>
         <image name="notliked" width="25" height="25"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="votermenu" width="25" height="25"/>
     </resources>
 </document>

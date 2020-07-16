@@ -28,6 +28,7 @@
     [super viewDidLoad];
     [self setUI];
     [self updateLikes];
+//    [self queryLikes];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(queryLikes) userInfo:nil repeats:true];
 }
 

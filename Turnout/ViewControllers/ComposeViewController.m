@@ -95,11 +95,7 @@
 }
 
 - (void)postWithImage:(NSString *)status image:(UIImage *)image{
-    BOOL imgAttached = NO;
-    if(image != nil){
-        imgAttached = YES;
-    }
-    [Post postStatus:image withStatus:status date:self.dateString time:self.timeString imgAttached:imgAttached withCompletion:^(BOOL succeeded, NSError *error) {
+    [Post postStatus:image withStatus:status date:self.dateString time:self.timeString withCompletion:^(BOOL succeeded, NSError *error) {
         if (error) {
             [self showAlert:error.localizedDescription msg:@""];
         } else {

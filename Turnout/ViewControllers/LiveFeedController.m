@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 #import <Parse/PFImageView.h>
 #import "PostCell.h"
@@ -20,6 +21,7 @@
 @interface LiveFeedController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation LiveFeedController
@@ -29,7 +31,14 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+    [self startTimer];
+}
+
+- (void)startTimer{
+    PFUser *currentUser = PFUser.currentUser;
+    if(currentUser || [FBSDKAccessToken currentAccessToken]){
+        self.timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+    }
 }
 
 - (void)fetchPosts{
@@ -38,7 +47,6 @@
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            //            self.posts = [Post postsWithArray:posts];
             self.posts = posts;
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -48,6 +56,8 @@
 }
 
 - (IBAction)logoutTapped:(id)sender {
+    [self.timer invalidate];
+    self.timer = nil;
     FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
     [loginManager logOut];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
