@@ -41,6 +41,7 @@
 }
 
 - (void)loadImage{
+    self.attachedPhoto.image = [UIImage imageNamed:@"..."];
     self.attachedPhoto.file = self.post.image;
     [self.attachedPhoto loadInBackground];
 }

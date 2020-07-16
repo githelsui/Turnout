@@ -8,13 +8,14 @@
 
 #import "PostDetailController.h"
 #import "Assoc.h"
+#import <Parse/PFImageView.h>
 
 @interface PostDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *attachedPhoto;
+@property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likesBtn;
 @property (nonatomic, strong) NSArray *assocs;
@@ -37,15 +38,14 @@
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
-    [self.post.image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            UIImage *img = [UIImage imageWithData:data];
-            self.attachedPhoto.image = img;
-        }else{
-            NSLog(@"Print error!!! %@", error.localizedDescription);
-        }
-    }];
+    [self loadImage];
     //    [self checkImageView];
+}
+
+- (void)loadImage{
+    self.attachedPhoto.image = [UIImage imageNamed:@"..."];
+    self.attachedPhoto.file = self.post.image;
+    [self.attachedPhoto loadInBackground];
 }
 
 - (void)checkImageView{

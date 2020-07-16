@@ -298,7 +298,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yGu-CT-QEJ"/>
                     <connections>
-                        <outlet property="attachedPhoto" destination="JcK-QS-Bn4" id="Fj4-Ry-011"/>
+                        <outlet property="attachedPhoto" destination="JcK-QS-Bn4" id="gEj-gz-OYu"/>
                         <outlet property="dateLabel" destination="kXK-Dd-dpc" id="6G6-Gh-Ld5"/>
                         <outlet property="likesBtn" destination="3zy-hP-dMp" id="yPD-tE-KKd"/>
                         <outlet property="locationLabel" destination="xOB-9q-WJF" id="bM6-JJ-jIf"/>
