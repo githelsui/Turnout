@@ -16,10 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *county;
 @property (nonatomic, strong) NSString *state;
 
-+ (void) createZip:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-- (void)getZipcodeInfo;
++ (Zipcode *)createZip:(NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void)getZipcodeInfo:( NSString * _Nullable )zip;
+- (NSString *)getCity;
+- (NSString *)getCounty;
+- (NSString *)getState;
 
 @end
 

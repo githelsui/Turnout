@@ -33,7 +33,7 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
     return self;
 }
 
-- (void)fetchCity:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
+- (void)fetchZipInfo:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
     NSString *address = [NSString stringWithFormat:@"address=%@&sensor=false", zipcode];
     NSString *firstURL = [baseURLString stringByAppendingString:address];
     NSString *secondURL = [NSString stringWithFormat:@"&key=%@", APIKey];

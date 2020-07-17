@@ -34,16 +34,12 @@
 - (IBAction)continueTapped:(id)sender {
     NSString *zipcode = self.zipcodeField.text;
     if(zipcode.length > 0){
-        self.currentUser[@"zipcode"] = [self zipcodeToSave:zipcode];
-        [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-            if (succeeded) {
-                NSLog(@"The zipcode was saved!");
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-            } else {
-                NSLog(@"Problem saving zipcode: %@", error.localizedDescription);
-            }
-        }];
+        Zipcode *zip = [self zipcodeToSave:zipcode];
+        if(zip) [self saveZipInUser:zip];
+        else {
+            Zipcode *newZip = [self zipcodeToCreate:zipcode];
+            [self saveZipInUser:newZip];
+        }
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
@@ -55,10 +51,31 @@
         if(zip.zipcode == zipcode)
             return zip;
     }
-    Zipcode *zip = [Zipcode new];
-    zip.zipcode = zipcode;
-    [zip getZipcodeInfo];
-    return zip;
+    return nil;
+}
+
+
+- (Zipcode *)zipcodeToCreate:(NSString *)zipcode{
+    return [Zipcode createZip:zipcode withCompletion:^(BOOL succeeded, NSError *error){
+        if (error) {
+            NSLog(@"Not working");
+        } else {
+            NSLog(@"Working!");
+        }
+    }];
+}
+
+- (void)saveZipInUser:(Zipcode *)zip{
+    self.currentUser[@"zipcode"] = zip;
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The zipcode was saved!");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+        } else {
+            NSLog(@"Problem saving zipcode: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)queryZipcodes{

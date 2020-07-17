@@ -30,13 +30,13 @@
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -62,6 +62,12 @@
             </PersistentString>
             <PersistentString
                value = "self.zipcodes.count">
+            </PersistentString>
+            <PersistentString
+               value = "zip.zipcode">
+            </PersistentString>
+            <PersistentString
+               value = "zip.city">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
