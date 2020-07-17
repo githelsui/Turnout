@@ -36,10 +36,7 @@
     if(zipcode.length > 0){
         Zipcode *zip = [self zipcodeToSave:zipcode];
         if(zip) [self saveZipInUser:zip];
-        else {
-            Zipcode *newZip = [self zipcodeToCreate:zipcode];
-            [self saveZipInUser:newZip];
-        }
+        else [self zipcodeToCreate:zipcode];
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
@@ -54,13 +51,12 @@
     return nil;
 }
 
-
-- (Zipcode *)zipcodeToCreate:(NSString *)zipcode{
-    return [Zipcode createZip:zipcode withCompletion:^(BOOL succeeded, NSError *error){
-        if (error) {
-            NSLog(@"Not working");
+- (void)zipcodeToCreate:(NSString *)zipcode{
+    [Zipcode saveNewZipcode:zipcode withCompletion:^(BOOL succeeded, NSError *error){
+        if(error){
+            [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
         } else {
-            NSLog(@"Working!");
+            [self segueToTurnout];
         }
     }];
 }
@@ -69,11 +65,9 @@
     self.currentUser[@"zipcode"] = zip;
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
-            NSLog(@"The zipcode was saved!");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            [self segueToTurnout];
         } else {
-            NSLog(@"Problem saving zipcode: %@", error.localizedDescription);
+            [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
         }
     }];
 }
@@ -89,6 +83,11 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void)segueToTurnout{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
 }
 
 - (void)showAlert:(NSString *)title subtitle:(NSString *)message{

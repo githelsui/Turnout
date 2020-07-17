@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "GeocodeManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

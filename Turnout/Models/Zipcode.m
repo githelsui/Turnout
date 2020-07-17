@@ -22,42 +22,31 @@ NSArray *addressComps;
     return @"Zipcode";
 }
 
-+ (Zipcode *)createZip:(NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
-    Zipcode *newZip = [Zipcode new];
-    newZip.zipcode = zip;
-    [self getZipcodeInfo:zip];
-    newZip.city = [newZip getCity];
-    //    newZip.county = county;
-    //    newZip.state = state;
-    [newZip saveInBackgroundWithBlock: completion];
-    return newZip;
-}
-
-+ (void)getZipcodeInfo:( NSString * _Nullable )zip{
++ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     [[GeocodeManager shared] fetchZipInfo:zip completion:(^ (NSArray *zipcodeData, NSError *error) {
         if (zipcodeData) {
-            addressComps = zipcodeData[0][@"address_components"];
-            //            NSString *city = components[1][@"long_name"];
-            //            NSString *county = components[2][@"long_name"];
-            //            NSString *state = components[3][@"long_name"];
-            NSLog(@"zipcode.m = %@", zipcodeData);
-            //            NSLog(@"address comp! = %@", components);
+            Zipcode *zipcode = [Zipcode new];
+            NSArray *components = zipcodeData[0][@"address_components"];
+            NSString *city = components[1][@"long_name"];
+            NSString *county = components[2][@"long_name"];
+            NSString *state = components[3][@"long_name"];
+            NSLog(@"address comp! = %@", components);
+            NSLog(@"city! = %@", city);
+            zipcode.zipcode = zip;
+            zipcode.city = city;
+            zipcode.county = county;
+            zipcode.state = state;
+            [zipcode saveZipInUser:zipcode withCompletion:completion];
         } else {
             NSLog(@"%s", "fetchCity not working!");
         }
     })];
 }
 
-- (NSString *)getCity{
-    return addressComps[1][@"long_name"];
-}
-
-- (NSString *)getCounty{
-    return addressComps[2][@"long_name"];
-}
-
-- (NSString *)getState{
-    return addressComps[3][@"long_name"];
+- (void)saveZipInUser:(Zipcode *)zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
+    PFUser *currentUser = PFUser.currentUser;
+    currentUser[@"zipcode"] = zip;
+    [currentUser saveInBackgroundWithBlock: completion];
 }
 
 @end
