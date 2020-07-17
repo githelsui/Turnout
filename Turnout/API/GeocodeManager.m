@@ -33,24 +33,23 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
     return self;
 }
 
-//http://maps.googleapis.com/maps/api/geocode/json?address={zipcode}&sensor=false&key=APIKEY
 - (void)fetchCity:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *address = [NSString stringWithFormat:@"address=%@&senor=false", zipcode];
-    NSString *firstURL = [baseURLString stringByAppendingString:address]; // returns https://maps.googleapis.com/maps/api/geocode/json?address={zipcode}&sensor=false
+    NSString *address = [NSString stringWithFormat:@"address=%@&sensor=false", zipcode];
+    NSString *firstURL = [baseURLString stringByAppendingString:address];
     NSString *secondURL = [NSString stringWithFormat:@"&key=%@", APIKey];
     NSString *fullURL = [firstURL stringByAppendingString:secondURL];
+    NSLog(@"full URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+        if (error) {
+            NSLog(@"zipcode error: %@", [error localizedDescription]);
             completion(nil, error);
-        }
-        else {
+        } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSArray *dictionaries = dataDictionary[@"results"];
-            NSLog(@"%@", dictionaries);
-            completion(dictionaries, nil);
+            NSLog(@"data dictionary: %@", dataDictionary);
+            NSArray *dicts = dataDictionary[@"results"];
+            completion(dicts, nil);
         }
     }];
     [task resume];

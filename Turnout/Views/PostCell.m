@@ -98,7 +98,6 @@
     }];
 }
 
-
 - (void)removeLikeAssoc{
     Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];

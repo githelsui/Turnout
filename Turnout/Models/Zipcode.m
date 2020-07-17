@@ -24,12 +24,12 @@
     
 }
 
-- (void)getCityAndState{
+- (void)getZipcodeInfo{
     [[GeocodeManager shared] fetchCity:self.zipcode completion:(^ (NSArray *zipcodeData, NSError *error) {
         if (zipcodeData) {
-            NSLog(@"%@", zipcodeData);
+            NSLog(@"zipcode.m = %@", zipcodeData);
         } else {
-           NSLog(@"%s", "fetchCity working!");
+           NSLog(@"%s", "fetchCity not working!");
         }
     })];
 }

@@ -37,11 +37,11 @@
         self.currentUser[@"zipcode"] = [self zipcodeToSave:zipcode];
         [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
-                NSLog(@"The message was saved!");
+                NSLog(@"The zipcode was saved!");
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
             } else {
-                NSLog(@"Problem saving message: %@", error.localizedDescription);
+                NSLog(@"Problem saving zipcode: %@", error.localizedDescription);
             }
         }];
     } else {
@@ -57,7 +57,7 @@
     }
     Zipcode *zip = [Zipcode new];
     zip.zipcode = zipcode;
-    [zip getCityAndState];
+    [zip getZipcodeInfo];
     return zip;
 }
 
