@@ -121,8 +121,8 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Assoc"];
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"typeId" equalTo:@"Like"];
+    if(currentUser) [query whereKey:@"user" equalTo:currentUser];
     [query whereKey:@"likedPost" equalTo:self.post];
-    [query whereKey:@"user" equalTo:currentUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
         if (assocs != nil) {
             self.userLiked = assocs;

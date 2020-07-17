@@ -58,12 +58,12 @@
 - (IBAction)logoutTapped:(id)sender {
     [self.timer invalidate];
     self.timer = nil;
-    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-    [loginManager logOut];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     sceneDelegate.window.rootViewController = loginViewController;
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {}];
 }
 

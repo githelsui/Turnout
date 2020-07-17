@@ -57,6 +57,7 @@
     }
     Zipcode *zip = [Zipcode new];
     zip.zipcode = zipcode;
+    [zip getCityAndState];
     return zip;
 }
 

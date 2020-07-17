@@ -7,6 +7,7 @@
 //
 
 #import "Zipcode.h"
+#import "GeocodeManager.h"
 
 @implementation Zipcode
 
@@ -19,8 +20,18 @@
     return @"Zipcode";
 }
 
-+ (void) createZip:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
++ (void)createZip:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     
+}
+
+- (void)getCityAndState{
+    [[GeocodeManager shared] fetchCity:self.zipcode completion:(^ (NSArray *zipcodeData, NSError *error) {
+        if (zipcodeData) {
+            NSLog(@"%@", zipcodeData);
+        } else {
+           NSLog(@"%s", "fetchCity working!");
+        }
+    })];
 }
 
 @end
