@@ -8,6 +8,7 @@
 
 #import "PostDetailController.h"
 #import "Assoc.h"
+#import "Zipcode.h"
 #import <Parse/PFImageView.h>
 
 @interface PostDetailController ()
@@ -38,6 +39,10 @@
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
+    Zipcode *zip = user[@"zipcode"];
+    [zip fetchIfNeeded];
+    NSString *location = [NSString stringWithFormat:@"%@, %@", zip.city, zip.state];
+    self.locationLabel.text = location;
     [self checkImageView];
     [self loadImage];
 }
@@ -113,7 +118,7 @@
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"typeId" equalTo:@"Like"];
     [query whereKey:@"likedPost" equalTo:self.post];
-    [query whereKey:@"user" equalTo:currentUser];
+    if(currentUser) [query whereKey:@"user" equalTo:currentUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
         if (assocs != nil) {
             self.userLiked = assocs;

@@ -8,6 +8,7 @@
 
 #import "PostCell.h"
 #import "Assoc.h"
+#import "Zipcode.h"
 
 @implementation PostCell
 
@@ -38,6 +39,10 @@
     self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
+    Zipcode *zip = user[@"zipcode"];
+    [zip fetchIfNeeded];
+    NSString *location = [NSString stringWithFormat:@"%@, %@", zip.city, zip.state];
+    self.locationLabel.text = location;
     [self loadImage];
 }
 
