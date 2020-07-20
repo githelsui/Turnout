@@ -14,9 +14,7 @@
 		CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5F24BE51B400307BBD /* ComposeViewController.m */; };
 		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
 		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
-		CA19B3CB24C621A6005BC244 /* US.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA19B3CA24C621A6005BC244 /* US.txt */; };
-		CA19B3CD24C6223C005BC244 /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA19B3CC24C6223C005BC244 /* text.txt */; };
-		CA47438E24C61D460092544A /* ZipcodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA47438D24C61D460092544A /* ZipcodeGenerator.m */; };
+		CA506C6C24C6386000037D45 /* USAZipcodes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA506C6B24C6386000037D45 /* USAZipcodes.txt */; };
 		CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */; };
 		CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D524BCD58600F599CF /* AppDelegate.m */; };
 		CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D824BCD58600F599CF /* SceneDelegate.m */; };
@@ -68,9 +66,9 @@
 		CA15FA6224BE653B00307BBD /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		CA15FA6524BE6FA000307BBD /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		CA15FA6624BE6FA000307BBD /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
-		CA19B3CA24C621A6005BC244 /* US.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = US.txt; path = ../../../../../Desktop/US.txt; sourceTree = "<group>"; };
-		CA19B3CC24C6223C005BC244 /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text.txt; path = ../../../../../Desktop/text.txt; sourceTree = "<group>"; };
-		CA47438D24C61D460092544A /* ZipcodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipcodeGenerator.m; sourceTree = "<group>"; };
+		CA19B3CF24C627A5005BC244 /* text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		CA19B3D024C627BC005BC244 /* US.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = US.txt; sourceTree = "<group>"; };
+		CA506C6B24C6386000037D45 /* USAZipcodes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = USAZipcodes.txt; path = ../../../../Downloads/USAZipcodes.txt; sourceTree = "<group>"; };
 		CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailController.h; sourceTree = "<group>"; };
 		CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailController.m; sourceTree = "<group>"; };
 		CA5F03D124BCD58600F599CF /* Turnout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turnout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,18 +158,8 @@
 			children = (
 				CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */,
 				CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */,
-				CA47438D24C61D460092544A /* ZipcodeGenerator.m */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		CA19B3C924C6219B005BC244 /* CSV */ = {
-			isa = PBXGroup;
-			children = (
-				CA19B3CA24C621A6005BC244 /* US.txt */,
-				CA19B3CC24C6223C005BC244 /* text.txt */,
-			);
-			path = CSV;
 			sourceTree = "<group>";
 		};
 		CA5F03C824BCD58600F599CF = {
@@ -199,7 +187,6 @@
 		CA5F03D324BCD58600F599CF /* Turnout */ = {
 			isa = PBXGroup;
 			children = (
-				CA19B3C924C6219B005BC244 /* CSV */,
 				CA15FA6424BE6D5000307BBD /* API */,
 				CAC2B06624BCE1C900F3B23A /* Delegates */,
 				CAC2B05F24BCD8D700F3B23A /* Views */,
@@ -208,6 +195,9 @@
 				CA5F03DD24BCD58600F599CF /* Main.storyboard */,
 				CA5F03E224BCD58600F599CF /* LaunchScreen.storyboard */,
 				CA5F03E524BCD58600F599CF /* Info.plist */,
+				CA19B3D024C627BC005BC244 /* US.txt */,
+				CA19B3CF24C627A5005BC244 /* text.txt */,
+				CA506C6B24C6386000037D45 /* USAZipcodes.txt */,
 				CA5F03E624BCD58600F599CF /* main.m */,
 				CA5F03E024BCD58600F599CF /* Assets.xcassets */,
 			);
@@ -392,11 +382,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA19B3CB24C621A6005BC244 /* US.txt in Resources */,
 				CA5F03E424BCD58600F599CF /* LaunchScreen.storyboard in Resources */,
 				CA5F03E124BCD58600F599CF /* Assets.xcassets in Resources */,
 				CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */,
-				CA19B3CD24C6223C005BC244 /* text.txt in Resources */,
+				CA506C6C24C6386000037D45 /* USAZipcodes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +523,6 @@
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
-				CA47438E24C61D460092544A /* ZipcodeGenerator.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
