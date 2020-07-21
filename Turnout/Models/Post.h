@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) PFFileObject *image;
+@property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSString *timeAgo;
 @property (nonatomic, strong) NSString *datePosted;
 @property (nonatomic, strong) NSString *timePosted;

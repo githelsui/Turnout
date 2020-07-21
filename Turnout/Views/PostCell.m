@@ -80,9 +80,20 @@
 }
 
 - (IBAction)likeTapped:(id)sender {
+    UIImage *likeIcon;
     if([self checkIfUserLiked]){
+        likeIcon = [UIImage imageNamed:@"notliked.png"];
+        long newCount = self.assocs.count - 1;
+        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
+        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
         [self removeLikeAssoc];
     } else {
+        likeIcon = [UIImage imageNamed:@"liked.png"];
+        long newCount = self.assocs.count + 1;
+        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
+        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
         [self createLikeAssoc];
     }
 }
@@ -96,9 +107,31 @@
     [likeAssoc saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The assoc was saved!");
-            [self updateLikes];
+            [self addLikeCount];
         } else {
             NSLog(@"Problem saving assoc: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)addLikeCount{
+    self.post.likeCount = @([self.post.likeCount intValue] + [@1 intValue]);
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)removeLikeCount{
+    self.post.likeCount = @([self.post.likeCount intValue] - [@1 intValue]);
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
         }
     }];
 }
@@ -106,7 +139,7 @@
 - (void)removeLikeAssoc{
     Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];
-    [self queryLikes];
+    [self removeLikeCount];
 }
 
 - (BOOL)checkIfUserLiked{

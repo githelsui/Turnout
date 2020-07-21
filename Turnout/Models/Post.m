@@ -13,6 +13,7 @@
 @dynamic postID;
 @dynamic userID;
 @dynamic author;
+@dynamic likeCount;
 @dynamic status;
 @dynamic image;
 @dynamic datePosted;
@@ -28,6 +29,7 @@
     newPost.image = [self getPFFileFromImage:image];
     newPost.author = [PFUser currentUser];
     newPost.status = status;
+    newPost.likeCount = @(0);
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
     newPost.timePosted = time;

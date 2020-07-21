@@ -136,6 +136,28 @@
     }
 }
 
+- (void)addLikeCount{
+    self.post.likeCount = @([self.post.likeCount intValue] + [@1 intValue]);
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)removeLikeCount{
+    self.post.likeCount = @([self.post.likeCount intValue] - [@1 intValue]);
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
+        }
+    }];
+}
+
 - (void)createLikeAssoc{
     Assoc *likeAssoc = [Assoc new];
     PFUser *currentUser = PFUser.currentUser;
@@ -145,6 +167,7 @@
     [likeAssoc saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The assoc was saved!");
+            [self addLikeCount];
             [self queryLikes];
         } else {
             NSLog(@"Problem saving assoc: %@", error.localizedDescription);
@@ -155,6 +178,7 @@
 - (void)removeLikeAssoc{
     Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];
+    [self removeLikeCount];
     [self queryLikes];
 }
 

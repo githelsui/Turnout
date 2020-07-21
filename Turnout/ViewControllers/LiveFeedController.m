@@ -43,7 +43,7 @@
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"likeCount"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
