@@ -1,25 +1,24 @@
 //
-//  GeocodeManager.m
+//  ZipwiseAPI.m
 //  Turnout
 //
-//  Created by Githel Lynn Suico on 7/16/20.
+//  Created by Githel Lynn Suico on 7/20/20.
 //  Copyright © 2020 Githel Lynn Suico. All rights reserved.
 //
 
-#import "GeocodeManager.h"
+#import "ZipwiseAPI.h"
 
-static NSString * const baseURLString = @"https://maps.googleapis.com/maps/api/geocode/json?";
-static NSString * const APIKey = @"AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI";
-static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv1o2TKhS1avCdS";
+static NSString * const baseURLString = @"https://www.zipwise.com/webservices/radius.php?";
+static NSString * const APIKey = @"wr4udu9y7pz3nee8";
 
-@interface GeocodeManager()
+@interface ZipwiseAPI()
 
 @end
 
-@implementation GeocodeManager
+@implementation ZipwiseAPI
 
 + (instancetype)shared {
-    static GeocodeManager *sharedManager = nil;
+    static ZipwiseAPI *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedManager = [[self alloc] init];
@@ -32,12 +31,10 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
     return self;
 }
 
-- (void)fetchZipInfo:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *address = [NSString stringWithFormat:@"address=%@&sensor=false", zipcode];
-    NSString *firstURL = [baseURLString stringByAppendingString:address];
-    NSString *secondURL = [NSString stringWithFormat:@"&key=%@", APIKey];
-    NSString *fullURL = [firstURL stringByAppendingString:secondURL];
-    NSLog(@"full URL: %@", fullURL);
+- (void)fetchNeighbors:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
+    NSString *parameters = [NSString stringWithFormat:@"key=%@&zip=%@&radius=50&format=json", APIKey, zipcode];
+    NSString *fullURL = [baseURLString stringByAppendingString:parameters];
+    NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
@@ -46,7 +43,7 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
             completion(nil, error);
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"data dictionary: %@", dataDictionary);
+            NSLog(@"zipcode dictionary: %@", dataDictionary);
             NSArray *dicts = dataDictionary[@"results"];
             completion(dicts, nil);
         }
