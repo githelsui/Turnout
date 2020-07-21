@@ -15,6 +15,7 @@
 		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
 		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
 		CA506C6C24C6386000037D45 /* USAZipcodes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA506C6B24C6386000037D45 /* USAZipcodes.txt */; };
+		CA506C6D24C64D5700037D45 /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA19B3CF24C627A5005BC244 /* text.txt */; };
 		CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */; };
 		CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D524BCD58600F599CF /* AppDelegate.m */; };
 		CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03D824BCD58600F599CF /* SceneDelegate.m */; };
@@ -30,6 +31,8 @@
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
 		CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */; };
+		CAFDC5FE24C66B7D00BDB2AD /* ZipwiseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC5FD24C66B7D00BDB2AD /* ZipwiseAPI.m */; };
+		CAFDC60124C6779F00BDB2AD /* ZipcodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,10 @@
 		CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveFeedController.m; sourceTree = "<group>"; };
 		CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardViewController.h; sourceTree = "<group>"; };
 		CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardViewController.m; sourceTree = "<group>"; };
+		CAFDC5FC24C66B7D00BDB2AD /* ZipwiseAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZipwiseAPI.h; sourceTree = "<group>"; };
+		CAFDC5FD24C66B7D00BDB2AD /* ZipwiseAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipwiseAPI.m; sourceTree = "<group>"; };
+		CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZipcodeGenerator.h; sourceTree = "<group>"; };
+		CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipcodeGenerator.m; sourceTree = "<group>"; };
 		E978E70A54434642A7B5BBD3 /* Pods-Turnout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.debug.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +165,10 @@
 			children = (
 				CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */,
 				CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */,
+				CAFDC5FC24C66B7D00BDB2AD /* ZipwiseAPI.h */,
+				CAFDC5FD24C66B7D00BDB2AD /* ZipwiseAPI.m */,
+				CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */,
+				CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -382,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA506C6D24C64D5700037D45 /* text.txt in Resources */,
 				CA5F03E424BCD58600F599CF /* LaunchScreen.storyboard in Resources */,
 				CA5F03E124BCD58600F599CF /* Assets.xcassets in Resources */,
 				CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */,
@@ -514,6 +526,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */,
+				CAFDC5FE24C66B7D00BDB2AD /* ZipwiseAPI.m in Sources */,
+				CAFDC60124C6779F00BDB2AD /* ZipcodeGenerator.m in Sources */,
 				CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,

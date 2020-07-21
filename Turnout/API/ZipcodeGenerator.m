@@ -11,6 +11,7 @@
 @interface ZipcodeGenerator()
 
 @property (nonatomic, strong) NSMutableArray *allData;
+@property (nonatomic, strong) NSMutableArray *neighborhoods;
 @property (nonatomic, strong) NSMutableArray *neighborData;
 
 @end
@@ -32,6 +33,7 @@
 }
 
 - (void)generateZipcodes{
+    self.neighborData = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
     NSError *err = nil;
     NSString *myFile = [[NSString alloc]initWithContentsOfFile:myPath encoding:NSASCIIStringEncoding error:&err];
@@ -65,16 +67,17 @@
 - (void)allZipcodeNeighbors:(NSMutableArray *)readArr{
     //    for(NSDictionary *zip in readArr){
     //        NSString *zipcode = zip[@"zipcode"];
-    //        if(![self containsElement:zipcode]){
-    //            [self getNeighbors:zipcode];
-    //        }
+    //        [self getNeighbors:zipcode];
     //    }
-    [self getNeighbors:self.allData[0][@"zipcode"]];
+    [self getNeighbors:self.allData[1][@"zipcode"]];
 }
 
 - (void)getNeighbors:(NSString *)zipcode{
     [[ZipwiseAPI shared] fetchNeighbors:zipcode completion:(^ (NSArray *neighbors, NSError *error) {
         if(neighbors){
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            dict[zipcode] = [self getNeighborhood:neighbors];
+            [self.neighborhoods addObject:dict];
             [self checkNeighbors:neighbors];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -88,6 +91,21 @@
         [self.neighborData addObject:neighbor];
     }
     NSLog(@"final count after adding neighbors: %lu", (unsigned long)self.neighborData.count);
+}
+
+- (NSArray *)getNeighborhood:(NSArray *)neighbors{
+    NSMutableArray *neighborhood = [NSMutableArray array];
+    for(NSDictionary *neighbor in neighbors){
+        NSString *zipcode = neighbor[@"zip"];
+        if(self.neighborData.count == 0){
+            [neighborhood addObject:neighbor];
+        }
+        if([self containsElement:zipcode] == NO){
+            [neighborhood addObject:neighbor];
+        }
+    }
+    NSLog(@"NEIGHBORHOODS: %@", neighborhood);
+    return neighborhood;
 }
 
 - (BOOL)containsElement:(NSString *)zipcode{

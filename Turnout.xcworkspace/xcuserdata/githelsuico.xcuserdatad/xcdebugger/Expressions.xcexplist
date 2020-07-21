@@ -3,10 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
+         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes">
+               value = "self.neighborData.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -18,20 +18,6 @@
          <PersistentStrings>
             <PersistentString
                value = "self.assocs">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.currentUser">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,6 +49,39 @@
             </PersistentString>
             <PersistentString
                value = "zip.city">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "nei">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentUser">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
