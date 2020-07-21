@@ -43,7 +43,7 @@ static NSString * const APIKey = @"wr4udu9y7pz3nee8";
             completion(nil, error);
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"zipcode dictionary: %@", dataDictionary);
+            NSLog(@"zipcode dictionary for %@: %@", zipcode, dataDictionary);
             NSArray *dicts = dataDictionary[@"results"];
             completion(dicts, nil);
         }

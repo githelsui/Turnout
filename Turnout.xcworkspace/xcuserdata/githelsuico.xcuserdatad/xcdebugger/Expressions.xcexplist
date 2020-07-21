@@ -3,15 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
+         contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.neighborData.count">
+               value = "self.neighborData">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "main:main.m">
+         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData.count">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[PostCell queryUsersLike]:PostCell.m">
@@ -20,6 +28,9 @@
                value = "self.assocs">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:main.m">
       </ContextState>
       <ContextState
          contextName = "-[PostCell checkIfUserLiked]:PostCell.m">
@@ -32,6 +43,22 @@
             </PersistentString>
             <PersistentString
                value = "self.assocs.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator getNeighbors:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__40-[ZipwiseAPI fetchNeighbors:completion:]_block_invoke:ZipwiseAPI.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -53,14 +80,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
@@ -72,16 +91,35 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__33-[ZipcodeGenerator getNeighbors:]_block_invoke:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborhoods">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
