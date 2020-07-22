@@ -46,11 +46,11 @@
     //cap to size 10
     NSRange range;
     range.location = 0;
-    range.length = 9;
+    range.length = 10;
     [mutableRows removeLastObject];
     NSMutableArray *tempArr = [[mutableRows subarrayWithRange:range] mutableCopy];
     self.allData  = [self getCSVData:tempArr];
-    NSLog(@"final array size: %lu", (unsigned long)self.allData.count);
+    //    NSLog(@"final array size: %lu", (unsigned long)self.allData.count);
     [self allZipcodeNeighbors];
 }
 
@@ -67,7 +67,7 @@
             dict[@"city"] = [removeQuotes stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             dict[@"zipcode"] = columns[1];
         }
-        NSLog(@"Our dictionary contains this: %@", dict);
+        //        NSLog(@"Our dictionary contains this: %@", dict);
         [allData addObject:dict];
     }
     return allData;
@@ -75,6 +75,7 @@
 
 - (void)allZipcodeNeighbors{
     [self getNeighbors:self.allData[0][@"zipcode"]];
+//    NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
 }
 
 - (void)getNeighbors:(NSString *)zipcode{
@@ -95,14 +96,17 @@
         self.loopIndex += 1;
         if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex][@"zipcode"]];
     }
+    else {
+        NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
+    }
 }
 
 - (void)checkNeighbors:(NSArray *)neighbors{
-    NSLog(@"zipcode neighbors: %@", neighbors);
+    //    NSLog(@"zipcode neighbors: %@", neighbors);
     for(NSDictionary *neighbor in neighbors){
         [self.neighborData addObject:neighbor];
     }
-    NSLog(@"final count after adding neighbors: %lu", (unsigned long)self.neighborData.count);
+//    NSLog(@"final count after adding neighbors: %lu", (unsigned long)self.neighborData.count);
 }
 
 - (NSArray *)getNeighborhood:(NSArray *)neighbors{
@@ -110,20 +114,39 @@
     for(NSDictionary *neighbor in neighbors){
         NSString *zipcode = neighbor[@"postalCode"];
         if(self.neighborData.count == 0){
-            [neighborhood addObject:neighbor];
+            NSDictionary *newNeighbor = [self getZipcode:neighbor];
+            [neighborhood addObject:newNeighbor];
         }
         if(self.neighborData.count != 0 && [self containsElement:zipcode] == NO){
-            [neighborhood addObject:neighbor];
+            NSDictionary *newNeighbor = [self getZipcode:neighbor];
+            [neighborhood addObject:newNeighbor];
         }
     }
-    NSLog(@"NEIGHBORHOODS: %@", neighborhood);
+//    NSLog(@"NEIGHBORHOODS: %@", neighborhood);
     NSArray *immutableNeighbor = [neighborhood copy];
     return immutableNeighbor;
 }
 
+- (NSDictionary *)getZipcode:(NSDictionary *)zipcode{
+    NSMutableDictionary *zip = [NSMutableDictionary new];
+    [zip setObject:zipcode[@"postalCode"]
+            forKey:@"zipcode"];
+    [zip setObject:zipcode[@"adminName1"]
+            forKey:@"state"];
+    [zip setObject:zipcode[@"adminCode1"]
+            forKey:@"shortState"];
+    [zip setObject:zipcode[@"adminName2"]
+            forKey:@"county"];
+    [zip setObject:zipcode[@"placeName"]
+            forKey:@"city"];
+    [zip setObject:zipcode[@"distance"]
+            forKey:@"distance"];
+    return zip;
+}
+
 - (BOOL)containsElement:(NSString *)zipcode{
     for(NSDictionary *neighbor in self.neighborData){
-        NSString *nei = neighbor[@"postalCode"];
+        NSString *nei = neighbor[@"zipcode"];
         NSString *neighborZip = [NSString stringWithFormat:@"%@", nei];
         if([neighborZip isEqualToString:zipcode]){
             return YES;

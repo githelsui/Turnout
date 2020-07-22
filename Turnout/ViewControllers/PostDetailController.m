@@ -34,17 +34,27 @@
 
 - (void)setUI{
     PFUser *user = self.post.author;
-    [user fetchIfNeeded];
-    self.nameLabel.text = user[@"username"];
+     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
+           if(user){
+               self.nameLabel.text = user[@"username"];
+               [self getPostLocation:user];
+           }
+    }];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
-    Zipcode *zip = user[@"zipcode"];
-    [zip fetchIfNeeded];
-    NSString *location = [NSString stringWithFormat:@"%@, %@", zip.city, zip.state];
-    self.locationLabel.text = location;
     [self checkImageView];
     [self loadImage];
+}
+
+- (void)getPostLocation:(PFObject *)user{
+    Zipcode *zip = user[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        if(zipcode){
+            NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"state"]];
+            self.locationLabel.text = location;
+        }
+    }];
 }
 
 - (void)loadImage{

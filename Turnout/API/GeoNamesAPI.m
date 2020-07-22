@@ -43,7 +43,7 @@ static NSString * const username = @"githelsui";
             completion(nil, error);
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"neighbor dictionary for %@: %@", zipcode, dataDictionary);
+//            NSLog(@"neighbor dictionary for %@: %@", zipcode, dataDictionary);
             NSArray *dicts = dataDictionary[@"postalCodes"];
             completion(dicts, nil);
         }
