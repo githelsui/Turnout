@@ -13,7 +13,7 @@
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {
-        [[ZipcodeGenerator shared] generateZipcodes];
+//        [[ZipcodeGenerator shared] generateZipcodes];
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
     return UIApplicationMain(argc, argv, nil, appDelegateClassName);

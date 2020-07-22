@@ -98,6 +98,26 @@
     }
 }
 
+- (void)doubleTapped {
+    UIImage *likeIcon;
+    if([self checkIfUserLiked]){
+        likeIcon = [UIImage imageNamed:@"notliked.png"];
+        long newCount = self.assocs.count - 1;
+        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
+        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+        [self removeLikeAssoc];
+    } else {
+        likeIcon = [UIImage imageNamed:@"liked.png"];
+        long newCount = self.assocs.count + 1;
+        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
+        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+        [self createLikeAssoc];
+    }
+}
+
+
 - (void)createLikeAssoc{
     Assoc *likeAssoc = [Assoc new];
     PFUser *currentUser = PFUser.currentUser;

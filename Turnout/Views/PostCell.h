@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;
+- (void)doubleTapped;
 - (void)setCell;
 @end
 

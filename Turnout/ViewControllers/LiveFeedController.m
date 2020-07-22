@@ -25,12 +25,25 @@
 @end
 
 @implementation LiveFeedController
+NSTimeInterval lastClick;
+NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.allowsSelection = false;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
+    [self.tableView addGestureRecognizer:doubleTap];
+    
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [singleTap requireGestureRecognizerToFail:doubleTap];
+    [self.tableView addGestureRecognizer:singleTap];
     [self startTimer];
 }
 
@@ -92,6 +105,31 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
+}
+
+-(void)singleTap:(UITapGestureRecognizer*)tap
+{
+    NSLog(@"Single Tap");
+    if (UIGestureRecognizerStateEnded == tap.state)
+    {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:p];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        Post *post = self.posts[indexPath.row];
+        PostDetailController *detailController = [[PostDetailController alloc] init];
+        detailController.post = post;
+        [self performSegueWithIdentifier:@"DetailSegue" sender:cell];
+    }
+}
+
+-(void)doubleTap:(UITapGestureRecognizer*)tap
+{
+    NSLog(@"Double Taps");
+    
+    CGPoint point = [tap locationInView:self.tableView];
+    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint: point];
+    PostCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell doubleTapped];
 }
 
 
