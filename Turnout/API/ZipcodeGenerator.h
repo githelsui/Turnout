@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZipwiseAPI.h"
+#import "GeoNamesAPI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
