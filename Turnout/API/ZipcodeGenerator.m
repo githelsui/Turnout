@@ -34,6 +34,7 @@
 }
 
 - (void)generateZipcodes{
+    self.loopIndex = 0;
     self.neighborData = [NSMutableArray array];
     self.neighborhoods = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
@@ -41,9 +42,15 @@
     NSString *myFile = [[NSString alloc]initWithContentsOfFile:myPath encoding:NSASCIIStringEncoding error:&err];
     NSArray *rows = [myFile componentsSeparatedByString:@"\n"];
     NSMutableArray *mutableRows = [rows mutableCopy];
+    
+    //cap to size 10
+    NSRange range;
+    range.location = 0;
+    range.length = 9;
     [mutableRows removeLastObject];
-    self.allData  = [self getCSVData:mutableRows];
-    NSLog(@"final dicts size: %lu", (unsigned long)self.allData.count);
+    NSMutableArray *tempArr = [[mutableRows subarrayWithRange:range] mutableCopy];
+    self.allData  = [self getCSVData:tempArr];
+    NSLog(@"final array size: %lu", (unsigned long)self.allData.count);
     [self allZipcodeNeighbors];
 }
 
@@ -71,6 +78,7 @@
 }
 
 - (void)getNeighbors:(NSString *)zipcode{
+    NSLog(@"LOOP INDEX: %lu", (unsigned long)self.loopIndex);
     if(self.loopIndex != self.allData.count && ![self containsElement:zipcode]){
         [[GeoNamesAPI shared] fetchNeighbors:zipcode completion:(^ (NSArray *neighbors, NSError *error) {
             if(neighbors){
@@ -78,14 +86,14 @@
                 [self.neighborhoods addObject:neighborhood];
                 [self checkNeighbors:neighborhood];
                 self.loopIndex += 1;
-                [self getNeighbors:self.allData[self.loopIndex][@"zipcode"]];
+                if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex][@"zipcode"]];
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }
         })];
     } else if (self.loopIndex != self.allData.count && [self containsElement:zipcode]){
         self.loopIndex += 1;
-        [self getNeighbors:self.allData[self.loopIndex][@"zipcode"]];
+        if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex][@"zipcode"]];
     }
 }
 

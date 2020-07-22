@@ -35,16 +35,26 @@
     self.likeAnimation.alpha = 0;
     [self updateLikes];
     [self queryLikes];
-    PFUser *user = self.post.author;
-    [user fetchIfNeeded];
-    self.nameLabel.text = user[@"username"];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
-    Zipcode *zip = user[@"zipcode"];
-    [zip fetchIfNeeded];
-    NSString *location = [NSString stringWithFormat:@"%@, %@", zip.city, zip.state];
-    self.locationLabel.text = location;
     [self loadImage];
+    PFUser *user = self.post.author;
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+        if(user){
+            self.nameLabel.text = user[@"username"];
+            [self getPostLocation:user];
+        }
+    }];
+}
+
+- (void)getPostLocation:(PFObject *)user{
+    Zipcode *zip = user[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        if(zipcode){
+            NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"state"]];
+            self.locationLabel.text = location;
+        }
+    }];
 }
 
 - (void)loadImage{
@@ -194,14 +204,14 @@
 }
 
 - (void)loadLikeAnim{
-    [UIView animateWithDuration:0.5 animations:^{
-             self.likeAnimation.alpha = 1;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.likeAnimation.alpha = 1;
+    }];
+    [UIView animateWithDuration:1 animations:^{
+        self.likeAnimation.alpha = 1;
     }];
     [UIView animateWithDuration:0.3 animations:^{
-             self.likeAnimation.alpha = 1;
-    }];
-    [UIView animateWithDuration:0.5 animations:^{
-             self.likeAnimation.alpha = 0;
+        self.likeAnimation.alpha = 0;
     }];
 }
 

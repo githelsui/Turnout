@@ -34,6 +34,32 @@ NSIndexPath *lastIndexPath;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self setGestureRecogs];
+    [self startTimer];
+}
+
+- (void)startTimer{
+    PFUser *currentUser = PFUser.currentUser;
+    if(currentUser || [FBSDKAccessToken currentAccessToken]){
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+        {
+            self.timer = [NSTimer timerWithTimeInterval:1
+                                                     target:self
+                                                   selector:@selector(fetchPosts)
+                                                   userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+                           {
+                           });
+        });
+//
+//        self.timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
+////        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//        [NSThread detachNewThreadSelector:@selector(fetchPosts) toTarget:self withObject:nil];
+    }
+}
+
+- (void)setGestureRecogs{
     UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
@@ -44,14 +70,6 @@ NSIndexPath *lastIndexPath;
     singleTap.numberOfTouchesRequired = 1;
     [singleTap requireGestureRecognizerToFail:doubleTap];
     [self.tableView addGestureRecognizer:singleTap];
-    [self startTimer];
-}
-
-- (void)startTimer{
-    PFUser *currentUser = PFUser.currentUser;
-    if(currentUser || [FBSDKAccessToken currentAccessToken]){
-        self.timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
-    }
 }
 
 - (void)fetchPosts{
