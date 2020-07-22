@@ -1,19 +1,17 @@
 //
-//  Zipcode.h
+//  Neighbor.h
 //  Turnout
 //
-//  Created by Githel Lynn Suico on 7/14/20.
+//  Created by Githel Lynn Suico on 7/22/20.
 //  Copyright © 2020 Githel Lynn Suico. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "Neighbor.h"
-
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Zipcode : PFObject<PFSubclassing>
+@interface Neighbor : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *zipcode;
@@ -21,12 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *county;
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *shortState;
-@property (nonatomic, strong) NSArray *neighbors;
-@property (nonatomic, strong) NSNumber *rank;
+@property (nonatomic, strong) NSNumber *distance;
 
-+ (void)pregenerateZip:( NSDictionary * _Nullable )zip rank:( NSNumber * _Nullable )rank withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
-+ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (Neighbor *)createNeighbor:(NSDictionary *)neighbor;
 
 @end
 
