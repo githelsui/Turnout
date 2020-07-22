@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;
+@property (weak, nonatomic) IBOutlet UIImageView *likeAnimation;
 - (void)doubleTapped;
 - (void)setCell;
 @end

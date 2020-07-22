@@ -32,6 +32,7 @@
 }
 
 - (void)setCell{
+    self.likeAnimation.alpha = 0;
     [self updateLikes];
     [self queryLikes];
     PFUser *user = self.post.author;
@@ -101,6 +102,7 @@
 - (void)doubleTapped {
     UIImage *likeIcon;
     if([self checkIfUserLiked]){
+        self.likeAnimation.image = [UIImage imageNamed:@"largeUnlike.png"];
         likeIcon = [UIImage imageNamed:@"notliked.png"];
         long newCount = self.assocs.count - 1;
         NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
@@ -108,6 +110,7 @@
         [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
         [self removeLikeAssoc];
     } else {
+        self.likeAnimation.image = [UIImage imageNamed:@"largeLike.png"];
         likeIcon = [UIImage imageNamed:@"liked.png"];
         long newCount = self.assocs.count + 1;
         NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
@@ -115,6 +118,7 @@
         [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
         [self createLikeAssoc];
     }
+    [self loadLikeAnim];
 }
 
 
@@ -186,6 +190,18 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+    }];
+}
+
+- (void)loadLikeAnim{
+    [UIView animateWithDuration:0.5 animations:^{
+             self.likeAnimation.alpha = 1;
+    }];
+    [UIView animateWithDuration:0.3 animations:^{
+             self.likeAnimation.alpha = 1;
+    }];
+    [UIView animateWithDuration:0.5 animations:^{
+             self.likeAnimation.alpha = 0;
     }];
 }
 
