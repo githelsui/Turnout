@@ -29,7 +29,9 @@
     newNeighbor.state = neighbor[@"state"];
     newNeighbor.shortState = neighbor[@"shortState"];
     newNeighbor.county = neighbor[@"county"];
-    newNeighbor.distance = neighbor[@"distance"];
+    NSString *distanceString = neighbor[@"distance"];
+    NSNumber *distance = @([distanceString floatValue]);
+    newNeighbor.distance = distance;
     return newNeighbor;
 }
 

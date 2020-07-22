@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *allData;
 @property (nonatomic, strong) NSMutableArray *neighborhoods;
-@property (nonatomic, strong) NSMutableArray *neighborData;
 @property (nonatomic) NSUInteger loopIndex;
 
 @end
@@ -35,7 +34,6 @@
 
 - (void)generateZipcodes{
     self.loopIndex = 0;
-    self.neighborData = [NSMutableArray array];
     self.neighborhoods = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
     NSError *err = nil;
@@ -88,7 +86,10 @@
                 [self.neighborhoods addObject:zipToSave];
                 self.loopIndex += 1;
                 if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex]];
-                else NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
+                else {
+                    NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
+                    [self saveZipcodesInParse];
+                }
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -130,6 +131,19 @@
     [zip setObject:zipcode[@"state"] forKey:@"state"];
     [zip setObject:zipcode[@"shortState"] forKey:@"shortState"];
     return zip;
+}
+
+- (void)saveZipcodesInParse{
+    int rankInt = 1;
+    for(NSDictionary *zipcode in self.neighborhoods){
+        NSNumber *rank = [NSNumber numberWithInt:rankInt];
+        [Zipcode pregenerateZip:zipcode rank:rank withCompletion:^(BOOL succeeded, NSError *error){
+            if(!error){
+                NSLog(@"%s", "able to save zipcode to parse");
+            }
+        }];
+        rankInt += 1;
+    }
 }
 
 

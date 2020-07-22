@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZipwiseAPI.h"
 #import "GeoNamesAPI.h"
+#import "Zipcode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
