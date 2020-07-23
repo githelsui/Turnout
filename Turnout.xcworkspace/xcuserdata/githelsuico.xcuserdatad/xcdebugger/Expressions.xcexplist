@@ -3,6 +3,49 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__33-[ZipcodeGenerator getNeighbors:]_block_invoke:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborhoods">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mach_msg_trap:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborhoods">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController viewDidLoad]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__45-[ComposeViewController postWithImage:image:]_block_invoke:ComposeViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__41+[Zipcode saveNewZipcode:withCompletion:]_block_invoke:Zipcode.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zipcodeData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -17,7 +60,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__39-[GeoNamesAPI fetchZipInfo:completion:]_block_invoke:GeoNamesAPI.m">
+         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zipcode">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
@@ -28,29 +76,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.loopIndex">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborData.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
+         contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.allData">
+               value = "nei">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "main:main.m">
       </ContextState>
       <ContextState
          contextName = "-[PostCell queryUsersLike]:PostCell.m">
@@ -59,6 +96,17 @@
                value = "self.assocs">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
       </ContextState>
       <ContextState
          contextName = "-[PostCell checkIfUserLiked]:PostCell.m">
@@ -75,10 +123,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "mach_msg_trap:(null)">
+         contextName = "__39-[GeoNamesAPI fetchZipInfo:completion:]_block_invoke:GeoNamesAPI.m">
+      </ContextState>
+      <ContextState
+         contextName = "__40-[ZipwiseAPI fetchNeighbors:completion:]_block_invoke:ZipwiseAPI.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.neighborhoods">
+               value = "self.loopIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController prepareForSegue:sender:]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "composeController.delegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -97,10 +156,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__40-[ZipwiseAPI fetchNeighbors:completion:]_block_invoke:ZipwiseAPI.m">
+         contextName = "main:main.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
                value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -122,51 +187,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
+         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
-               value = "nei">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborData">
+               value = "self.allData">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__33-[ZipcodeGenerator getNeighbors:]_block_invoke:ZipcodeGenerator.m">
+         contextName = "-[LiveFeedController fetchPosts]:LiveFeedController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.loopIndex">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborhoods">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
-      </ContextState>
-      <ContextState
-         contextName = "__41+[Zipcode saveNewZipcode:withCompletion:]_block_invoke:Zipcode.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "zipcodeData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "zipcode">
+               value = "self.posts.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

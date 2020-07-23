@@ -11,8 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ComposeViewControllerDelegate
+- (void)refreshFeed;
+@end
+
 @interface ComposeViewController : UIViewController
-@property (nonatomic, weak) id<RefreshFeedDelegate> delegate;
+@property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

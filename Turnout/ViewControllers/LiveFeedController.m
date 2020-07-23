@@ -18,11 +18,12 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "PostDetailController.h"
-#import "RefreshFeedDelegate.h"
+#import "ComposeViewController.h"
 
-@interface LiveFeedController () <UITableViewDelegate, UITableViewDataSource>
+@interface LiveFeedController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) NSMutableArray *mutablePosts;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
@@ -38,9 +39,9 @@ NSIndexPath *lastIndexPath;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setGestureRecogs];
-    [self startTimer];
+//    [self startTimer];
     [self fetchPosts];
-    [self.tableView reloadData];
+//      [self.tableView reloadData];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -51,7 +52,7 @@ NSIndexPath *lastIndexPath;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
-            self.timer = [NSTimer timerWithTimeInterval:0.3
+            self.timer = [NSTimer timerWithTimeInterval:1
                                                  target:self
                                                selector:@selector(fetchPosts)
                                                userInfo:nil repeats:YES];
@@ -76,30 +77,22 @@ NSIndexPath *lastIndexPath;
     [self.tableView addGestureRecognizer:singleTap];
 }
 
-- (void)loadInitialPosts{
-    [self fetchPosts];
-    [self.tableView reloadData];
-}
-
 - (void)fetchPosts{
-    [self.timer invalidate];
-    self.timer = nil;
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"createdAt"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.posts = [[RankAlgorithm shared] queryPosts:posts];;
+            self.posts = posts;
+            self.mutablePosts = [posts mutableCopy];
+            //[[RankAlgorithm shared] queryPosts:posts];
+            [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.tableView reloadData];
+//        [self.timer invalidate];
+//        self.timer = nil;
     }];
     [self.refreshControl endRefreshing];
-}
-
-- (void)refreshFeed{
-    [self.tableView reloadData];
 }
 
 - (IBAction)logoutTapped:(id)sender {
@@ -115,7 +108,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.posts.count;
+    return self.mutablePosts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,7 +120,7 @@ NSIndexPath *lastIndexPath;
     if (!hasContentView) {
         [cell addSubview:cell.contentView];
     }
-    Post *post = self.posts[indexPath.row];
+    Post *post = self.mutablePosts[indexPath.row];
     cell.post = post;
     [cell setCell];
     return cell;
@@ -171,15 +164,29 @@ NSIndexPath *lastIndexPath;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
     if ([segue.identifier isEqualToString:@"DetailSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Post *post = self.posts[indexPath.row];
         NSLog(@"post being passed %@", post);
         PostDetailController *detailController = [segue destinationViewController];
         detailController.post = post;
+    } else if ([segue.identifier isEqualToString:@"ComposeSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
     }
 }
 
+- (void)refreshFeed{
+    [self fetchPosts];
+    [self.tableView reloadData];
+}
+
+- (void)postToTopFeed:(Post *)post {
+    [self fetchPosts];
+    [self.mutablePosts insertObject:post atIndex:0];
+    [self.tableView reloadData];
+}
 
 @end

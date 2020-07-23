@@ -207,7 +207,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="AUw-jZ-rc5">
                             <connections>
-                                <segue destination="NMG-uD-ri0" kind="presentation" id="f4v-Kx-xeN"/>
+                                <segue destination="NMG-uD-ri0" kind="presentation" identifier="ComposeSegue" id="f4v-Kx-xeN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

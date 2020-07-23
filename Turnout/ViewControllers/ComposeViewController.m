@@ -99,13 +99,10 @@
         if (error) {
             [self showAlert:error.localizedDescription msg:@""];
         } else {
-            [self dismissViewControllerAnimated:true completion:nil];
+            [self.delegate refreshFeed];
         }
     }];
-}
-
-- (void)postToTopFeed{
-    
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)showAlert:(NSString *)title msg:(NSString *)msg{
