@@ -38,31 +38,6 @@ NSArray *neighbors;
     [zipcode saveInBackgroundWithBlock: completion];
 }
 
-// (void(^)(NSArray *zipcodeData, NSError *error))completion
-+ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
-    [[GeoNamesAPI shared] fetchZipInfo:zip completion:(^ (NSArray *zipcodeData, NSError *error) {
-        if (zipcodeData) {
-            NSArray *components = zipcodeData[0][@"address_components"];
-            NSLog(@"%@", components);
-//            NSString *city = components[1][@"long_name"];
-//            NSString *county = components[2][@"long_name"];
-//            NSString *shortState = components[3][@"short_name"];
-//            NSString *state = components[3][@"short_name"];
-//            NSLog(@"address comp! = %@", components);
-//            NSLog(@"city! = %@", city);
-//            zipcode.zipcode = zip;
-//            zipcode.city = city;
-//            zipcode.county = county; 
-//            zipcode.state = state;
-//            [zipcode saveZipInUser:zipcode withCompletion:completion];
-            completion(zipcodeData, nil);
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, error);
-        }
-    })];
-}
-
 - (void)saveZipInUser:(Zipcode *)zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     PFUser *currentUser = PFUser.currentUser;
     currentUser[@"zipcode"] = zip;

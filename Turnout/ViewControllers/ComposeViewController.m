@@ -104,6 +104,10 @@
     }];
 }
 
+- (void)postToTopFeed{
+    
+}
+
 - (void)showAlert:(NSString *)title msg:(NSString *)msg{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {

@@ -14,6 +14,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 #import <Parse/PFImageView.h>
+#import "RankAlgorithm.h"
 #import "PostCell.h"
 #import "Post.h"
 #import "PostDetailController.h"
@@ -75,10 +76,11 @@ NSIndexPath *lastIndexPath;
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"likeCount"];
+    [query orderByDescending:@"createdAt"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            [[RankAlgorithm shared] queryPosts:posts];
             self.posts = posts;
         } else {
             NSLog(@"%@", error.localizedDescription);

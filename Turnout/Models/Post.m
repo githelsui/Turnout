@@ -16,6 +16,7 @@
 @dynamic likeCount;
 @dynamic status;
 @dynamic image;
+@dynamic rank;
 @dynamic datePosted;
 @dynamic timePosted;
 @dynamic timeAgo;

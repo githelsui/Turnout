@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RefreshFeedDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ComposeViewController : UIViewController
-
+@property (nonatomic, weak) id<RefreshFeedDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

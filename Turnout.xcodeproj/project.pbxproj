@@ -10,6 +10,7 @@
 		246C9E54078CC2A06CDF5591 /* Pods_Turnout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */; };
 		2B3AE7CFE44696813576D605 /* Pods_Turnout_TurnoutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */; };
 		35FAB2407407AFA7D833B00F /* Pods_TurnoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */; };
+		CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = CA028F3524CA1A270034C211 /* RankAlgorithm.m */; };
 		CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5C24BE23B600307BBD /* Zipcode.m */; };
 		CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5F24BE51B400307BBD /* ComposeViewController.m */; };
 		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
@@ -60,6 +61,9 @@
 		79866296059B931C4559BD7F /* Pods-Turnout-TurnoutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout-TurnoutUITests.debug.xcconfig"; path = "Target Support Files/Pods-Turnout-TurnoutUITests/Pods-Turnout-TurnoutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turnout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8869820F72CD319A69A7B942 /* Pods-Turnout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turnout.release.xcconfig"; path = "Target Support Files/Pods-Turnout/Pods-Turnout.release.xcconfig"; sourceTree = "<group>"; };
+		CA028F3324CA10D90034C211 /* RefreshFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshFeedDelegate.h; sourceTree = "<group>"; };
+		CA028F3424CA1A270034C211 /* RankAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankAlgorithm.h; sourceTree = "<group>"; };
+		CA028F3524CA1A270034C211 /* RankAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankAlgorithm.m; sourceTree = "<group>"; };
 		CA15FA5B24BE23B600307BBD /* Zipcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Zipcode.h; sourceTree = "<group>"; };
 		CA15FA5C24BE23B600307BBD /* Zipcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Zipcode.m; sourceTree = "<group>"; };
 		CA15FA5E24BE51B400307BBD /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
@@ -276,6 +280,9 @@
 				CA5F03D524BCD58600F599CF /* AppDelegate.m */,
 				CA5F03D724BCD58600F599CF /* SceneDelegate.h */,
 				CA5F03D824BCD58600F599CF /* SceneDelegate.m */,
+				CA028F3324CA10D90034C211 /* RefreshFeedDelegate.h */,
+				CA028F3424CA1A270034C211 /* RankAlgorithm.h */,
+				CA028F3524CA1A270034C211 /* RankAlgorithm.m */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -533,6 +540,7 @@
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
+				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
 			);
