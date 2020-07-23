@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZipwiseAPI.h"
 #import "GeoNamesAPI.h"
 #import "Zipcode.h"
 

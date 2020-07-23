@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentUser = PFUser.currentUser;
-    [self queryZipcodes];
     [self presentUI];
 }
 
@@ -34,9 +33,10 @@
 - (IBAction)continueTapped:(id)sender {
     NSString *zipcode = self.zipcodeField.text;
     if(zipcode.length > 0){
+        [self findExistingZip:zipcode];
         Zipcode *zip = [self zipcodeToSave:zipcode];
         if(zip) [self saveZipInUser:zip];
-        else [self zipcodeToCreate:zipcode];
+//        else [self zipcodeToCreate:zipcode];
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
@@ -72,15 +72,15 @@
     }];
 }
 
-- (void)queryZipcodes{
+- (void)findExistingZip:(NSString *)zipcode{
     PFQuery *query = [PFQuery queryWithClassName:@"Zipcode"];
     [query orderByDescending:@"createdAt"];
-    [query setLimit:20];
+    [query whereKey:@"zipcode" equalTo:zipcode];
     [query findObjectsInBackgroundWithBlock:^(NSArray *zips, NSError *error) {
         if (zips != nil) {
             self.zipcodes = zips;
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
         }
     }];
 }

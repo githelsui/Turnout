@@ -33,18 +33,16 @@
 }
 
 - (void)generateZipcodes{
-    self.loopIndex = 0;
+    self.loopIndex = 6000;
     self.neighborhoods = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
     NSError *err = nil;
     NSString *myFile = [[NSString alloc]initWithContentsOfFile:myPath encoding:NSASCIIStringEncoding error:&err];
     NSArray *rows = [myFile componentsSeparatedByString:@"\n"];
     NSMutableArray *mutableRows = [rows mutableCopy];
-    
-    //cap to size 10
     NSRange range;
-    range.location = 0;
-    range.length = 10;
+    range.location = 6000;
+    range.length = 8000;
     [mutableRows removeLastObject];
     NSMutableArray *tempArr = [[mutableRows subarrayWithRange:range] mutableCopy];
     self.allData  = [self getCSVData:tempArr];
@@ -84,11 +82,13 @@
                 NSArray *neighborhood = [self getNeighborhood:neighbors];
                 NSDictionary *zipToSave = [self getZipcode:zipcode neighbors:neighborhood];
                 [self.neighborhoods addObject:zipToSave];
+                NSNumber *rank = [NSNumber numberWithLong:self.loopIndex];
+                [self saveIndividualZip:zipToSave rank:rank];
                 self.loopIndex += 1;
                 if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex]];
                 else {
                     NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
-                    [self saveZipcodesInParse];
+                    NSLog(@"FINAL LOOP INDEX: %lu", (unsigned long)self.loopIndex);
                 }
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -111,6 +111,8 @@
     NSMutableDictionary *zip = [NSMutableDictionary new];
     [zip setObject:zipcode[@"postalCode"]
             forKey:@"zipcode"];
+    [zip setObject:zipcode[@"adminName1"]
+            forKey:@"state"];
     [zip setObject:zipcode[@"adminCode1"]
             forKey:@"shortState"];
     [zip setObject:zipcode[@"adminName2"]
@@ -131,6 +133,14 @@
     [zip setObject:zipcode[@"state"] forKey:@"state"];
     [zip setObject:zipcode[@"shortState"] forKey:@"shortState"];
     return zip;
+}
+
+- (void)saveIndividualZip:(NSDictionary *)zipcode rank:(NSNumber *)rank{
+    [Zipcode pregenerateZip:zipcode rank:rank withCompletion:^(BOOL succeeded, NSError *error){
+        if(!error){
+            NSLog(@"%s", "able to save zipcode to parse");
+        }
+    }];
 }
 
 - (void)saveZipcodesInParse{

@@ -51,7 +51,7 @@
     Zipcode *zip = user[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         if(zipcode){
-            NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"state"]];
+            NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
             self.locationLabel.text = location;
         }
     }];

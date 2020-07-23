@@ -19,6 +19,7 @@
 @dynamic objectId;
 @dynamic neighbors;
 @dynamic rank;
+NSArray *neighbors;
 
 + (nonnull NSString *)parseClassName {
     return @"Zipcode";
@@ -27,8 +28,7 @@
 + (void)pregenerateZip:( NSDictionary * _Nullable )zip rank:( NSNumber * _Nullable )rank withCompletion: (PFBooleanResultBlock  _Nullable)completion{
     Zipcode *zipcode = [Zipcode new];
     zipcode.zipcode = zip[@"zipcode"];
-    NSArray *neighbors = zip[@"neighbors"];
-    zipcode.neighbors = [zipcode neighborArray:neighbors];
+    zipcode.neighbors = zip[@"neighbors"];
     zipcode.rank = rank;
     zipcode.city = zip[@"city"];
     zipcode.county = zip[@"county"];

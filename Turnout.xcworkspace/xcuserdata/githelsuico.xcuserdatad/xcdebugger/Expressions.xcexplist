@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zipcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
@@ -124,13 +132,13 @@
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

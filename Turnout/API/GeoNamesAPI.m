@@ -9,7 +9,8 @@
 #import "GeoNamesAPI.h"
 
 static NSString * const baseURLString = @"http://api.geonames.org/findNearbyPostalCodesJSON?";
-static NSString * const username = @"githelsui";
+static NSString * const username1 = @"githelsui";
+static NSString * const username2 = @"githelsuico";
 
 @interface GeoNamesAPI()
 
@@ -32,7 +33,7 @@ static NSString * const username = @"githelsui";
 }
 
 - (void)fetchNeighbors:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username];
+    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username2];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -43,7 +44,6 @@ static NSString * const username = @"githelsui";
             completion(nil, error);
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            //            NSLog(@"neighbor dictionary for %@: %@", zipcode, dataDictionary);
             NSArray *dicts = dataDictionary[@"postalCodes"];
             completion(dicts, nil);
         }
