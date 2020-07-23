@@ -36,7 +36,7 @@
         [self findExistingZip:zipcode];
         Zipcode *zip = [self zipcodeToSave:zipcode];
         if(zip) [self saveZipInUser:zip];
-//        else [self zipcodeToCreate:zipcode];
+        else [self zipcodeToCreate:zipcode];
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
@@ -54,7 +54,7 @@
 - (void)zipcodeToCreate:(NSString *)zipcode{
     [Zipcode saveNewZipcode:zipcode withCompletion:^(BOOL succeeded, NSError *error){
         if(error){
-            [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
+            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
         } else {
             [self segueToTurnout];
         }
@@ -80,7 +80,7 @@
         if (zips != nil) {
             self.zipcodes = zips;
         } else {
-            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
+            NSLog(@"%@", error.localizedDescription);
         }
     }];
 }

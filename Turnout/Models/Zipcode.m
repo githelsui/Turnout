@@ -44,6 +44,7 @@ NSArray *neighbors;
             NSArray *components = zipcodeData[0][@"address_components"];
             NSString *city = components[1][@"long_name"];
             NSString *county = components[2][@"long_name"];
+            NSString *shortState = components[3][@"short_name"];
             NSString *state = components[3][@"short_name"];
             NSLog(@"address comp! = %@", components);
             NSLog(@"city! = %@", city);

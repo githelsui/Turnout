@@ -33,7 +33,7 @@ static NSString * const username2 = @"githelsuico";
 }
 
 - (void)fetchNeighbors:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username2];
+    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username3];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -43,13 +43,14 @@ static NSString * const username2 = @"githelsuico";
             NSLog(@"zipcode error: %@", [error localizedDescription]);
             completion(nil, error);
         } else {
-            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSError* error = nil;
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             NSArray *dicts = dataDictionary[@"postalCodes"];
+            NSLog(@"dictionary: %@",dicts);
             completion(dicts, nil);
         }
     }];
     [task resume];
 }
-
 
 @end

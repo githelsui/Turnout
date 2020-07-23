@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSMutableArray *allData;
 @property (nonatomic, strong) NSMutableArray *neighborhoods;
 @property (nonatomic) NSUInteger loopIndex;
+@property (nonatomic) NSUInteger index;
+@property (nonatomic) NSRange myRange;
 
 @end
 
@@ -33,17 +35,20 @@
 }
 
 - (void)generateZipcodes{
-    self.loopIndex = 6000;
+    self.index = 0;
+    self.loopIndex = 20904;
     self.neighborhoods = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
     NSError *err = nil;
     NSString *myFile = [[NSString alloc]initWithContentsOfFile:myPath encoding:NSASCIIStringEncoding error:&err];
     NSArray *rows = [myFile componentsSeparatedByString:@"\n"];
     NSMutableArray *mutableRows = [rows mutableCopy];
-    NSRange range;
-    range.location = 6000;
-    range.length = 8000;
     [mutableRows removeLastObject];
+    NSLog(@"zipcode arr length: %lu", (unsigned long)mutableRows.count);
+    NSRange range;
+    range.location = 40904;
+    range.length = 54;
+    self.myRange = range;
     NSMutableArray *tempArr = [[mutableRows subarrayWithRange:range] mutableCopy];
     self.allData  = [self getCSVData:tempArr];
     [self allZipcodeNeighbors];
@@ -85,7 +90,8 @@
                 NSNumber *rank = [NSNumber numberWithLong:self.loopIndex];
                 [self saveIndividualZip:zipToSave rank:rank];
                 self.loopIndex += 1;
-                if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.loopIndex]];
+                self.index += 1;
+                if(self.loopIndex != self.allData.count) [self getNeighbors:self.allData[self.index]];
                 else {
                     NSLog(@"ALL NEIGHBORHOODS method 1: %@", self.neighborhoods);
                     NSLog(@"FINAL LOOP INDEX: %lu", (unsigned long)self.loopIndex);
