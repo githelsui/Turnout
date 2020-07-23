@@ -8,6 +8,7 @@
 
 #import "Zipcode.h"
 #import "GeocodeManager.h"
+#import "GeoNamesAPI.h"
 
 @implementation Zipcode
 
@@ -37,35 +38,29 @@ NSArray *neighbors;
     [zipcode saveInBackgroundWithBlock: completion];
 }
 
-+ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{
-    [[GeocodeManager shared] fetchZipInfo:zip completion:(^ (NSArray *zipcodeData, NSError *error) {
+// (void(^)(NSArray *zipcodeData, NSError *error))completion
++ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
+    [[GeoNamesAPI shared] fetchZipInfo:zip completion:(^ (NSArray *zipcodeData, NSError *error) {
         if (zipcodeData) {
-            Zipcode *zipcode = [Zipcode new];
             NSArray *components = zipcodeData[0][@"address_components"];
-            NSString *city = components[1][@"long_name"];
-            NSString *county = components[2][@"long_name"];
-            NSString *shortState = components[3][@"short_name"];
-            NSString *state = components[3][@"short_name"];
-            NSLog(@"address comp! = %@", components);
-            NSLog(@"city! = %@", city);
-            zipcode.zipcode = zip;
-            zipcode.city = city;
-            zipcode.county = county;
-            zipcode.state = state;
-            [zipcode saveZipInUser:zipcode withCompletion:completion];
+            NSLog(@"%@", components);
+//            NSString *city = components[1][@"long_name"];
+//            NSString *county = components[2][@"long_name"];
+//            NSString *shortState = components[3][@"short_name"];
+//            NSString *state = components[3][@"short_name"];
+//            NSLog(@"address comp! = %@", components);
+//            NSLog(@"city! = %@", city);
+//            zipcode.zipcode = zip;
+//            zipcode.city = city;
+//            zipcode.county = county; 
+//            zipcode.state = state;
+//            [zipcode saveZipInUser:zipcode withCompletion:completion];
+            completion(zipcodeData, nil);
         } else {
-            NSLog(@"%s", "fetchCity not working!");
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, error);
         }
     })];
-}
-
-- (NSArray *)neighborArray:(NSArray *)neighbors{
-    NSMutableArray *neighborObjects = [NSMutableArray array];
-    for(NSDictionary *neighbor in neighbors){
-        Neighbor *newNeighbor = [Neighbor createNeighbor:neighbor];
-        [neighborObjects addObject:newNeighbor];
-    }
-    return neighborObjects;
 }
 
 - (void)saveZipInUser:(Zipcode *)zip withCompletion: (PFBooleanResultBlock  _Nullable)completion{

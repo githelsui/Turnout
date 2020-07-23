@@ -3,12 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "zipcode">
+               value = "self.zipcodes.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentUser">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__39-[GeoNamesAPI fetchZipInfo:completion:]_block_invoke:GeoNamesAPI.m">
       </ContextState>
       <ContextState
          contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
@@ -28,6 +37,9 @@
                value = "self.neighborData.count">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
@@ -143,16 +155,18 @@
          contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
       </ContextState>
       <ContextState
-         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
+         contextName = "__41+[Zipcode saveNewZipcode:withCompletion:]_block_invoke:Zipcode.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentUser">
+               value = "zipcodeData">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes.count">
+               value = "zipcode">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

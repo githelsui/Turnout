@@ -8,6 +8,7 @@
 
 #import "OnboardViewController.h"
 #import "Zipcode.h"
+#import "GeoNamesAPI.h"
 
 @interface OnboardViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
@@ -34,9 +35,6 @@
     NSString *zipcode = self.zipcodeField.text;
     if(zipcode.length > 0){
         [self findExistingZip:zipcode];
-        Zipcode *zip = [self zipcodeToSave:zipcode];
-        if(zip) [self saveZipInUser:zip];
-        else [self zipcodeToCreate:zipcode];
     } else {
         [self showAlert:@"Cannot Enter Empty Zipcode" subtitle:@""];
     }
@@ -49,16 +47,6 @@
             return zip;
     }
     return nil;
-}
-
-- (void)zipcodeToCreate:(NSString *)zipcode{
-    [Zipcode saveNewZipcode:zipcode withCompletion:^(BOOL succeeded, NSError *error){
-        if(error){
-            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
-        } else {
-            [self segueToTurnout];
-        }
-    }];
 }
 
 - (void)saveZipInUser:(Zipcode *)zip{
@@ -77,10 +65,12 @@
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"zipcode" equalTo:zipcode];
     [query findObjectsInBackgroundWithBlock:^(NSArray *zips, NSError *error) {
-        if (zips != nil) {
+        if (zips.count > 0) {
             self.zipcodes = zips;
+            [self saveZipInUser:self.zipcodes[0]];
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
+            NSLog(@"%s", "creating a new zipcode");
         }
     }];
 }
