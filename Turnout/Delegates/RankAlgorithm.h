@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Post.h"
+#import "RefreshFeedDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSNumber *timeSinceCreation;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, weak) id<RefreshFeedDelegate> delegate;
 + (instancetype)shared;
-- (void)queryPosts:(NSArray *)posts;
+- (NSArray *)queryPosts:(NSArray *)posts;
 @end
 
 NS_ASSUME_NONNULL_END

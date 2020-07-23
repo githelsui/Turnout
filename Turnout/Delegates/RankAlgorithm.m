@@ -28,16 +28,16 @@ static double const distanceWeight = 0.5;
     return self;
 }
 
-- (void)queryPosts:(NSArray *)posts{
-    int i = 0;
+- (NSArray *)queryPosts:(NSArray *)posts{
     for(Post *post in posts){
-        [self calculatePostRank:post rank:i];
-        i++;
+        [self calculatePostRank:post];
     }
+    [self orderPostsByRank];
+    return self.posts;
 }
 
-- (void)calculatePostRank:(Post *)post rank:(int)i{
-    post.rank = @(i);
+- (void)calculatePostRank:(Post *)post{
+    post.rank = post.likeCount;
     [self saveRankToParse:post];
 }
 
@@ -69,6 +69,7 @@ static double const distanceWeight = 0.5;
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    [self.delegate refreshFeed];
 }
 
 @end

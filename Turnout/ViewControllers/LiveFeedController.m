@@ -18,6 +18,7 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "PostDetailController.h"
+#import "RefreshFeedDelegate.h"
 
 @interface LiveFeedController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -37,8 +38,9 @@ NSIndexPath *lastIndexPath;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setGestureRecogs];
-//    [self startTimer];
+    [self startTimer];
     [self fetchPosts];
+    [self.tableView reloadData];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -49,7 +51,7 @@ NSIndexPath *lastIndexPath;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
-            self.timer = [NSTimer timerWithTimeInterval:1
+            self.timer = [NSTimer timerWithTimeInterval:0.3
                                                  target:self
                                                selector:@selector(fetchPosts)
                                                userInfo:nil repeats:YES];
@@ -74,20 +76,30 @@ NSIndexPath *lastIndexPath;
     [self.tableView addGestureRecognizer:singleTap];
 }
 
+- (void)loadInitialPosts{
+    [self fetchPosts];
+    [self.tableView reloadData];
+}
+
 - (void)fetchPosts{
+    [self.timer invalidate];
+    self.timer = nil;
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [[RankAlgorithm shared] queryPosts:posts];
-            self.posts = posts;
+            self.posts = [[RankAlgorithm shared] queryPosts:posts];;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
         [self.tableView reloadData];
     }];
     [self.refreshControl endRefreshing];
+}
+
+- (void)refreshFeed{
+    [self.tableView reloadData];
 }
 
 - (IBAction)logoutTapped:(id)sender {
