@@ -9,6 +9,7 @@
 #import "PostCell.h"
 #import "Assoc.h"
 #import "Zipcode.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation PostCell
 
@@ -28,6 +29,23 @@
     BOOL hasContentView = [self.subviews containsObject:self.contentView];
     if (hasContentView) {
         [self.contentView removeFromSuperview];
+    }
+}
+
+- (void)setTimer{
+    PFUser *currentUser = PFUser.currentUser;
+    if(currentUser || [FBSDKAccessToken currentAccessToken]){
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                       {
+            NSTimer *timer = [NSTimer timerWithTimeInterval:1
+                                                     target:self
+                                                   selector:@selector(setCell)
+                                                   userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+                           {
+            });
+        });
     }
 }
 

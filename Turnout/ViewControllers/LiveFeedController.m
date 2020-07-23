@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation LiveFeedController
@@ -35,27 +36,27 @@ NSIndexPath *lastIndexPath;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setGestureRecogs];
-    [self startTimer];
+//    [self startTimer];
+    [self fetchPosts];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)startTimer{
     PFUser *currentUser = PFUser.currentUser;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
-        {
+                       {
             self.timer = [NSTimer timerWithTimeInterval:1
-                                                     target:self
-                                                   selector:@selector(fetchPosts)
-                                                   userInfo:nil repeats:YES];
+                                                 target:self
+                                               selector:@selector(fetchPosts)
+                                               userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
             dispatch_async(dispatch_get_main_queue(), ^(void)
                            {
-                           });
+            });
         });
-//
-//        self.timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchPosts) userInfo:nil repeats:true];
-////        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-//        [NSThread detachNewThreadSelector:@selector(fetchPosts) toTarget:self withObject:nil];
     }
 }
 
@@ -84,6 +85,7 @@ NSIndexPath *lastIndexPath;
         }
         [self.tableView reloadData];
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)logoutTapped:(id)sender {

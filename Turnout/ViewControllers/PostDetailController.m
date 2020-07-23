@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likesBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *likeAnimation;
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;
 @end
@@ -33,6 +34,7 @@
 }
 
 - (void)setUI{
+    self.likeAnimation.alpha = 0;
     PFUser *user = self.post.author;
      [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
            if(user){
@@ -144,6 +146,36 @@
     } else {
         [self createLikeAssoc];
     }
+}
+
+- (IBAction)statusDoubleTap:(id)sender {
+    if([self checkIfUserLiked]){
+        [self removeLikeAssoc];
+    } else {
+        [self createLikeAssoc];
+    }
+    [self loadLikeAnim];
+}
+
+- (IBAction)imageDoubleTap:(id)sender {
+    if([self checkIfUserLiked]){
+        [self removeLikeAssoc];
+    } else {
+        [self createLikeAssoc];
+    }
+    [self loadLikeAnim];
+}
+
+- (void)loadLikeAnim{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.likeAnimation.alpha = 1;
+    }];
+    [UIView animateWithDuration:1 animations:^{
+        self.likeAnimation.alpha = 1;
+    }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.likeAnimation.alpha = 0;
+    }];
 }
 
 - (void)addLikeCount{

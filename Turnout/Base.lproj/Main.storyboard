@@ -233,8 +233,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JcK-QS-Bn4" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JcK-QS-Bn4" customClass="PFImageView">
                                 <rect key="frame" x="15" y="133.00000000000003" width="344" height="365.66666666666674"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="tM8-X6-Nv4" appends="YES" id="Jh9-e7-k0N"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zy-hP-dMp">
                                 <rect key="frame" x="312" y="510" width="49" height="25"/>
@@ -265,16 +269,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a report!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23M-ak-UFJ">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a report!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23M-ak-UFJ">
                                 <rect key="frame" x="16" y="105" width="344" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="largeLike" translatesAutoresizingMaskIntoConstraints="NO" id="fet-QX-9Vo">
+                                <rect key="frame" x="136" y="256" width="104" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="TWm-hr-j86"/>
+                                    <constraint firstAttribute="height" constant="84" id="a6g-Ye-32a"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="10" id="1Ts-c8-B0e"/>
+                            <constraint firstItem="fet-QX-9Vo" firstAttribute="top" relation="lessThanOrEqual" secondItem="yDS-HA-sD7" secondAttribute="top" constant="200" id="5Ul-uX-lt4"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="JcK-QS-Bn4" secondAttribute="trailing" constant="16" id="CTM-he-6V3"/>
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="top" secondItem="JcK-QS-Bn4" secondAttribute="bottom" constant="11.33" id="IkU-Be-NEp"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="16" id="NU7-WT-czR"/>
@@ -282,15 +295,18 @@
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="leading" secondItem="xOB-9q-WJF" secondAttribute="trailing" constant="230" id="RQo-7j-fu1"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="top" secondItem="JcK-QS-Bn4" secondAttribute="bottom" constant="18.329999999999998" id="Rrm-lZ-axD"/>
                             <constraint firstItem="kXK-Dd-dpc" firstAttribute="bottom" secondItem="Ia0-iO-nj6" secondAttribute="bottom" id="SNc-1U-CL6"/>
+                            <constraint firstItem="fet-QX-9Vo" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="136" id="SkC-wM-jtA"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="3zy-hP-dMp" secondAttribute="bottom" constant="140" id="UdX-oK-QeM"/>
                             <constraint firstItem="UbS-P8-4Gi" firstAttribute="bottom" secondItem="kXK-Dd-dpc" secondAttribute="bottom" id="Vy7-3m-vig"/>
                             <constraint firstItem="UbS-P8-4Gi" firstAttribute="leading" secondItem="kXK-Dd-dpc" secondAttribute="trailing" constant="35" id="Wda-Uu-ylj"/>
+                            <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="fet-QX-9Vo" secondAttribute="trailing" constant="135" id="YGY-KF-hDh"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="23M-ak-UFJ" secondAttribute="trailing" constant="15" id="Zzx-jr-bDT"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="UbS-P8-4Gi" secondAttribute="trailing" constant="16" id="be2-NT-mgM"/>
                             <constraint firstItem="kXK-Dd-dpc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ia0-iO-nj6" secondAttribute="trailing" constant="94.329999999999998" id="cZ0-WR-fSF"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="top" relation="lessThanOrEqual" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="394" id="cnp-uS-EfH"/>
                             <constraint firstItem="23M-ak-UFJ" firstAttribute="top" secondItem="Ia0-iO-nj6" secondAttribute="bottom" constant="15.67" id="fyU-vB-1I5"/>
                             <constraint firstItem="23M-ak-UFJ" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="16" id="gWp-eZ-GO4"/>
+                            <constraint firstItem="yDS-HA-sD7" firstAttribute="bottom" secondItem="fet-QX-9Vo" secondAttribute="bottom" constant="335" id="mYg-da-wre"/>
                             <constraint firstItem="Ia0-iO-nj6" firstAttribute="top" secondItem="yDS-HA-sD7" secondAttribute="top" constant="14" id="nHa-nK-VEe"/>
                             <constraint firstItem="JcK-QS-Bn4" firstAttribute="top" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="10" id="oUb-fI-h8J"/>
                             <constraint firstItem="Ia0-iO-nj6" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="15" id="qnR-o0-ctA"/>
@@ -301,11 +317,15 @@
                             <constraint firstItem="UbS-P8-4Gi" firstAttribute="top" secondItem="yDS-HA-sD7" secondAttribute="top" constant="14" id="yLg-VA-6e0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yDS-HA-sD7"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Z77-KZ-Q8l" appends="YES" id="8m2-1j-M3v"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yGu-CT-QEJ"/>
                     <connections>
                         <outlet property="attachedPhoto" destination="JcK-QS-Bn4" id="gEj-gz-OYu"/>
                         <outlet property="dateLabel" destination="kXK-Dd-dpc" id="6G6-Gh-Ld5"/>
+                        <outlet property="likeAnimation" destination="fet-QX-9Vo" id="AGR-Df-k7e"/>
                         <outlet property="likesBtn" destination="3zy-hP-dMp" id="yPD-tE-KKd"/>
                         <outlet property="locationLabel" destination="xOB-9q-WJF" id="bM6-JJ-jIf"/>
                         <outlet property="nameLabel" destination="Ia0-iO-nj6" id="x2j-KG-MvW"/>
@@ -314,6 +334,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoL-s3-81E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Z77-KZ-Q8l">
+                    <connections>
+                        <action selector="statusDoubleTap:" destination="alD-OT-Zmo" id="cgy-Fu-9Zq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="tM8-X6-Nv4">
+                    <connections>
+                        <action selector="imageDoubleTap:" destination="alD-OT-Zmo" id="Ibm-sw-cdY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-2495" y="2336"/>
         </scene>
