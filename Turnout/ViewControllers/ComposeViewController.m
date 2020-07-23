@@ -95,14 +95,15 @@
 }
 
 - (void)postWithImage:(NSString *)status image:(UIImage *)image{
-    [Post postStatus:image withStatus:status date:self.dateString time:self.timeString withCompletion:^(BOOL succeeded, NSError *error) {
+    Post *post = [Post createNewPost:image withStatus:status date:self.dateString time:self.timeString];
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (error) {
             [self showAlert:error.localizedDescription msg:@""];
         } else {
-            [self.delegate refreshFeed];
+            [self.delegate postToTopFeed:post];
+            [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)showAlert:(NSString *)title msg:(NSString *)msg{

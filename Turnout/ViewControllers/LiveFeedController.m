@@ -39,9 +39,8 @@ NSIndexPath *lastIndexPath;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setGestureRecogs];
-//    [self startTimer];
     [self fetchPosts];
-//      [self.tableView reloadData];
+    [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -52,9 +51,9 @@ NSIndexPath *lastIndexPath;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
-            self.timer = [NSTimer timerWithTimeInterval:1
+            self.timer = [NSTimer timerWithTimeInterval:0.3
                                                  target:self
-                                               selector:@selector(fetchPosts)
+                                               selector:@selector(reloadData)
                                                userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
             dispatch_async(dispatch_get_main_queue(), ^(void)
@@ -62,6 +61,11 @@ NSIndexPath *lastIndexPath;
             });
         });
     }
+}
+
+- (void)reloadData{
+    [self.tableView reloadData];
+    NSLog(@"%s", "timer going off");
 }
 
 - (void)setGestureRecogs{
@@ -89,8 +93,6 @@ NSIndexPath *lastIndexPath;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-//        [self.timer invalidate];
-//        self.timer = nil;
     }];
     [self.refreshControl endRefreshing];
 }
@@ -184,9 +186,8 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)postToTopFeed:(Post *)post {
-    [self fetchPosts];
     [self.mutablePosts insertObject:post atIndex:0];
-    [self.tableView reloadData];
+    NSLog(@"mutable posts = %@", self.mutablePosts);
 }
 
 @end

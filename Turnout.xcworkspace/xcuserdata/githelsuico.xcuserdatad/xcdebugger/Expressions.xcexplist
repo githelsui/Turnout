@@ -3,6 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mutablePosts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__33-[ZipcodeGenerator getNeighbors:]_block_invoke:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString

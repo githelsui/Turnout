@@ -37,6 +37,18 @@
     [newPost saveInBackgroundWithBlock: completion];
 }
 
++ (Post *)createNewPost:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time{
+    Post *newPost = [Post new];
+    newPost.image = [self getPFFileFromImage:image];
+    newPost.author = [PFUser currentUser];
+    newPost.status = status;
+    newPost.likeCount = @(0);
+    newPost.timeAgo = [newPost getTimeAgo: newPost];
+    newPost.datePosted = date;
+    newPost.timePosted = time;
+    return newPost;
+}
+
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
     
     // check if image is not nil

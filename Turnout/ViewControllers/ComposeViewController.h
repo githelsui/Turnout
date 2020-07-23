@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ComposeViewControllerDelegate
 - (void)refreshFeed;
+- (void)postToTopFeed:(Post *)post;
 @end
 
 @interface ComposeViewController : UIViewController
