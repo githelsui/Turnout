@@ -33,7 +33,7 @@ static NSString * const username2 = @"githelsuico";
 }
 
 - (void)fetchNeighbors:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username3];
+    NSString *parameters = [NSString stringWithFormat:@"postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username1];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
