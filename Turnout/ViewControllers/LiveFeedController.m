@@ -144,7 +144,7 @@ NSIndexPath *lastIndexPath;
         CGPoint p = [tap locationInView:tap.view];
         NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:p];
         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        Post *post = self.posts[indexPath.row];
+        Post *post = self.mutablePosts[indexPath.row];
         PostDetailController *detailController = [[PostDetailController alloc] init];
         detailController.post = post;
         [self performSegueWithIdentifier:@"DetailSegue" sender:cell];
@@ -169,7 +169,7 @@ NSIndexPath *lastIndexPath;
     if ([segue.identifier isEqualToString:@"DetailSegue"]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        Post *post = self.posts[indexPath.row];
+        Post *post = self.mutablePosts[indexPath.row];
         NSLog(@"post being passed %@", post);
         PostDetailController *detailController = [segue destinationViewController];
         detailController.post = post;
