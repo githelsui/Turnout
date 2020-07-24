@@ -32,27 +32,10 @@
     }
 }
 
-- (void)setTimer{
-    PFUser *currentUser = PFUser.currentUser;
-    if(currentUser || [FBSDKAccessToken currentAccessToken]){
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
-                       {
-            NSTimer *timer = [NSTimer timerWithTimeInterval:1
-                                                     target:self
-                                                   selector:@selector(setCell)
-                                                   userInfo:nil repeats:YES];
-            [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-            dispatch_async(dispatch_get_main_queue(), ^(void)
-                           {
-            });
-        });
-    }
-}
-
 - (void)setCell{
     self.likeAnimation.alpha = 0;
     [self updateLikes];
-    [self queryLikes];
+    //    [self queryLikes];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;
     [self loadImage];
@@ -103,50 +86,29 @@
     } else {
         likeIcon = [UIImage imageNamed:@"liked.png"];
     }
-    NSString *likeCount = [NSString stringWithFormat:@"%lu", (unsigned long)self.assocs.count];
+    NSNumber *likes = self.post.likeCount;
+    NSString *likeCount = [NSString stringWithFormat:@"%@", likes];
     [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
     [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
 }
 
 - (IBAction)likeTapped:(id)sender {
-    UIImage *likeIcon;
-    if([self checkIfUserLiked]){
-        likeIcon = [UIImage imageNamed:@"notliked.png"];
-        long newCount = self.assocs.count - 1;
-        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
-        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
-        [self removeLikeAssoc];
-    } else {
-        likeIcon = [UIImage imageNamed:@"liked.png"];
-        long newCount = self.assocs.count + 1;
-        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
-        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
-        [self createLikeAssoc];
-    }
+    [self likeFunctionality];
 }
 
 - (void)doubleTapped {
-    UIImage *likeIcon;
+    [self likeFunctionality];
+    [self loadLikeAnim];
+}
+
+- (void)likeFunctionality{
     if([self checkIfUserLiked]){
-        self.likeAnimation.image = [UIImage imageNamed:@"largeUnlike.png"];
-        likeIcon = [UIImage imageNamed:@"notliked.png"];
-        long newCount = self.assocs.count - 1;
-        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
-        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+        [self removeLikeCount];
         [self removeLikeAssoc];
     } else {
-        self.likeAnimation.image = [UIImage imageNamed:@"largeLike.png"];
-        likeIcon = [UIImage imageNamed:@"liked.png"];
-        long newCount = self.assocs.count + 1;
-        NSString *likeCount = [NSString stringWithFormat:@"%lu", newCount];
-        [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-        [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+        [self addLikeCount];
         [self createLikeAssoc];
     }
-    [self loadLikeAnim];
 }
 
 
@@ -159,7 +121,6 @@
     [likeAssoc saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The assoc was saved!");
-            [self addLikeCount];
         } else {
             NSLog(@"Problem saving assoc: %@", error.localizedDescription);
         }
@@ -167,23 +128,33 @@
 }
 
 - (void)addLikeCount{
-    self.post.likeCount = @([self.post.likeCount intValue] + [@1 intValue]);
+    UIImage *likeIcon = [UIImage imageNamed:@"liked.png"];
+    NSNumber *newCount = @([self.post.likeCount intValue] + [@1 intValue]);
+    self.post.likeCount = newCount;
+    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
+    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
-            NSLog(@"The message was saved!");
+            NSLog(@"The count was saved!");
         } else {
-            NSLog(@"Problem saving message: %@", error.localizedDescription);
+            NSLog(@"Problem saving count: %@", error.localizedDescription);
         }
     }];
 }
 
 - (void)removeLikeCount{
-    self.post.likeCount = @([self.post.likeCount intValue] - [@1 intValue]);
+    UIImage *likeIcon = [UIImage imageNamed:@"notliked.png"];
+    NSNumber *newCount = @([self.post.likeCount intValue] - [@1 intValue]);
+    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
+    self.post.likeCount = newCount;
+    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
-            NSLog(@"The message was saved!");
+            NSLog(@"The count was saved!");
         } else {
-            NSLog(@"Problem saving message: %@", error.localizedDescription);
+            NSLog(@"Problem saving count: %@", error.localizedDescription);
         }
     }];
 }
@@ -191,7 +162,6 @@
 - (void)removeLikeAssoc{
     Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];
-    [self removeLikeCount];
 }
 
 - (BOOL)checkIfUserLiked{
