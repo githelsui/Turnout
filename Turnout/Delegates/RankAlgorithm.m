@@ -8,6 +8,7 @@
 
 #import "RankAlgorithm.h"
 #import <Parse/Parse.h>
+#import "Zipcode.h"
 
 static double const timeWeight = 0.002;
 static double const distanceWeight = 0.5;
@@ -29,15 +30,24 @@ static double const distanceWeight = 0.5;
 }
 
 - (NSArray *)queryPosts:(NSArray *)posts{
+    __block NSArray *rankedFeed = nil;
     for(Post *post in posts){
         [self calculatePostRank:post];
     }
-    [self orderPostsByRank];
-    return self.posts;
+    rankedFeed = [self orderPostsByRank];
+    return rankedFeed;
 }
 
 - (void)calculatePostRank:(Post *)post{
-    post.rank = post.likeCount;
+//    post.rank = post.likeCount;
+    PFUser *postUser = post.author;
+    PFUser *currentUser = PFUser.currentUser;
+    Zipcode *postZipcode = [self getZipcode:postUser];
+    Zipcode *currentZipcode = [self getZipcode:currentUser];
+    NSArray *postNeighbors = postZipcode.neighbors;
+    NSLog(@"post neighbors for zipcode: %@ are = %@", postZipcode, postNeighbors);
+    NSArray *currentNeighbors = currentZipcode.neighbors;
+    
     [self saveRankToParse:post];
 }
 
@@ -51,6 +61,16 @@ static double const distanceWeight = 0.5;
     }];
 }
 
+- (Zipcode *)getZipcode:(PFUser *)user{
+    __block Zipcode *zip = nil;
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
+           if(user){
+               zip = user[@"zipcode"];
+           }
+    }];
+    return zip;
+}
+
 - (void)getDistance{
     
 }
@@ -59,17 +79,18 @@ static double const distanceWeight = 0.5;
     
 }
 
-- (void)orderPostsByRank{
+- (NSArray *)orderPostsByRank{
+    __block NSArray *rankedFeed = nil;
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"rank"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.posts = posts;
+            rankedFeed = posts;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    [self.delegate refreshFeed];
+    return rankedFeed;
 }
 
 @end

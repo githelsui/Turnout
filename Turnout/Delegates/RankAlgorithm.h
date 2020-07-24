@@ -11,13 +11,16 @@
 #import "RefreshFeedDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol RankAlgorithmDelegate
+- (void)refreshFeed;
+@end
 
 @interface RankAlgorithm : NSObject
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSNumber *timeSinceCreation;
 @property (nonatomic, strong) NSArray *posts;
-@property (nonatomic, weak) id<RefreshFeedDelegate> delegate;
+@property (nonatomic, weak) id<RankAlgorithmDelegate> delegate;
 + (instancetype)shared;
 - (NSArray *)queryPosts:(NSArray *)posts;
 @end

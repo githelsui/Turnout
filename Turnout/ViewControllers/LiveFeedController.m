@@ -20,7 +20,7 @@
 #import "PostDetailController.h"
 #import "ComposeViewController.h"
 
-@interface LiveFeedController () <PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface LiveFeedController () <RankAlgorithmDelegate, PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSMutableArray *mutablePosts;
@@ -42,7 +42,7 @@ NSIndexPath *lastIndexPath;
     [self fetchPosts];
     [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -84,6 +84,21 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)fetchPosts{
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"rank"];
+    [query setLimit:20];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = posts;
+            self.mutablePosts = [posts mutableCopy];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)reloadFeed{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"rank"];
     [query setLimit:20];
