@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Zipcode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *timeAgo;
 @property (nonatomic, strong) NSString *datePosted;
 @property (nonatomic, strong) NSString *timePosted;
+@property (nonatomic, strong) Zipcode *zipcode;
 @property (nonatomic, strong) NSNumber *rank;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 + (void) postStatus:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time withCompletion: (PFBooleanResultBlock  _Nullable)completion;

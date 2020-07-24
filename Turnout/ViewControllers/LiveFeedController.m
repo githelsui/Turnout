@@ -35,6 +35,7 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.allowsSelection = false;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -51,7 +52,7 @@ NSIndexPath *lastIndexPath;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
-            self.timer = [NSTimer timerWithTimeInterval:5
+            self.timer = [NSTimer timerWithTimeInterval:1
                                                  target:self
                                                selector:@selector(reloadData)
                                                userInfo:nil repeats:YES];
@@ -85,33 +86,31 @@ NSIndexPath *lastIndexPath;
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKey:@"author"];
     [query orderByDescending:@"rank"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
             self.mutablePosts = [posts mutableCopy];
-            [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [self.tableView reloadData];
     }];
 }
 
 - (void)reloadFeed{
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"rank"];
-    [query setLimit:20];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.posts = [[RankAlgorithm shared] queryPosts:posts];
-            self.mutablePosts = [posts mutableCopy];
+    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
+        if(rankedPosts){
+            self.posts = rankedPosts;
+            self.mutablePosts = [rankedPosts mutableCopy];
             [self.tableView reloadData];
         } else {
-            NSLog(@"%@", error.localizedDescription);
+             NSLog(@"%@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
-    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)logoutTapped:(id)sender {

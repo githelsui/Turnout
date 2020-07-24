@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, weak) id<RankAlgorithmDelegate> delegate;
 + (instancetype)shared;
-- (NSArray *)queryPosts:(NSArray *)posts;
+- (void)queryPosts:(void(^)(NSArray *rankedPosts, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

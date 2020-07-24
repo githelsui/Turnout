@@ -34,6 +34,11 @@
 
 - (void)setCell{
     self.likeAnimation.alpha = 0;
+    self.bubbleView.layer.cornerRadius = 20;
+    self.bubbleView.clipsToBounds = true;
+//    UIColor *color = [UIColor colorWithRed:200/255. green:228/255. blue:194/255. alpha:0.99];
+//    self.layer.borderColor = color.CGColor;
+//    self.layer.borderWidth = 2;
     [self updateLikes];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timeAgo;

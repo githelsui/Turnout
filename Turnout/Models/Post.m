@@ -45,6 +45,7 @@
     newPost.status = status;
     newPost.likeCount = @(0);
     newPost.rank = @(0);
+    newPost.zipcode = [PFUser currentUser][@"zipcode"];
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
     newPost.timePosted = time;

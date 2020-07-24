@@ -3,19 +3,19 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
+         contextName = "-[OnboardViewController zipcodeToSave:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.mutablePosts.count">
+               value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.tableView">
+               value = "self.zipcodes.count">
             </PersistentString>
             <PersistentString
-               value = "self.mutablePosts">
+               value = "zip.zipcode">
             </PersistentString>
             <PersistentString
-               value = "self.mutablePosts[0]">
+               value = "zip.city">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -66,13 +66,13 @@
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,9 +93,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
@@ -103,6 +100,20 @@
             </PersistentString>
             <PersistentString
                value = "self.neighborData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__copy_helper_block_e8_32r:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "likeCount">
+            </PersistentString>
+            <PersistentString
+               value = "currentUser">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -151,12 +162,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "post">
+            </PersistentString>
+            <PersistentString
+               value = "post.author">
+            </PersistentString>
+            <PersistentString
+               value = "likeCount">
+            </PersistentString>
+            <PersistentString
+               value = "postZipcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[LiveFeedController prepareForSegue:sender:]:LiveFeedController.m">
          <PersistentStrings>
             <PersistentString
                value = "composeController.delegate">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm fetchNeighbors:]:RankAlgorithm.m">
       </ContextState>
       <ContextState
          contextName = "-[ZipcodeGenerator getNeighbors:]:ZipcodeGenerator.m">
@@ -187,19 +218,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[OnboardViewController zipcodeToSave:]:OnboardViewController.m">
+         contextName = "-[LiveFeedController fetchPosts]:LiveFeedController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes.count">
-            </PersistentString>
-            <PersistentString
-               value = "zip.zipcode">
-            </PersistentString>
-            <PersistentString
-               value = "zip.city">
+               value = "self.posts.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -212,10 +234,19 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[LiveFeedController fetchPosts]:LiveFeedController.m">
+         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.posts.count">
+               value = "self.mutablePosts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts[0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
