@@ -12,7 +12,7 @@
 
 static float const timeWeight = 0.002;
 static float const distanceWeight = 0.5;
-static float const likesWeight = 1.75;
+static float const likesWeight = 0.75;
 
 @interface RankAlgorithm ()
 @property (nonatomic, strong)  NSArray *zipcodes;
@@ -197,7 +197,7 @@ static float const likesWeight = 1.75;
 
 - (void)orderPostsByRank:(void(^)(NSArray *rankedPosts, NSError *error))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"rank"];
+    [query orderByAscending:@"rank"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             completion(posts, nil);

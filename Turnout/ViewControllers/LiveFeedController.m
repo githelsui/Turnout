@@ -87,7 +87,7 @@ NSIndexPath *lastIndexPath;
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKey:@"author"];
-    [query orderByDescending:@"rank"];
+    [query orderByAscending:@"rank"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
