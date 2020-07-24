@@ -31,6 +31,7 @@
     newPost.author = [PFUser currentUser];
     newPost.status = status;
     newPost.likeCount = @(0);
+    newPost.rank = @(0);
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
     newPost.timePosted = time;
@@ -43,6 +44,7 @@
     newPost.author = [PFUser currentUser];
     newPost.status = status;
     newPost.likeCount = @(0);
+    newPost.rank = @(0);
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
     newPost.timePosted = time;

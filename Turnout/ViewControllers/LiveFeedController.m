@@ -83,12 +83,12 @@ NSIndexPath *lastIndexPath;
 
 - (void)fetchPosts{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"rank"];
     [query setLimit:20];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.posts = posts;
+            self.posts = [[RankAlgorithm shared] queryPosts:posts];
             self.mutablePosts = [posts mutableCopy];
-            //[[RankAlgorithm shared] queryPosts:posts];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
