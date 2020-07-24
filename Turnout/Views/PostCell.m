@@ -128,15 +128,16 @@
 }
 
 - (void)addLikeCount{
-    UIImage *likeIcon = [UIImage imageNamed:@"liked.png"];
+//    UIImage *likeIcon = [UIImage imageNamed:@"liked.png"];
     NSNumber *newCount = @([self.post.likeCount intValue] + [@1 intValue]);
     self.post.likeCount = newCount;
-    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
-    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+//    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
+//    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+//    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The count was saved!");
+            [self updateLikes];
         } else {
             NSLog(@"Problem saving count: %@", error.localizedDescription);
         }
@@ -144,12 +145,12 @@
 }
 
 - (void)removeLikeCount{
-    UIImage *likeIcon = [UIImage imageNamed:@"notliked.png"];
+//    UIImage *likeIcon = [UIImage imageNamed:@"notliked.png"];
     NSNumber *newCount = @([self.post.likeCount intValue] - [@1 intValue]);
-    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
+//    NSString *likeCount = [NSString stringWithFormat:@"%@", newCount];
     self.post.likeCount = newCount;
-    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
-    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
+//    [self.likeButton setTitle:likeCount forState:UIControlStateNormal];
+//    [self.likeButton setImage:likeIcon forState:UIControlStateNormal];
     [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The count was saved!");
@@ -162,6 +163,7 @@
 - (void)removeLikeAssoc{
     Assoc *usersLike = [self usersLike];
     [usersLike deleteInBackground];
+    [self updateLikes];
 }
 
 - (BOOL)checkIfUserLiked{
