@@ -15,7 +15,7 @@ static float const distanceWeight = 0.0002;
 static float const likesWeight = 1.75;
 
 @interface RankAlgorithm ()
-@property (nonatomic, strong)  NSArray *zipcodes;
+@property (nonatomic, strong) NSMutableArray *postDicts;
 
 @end
 
@@ -40,17 +40,56 @@ static float const likesWeight = 1.75;
     [query includeKey:@"Zipcode"];
     [query includeKey:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        for (Post *post in results) {
-            [self calculatePostRank:post withCompletion:^(NSNumber *rank, NSError *error){
-                post.rank = rank;
-                [self saveRankToParse:post];
+        if(results){
+            NSMutableArray *dictsArr = [NSMutableArray array];
+            [self getPostDictsArr:results newArr:dictsArr completion:^(NSArray *postDicts, NSError *error){
+                NSLog(@"postDicts = %@", postDicts);
+                NSArray *sortedDicts = [self sortPostDicts:postDicts];
+                NSLog(@"sortedDicts = %@", sortedDicts);
+                NSArray *rankedPosts = [self getSortedPosts:sortedDicts];
+                NSLog(@"rankedPosts = %@", rankedPosts);
+                completion(rankedPosts, error);
             }];
         }
-        [self orderPostsByRank:^(NSArray *rankedPosts, NSError *error){
-            if(rankedPosts) completion(rankedPosts, error);
-            else completion(nil, error);
-        }];
     }];
+}
+
+- (NSArray *)getSortedPosts:(NSArray *)dicts{
+    NSMutableArray *posts = [NSMutableArray array];
+    for(NSDictionary *dict in dicts){
+        Post *post = dict[@"post"];
+        [posts addObject:post];
+    }
+    return posts;
+}
+
+- (void)getPostDictsArr:(NSArray *)posts newArr:(NSMutableArray *)newArr completion:(void(^)(NSArray *postDicts, NSError *error))completion{
+    for (Post *post in posts) {
+        [self calculatePostRank:post withCompletion:^(NSNumber *rank, NSError *error){
+            [self createRankedDict:rank post:post withCompletion:^(NSDictionary *postDict, NSError *error){
+                [newArr addObject:postDict];
+                Post *lastObj = [posts lastObject];
+                if([post isEqual:lastObj]){
+                    completion(newArr, nil);
+                }
+            }];
+        }];
+    }
+}
+
+- (NSArray *)sortPostDicts:(NSArray *)postDicts{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank"
+                                                 ascending:YES];
+    NSArray *sortedArray = [postDicts sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return sortedArray;
+}
+
+- (void)createRankedDict:(NSNumber *)rank post:(Post *)post withCompletion:(void(^)(NSDictionary *postDict, NSError *error))completion{
+    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+    [tempPost setObject:post forKey:@"post"];
+    [tempPost setObject:rank forKey:@"rank"];
+    completion(tempPost, nil);
 }
 
 - (void)calculatePostRank:(Post *)post withCompletion:(void(^)(NSNumber *rank, NSError *error))completion{
@@ -195,7 +234,7 @@ static float const likesWeight = 1.75;
     }];
 }
 
-- (void)orderPostsByRank:(void(^)(NSArray *rankedPosts, NSError *error))completion {
+- (void)orderPostsByRank:(NSArray *)posts completion:(void(^)(NSArray *rankedPosts, NSError *error))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByAscending:@"rank"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
