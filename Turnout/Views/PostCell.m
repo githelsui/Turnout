@@ -38,7 +38,7 @@
     self.bubbleView.clipsToBounds = true;
     [self updateLikes];
     self.statusLabel.text = self.post.status;
-    self.timeLabel.text = self.post.timeAgo;
+    [self getTimeAgo];
     [self loadImage];
     PFUser *user = self.post.author;
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
@@ -47,6 +47,11 @@
             [self getPostLocation:user];
         }
     }];
+}
+
+- (void)getTimeAgo{
+    NSString *timeAgoStr = [self.post getTimeAgo:self.post];
+    self.timeLabel.text = timeAgoStr;
 }
 
 - (void)getPostLocation:(PFObject *)user{

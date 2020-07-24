@@ -7,6 +7,7 @@
 //
 
 #import "Post.h"
+#import "DateTools.h"
 
 @implementation Post
 
@@ -17,6 +18,7 @@
 @dynamic status;
 @dynamic image;
 @dynamic rank;
+@dynamic zipcode;
 @dynamic datePosted;
 @dynamic timePosted;
 @dynamic timeAgo;
@@ -69,15 +71,15 @@
 }
 
 - (NSString *)getTimeAgo: (Post *)post{
-    NSDate *createdAt = post.createdAt;
+    NSDate *createdAt = [post createdAt];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E MMM d HH:mm";
-    //    NSString *date = [formatter stringFromDate:createdAt];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
-    formatter.dateFormat = @"E MMM d";
-    NSString *shortDate = [formatter stringFromDate:createdAt];
-    return shortDate;
+    NSTimeInterval seconds = -[createdAt timeIntervalSinceNow];
+    NSDate *timeAgo = [NSDate dateWithTimeIntervalSinceNow:seconds];
+    NSString *timeAgoString = timeAgo.shortTimeAgoSinceNow;
+    return timeAgoString;
 }
 
 @end
