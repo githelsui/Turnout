@@ -11,6 +11,10 @@
 #import <Parse/PFImageView.h>
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol PostCellDelegate
+- (void)refreshFeed;
+@end
+
 @interface PostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
@@ -22,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;
 @property (weak, nonatomic) IBOutlet UIImageView *likeAnimation;
+@property (nonatomic, weak) id<PostCellDelegate> delegate;
 - (void)doubleTapped;
 - (void)setCell;
 @end

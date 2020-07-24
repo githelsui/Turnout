@@ -20,7 +20,7 @@
 #import "PostDetailController.h"
 #import "ComposeViewController.h"
 
-@interface LiveFeedController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface LiveFeedController () <PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSMutableArray *mutablePosts;
@@ -51,7 +51,7 @@ NSIndexPath *lastIndexPath;
     if(currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
-            self.timer = [NSTimer timerWithTimeInterval:0.3
+            self.timer = [NSTimer timerWithTimeInterval:5
                                                  target:self
                                                selector:@selector(reloadData)
                                                userInfo:nil repeats:YES];
@@ -65,6 +65,8 @@ NSIndexPath *lastIndexPath;
 
 - (void)reloadData{
     [self.tableView reloadData];
+    [self.timer invalidate];
+    self.timer = nil;
     NSLog(@"%s", "timer going off");
 }
 
@@ -124,6 +126,7 @@ NSIndexPath *lastIndexPath;
     }
     Post *post = self.mutablePosts[indexPath.row];
     cell.post = post;
+    cell.delegate = self;
     [cell setCell];
     return cell;
 }
@@ -181,13 +184,13 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)refreshFeed{
-    [self fetchPosts];
-    [self.tableView reloadData];
+    [self startTimer];
 }
 
 - (void)postToTopFeed:(Post *)post {
     [self.mutablePosts insertObject:post atIndex:0];
     NSLog(@"mutable posts = %@", self.mutablePosts);
+    [self startTimer];
 }
 
 @end
