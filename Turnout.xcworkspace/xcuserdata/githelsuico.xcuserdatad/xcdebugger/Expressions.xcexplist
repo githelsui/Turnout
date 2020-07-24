@@ -85,6 +85,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__28-[RankAlgorithm queryPosts:]_block_invoke.21:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "updatedPosts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString

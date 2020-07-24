@@ -40,16 +40,12 @@ static float const likesWeight = 1.75;
     [query includeKey:@"Zipcode"];
     [query includeKey:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        NSMutableArray *updatedPosts = [NSMutableArray new];
         for (Post *post in results) {
-            post.rank = [self calculatePostRank:post];
-            [updatedPosts addObject:post];
+            [self calculatePostRank:post withCompletion:^(NSNumber *rank, NSError *error){
+                post.rank = rank;
+                [self saveRankToParse:post];
+            }];
         }
-        
-        [PFObject saveAllInBackground:updatedPosts block:^(BOOL success, NSError *error) {
-            // Check result of the operation, all objects should have been saved by now
-        }];
-        
         [self orderPostsByRank:^(NSArray *rankedPosts, NSError *error){
             if(rankedPosts) completion(rankedPosts, error);
             else completion(nil, error);
@@ -57,7 +53,7 @@ static float const likesWeight = 1.75;
     }];
 }
 
-- (NSNumber *)calculatePostRank:(Post *)post{
+- (void)calculatePostRank:(Post *)post withCompletion:(void(^)(NSNumber *rank, NSError *error))completion{
     NSNumber *likeCount = post.likeCount;
     PFUser *currentUser = PFUser.currentUser;
     
@@ -94,12 +90,11 @@ static float const likesWeight = 1.75;
             
             NSNumber *timeSinceCreated = [self getTimeSinceCreated:post];
             NSNumber *rank = [self rankCalculation:distance likes:likeCount timeSinceCreation:timeSinceCreated];
-              NSLog(@"rank = %@", rank);
+            NSLog(@"rank = %@", rank);
+            
+            completion(rank, nil);
         }];
     }];
-    
-    //    [self saveRankToParse:post];
-     return likeCount;
 }
 
 - (NSNumber *)rankCalculation:(NSNumber *)distanceNum likes:(NSNumber *)likesCount timeSinceCreation:(NSNumber *)timeSinceCreation{
@@ -144,13 +139,13 @@ static float const likesWeight = 1.75;
 
 - (void)getZipcode:(PFUser *)user completion:(void(^)(Zipcode *zipcode, NSError *error))completion {
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
-           if(user){
-               Zipcode *zip = user[@"zipcode"];
-               completion(zip, error);
-               
-           } else {
-               completion(nil, error);
-           }
+        if(user){
+            Zipcode *zip = user[@"zipcode"];
+            completion(zip, error);
+            
+        } else {
+            completion(nil, error);
+        }
     }];
 }
 
@@ -169,12 +164,12 @@ static float const likesWeight = 1.75;
 
 - (void)fetchNeighbors:(Zipcode *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
     [zipcode fetchIfNeededInBackgroundWithBlock:^(PFObject *zip, NSError *error){
-           if(zip){
-               NSArray *neighbors = zip[@"neighbors"];
-               completion(neighbors, nil);
-           } else {
-               completion(nil, error);
-           }
+        if(zip){
+            NSArray *neighbors = zip[@"neighbors"];
+            completion(neighbors, nil);
+        } else {
+            completion(nil, error);
+        }
     }];
 }
 
@@ -191,12 +186,12 @@ static float const likesWeight = 1.75;
 
 - (void)getPostCreatedAt:(Post *)post completion:(void(^)(NSDate *createdAt, NSError *error))completion{
     [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error){
-           if(post){
-               NSDate *createdAt = post[@"createdAt"];
-               completion(createdAt, nil);
-           } else {
-               completion(nil, error);
-           }
+        if(post){
+            NSDate *createdAt = post[@"createdAt"];
+            completion(createdAt, nil);
+        } else {
+            completion(nil, error);
+        }
     }];
 }
 
@@ -207,7 +202,7 @@ static float const likesWeight = 1.75;
         if (posts != nil) {
             completion(posts, nil);
         } else {
-           completion(nil, error);
+            completion(nil, error);
         }
     }];
 }
