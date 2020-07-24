@@ -10,9 +10,9 @@
 #import <Parse/Parse.h>
 #import "Zipcode.h"
 
-static float const timeWeight = 0.002;
-static float const distanceWeight = 0.5;
-static float const likesWeight = 0.75;
+static float const timeWeight = 0.005;
+static float const distanceWeight = 0.0002;
+static float const likesWeight = 1.75;
 
 @interface RankAlgorithm ()
 @property (nonatomic, strong)  NSArray *zipcodes;
