@@ -39,12 +39,36 @@ NSIndexPath *lastIndexPath;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self setUpFooter];
     [self setGestureRecogs];
     [self reloadFeed];
     [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)setUpFooter{
+    UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 65)];
+    loadView.alpha = 0;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.alpha = 0;
+    [button setTitle:@"Load More" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
+    button.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    loadView.center = CGPointMake(self.view.center.x, 0);
+    button.center = CGPointMake(self.view.center.x, 30);
+    button.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
+    button.layer.cornerRadius = 20;
+    button.layer.borderWidth = 0.5f;
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    [loadView addSubview:button];
+    self.tableView.tableFooterView = loadView;
+    [UIView animateWithDuration:4 animations:^{
+        loadView.alpha = 1;
+        button.alpha = 1;
+    }];
 }
 
 - (void)startTimer{
@@ -66,8 +90,8 @@ NSIndexPath *lastIndexPath;
 
 - (void)reloadData{
     [self.tableView reloadData];
-//    [self.timer invalidate];
-//    self.timer = nil;
+    //    [self.timer invalidate];
+    //    self.timer = nil;
     NSLog(@"%s", "timer going off");
 }
 
@@ -107,7 +131,7 @@ NSIndexPath *lastIndexPath;
             self.mutablePosts = [rankedPosts mutableCopy];
             [self.tableView reloadData];
         } else {
-             NSLog(@"%@", error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
         }
         [self.refreshControl endRefreshing];
     }];
@@ -178,6 +202,9 @@ NSIndexPath *lastIndexPath;
     [cell doubleTapped];
 }
 
+- (void)loadMore{
+    NSLog(@"add to charity");
+}
 
 #pragma mark - Navigation
 

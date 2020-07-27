@@ -134,7 +134,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.93057041952054798" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="7rq-oH-wBW" secondAttribute="trailing" constant="10" id="0wf-L5-kDd"/>
                                                         <constraint firstAttribute="bottom" secondItem="pH8-8c-SNg" secondAttribute="bottom" constant="16" id="2t9-hr-b7d"/>
@@ -164,7 +164,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.86253210616438358" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="xjR-sS-FIj" secondAttribute="bottom" constant="7" id="AAi-wy-9En"/>
                                                 <constraint firstAttribute="trailing" secondItem="xjR-sS-FIj" secondAttribute="trailing" constant="8" id="Cyb-2F-p4K"/>
