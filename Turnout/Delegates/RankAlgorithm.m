@@ -11,7 +11,7 @@
 #import "Zipcode.h"
 
 static float const timeWeight = 0.005;
-static float const distanceWeight = 0.0002;
+static float const distanceWeight = 0.00002;
 static float const likesWeight = 1.75;
 
 @interface RankAlgorithm ()
@@ -146,8 +146,6 @@ static float const likesWeight = 1.75;
     float decay = timeCreatedVal + distanceVal;
     float rankFloat = decay / score;
     return [NSNumber numberWithFloat: rankFloat];
-    
-    
 }
 
 - (NSDictionary *)checkIfAnyNeighbors:(NSArray *)neighbors current:(Zipcode *)zipcode{

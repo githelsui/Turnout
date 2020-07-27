@@ -40,7 +40,7 @@ NSIndexPath *lastIndexPath;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setGestureRecogs];
-    [self fetchPosts];
+    [self reloadFeed];
     [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
@@ -66,8 +66,8 @@ NSIndexPath *lastIndexPath;
 
 - (void)reloadData{
     [self.tableView reloadData];
-    [self.timer invalidate];
-    self.timer = nil;
+//    [self.timer invalidate];
+//    self.timer = nil;
     NSLog(@"%s", "timer going off");
 }
 
