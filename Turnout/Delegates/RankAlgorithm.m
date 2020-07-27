@@ -36,20 +36,24 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(void(^)(NSArray *rankedPosts, NSError *error))completion {
+    PFUser *currentUser = PFUser.currentUser;
+    Zipcode *currentZipcode = currentUser[@"zipcode"];
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"Zipcode"];
+    [query orderByDescending:@"likeCount"];
+    [query whereKey:@"zipcode" equalTo:currentZipcode];
+    [query includeKey:@"zipcode"];
     [query includeKey:@"createdAt"];
+    query.limit = 5;
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(results){
-            NSMutableArray *dictsArr = [NSMutableArray array];
-            [self getPostDictsArr:results newArr:dictsArr completion:^(NSArray *postDicts, NSError *error){
-                NSLog(@"postDicts = %@", postDicts);
-                NSArray *sortedDicts = [self sortPostDicts:postDicts];
-                NSLog(@"sortedDicts = %@", sortedDicts);
-                NSArray *rankedPosts = [self getSortedPosts:sortedDicts];
-                NSLog(@"rankedPosts = %@", rankedPosts);
-                completion(rankedPosts, error);
-            }];
+//            NSMutableArray *dictsArr = [NSMutableArray array];
+//            [self getPostDictsArr:results newArr:dictsArr completion:^(NSArray *postDicts, NSError *error){
+//                NSLog(@"postDicts = %@", postDicts);
+//                NSArray *sortedDicts = [self sortPostDicts:postDicts];
+//                NSLog(@"sortedDicts = %@", sortedDicts);
+//                NSArray *rankedPosts = [self getSortedPosts:sortedDicts];
+//                NSLog(@"rankedPosts = %@", rankedPosts);
+                completion(results, error);
         }
     }];
 }

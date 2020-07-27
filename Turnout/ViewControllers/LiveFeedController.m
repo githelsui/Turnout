@@ -22,6 +22,8 @@
 
 @interface LiveFeedController () <RankAlgorithmDelegate, PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *currentLoc;
+@property (weak, nonatomic) IBOutlet UILabel *currentZipcode;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSMutableArray *mutablePosts;
 @property (nonatomic, strong) NSTimer *timer;
@@ -39,6 +41,7 @@ NSIndexPath *lastIndexPath;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self setUpHeader];
     [self setUpFooter];
     [self setGestureRecogs];
     [self reloadFeed];
@@ -46,6 +49,18 @@ NSIndexPath *lastIndexPath;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)setUpHeader{
+    self.currentUser = PFUser.currentUser;
+    Zipcode *zip = self.currentUser[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+           if(zipcode){
+               NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
+               self.currentLoc.text = location;
+               self.currentZipcode.text = zipcode[@"zipcode"];
+           }
+       }];
 }
 
 - (void)setUpFooter{
@@ -72,8 +87,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)startTimer{
-    PFUser *currentUser = PFUser.currentUser;
-    if(currentUser || [FBSDKAccessToken currentAccessToken]){
+    if(self.currentUser || [FBSDKAccessToken currentAccessToken]){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
             self.timer = [NSTimer timerWithTimeInterval:1

@@ -196,13 +196,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zipcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOp-1k-GVG">
+                                        <rect key="frame" x="309" y="27" width="49" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kE5-Ku-oRA">
+                                        <rect key="frame" x="298" y="8" width="60" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="RFa-yU-agu" firstAttribute="top" secondItem="xD0-DM-gMp" secondAttribute="top" constant="8" id="2zF-Uw-35a"/>
+                                    <constraint firstItem="fOp-1k-GVG" firstAttribute="top" secondItem="kE5-Ku-oRA" secondAttribute="bottom" constant="3" id="7Of-4s-w0R"/>
+                                    <constraint firstItem="fOp-1k-GVG" firstAttribute="top" secondItem="kE5-Ku-oRA" secondAttribute="bottom" constant="3" id="9Lu-mw-S1d"/>
                                     <constraint firstAttribute="bottom" secondItem="RFa-yU-agu" secondAttribute="bottom" constant="7" id="BSC-Ho-Kb8"/>
+                                    <constraint firstAttribute="trailing" secondItem="kE5-Ku-oRA" secondAttribute="trailing" constant="17" id="M6x-wq-ipQ"/>
                                     <constraint firstItem="RFa-yU-agu" firstAttribute="leading" secondItem="xD0-DM-gMp" secondAttribute="leading" constant="16" id="UE9-JG-uBu"/>
+                                    <constraint firstItem="kE5-Ku-oRA" firstAttribute="leading" relation="lessThanOrEqual" secondItem="xD0-DM-gMp" secondAttribute="leading" constant="298" id="Wh2-aw-pTf"/>
+                                    <constraint firstItem="fOp-1k-GVG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="xD0-DM-gMp" secondAttribute="leading" constant="309" id="gHl-1b-pQ4"/>
                                     <constraint firstAttribute="trailing" secondItem="RFa-yU-agu" secondAttribute="trailing" constant="17" id="lAd-yV-hNg"/>
+                                    <constraint firstAttribute="trailing" secondItem="fOp-1k-GVG" secondAttribute="trailing" constant="17" id="p5X-SX-dEK"/>
+                                    <constraint firstAttribute="bottom" secondItem="fOp-1k-GVG" secondAttribute="bottom" constant="8" id="w8J-ek-qTc"/>
+                                    <constraint firstItem="kE5-Ku-oRA" firstAttribute="top" secondItem="xD0-DM-gMp" secondAttribute="top" constant="8" id="zaC-Tf-anv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -232,6 +252,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentLoc" destination="kE5-Ku-oRA" id="HmK-wY-Jvk"/>
+                        <outlet property="currentZipcode" destination="fOp-1k-GVG" id="NIU-2L-oCF"/>
                         <outlet property="tableView" destination="20E-PV-VNC" id="dlP-x8-CuG"/>
                     </connections>
                 </viewController>
