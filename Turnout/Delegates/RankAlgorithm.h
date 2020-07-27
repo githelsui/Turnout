@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSNumber *timeSinceCreation;
+@property (nonatomic, strong) NSMutableArray *neighborDicts;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) NSMutableArray *feedPosts;
 @property (nonatomic, weak) id<RankAlgorithmDelegate> delegate;
 + (instancetype)shared;
-- (void)queryPosts:(void(^)(NSArray *rankedPosts, NSError *error))completion;
+- (void)queryPosts;
 @end
 
 NS_ASSUME_NONNULL_END

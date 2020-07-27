@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentZipcode;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSMutableArray *mutablePosts;
+@property (nonatomic, strong) RankAlgorithm *rankAlgo;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
@@ -36,12 +37,13 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.rankAlgo = [[RankAlgorithm alloc]init];
+    [self setUpHeader];
     self.tableView.allowsSelection = false;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self setUpHeader];
     [self setUpFooter];
     [self setGestureRecogs];
     [self reloadFeed];
@@ -139,16 +141,18 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)reloadFeed{
-    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
-        if(rankedPosts){
-            self.posts = rankedPosts;
-            self.mutablePosts = [rankedPosts mutableCopy];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        [self.refreshControl endRefreshing];
-    }];
+    [self.rankAlgo queryPosts];
+    [self.refreshControl endRefreshing];
+//    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
+//        if(rankedPosts){
+//            self.posts = rankedPosts;
+//            self.mutablePosts = [rankedPosts mutableCopy];
+//            [self.tableView reloadData];
+//        } else {
+//            NSLog(@"%@", error.localizedDescription);
+//        }
+//        [self.refreshControl endRefreshing];
+//    }];
 }
 
 - (IBAction)logoutTapped:(id)sender {
