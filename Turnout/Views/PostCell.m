@@ -34,7 +34,7 @@
 
 - (void)setCell{
     self.likeAnimation.alpha = 0;
-    self.bubbleView.layer.cornerRadius = 10;
+    self.bubbleView.layer.cornerRadius = 15;
     self.bubbleView.clipsToBounds = true;
     [self updateLikes];
     self.statusLabel.text = self.post.status;

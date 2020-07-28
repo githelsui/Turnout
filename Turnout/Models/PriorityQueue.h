@@ -30,7 +30,7 @@
  *
  * @return YES if the object exists in the queue. NO if the object does not exist in the queue.
  */
-- (BOOL)contains:(id<NSObject>)object;
+- (BOOL)contains:(NSDictionary *)object;
 
 /**
  * Can be used to determine the number of objects in the queue.
@@ -51,28 +51,28 @@
  * @throws NSInternalInconsistencyException If the element cannot be compared with the elements in the priority queue using the ordering of the priority queue.
  * @throws NSInvalidArgumentException If object is null.
  */
-- (void)add:(id<NSObject>)object;
+- (void)add:(NSDictionary *)object;
 
 /**
  * Removes the specified object from the priority queue.
  *
  * @param object The object to be removed.
  */
-- (void)remove:(id<NSObject>)object;
+- (void)remove:(NSDictionary *)object;
 
 /**
  * Gets but does not remove the head of the queue.
  *
  * @return the head of the queue or null if the queue is empty.
  */
-- (id<NSObject>)peek;
+- (NSDictionary *)peek;
 
 /**
  * Gets and removes the head of the queue.
  *
  * @return the head of the queue or null if the queue is empty.
  */
-- (id<NSObject>)poll;
+- (NSDictionary *)poll;
 
 /**
  * Creates and returns an NSArray from the contents of the queue.

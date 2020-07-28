@@ -141,7 +141,14 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)reloadFeed{
-    [self.rankAlgo queryPosts];
+    [self.rankAlgo queryPosts:^(NSArray *posts, NSError *error){
+        if(posts){
+               self.posts = posts;
+               self.mutablePosts = [posts mutableCopy];
+           }
+//           [self.refreshControl endRefreshing];
+    }];
+     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 //    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
 //        if(rankedPosts){

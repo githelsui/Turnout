@@ -35,14 +35,12 @@ static float const likesWeight = 1.75;
 - (instancetype)init {
     self = [super init];
     self.neighborDicts =  [NSMutableArray array];
+    self.posts =  [NSMutableArray array];
     self.queue = [PriorityQueue new];
     return self;
 }
 
-- (void)queryPosts{
-    //    [self performSelectorInBackground:@selector(fetchCurrentZipPosts) withObject:self];
-    //    [self performSelectorInBackground:@selector(fetchNeighboringPosts) withObject:self];
-    
+- (void)queryPosts:(void(^)(NSArray *posts, NSError *error))completion{
     [self getCurrentUserInfo];
     NSLog(@"final neighborDicts array: %@", self.neighborDicts);
     
@@ -58,7 +56,7 @@ static float const likesWeight = 1.75;
     
     for(NSDictionary *zipcode in self.neighborDicts){
         dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-            // block2
+            // block2 neighboring posts
             NSLog(@"Block2: neighboring zipcode");
             [self fetchNeighboringPosts:zipcode];
             [NSThread sleepForTimeInterval:8.0];
@@ -67,7 +65,10 @@ static float const likesWeight = 1.75;
     }
     
     dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-        // block3
+        // block3: merge sort for live feed posts
+        NSLog(@"final results from queue: %lu", (unsigned long)self.queue.size);
+        [self mergeSortForFeed];
+        completion(self.posts, nil);
         NSLog(@"Block3");
     });
     
@@ -116,12 +117,6 @@ static float const likesWeight = 1.75;
             completion(nil, error);
         }
     }];
-    
-    //    completion(zip, error);
-    //
-    //    } else {
-    //        completion(nil, error);
-    //    }
 }
 
 - (void)fetchCurrentZipPosts{
@@ -155,7 +150,7 @@ static float const likesWeight = 1.75;
         NSLog(@"dict: %@", zipcode[@"zipcode"][@"zipcode"]);
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
-        [query setSkip:self.feedPosts.count];
+        [query setSkip:self.posts.count]; //skip??????? what the fuck
         query.limit = 5;
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
@@ -165,14 +160,18 @@ static float const likesWeight = 1.75;
                     NSNumber *rank = @([distance floatValue]);
                     [tempPost setObject:rank forKey:@"rank"];
                     [tempPost setObject:post forKey:@"post"];
-                    //add results[0] to universal variable of type priorityQueue
                     [self.queue add:tempPost];
-                    NSLog(@"final results from queue: %lu", (unsigned long)self.queue.size);
                 }
             }
         }];
-        [NSThread sleepForTimeInterval:8.0];
-        NSLog(@"Block2 End");
+    }
+}
+
+- (void)mergeSortForFeed{
+    while(self.queue.size > 0){
+        NSDictionary *queueData = [self.queue poll];
+        NSLog(@"post for livefeed: %@", queueData[@"post"]);
+        [self.posts addObject:queueData[@"post"]];
     }
 }
 
