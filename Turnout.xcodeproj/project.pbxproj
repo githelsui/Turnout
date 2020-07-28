@@ -31,6 +31,7 @@
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
 		CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */; };
+		CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CACE7C3C24CFD600009E3925 /* PriorityQueue.m */; };
 		CAE77A9824C7A9A8002B26D6 /* GeoNamesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */; };
 		CAFDC60124C6779F00BDB2AD /* ZipcodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,8 @@
 		CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveFeedController.m; sourceTree = "<group>"; };
 		CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardViewController.h; sourceTree = "<group>"; };
 		CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardViewController.m; sourceTree = "<group>"; };
+		CACE7C3B24CFD600009E3925 /* PriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriorityQueue.h; sourceTree = "<group>"; };
+		CACE7C3C24CFD600009E3925 /* PriorityQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriorityQueue.m; sourceTree = "<group>"; };
 		CAE77A9624C7A9A8002B26D6 /* GeoNamesAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoNamesAPI.h; sourceTree = "<group>"; };
 		CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeoNamesAPI.m; sourceTree = "<group>"; };
 		CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZipcodeGenerator.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				CA15FA6224BE653B00307BBD /* Post.m */,
 				CA7CFA7B24BFAC9900AADA69 /* Assoc.h */,
 				CA7CFA7C24BFAC9900AADA69 /* Assoc.m */,
+				CACE7C3B24CFD600009E3925 /* PriorityQueue.h */,
+				CACE7C3C24CFD600009E3925 /* PriorityQueue.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */,
+				CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */,
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
 				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,

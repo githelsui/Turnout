@@ -9,6 +9,7 @@
 #import "RankAlgorithm.h"
 #import <Parse/Parse.h>
 #import "Zipcode.h"
+#import "PriorityQueue.h"
 
 static float const timeWeight = 0.005;
 static float const distanceWeight = 0.00002;
@@ -17,6 +18,7 @@ static float const likesWeight = 1.75;
 @interface RankAlgorithm ()
 @property (nonatomic, strong) NSMutableArray *postDicts;
 @property (nonatomic, strong) Zipcode *currentZip;
+@property (nonatomic, strong) PriorityQueue *queue;
 @end
 
 @implementation RankAlgorithm
@@ -33,6 +35,7 @@ static float const likesWeight = 1.75;
 - (instancetype)init {
     self = [super init];
     self.neighborDicts =  [NSMutableArray array];
+    self.queue = [PriorityQueue new];
     return self;
 }
 
@@ -56,26 +59,10 @@ static float const likesWeight = 1.75;
     for(NSDictionary *zipcode in self.neighborDicts){
         dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
             // block2
-            if(self.neighborDicts > 0){
-                NSLog(@"Block2: neighboring zipcodes");
-                PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-                [query orderByDescending:@"likeCount"];
-                [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
-                NSLog(@"dict: %@", zipcode[@"zipcode"][@"zipcode"]);
-                [query includeKey:@"zipcode"];
-                [query includeKey:@"createdAt"];
-                [query setSkip:self.feedPosts.count];
-                query.limit = 5;
-                [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-                    if(results){
-                        
-                        //add results[0] to universal variable of type priorityQueue
-                        NSLog(@"final results from post: %@", results);
-                    }
-                }];
-                [NSThread sleepForTimeInterval:8.0];
-                NSLog(@"Block2 End");
-            }
+            NSLog(@"Block2: neighboring zipcode");
+            [self fetchNeighboringPosts:zipcode];
+            [NSThread sleepForTimeInterval:8.0];
+            NSLog(@"Block2 End");
         });
     }
     
@@ -159,8 +146,34 @@ static float const likesWeight = 1.75;
     }];
 }
 
-- (void)fetchNeighboringPosts{
-    
+- (void)fetchNeighboringPosts:(NSDictionary *)zipcode{
+    if(self.neighborDicts > 0){
+        NSLog(@"Block2: neighboring zipcodes");
+        PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+        [query orderByDescending:@"likeCount"];
+        [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
+        NSLog(@"dict: %@", zipcode[@"zipcode"][@"zipcode"]);
+        [query includeKey:@"zipcode"];
+        [query includeKey:@"createdAt"];
+        [query setSkip:self.feedPosts.count];
+        query.limit = 5;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+            if(results.count > 0){
+                for(Post *post in results){
+                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+                    NSString *distance = zipcode[@"distance"];
+                    NSNumber *rank = @([distance floatValue]);
+                    [tempPost setObject:rank forKey:@"rank"];
+                    [tempPost setObject:post forKey:@"post"];
+                    //add results[0] to universal variable of type priorityQueue
+                    [self.queue add:tempPost];
+                    NSLog(@"final results from queue: %lu", (unsigned long)self.queue.size);
+                }
+            }
+        }];
+        [NSThread sleepForTimeInterval:8.0];
+        NSLog(@"Block2 End");
+    }
 }
 
 - (NSArray *)getSortedPosts:(NSArray *)dicts{
