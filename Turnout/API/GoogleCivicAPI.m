@@ -78,10 +78,10 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
 
 - (NSString *)createAddress:(NSDictionary *)dict{
     NSString *newAddress = @"";
-    NSString *city = dict[@"city"];
+    NSString *city = [NSString stringWithFormat:@" %@, ", dict[@"city"]];
     NSString *street = dict[@"line1"];
-    NSString *state = dict[@"state"];
-    NSString *zip = dict[@"zip"];
+    NSString *state = [NSString stringWithFormat:@"%@", dict[@"state"]];
+    NSString *zip = [NSString stringWithFormat:@" %@", dict[@"zip"]];
     newAddress = [newAddress stringByAppendingString:street];
     newAddress = [newAddress stringByAppendingString:city];
     newAddress = [newAddress stringByAppendingString:state];

@@ -81,6 +81,7 @@
         NSString *url = info[@"url"];
         VoteWebView *webView = [segue destinationViewController];
         webView.linkURL = url;
+        NSLog(@"Segue");
     }
 }
 
