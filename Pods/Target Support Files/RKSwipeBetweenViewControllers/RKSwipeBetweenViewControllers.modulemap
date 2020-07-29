@@ -1,0 +1,6 @@
+framework module RKSwipeBetweenViewControllers {
+  umbrella header "RKSwipeBetweenViewControllers-umbrella.h"
+
+  export *
+  module * { export * }
+}

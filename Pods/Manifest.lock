@@ -36,6 +36,7 @@ PODS:
     - Bolts/Tasks (= 1.9.1)
   - Parse/UI (1.18.0):
     - Parse/Core
+  - RKSwipeBetweenViewControllers (0.1.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - Parse
   - Parse/UI
+  - RKSwipeBetweenViewControllers
 
 SPEC REPOS:
   trunk:
@@ -54,6 +56,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - Parse
+    - RKSwipeBetweenViewControllers
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -63,7 +66,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   FBSDKShareKit: 00a055c1999b099596e00212dd1c0600c6697019
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+  RKSwipeBetweenViewControllers: 2236038119d6f7eb64ff589eb423fcda80cbe962
 
-PODFILE CHECKSUM: eb6f75ed2c8285714c5b0525c85a0a168b5cf99a
+PODFILE CHECKSUM: 5f98ec5e03079cc3cc0dcf45c281e3625e492c9e
 
 COCOAPODS: 1.9.3

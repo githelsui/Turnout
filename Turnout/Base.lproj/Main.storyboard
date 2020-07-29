@@ -521,10 +521,47 @@
                     <tabBarItem key="tabBarItem" title="Vote" image="votermenu" id="kUe-su-o9i">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="xj7-sP-fyR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CNI-Zk-0A0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-663" y="1071"/>
+            <point key="canvasLocation" x="-956" y="1992"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JYg-5K-vY2">
+            <objects>
+                <viewController id="EO6-XB-Bjx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ddA-Ca-YKf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gHU-Kx-WWY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pLm-6f-Vb6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FLm-uJ-QNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-297" y="1991"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="FPz-BN-NCj">
+            <objects>
+                <viewController id="zgn-PI-e2r" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BuW-Sx-UdZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="4cg-Tc-xgw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="qYW-lJ-F2O"/>
+                    <connections>
+                        <segue destination="gvZ-vD-c8V" kind="show" id="ehH-eF-ePf"/>
+                        <segue destination="EO6-XB-Bjx" kind="show" id="t74-14-GKX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sot-Yx-UbN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-644" y="1210"/>
         </scene>
         <!--Elections-->
         <scene sceneID="QaZ-LM-qgu">
@@ -609,7 +646,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="X1t-0x-5eW" kind="relationship" relationship="viewControllers" id="gmX-V4-F3B"/>
-                        <segue destination="gvZ-vD-c8V" kind="relationship" relationship="viewControllers" id="Sbp-KA-ZYd"/>
+                        <segue destination="zgn-PI-e2r" kind="relationship" relationship="viewControllers" id="7fX-iA-ogM"/>
                         <segue destination="4A0-iF-tT2" kind="relationship" relationship="viewControllers" id="AC1-zz-B5l"/>
                         <segue destination="d6r-X9-Mk8" kind="relationship" relationship="viewControllers" id="pYx-hz-pBd"/>
                         <segue destination="t8Q-vV-uXb" kind="relationship" relationship="viewControllers" id="90x-6k-jAi"/>
