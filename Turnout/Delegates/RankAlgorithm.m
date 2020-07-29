@@ -42,7 +42,7 @@ static float const likesWeight = 1.75;
 
 - (void)queryPosts:(NSMutableArray *)currentArr completion:(void(^)(NSArray *posts, NSError *error))completion{
     self.posts = currentArr;
-    [self getCurrentUserInfo];
+    [self getCurrentUserInfo]; //return another completion block
     NSLog(@"final neighborDicts array: %@", self.neighborDicts);
     
     dispatch_group_t group = dispatch_group_create();
