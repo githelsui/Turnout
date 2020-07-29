@@ -17,6 +17,7 @@ static float const likesWeight = 1.75;
 
 @interface RankAlgorithm ()
 @property (nonatomic, strong) NSMutableArray *postDicts;
+@property (nonatomic, strong) NSMutableArray *allQueries;
 @property (nonatomic, strong) Zipcode *currentZip;
 @property (nonatomic, strong) PriorityQueue *queue;
 @end
@@ -35,6 +36,7 @@ static float const likesWeight = 1.75;
 - (instancetype)init {
     self = [super init];
     self.neighborDicts =  [NSMutableArray array];
+    self.allQueries =  [NSMutableArray array];
     self.posts =  [NSMutableArray array];
     self.queue = [PriorityQueue new];
     return self;
@@ -152,22 +154,60 @@ static float const likesWeight = 1.75;
         NSLog(@"dict: %@", zipcode[@"zipcode"][@"zipcode"]);
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
-        [query setSkip:self.posts.count]; //skip??????? what the fuck
+        [query setSkip:self.posts.count];
         query.limit = 2; //2 per batch
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
                 for(Post *post in results){
                     NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
                     NSString *distance = zipcode[@"distance"];
-                    //(1/3) * 1
                     NSNumber *rank = @([distance floatValue]);
                     [tempPost setObject:rank forKey:@"rank"];
                     [tempPost setObject:post forKey:@"post"];
-                    [self.queue add:tempPost];
+                    [self addPostToZipcodeArray:zipcode post:tempPost];
+//                    [self.queue add:tempPost];
                 }
             }
         }];
     }
+}
+
+- (void)addPostToZipcodeArray:(NSDictionary *)zipcode post:(NSMutableDictionary *)post{
+    Zipcode *zip = zipcode[@"zipcode"];
+    NSString *key = zip[@"zipcode"];
+    NSMutableDictionary *zipcodeQueue = [self allQueriesContains:key];
+    if(zipcodeQueue){
+        NSMutableDictionary *newQueue = zipcodeQueue;
+        NSMutableArray *posts = zipcodeQueue[@"postArray"];
+        [posts addObject:post];
+        [newQueue setObject:posts forKey:@"postArray"];
+        [self.allQueries removeObject:zipcodeQueue];
+        [self.allQueries addObject:newQueue];
+    } else {
+        NSMutableDictionary *zipcodeQueue = [[NSMutableDictionary alloc] init];
+        NSMutableArray *posts = [NSMutableArray array];
+        [posts addObject:post];
+        [zipcodeQueue setObject:key forKey:@"key"];
+        [zipcodeQueue setObject:posts forKey:@"postArray"];
+        [zipcodeQueue setObject:zipcode forKey:@"zip"];
+        [self.allQueries addObject:zipcodeQueue];
+    }
+}
+
+- (NSMutableDictionary *)allQueriesContains:(NSString *)key{
+    for(NSMutableDictionary *arr in self.allQueries){
+        if([[arr objectForKey:@"key"] isEqual:key]){
+            return arr;
+        }
+    }
+    return nil;
+}
+
+- (NSNumber *)getPostRank:(NSString *)distance post:(Post *)post{
+    NSNumber *postLikes = post.likeCount;
+    float distanceNum = [distance floatValue];
+    NSNumber *inverse = @(1 / distanceNum);
+    return @([postLikes floatValue] * [inverse floatValue]);
 }
 
 - (void)mergeSortForFeed{
