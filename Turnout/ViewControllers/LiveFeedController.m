@@ -37,20 +37,25 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initTableView];
     self.rankAlgo = [[RankAlgorithm alloc]init];
+//      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadFeed) userInfo:nil repeats:true];
+//    [self reloadFeed];
+    [self startTimer];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)initTableView{
     [self setUpHeader];
+    self.mutablePosts =  [NSMutableArray array];
     self.tableView.allowsSelection = false;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self setUpFooter];
     [self setGestureRecogs];
-    [self reloadFeed];
-    [self startTimer];
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)setUpHeader{
@@ -94,7 +99,7 @@ NSIndexPath *lastIndexPath;
                        {
             self.timer = [NSTimer timerWithTimeInterval:1
                                                  target:self
-                                               selector:@selector(reloadData)
+                                               selector:@selector(queryPostsWhenLoad)
                                                userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
             dispatch_async(dispatch_get_main_queue(), ^(void)
@@ -104,10 +109,20 @@ NSIndexPath *lastIndexPath;
     }
 }
 
+- (void)queryPostsWhenLoad{
+    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+           if(posts){
+                  self.posts = posts;
+                  self.mutablePosts = [posts mutableCopy];
+                  [self.timer invalidate];
+              }
+       }];
+       [self.tableView reloadData];
+       [self setUpFooter];
+}
+
 - (void)reloadData{
     [self.tableView reloadData];
-    //    [self.timer invalidate];
-    //    self.timer = nil;
     NSLog(@"%s", "timer going off");
 }
 
@@ -124,31 +139,23 @@ NSIndexPath *lastIndexPath;
     [self.tableView addGestureRecognizer:singleTap];
 }
 
-- (void)fetchPosts{
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"author"];
-    [query orderByAscending:@"rank"];
-    [query setLimit:20];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.posts = posts;
-            self.mutablePosts = [posts mutableCopy];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        [self.tableView reloadData];
-    }];
+- (void)fetchMorePosts{
+    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+        if(posts){
+                [self.mutablePosts addObjectsFromArray:posts];
+            }
+        }];
+    [self.tableView reloadData];
 }
 
 - (void)reloadFeed{
-    [self.rankAlgo queryPosts:^(NSArray *posts, NSError *error){
+    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
         if(posts){
                self.posts = posts;
                self.mutablePosts = [posts mutableCopy];
            }
-//           [self.refreshControl endRefreshing];
     }];
-     [self.tableView reloadData];
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 //    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
 //        if(rankedPosts){
@@ -229,6 +236,7 @@ NSIndexPath *lastIndexPath;
 
 - (void)loadMore{
     NSLog(@"add to charity");
+    [self fetchMorePosts];
 }
 
 #pragma mark - Navigation

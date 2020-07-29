@@ -40,7 +40,8 @@ static float const likesWeight = 1.75;
     return self;
 }
 
-- (void)queryPosts:(void(^)(NSArray *posts, NSError *error))completion{
+- (void)queryPosts:(NSMutableArray *)currentArr completion:(void(^)(NSArray *posts, NSError *error))completion{
+    self.posts = currentArr;
     [self getCurrentUserInfo];
     NSLog(@"final neighborDicts array: %@", self.neighborDicts);
     
@@ -128,6 +129,7 @@ static float const likesWeight = 1.75;
     [query includeKey:@"zipcode"];
     [query includeKey:@"createdAt"];
     //    query.limit = 2;
+    //fetch the next 2 from the zipcode that has been exhausted
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(results){
             //            NSMutableArray *dictsArr = [NSMutableArray array];
@@ -151,12 +153,13 @@ static float const likesWeight = 1.75;
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
         [query setSkip:self.posts.count]; //skip??????? what the fuck
-        query.limit = 5;
+        query.limit = 2; //2 per batch
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
                 for(Post *post in results){
                     NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
                     NSString *distance = zipcode[@"distance"];
+                    //(1/3) * 1
                     NSNumber *rank = @([distance floatValue]);
                     [tempPost setObject:rank forKey:@"rank"];
                     [tempPost setObject:post forKey:@"post"];
