@@ -513,7 +513,7 @@
             <objects>
                 <viewController storyboardIdentifier="VoteLinksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gvZ-vD-c8V" customClass="VoteLinksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uey-9b-LIt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
@@ -532,7 +532,7 @@
             <objects>
                 <viewController storyboardIdentifier="VoteInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EO6-XB-Bjx" customClass="VoteInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ddA-Ca-YKf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gHU-Kx-WWY"/>
@@ -543,25 +543,15 @@
             </objects>
             <point key="canvasLocation" x="-119" y="2252"/>
         </scene>
-        <!--Vote Pages Controller-->
-        <scene sceneID="FPz-BN-NCj">
+        <!--Page View Controller-->
+        <scene sceneID="eyu-ac-sa1">
             <objects>
-                <viewController id="zgn-PI-e2r" customClass="VotePagesController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BuW-Sx-UdZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="4cg-Tc-xgw"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3wp-X2-e99"/>
-                    <connections>
-                        <segue destination="gvZ-vD-c8V" kind="show" id="ehH-eF-ePf"/>
-                        <segue destination="EO6-XB-Bjx" kind="show" id="t74-14-GKX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sot-Yx-UbN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2RO-ZV-ygr" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wkg-O3-aXM"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsH-dy-dob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="1479"/>
+            <point key="canvasLocation" x="-242" y="1454"/>
         </scene>
         <!--Elections-->
         <scene sceneID="QaZ-LM-qgu">
@@ -733,11 +723,11 @@
             </objects>
             <point key="canvasLocation" x="-1774" y="1650"/>
         </scene>
-        <!--Item-->
+        <!--Vote-->
         <scene sceneID="ReS-UG-7G2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F7H-uN-NDg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="votermenu" id="qYW-lJ-F2O"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F7H-uN-NDg" customClass="RKSwipeBetweenViewControllers" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Vote" image="votermenu" selectedImage="votermenu" id="qYW-lJ-F2O"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GzF-ql-arz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -745,7 +735,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zgn-PI-e2r" kind="relationship" relationship="rootViewController" id="q46-H3-Syf"/>
+                        <segue destination="2RO-ZV-ygr" kind="relationship" relationship="rootViewController" id="gAi-yY-EpG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LS-wz-cfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

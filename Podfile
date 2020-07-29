@@ -10,7 +10,6 @@ target 'Turnout' do
 	pod 'AFNetworking'
 	pod 'DateTools'
 	pod 'FBSDKLoginKit'
-        pod 'RKSwipeBetweenViewControllers'
         pod 'FBSDKShareKit'
 	pod 'Parse/UI'
 

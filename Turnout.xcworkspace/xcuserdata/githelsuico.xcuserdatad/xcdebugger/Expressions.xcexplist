@@ -201,10 +201,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__45-[ComposeViewController postWithImage:image:]_block_invoke:ComposeViewController.m">
+         contextName = "-[RKSwipeBetweenViewControllers setupPageViewController]:RKSwipeBetweenViewControllers.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.delegate">
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.allData">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -220,41 +228,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__45-[ComposeViewController postWithImage:image:]_block_invoke:ComposeViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm mergeSortForFeed]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.queue">
+               value = "self.posts">
             </PersistentString>
             <PersistentString
                value = "[self.queue isEmpty]">
             </PersistentString>
             <PersistentString
-               value = "self.posts">
+               value = "self.queue">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController setUpHeader]:LiveFeedController.m">
       </ContextState>
       <ContextState
          contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.21:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.mutablePosts.count">
-            </PersistentString>
-            <PersistentString
-               value = "self.tableView">
-            </PersistentString>
-            <PersistentString
-               value = "self.mutablePosts">
-            </PersistentString>
-            <PersistentString
-               value = "self.mutablePosts[0]">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__abort:(null)">
@@ -279,10 +275,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
+         contextName = "-[LiveFeedController setUpHeader]:LiveFeedController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.allData">
+               value = "self.mutablePosts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts[0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -317,13 +325,13 @@
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -380,10 +388,10 @@
          contextName = "__copy_helper_block_e8_32r:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "likeCount">
+               value = "currentUser">
             </PersistentString>
             <PersistentString
-               value = "currentUser">
+               value = "likeCount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

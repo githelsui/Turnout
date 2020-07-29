@@ -30,6 +30,7 @@
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
+		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
@@ -105,6 +106,8 @@
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
 		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
 		CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocodeManager.m; sourceTree = "<group>"; };
+		CAAEF87C24D1D37E00F27247 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
+		CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 			children = (
 				CA15FA6524BE6FA000307BBD /* PostCell.h */,
 				CA15FA6624BE6FA000307BBD /* PostCell.m */,
+				CAAEF87C24D1D37E00F27247 /* RKSwipeBetweenViewControllers.h */,
+				CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
+				CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,

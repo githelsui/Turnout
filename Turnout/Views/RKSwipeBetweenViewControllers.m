@@ -27,6 +27,7 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 @property (nonatomic) UIScrollView *pageScrollView;
 @property (nonatomic) NSInteger currentPageIndex;
 @property (nonatomic) BOOL isPageScrollingFlag; //%%% prevents scrolling / segment tap crash
+@property (nonatomic) BOOL hasAppearedFlag; //%%% prevents reloading (maintains state)
 
 @end
 
@@ -41,7 +42,7 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+           
     }
     return self;
 }
@@ -49,12 +50,12 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.navigationBar.barTintColor = [UIColor colorWithRed:0.01 green:0.05 blue:0.06 alpha:1]; //%%% bartint
     self.navigationBar.translucent = NO;
     viewControllerArray = [[NSMutableArray alloc]init];
     self.currentPageIndex = 0;
     self.isPageScrollingFlag = NO;
+    self.hasAppearedFlag = NO;
 }
 
 #pragma mark Customizables
@@ -134,8 +135,12 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 #pragma mark Setup
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self setupPageViewController];
-    [self setupSegmentButtons];
+    if (!self.hasAppearedFlag) {
+        [self prepCustomViews];
+        [self setupPageViewController];
+        [self setupSegmentButtons];
+        self.hasAppearedFlag = YES;
+    }
 }
 
 //%%% generic setup stuff for a pageview controller.  Sets up the scrolling style and delegate for the controller
@@ -145,6 +150,17 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
     pageController.dataSource = self;
     [pageController setViewControllers:@[[viewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     [self syncScrollView];
+}
+
+- (void)prepCustomViews{
+    UIViewController *demo = [[UIViewController alloc]init];
+    UIViewController *demo2 = [[UIViewController alloc]init];
+    demo.view.backgroundColor = [UIColor redColor];
+    demo2.view.backgroundColor = [UIColor whiteColor];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* voteLinksView = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
+    [viewControllerArray addObject:voteLinksView];
+    [viewControllerArray addObject:demo];
 }
 
 //%%% this allows us to get information back from the scrollview, namely the coordinate information that we can link to the selection bar.
@@ -230,14 +246,13 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    NSInteger index = [self indexOfController:viewController];
+    NSInteger index = [viewControllerArray indexOfObject:viewController];
 
     if ((index == NSNotFound) || (index == 0)) {
         return nil;
@@ -248,7 +263,7 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    NSInteger index = [self indexOfController:viewController];
+    NSInteger index = [viewControllerArray indexOfObject:viewController];
 
     if (index == NSNotFound) {
         return nil;
@@ -263,21 +278,8 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if (completed) {
-        self.currentPageIndex = [self indexOfController:[pageViewController.viewControllers lastObject]];
+        self.currentPageIndex = [viewControllerArray indexOfObject:[pageViewController.viewControllers lastObject]];
     }
-}
-
-
-//%%% checks to see which item we are currently looking at from the array of view controllers.
-// not really a delegate method, but is used in all the delegate methods, so might as well include it here
--(NSInteger)indexOfController:(UIViewController *)viewController {
-    for (int i = 0; i<[viewControllerArray count]; i++) {
-        if (viewController == [viewControllerArray objectAtIndex:i])
-        {
-            return i;
-        }
-    }
-    return NSNotFound;
 }
 
 #pragma mark - Scroll View Delegate

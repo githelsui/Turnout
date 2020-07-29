@@ -7,7 +7,7 @@
 //
 
 #import "VotePagesController.h"
-#import <RKSwipeBetweenViewControllers/RKSwipeBetweenViewControllers.h>
+#import "RKSwipeBetweenViewControllers.h"
 
 @interface VotePagesController ()
 
@@ -17,19 +17,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-       
-    RKSwipeBetweenViewControllers *navigationController = [[RKSwipeBetweenViewControllers alloc]initWithRootViewController:pageController];
-       
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    
-    UIViewController *demo = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
-    UIViewController *demo2 = [storyboard instantiateViewControllerWithIdentifier:@"VoteInfoViewController"];
-    [navigationController.viewControllerArray addObjectsFromArray:@[demo,demo2]];
-    
-    self.view = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.view.window.rootViewController = navigationController;
-    [self.view.window makeKeyAndVisible];
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+         
+      RKSwipeBetweenViewControllers *navigationController = [[RKSwipeBetweenViewControllers alloc]initWithRootViewController:pageController];
+         
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+      
+      UIViewController *demo = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
+      UIViewController *demo2 = [storyboard instantiateViewControllerWithIdentifier:@"VoteInfoViewController"];
+      [navigationController.viewControllerArray addObjectsFromArray:@[demo,demo2]];
+      
+//    [self.view addSubview:pageController];
+      self.view = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+      self.view.window.rootViewController = navigationController;
+      [self.view.window makeKeyAndVisible];
 }
 
 /*
