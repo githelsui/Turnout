@@ -40,8 +40,8 @@
             filePath = "Turnout/ViewControllers/LiveFeedController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-startTimer"
             landmarkType = "7">
          </BreakpointContent>
@@ -56,8 +56,8 @@
             filePath = "Turnout/ViewControllers/LiveFeedController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-startTimer"
             landmarkType = "7">
          </BreakpointContent>
@@ -72,10 +72,10 @@
             filePath = "Turnout/ViewControllers/LiveFeedController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-startTimer"
-            landmarkType = "7">
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "LiveFeedController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

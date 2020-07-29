@@ -42,6 +42,7 @@ NSIndexPath *lastIndexPath;
     self.rankAlgo = [[RankAlgorithm alloc]init];
 //      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadFeed) userInfo:nil repeats:true];
 //    [self reloadFeed];
+    NSLog(@"hello");
     [self queryPostsWhenLoad];
     [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
