@@ -7,6 +7,7 @@
 //
 //  @cwRichardKim for regular updates
 
+#import "ElectionsPageControl.h"
 #import "RKSwipeBetweenViewControllers.h"
 
 static CGFloat const X_BUFFER = 0.0; //%%% the number of pixels on either side of the segment
@@ -21,7 +22,8 @@ static CGFloat const SELECTOR_HEIGHT = 4.0; //%%% thickness of the selector bar
 
 static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
 
-@interface RKSwipeBetweenViewControllers ()
+
+@interface ElectionsPageControl ()
 
 @property (nonatomic) UIScrollView *pageScrollView;
 @property (nonatomic) NSInteger currentPageIndex;
@@ -30,7 +32,7 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
 
 @end
 
-@implementation RKSwipeBetweenViewControllers
+@implementation ElectionsPageControl
 @synthesize viewControllerArray;
 @synthesize selectionBar;
 @synthesize pageController;
@@ -72,7 +74,7 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
     NSInteger numControllers = [viewControllerArray count];
     
     if (!buttonText) {
-         buttonText = [[NSArray alloc]initWithObjects: @"Information",@"Registration",nil]; //%%%buttontitle
+         buttonText = [[NSArray alloc]initWithObjects: @"Elections",@"Candidates",nil]; //%%%buttontitle
     }
     
     for (int i = 0; i<numControllers; i++) {
@@ -154,10 +156,11 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
 
 - (void)prepCustomViews{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController* voteLinksView = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
-    UIViewController* voteInfoView = [storyboard instantiateViewControllerWithIdentifier:@"VoteInfoViewController"];
-    [viewControllerArray addObject:voteInfoView];
-    [viewControllerArray addObject:voteLinksView];
+    UIViewController* electionsView = [storyboard instantiateViewControllerWithIdentifier:@"ElectionsViewController"];
+    UIViewController* candidatesView = [storyboard instantiateViewControllerWithIdentifier:@"CandidatesViewController"];
+    [viewControllerArray addObject:electionsView];
+    [viewControllerArray addObject:candidatesView];
+   
 }
 
 //%%% this allows us to get information back from the scrollview, namely the coordinate information that we can link to the selection bar.
