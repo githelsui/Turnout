@@ -12,7 +12,7 @@
 //%%% customizeable button attributes
 CGFloat X_BUFFER = 0.0; //%%% the number of pixels on either side of the segment
 CGFloat Y_BUFFER = 14.0; //%%% number of pixels on top of the segment
-CGFloat HEIGHT = 30.0; //%%% height of the segment
+CGFloat HEIGHT = 20.0; //%%% height of the segment
 
 //%%% customizeable selector bar attributes (the black bar under the buttons)
 CGFloat BOUNCE_BUFFER = 10.0; //%%% adds bounce to the selection bar when you scroll
@@ -82,7 +82,8 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
         
         button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
         button.backgroundColor = [UIColor whiteColor];//%%% buttoncolors
-        
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightThin];
         [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
@@ -125,7 +126,7 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 //%%% sets up the selection bar under the buttons on the navigation bar
 -(void)setupSelector {
     selectionBar = [[UIView alloc]initWithFrame:CGRectMake(X_BUFFER-X_OFFSET, SELECTOR_Y_BUFFER,(self.view.frame.size.width-2*X_BUFFER)/[viewControllerArray count], SELECTOR_HEIGHT)];
-    selectionBar.backgroundColor = [UIColor greenColor]; //%%% sbcolor
+    selectionBar.backgroundColor = [UIColor grayColor]; //%%% sbcolor
     selectionBar.alpha = 0.8; //%%% sbalpha
     [navigationView addSubview:selectionBar];
 }
@@ -153,14 +154,11 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 }
 
 - (void)prepCustomViews{
-    UIViewController *demo = [[UIViewController alloc]init];
-    UIViewController *demo2 = [[UIViewController alloc]init];
-    demo.view.backgroundColor = [UIColor redColor];
-    demo2.view.backgroundColor = [UIColor whiteColor];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* voteLinksView = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
+    UIViewController* voteInfoView = [storyboard instantiateViewControllerWithIdentifier:@"VoteInfoViewController"];
+    [viewControllerArray addObject:voteInfoView];
     [viewControllerArray addObject:voteLinksView];
-    [viewControllerArray addObject:demo];
 }
 
 //%%% this allows us to get information back from the scrollview, namely the coordinate information that we can link to the selection bar.

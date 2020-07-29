@@ -15,7 +15,6 @@
 		CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA5F24BE51B400307BBD /* ComposeViewController.m */; };
 		CA15FA6324BE653B00307BBD /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6224BE653B00307BBD /* Post.m */; };
 		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
-		CA17F0AD24D14DAA00636CBB /* VotePagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0AC24D14DAA00636CBB /* VotePagesController.m */; };
 		CA17F0B024D14DC100636CBB /* VoteLinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */; };
 		CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0B224D14DCF00636CBB /* VoteInfoViewController.m */; };
 		CA506C6C24C6386000037D45 /* USAZipcodes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA506C6B24C6386000037D45 /* USAZipcodes.txt */; };
@@ -77,8 +76,6 @@
 		CA15FA6224BE653B00307BBD /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		CA15FA6524BE6FA000307BBD /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		CA15FA6624BE6FA000307BBD /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
-		CA17F0AB24D14DAA00636CBB /* VotePagesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VotePagesController.h; sourceTree = "<group>"; };
-		CA17F0AC24D14DAA00636CBB /* VotePagesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VotePagesController.m; sourceTree = "<group>"; };
 		CA17F0AE24D14DC100636CBB /* VoteLinksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteLinksViewController.h; sourceTree = "<group>"; };
 		CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteLinksViewController.m; sourceTree = "<group>"; };
 		CA17F0B124D14DCF00636CBB /* VoteInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteInfoViewController.h; sourceTree = "<group>"; };
@@ -277,8 +274,6 @@
 				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
 				CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */,
 				CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */,
-				CA17F0AB24D14DAA00636CBB /* VotePagesController.h */,
-				CA17F0AC24D14DAA00636CBB /* VotePagesController.m */,
 				CA17F0AE24D14DC100636CBB /* VoteLinksViewController.h */,
 				CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */,
 				CA17F0B124D14DCF00636CBB /* VoteInfoViewController.h */,
@@ -554,7 +549,6 @@
 				CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */,
 				CAFDC60124C6779F00BDB2AD /* ZipcodeGenerator.m in Sources */,
 				CA17F0B024D14DC100636CBB /* VoteLinksViewController.m in Sources */,
-				CA17F0AD24D14DAA00636CBB /* VotePagesController.m in Sources */,
 				CAE77A9824C7A9A8002B26D6 /* GeoNamesAPI.m in Sources */,
 				CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,

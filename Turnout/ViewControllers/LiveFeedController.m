@@ -81,9 +81,9 @@ NSIndexPath *lastIndexPath;
     [button addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
     button.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
     loadView.center = CGPointMake(self.view.center.x, 0);
     button.center = CGPointMake(self.view.center.x, 30);
-    button.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
     button.layer.cornerRadius = 20;
     button.layer.borderWidth = 0.5f;
     button.layer.borderColor = [UIColor grayColor].CGColor;
@@ -112,29 +112,29 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)queryPostsWhenLoad{
-        [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-           if(posts){
-                  self.posts = posts;
-                  self.mutablePosts = [posts mutableCopy];
-                  [self.timer invalidate];
-              }
-       }];
-       [self.tableView reloadData];
-       [self setUpFooter];
-    
-//       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//       [query orderByDescending:@"likeCount"];
-//       [query includeKey:@"zipcode"];
-//       [query includeKey:@"createdAt"];
-//       [query setLimit:3];
-//       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//           if(results){
-//               self.posts = results;
-//               self.mutablePosts = [results mutableCopy];
-//           }
+//        [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+//           if(posts){
+//                  self.posts = posts;
+//                  self.mutablePosts = [posts mutableCopy];
+//                  [self.timer invalidate];
+//              }
 //       }];
 //       [self.tableView reloadData];
 //       [self setUpFooter];
+    
+       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+       [query orderByDescending:@"likeCount"];
+       [query includeKey:@"zipcode"];
+       [query includeKey:@"createdAt"];
+       [query setLimit:3];
+       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+           if(results){
+               self.posts = results;
+               self.mutablePosts = [results mutableCopy];
+           }
+       }];
+       [self.tableView reloadData];
+       [self setUpFooter];
 }
 
 - (void)reloadData{

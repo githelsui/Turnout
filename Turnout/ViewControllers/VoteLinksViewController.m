@@ -9,6 +9,9 @@
 #import "VoteLinksViewController.h"
 
 @interface VoteLinksViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *checkRegistrationBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *absenteeBtn;
 
 @end
 
@@ -16,7 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setButtonUI:self.checkRegistrationBtn];
+    [self setButtonUI:self.registerBtn];
+    [self setButtonUI:self.absenteeBtn];
+}
+
+- (void)setButtonUI:(UIButton *)button{
+    button.layer.cornerRadius = 20;
+    button.layer.borderWidth = 0.5f;
+    button.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 /*
