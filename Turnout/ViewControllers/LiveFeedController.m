@@ -42,6 +42,7 @@ NSIndexPath *lastIndexPath;
     self.rankAlgo = [[RankAlgorithm alloc]init];
 //      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadFeed) userInfo:nil repeats:true];
 //    [self reloadFeed];
+    [self queryPostsWhenLoad];
     [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
@@ -95,7 +96,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)startTimer{
-    if(self.currentUser || [FBSDKAccessToken currentAccessToken]){
+    if(self.currentUser){
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
             self.timer = [NSTimer timerWithTimeInterval:1

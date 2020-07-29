@@ -9,12 +9,21 @@
 #import "PostDetailController.h"
 #import "Assoc.h"
 #import "Zipcode.h"
+#import <FBSDKCoreKit/FBSDKProfile.h>
+#import <FBSDKSharingContent.h>
+#import <FBSDKSharePhoto.h>
+#import <FBSDKShareLinkContent.h>
+#import <FBSDKShareMediaContent.h>
+#import <FBSDKShareDialog.h>
+#import <FBSDKShareButton.h>
+#import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <Parse/PFImageView.h>
 
 @interface PostDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -47,6 +56,30 @@
     self.dateLabel.text = self.post.datePosted;
     [self checkImageView];
     [self loadImage];
+    if(![FBSDKAccessToken currentAccessToken]){
+        self.shareButton.alpha = 0;
+    }
+}
+
+- (IBAction)tapFacebookShare:(id)sender {
+    [self facebookShare];
+}
+
+- (void)facebookShare{
+    if([FBSDKAccessToken currentAccessToken]){
+        FBSDKShareMediaContent *content = [FBSDKShareMediaContent new];
+        FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+        FBSDKShareLinkContent *status = [[FBSDKShareLinkContent alloc] init];
+        status.quote = self.statusLabel.text;
+        photo.image = self.attachedPhoto.image;
+        photo.userGenerated = YES;
+        content.media = @[photo, status];
+        FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+        dialog.fromViewController = self;
+        dialog.shareContent = content;
+        dialog.mode = FBSDKShareDialogModeShareSheet;
+        [dialog show];
+    }
 }
 
 - (void)getPostLocation:(PFObject *)user{

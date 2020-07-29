@@ -305,7 +305,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOB-9q-WJF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="270" verticalHuggingPriority="251" horizontalCompressionResistancePriority="300" text="City, State" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOB-9q-WJF">
                                 <rect key="frame" x="16" y="517" width="66" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -324,17 +324,30 @@
                                     <constraint firstAttribute="height" constant="84" id="a6g-Ye-32a"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOf-aG-Oda">
+                                <rect key="frame" x="15" y="543" width="140" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="7J5-n0-IuH"/>
+                                    <constraint firstAttribute="width" constant="140" id="qEN-bM-UfE"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="shareFBButton"/>
+                                <connections>
+                                    <action selector="tapFacebookShare:" destination="alD-OT-Zmo" eventType="touchUpInside" id="zha-gj-bVZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="10" id="1Ts-c8-B0e"/>
                             <constraint firstItem="fet-QX-9Vo" firstAttribute="top" relation="lessThanOrEqual" secondItem="yDS-HA-sD7" secondAttribute="top" constant="200" id="5Ul-uX-lt4"/>
+                            <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="vOf-aG-Oda" secondAttribute="trailing" constant="220" id="6Va-LI-I6E"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="JcK-QS-Bn4" secondAttribute="trailing" constant="16" id="CTM-he-6V3"/>
+                            <constraint firstItem="vOf-aG-Oda" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="15" id="Dqj-iN-ZY1"/>
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="top" secondItem="JcK-QS-Bn4" secondAttribute="bottom" constant="11.33" id="IkU-Be-NEp"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="16" id="NU7-WT-czR"/>
                             <constraint firstItem="kXK-Dd-dpc" firstAttribute="top" secondItem="yDS-HA-sD7" secondAttribute="top" constant="13" id="Pmd-1d-I0Z"/>
-                            <constraint firstItem="3zy-hP-dMp" firstAttribute="leading" secondItem="xOB-9q-WJF" secondAttribute="trailing" constant="230" id="RQo-7j-fu1"/>
+                            <constraint firstItem="3zy-hP-dMp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xOB-9q-WJF" secondAttribute="trailing" constant="100" id="RQo-7j-fu1"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="top" secondItem="JcK-QS-Bn4" secondAttribute="bottom" constant="18.329999999999998" id="Rrm-lZ-axD"/>
                             <constraint firstItem="kXK-Dd-dpc" firstAttribute="bottom" secondItem="Ia0-iO-nj6" secondAttribute="bottom" id="SNc-1U-CL6"/>
                             <constraint firstItem="fet-QX-9Vo" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="136" id="SkC-wM-jtA"/>
@@ -346,6 +359,7 @@
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="UbS-P8-4Gi" secondAttribute="trailing" constant="16" id="be2-NT-mgM"/>
                             <constraint firstItem="kXK-Dd-dpc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ia0-iO-nj6" secondAttribute="trailing" constant="94.329999999999998" id="cZ0-WR-fSF"/>
                             <constraint firstItem="xOB-9q-WJF" firstAttribute="top" relation="lessThanOrEqual" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="394" id="cnp-uS-EfH"/>
+                            <constraint firstItem="vOf-aG-Oda" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xOB-9q-WJF" secondAttribute="bottom" constant="8" id="fbi-G1-Bww"/>
                             <constraint firstItem="23M-ak-UFJ" firstAttribute="top" secondItem="Ia0-iO-nj6" secondAttribute="bottom" constant="15.67" id="fyU-vB-1I5"/>
                             <constraint firstItem="23M-ak-UFJ" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="16" id="gWp-eZ-GO4"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="bottom" secondItem="fet-QX-9Vo" secondAttribute="bottom" constant="335" id="mYg-da-wre"/>
@@ -353,7 +367,7 @@
                             <constraint firstItem="JcK-QS-Bn4" firstAttribute="top" secondItem="23M-ak-UFJ" secondAttribute="bottom" constant="10" id="oUb-fI-h8J"/>
                             <constraint firstItem="Ia0-iO-nj6" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="15" id="qnR-o0-ctA"/>
                             <constraint firstItem="3zy-hP-dMp" firstAttribute="bottom" secondItem="xOB-9q-WJF" secondAttribute="bottom" id="rkU-D6-nSD"/>
-                            <constraint firstItem="yDS-HA-sD7" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xOB-9q-WJF" secondAttribute="bottom" constant="140" id="sjD-MY-sBt"/>
+                            <constraint firstItem="yDS-HA-sD7" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vOf-aG-Oda" secondAttribute="bottom" constant="98" id="sjD-MY-sBt"/>
                             <constraint firstItem="JcK-QS-Bn4" firstAttribute="leading" secondItem="yDS-HA-sD7" secondAttribute="leading" constant="15" id="tN5-Ba-HbG"/>
                             <constraint firstItem="yDS-HA-sD7" firstAttribute="trailing" secondItem="3zy-hP-dMp" secondAttribute="trailing" constant="14" id="xRX-sG-g2t"/>
                             <constraint firstItem="UbS-P8-4Gi" firstAttribute="top" secondItem="yDS-HA-sD7" secondAttribute="top" constant="14" id="yLg-VA-6e0"/>
@@ -371,6 +385,7 @@
                         <outlet property="likesBtn" destination="3zy-hP-dMp" id="yPD-tE-KKd"/>
                         <outlet property="locationLabel" destination="xOB-9q-WJF" id="bM6-JJ-jIf"/>
                         <outlet property="nameLabel" destination="Ia0-iO-nj6" id="x2j-KG-MvW"/>
+                        <outlet property="shareButton" destination="vOf-aG-Oda" id="rak-OA-CWh"/>
                         <outlet property="statusLabel" destination="23M-ak-UFJ" id="91z-Le-ec3"/>
                         <outlet property="timeLabel" destination="UbS-P8-4Gi" id="rGH-Wx-VRm"/>
                     </connections>
@@ -387,7 +402,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2495" y="2336"/>
+            <point key="canvasLocation" x="-2495.1999999999998" y="2335.7142857142858"/>
         </scene>
         <!--Post-->
         <scene sceneID="xjR-vQ-je7">
@@ -695,6 +710,7 @@
         <image name="largeLike" width="100" height="100"/>
         <image name="notliked" width="25" height="25"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="shareFBButton" width="557" height="128"/>
         <image name="votermenu" width="25" height="25"/>
     </resources>
 </document>

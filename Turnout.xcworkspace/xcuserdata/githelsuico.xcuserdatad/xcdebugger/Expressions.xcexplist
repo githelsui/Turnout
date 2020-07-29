@@ -118,6 +118,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[LiveFeedController startTimer]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[FBSDKAccessToken currentAccessToken]">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__28-[RankAlgorithm queryPosts:]_block_invoke.21:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -215,10 +226,10 @@
                value = "self.queue">
             </PersistentString>
             <PersistentString
-               value = "self.posts">
+               value = "[self.queue isEmpty]">
             </PersistentString>
             <PersistentString
-               value = "[self.queue isEmpty]">
+               value = "self.posts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -26,6 +26,10 @@ PODS:
     - FBSDKLoginKit/Login (= 7.1.1)
   - FBSDKLoginKit/Login (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
+  - FBSDKShareKit (7.1.1):
+    - FBSDKShareKit/Share (= 7.1.1)
+  - FBSDKShareKit/Share (7.1.1):
+    - FBSDKCoreKit (~> 7.1.1)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
@@ -37,6 +41,7 @@ DEPENDENCIES:
   - AFNetworking
   - DateTools
   - FBSDKLoginKit
+  - FBSDKShareKit
   - Parse
   - Parse/UI
 
@@ -47,6 +52,7 @@ SPEC REPOS:
     - DateTools
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - FBSDKShareKit
     - Parse
 
 SPEC CHECKSUMS:
@@ -55,8 +61,9 @@ SPEC CHECKSUMS:
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
+  FBSDKShareKit: 00a055c1999b099596e00212dd1c0600c6697019
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: b7c43f0941fe3f370dcb1f7ea76825589a11f65a
+PODFILE CHECKSUM: eb6f75ed2c8285714c5b0525c85a0a168b5cf99a
 
 COCOAPODS: 1.9.3
