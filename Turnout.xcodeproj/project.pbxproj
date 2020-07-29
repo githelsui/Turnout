@@ -30,6 +30,8 @@
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
+		CAAEF88024D1EF0400F27247 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAEF87F24D1EF0400F27247 /* WebKit.framework */; };
+		CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88224D1EF7200F27247 /* VoteWebView.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
@@ -105,6 +107,9 @@
 		CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocodeManager.m; sourceTree = "<group>"; };
 		CAAEF87C24D1D37E00F27247 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
+		CAAEF87F24D1EF0400F27247 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CAAEF88124D1EF7200F27247 /* VoteWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteWebView.h; sourceTree = "<group>"; };
+		CAAEF88224D1EF7200F27247 /* VoteWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteWebView.m; sourceTree = "<group>"; };
 		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAEF88024D1EF0400F27247 /* WebKit.framework in Frameworks */,
 				246C9E54078CC2A06CDF5591 /* Pods_Turnout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,6 +172,7 @@
 		2D2B280519A5CEA4FD6E38B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAAEF87F24D1EF0400F27247 /* WebKit.framework */,
 				82D96386B82A3CBCD738A538 /* Pods_Turnout.framework */,
 				469CFDA7A8800962E01A6DAB /* Pods_Turnout_TurnoutUITests.framework */,
 				25059CEE15A259159F9CB7E9 /* Pods_TurnoutTests.framework */,
@@ -289,6 +296,8 @@
 				CA15FA6624BE6FA000307BBD /* PostCell.m */,
 				CAAEF87C24D1D37E00F27247 /* RKSwipeBetweenViewControllers.h */,
 				CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */,
+				CAAEF88124D1EF7200F27247 /* VoteWebView.h */,
+				CAAEF88224D1EF7200F27247 /* VoteWebView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -553,6 +562,7 @@
 				CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */,
+				CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */,
 				CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */,
