@@ -21,15 +21,11 @@
        
     RKSwipeBetweenViewControllers *navigationController = [[RKSwipeBetweenViewControllers alloc]initWithRootViewController:pageController];
        
-    UIViewController *demo = [[UIViewController alloc]init];
-    UIViewController *demo2 = [[UIViewController alloc]init];
-    UIViewController *demo3 = [[UIViewController alloc]init];
-    UIViewController *demo4 = [[UIViewController alloc]init];
-    demo.view.backgroundColor = [UIColor redColor];
-    demo2.view.backgroundColor = [UIColor whiteColor];
-    demo3.view.backgroundColor = [UIColor grayColor];
-    demo4.view.backgroundColor = [UIColor orangeColor];
-    [navigationController.viewControllerArray addObjectsFromArray:@[demo,demo2,demo3,demo4]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
+    UIViewController *demo = [storyboard instantiateViewControllerWithIdentifier:@"VoteLinksViewController"];
+    UIViewController *demo2 = [storyboard instantiateViewControllerWithIdentifier:@"VoteInfoViewController"];
+    [navigationController.viewControllerArray addObjectsFromArray:@[demo,demo2]];
     
     self.view = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.view.window.rootViewController = navigationController;
