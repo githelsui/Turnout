@@ -12,7 +12,7 @@ static NSString * const baseURLString = @"https://www.googleapis.com/civicinfo/v
 static NSString * const APIKey = @"AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI";
 static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv1o2TKhS1avCdS";
 
-//"https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI&address=1263%20Pacific%20Ave.%20Kansas%20City%20KS&electionId=2000"
+//https://civicinfo.googleapis.com/civicinfo/v2/elections?key=[YOUR_API_KEY]
 
 @implementation GoogleCivicAPI
 
@@ -30,11 +30,29 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
     return self;
 }
 
+- (void)fetchElections:(void(^)(NSArray *info, NSError *error))completion{
+       NSString *address = [NSString stringWithFormat:@"/elections?key=%@", APIKey];
+       NSString *fullURL = [baseURLString stringByAppendingString:address];
+       NSLog(@"full URL: %@", fullURL);
+       NSURL *url = [NSURL URLWithString:fullURL];
+       NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+       NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+           if (error) {
+               NSLog(@"zipcode error: %@", [error localizedDescription]);
+               completion(nil, error);
+           } else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"data dictionary: %@", dataDictionary);
+               NSArray *elections = dataDictionary[@"elections"];
+               completion(elections, nil);
+           }
+       }];
+       [task resume];
+}
+
 - (void)fetchVoterInfo:(NSString *)zipcode completion:(void(^)(NSArray *info, NSError *error))completion{
-    NSString *address = [NSString stringWithFormat:@"/voterinfo?key=%@&address=%@&electionId=2000", APIKey, zipcode];
-    NSString *firstURL = [baseURLString stringByAppendingString:address];
-    NSString *secondURL = [NSString stringWithFormat:@"&key=%@", APIKey];
-    NSString *fullURL = [firstURL stringByAppendingString:secondURL];
+    NSString *address = [NSString stringWithFormat:@"/voterinfo?key=%@&address=%@&electionId=2000&returnAllAvailableData=true", APIKey, zipcode];
+    NSString *fullURL = [baseURLString stringByAppendingString:address];
     NSLog(@"full URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];

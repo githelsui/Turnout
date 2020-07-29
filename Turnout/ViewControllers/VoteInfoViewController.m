@@ -26,21 +26,22 @@
     [self getZipcode];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.clipsToBounds = true;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchVoterInfo) userInfo:nil repeats:true];
+    [self fetchVoterInfo];
 }
 
 - (void)fetchVoterInfo{
     [[GoogleCivicAPI shared] fetchVoterInfo:self.zipcode completion:^(NSArray *info, NSError *error){
         if(info){
-            self.infoCells = [info mutableCopy];
+           self.infoCells = [info mutableCopy];
+           dispatch_async(dispatch_get_main_queue(), ^{
+               [self.tableView reloadData];
+           });
         }
     }];
-    [self.tableView reloadData];
 }
-     
+
 - (void)getZipcode{
     PFUser *currentUser = PFUser.currentUser;
     Zipcode *zip = currentUser[@"zipcode"];

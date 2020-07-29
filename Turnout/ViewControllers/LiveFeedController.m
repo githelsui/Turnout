@@ -97,7 +97,7 @@ NSIndexPath *lastIndexPath;
 
 - (void)startTimer{
     if(self.currentUser){
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
                        {
             self.timer = [NSTimer timerWithTimeInterval:1
                                                  target:self

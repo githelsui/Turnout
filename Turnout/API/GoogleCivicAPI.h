@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)fetchVoterInfo:(NSString *)zipcode completion:(void(^)(NSArray *info, NSError *error))completion;
 
+- (void)fetchElections:(void(^)(NSArray *info, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
