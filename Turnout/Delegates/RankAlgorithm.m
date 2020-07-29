@@ -47,7 +47,7 @@ static float const likesWeight = 1.75;
     
     dispatch_group_t group = dispatch_group_create();
     
-    dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+    dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 2), ^ {
         // block1 non-neighboring posts
         NSLog(@"Block1: current zipcode");
         [self fetchCurrentZipPosts];
@@ -55,17 +55,23 @@ static float const likesWeight = 1.75;
         NSLog(@"Block1 End");
     });
     
+    //return completion handler -> return NSArray of posts
     dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
             // block2 neighboring posts
             NSLog(@"Block2: neighboring zipcode");
               for(NSDictionary *zipcode in self.neighborDicts){
-                  [self fetchNeighboringPosts:zipcode];
+                  [self fetchNeighboringPosts:zipcode]; //return matrix of array of array of posts
+//                  {
+//                    completion block contains:
+//                    [self mergeSortForFeed];
+//                    completion(self.posts, nil);
+//                  }
               }
             [NSThread sleepForTimeInterval:8.0];
             NSLog(@"Block2 End");
     });
     
-    dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+    dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^ {
         // block3: merge sort for live feed posts
         NSLog(@"final results from queue: %lu", (unsigned long)self.queue.size);
         [self mergeSortForFeed];

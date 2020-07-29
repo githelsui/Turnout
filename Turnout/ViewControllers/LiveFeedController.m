@@ -112,29 +112,29 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)queryPostsWhenLoad{
-//    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-//           if(posts){
-//                  self.posts = posts;
-//                  self.mutablePosts = [posts mutableCopy];
-//                  [self.timer invalidate];
-//              }
-//       }];
-//       [self.tableView reloadData];
-//       [self setUpFooter];
-    
-       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-       [query orderByDescending:@"likeCount"];
-       [query includeKey:@"zipcode"];
-       [query includeKey:@"createdAt"];
-       [query setLimit:3];
-       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-           if(results){
-               self.posts = results;
-               self.mutablePosts = [results mutableCopy];
-           }
+        [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+           if(posts){
+                  self.posts = posts;
+                  self.mutablePosts = [posts mutableCopy];
+                  [self.timer invalidate];
+              }
        }];
        [self.tableView reloadData];
        [self setUpFooter];
+    
+//       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+//       [query orderByDescending:@"likeCount"];
+//       [query includeKey:@"zipcode"];
+//       [query includeKey:@"createdAt"];
+//       [query setLimit:3];
+//       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//           if(results){
+//               self.posts = results;
+//               self.mutablePosts = [results mutableCopy];
+//           }
+//       }];
+//       [self.tableView reloadData];
+//       [self setUpFooter];
 }
 
 - (void)reloadData{

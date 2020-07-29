@@ -726,7 +726,7 @@
         <!--Vote-->
         <scene sceneID="ReS-UG-7G2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F7H-uN-NDg" customClass="RKSwipeBetweenViewControllers" sceneMemberID="viewController">
+                <navigationController title="Vote" automaticallyAdjustsScrollViewInsets="NO" id="F7H-uN-NDg" customClass="RKSwipeBetweenViewControllers" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Vote" image="votermenu" selectedImage="votermenu" id="qYW-lJ-F2O"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GzF-ql-arz">
