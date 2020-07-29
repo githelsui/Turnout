@@ -23,6 +23,9 @@
 
 - (void)setCell{
     NSString *url = self.infoCell[@"url"];
+    self.bubbleView.alpha = 1;
+    self.bubbleView.clipsToBounds = true;
+    self.bubbleView.layer.cornerRadius = 15;
     self.addressLabel.alpha = 0;
     self.adminLabel.text = self.infoCell[@"desc"];
     self.titleLabel.text = self.infoCell[@"title"];

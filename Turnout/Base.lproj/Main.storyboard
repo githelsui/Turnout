@@ -612,9 +612,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcr-90-YaV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcr-90-YaV">
                                 <rect key="frame" x="0.0" y="56" width="375" height="619"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="459" id="BD9-Rj-DP2" customClass="VoterInfoCell">
@@ -624,52 +623,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="459"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-AY-LN2">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-AY-LN2">
                                                     <rect key="frame" x="8" y="11" width="359" height="124"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Adminitration Body " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7r-Gt-zHb">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of Adminitration Body " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7r-Gt-zHb">
                                                             <rect key="frame" x="8" y="16" width="193" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zeq-A2-EXD">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zeq-A2-EXD">
                                                             <rect key="frame" x="10" y="86" width="337" height="21.666666666666671"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <gestureRecognizers/>
                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csI-Z6-aMa">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csI-Z6-aMa">
                                                             <rect key="frame" x="8" y="47" width="339" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <gestureRecognizers/>
                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.93057041949999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="csI-Z6-aMa" firstAttribute="leading" secondItem="h1p-AY-LN2" secondAttribute="leading" constant="8" id="0EB-it-mHe"/>
-                                                        <constraint firstItem="Zeq-A2-EXD" firstAttribute="top" secondItem="csI-Z6-aMa" secondAttribute="bottom" constant="9" id="0al-Vt-bkJ"/>
-                                                        <constraint firstItem="csI-Z6-aMa" firstAttribute="top" secondItem="s7r-Gt-zHb" secondAttribute="bottom" constant="13" id="9Bh-6s-T5R"/>
-                                                        <constraint firstItem="s7r-Gt-zHb" firstAttribute="top" secondItem="h1p-AY-LN2" secondAttribute="top" constant="16" id="DPE-3D-iNr"/>
-                                                        <constraint firstItem="s7r-Gt-zHb" firstAttribute="leading" secondItem="h1p-AY-LN2" secondAttribute="leading" constant="8" id="DqH-3V-gSE"/>
-                                                        <constraint firstAttribute="trailing" secondItem="s7r-Gt-zHb" secondAttribute="trailing" constant="158" id="G7u-ID-kZD"/>
-                                                        <constraint firstAttribute="trailing" secondItem="csI-Z6-aMa" secondAttribute="trailing" constant="12" id="GNa-Md-GG5"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Zeq-A2-EXD" secondAttribute="trailing" constant="12" id="Z0q-da-iJp"/>
-                                                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="csI-Z6-aMa" secondAttribute="bottom" constant="47" id="mU0-KU-qTC"/>
-                                                        <constraint firstItem="Zeq-A2-EXD" firstAttribute="leading" secondItem="h1p-AY-LN2" secondAttribute="leading" constant="10" id="obE-ow-wBy"/>
-                                                    </constraints>
+                                                    <color key="backgroundColor" red="0.89137848984771573" green="0.89137848984771573" blue="0.89137848984771573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="h1p-AY-LN2" secondAttribute="trailing" constant="8" id="Epi-on-nnM"/>
-                                                <constraint firstAttribute="bottom" secondItem="h1p-AY-LN2" secondAttribute="bottom" constant="324" id="Fkt-lY-GZ9"/>
-                                                <constraint firstItem="h1p-AY-LN2" firstAttribute="top" secondItem="5PN-xj-SrJ" secondAttribute="top" constant="11" id="Lpl-By-EBp"/>
-                                                <constraint firstItem="h1p-AY-LN2" firstAttribute="leading" secondItem="5PN-xj-SrJ" secondAttribute="leading" constant="8" id="evU-dl-LDq"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="Zeq-A2-EXD" id="KZS-xG-sQa"/>
@@ -683,6 +668,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="trailing" secondItem="gHU-Kx-WWY" secondAttribute="trailing" id="5bs-qE-zlx"/>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="bottom" secondItem="gHU-Kx-WWY" secondAttribute="bottom" id="7SG-l2-kcV"/>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="leading" secondItem="gHU-Kx-WWY" secondAttribute="leading" id="U6h-d3-wDY"/>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="top" secondItem="gHU-Kx-WWY" secondAttribute="top" id="yRP-Nj-jMD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gHU-Kx-WWY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pLm-6f-Vb6"/>

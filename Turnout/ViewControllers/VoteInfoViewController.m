@@ -26,6 +26,7 @@
     [self getZipcode];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.clipsToBounds = true;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchVoterInfo) userInfo:nil repeats:true];
