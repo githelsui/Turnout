@@ -38,6 +38,7 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
+    [self setUpFooter];
     self.rankAlgo = [[RankAlgorithm alloc]init];
 //      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadFeed) userInfo:nil repeats:true];
 //    [self reloadFeed];
@@ -72,9 +73,9 @@ NSIndexPath *lastIndexPath;
 
 - (void)setUpFooter{
     UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 65)];
-    loadView.alpha = 0;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.alpha = 0;
+    loadView.alpha = 1;
+    button.alpha = 1;
     [button setTitle:@"Load More" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
     button.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
@@ -87,10 +88,10 @@ NSIndexPath *lastIndexPath;
     button.layer.borderColor = [UIColor grayColor].CGColor;
     [loadView addSubview:button];
     self.tableView.tableFooterView = loadView;
-    [UIView animateWithDuration:4 animations:^{
-        loadView.alpha = 1;
-        button.alpha = 1;
-    }];
+//    [UIView animateWithDuration:4 animations:^{
+//        loadView.alpha = 1;
+//        button.alpha = 1;
+//    }];
 }
 
 - (void)startTimer{
@@ -110,12 +111,26 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)queryPostsWhenLoad{
-    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-           if(posts){
-                  self.posts = posts;
-                  self.mutablePosts = [posts mutableCopy];
-                  [self.timer invalidate];
-              }
+//    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+//           if(posts){
+//                  self.posts = posts;
+//                  self.mutablePosts = [posts mutableCopy];
+//                  [self.timer invalidate];
+//              }
+//       }];
+//       [self.tableView reloadData];
+//       [self setUpFooter];
+    
+       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+       [query orderByDescending:@"likeCount"];
+       [query includeKey:@"zipcode"];
+       [query includeKey:@"createdAt"];
+       [query setLimit:3];
+       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+           if(results){
+               self.posts = results;
+               self.mutablePosts = [results mutableCopy];
+           }
        }];
        [self.tableView reloadData];
        [self setUpFooter];
