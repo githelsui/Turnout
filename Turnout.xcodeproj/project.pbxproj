@@ -32,6 +32,8 @@
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
 		CAAEF88024D1EF0400F27247 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAEF87F24D1EF0400F27247 /* WebKit.framework */; };
 		CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88224D1EF7200F27247 /* VoteWebView.m */; };
+		CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88524D1F2C500F27247 /* GoogleCivicAPI.m */; };
+		CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88824D202E400F27247 /* VoterInfoCell.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
@@ -110,6 +112,10 @@
 		CAAEF87F24D1EF0400F27247 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CAAEF88124D1EF7200F27247 /* VoteWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteWebView.h; sourceTree = "<group>"; };
 		CAAEF88224D1EF7200F27247 /* VoteWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteWebView.m; sourceTree = "<group>"; };
+		CAAEF88424D1F2C500F27247 /* GoogleCivicAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleCivicAPI.h; sourceTree = "<group>"; };
+		CAAEF88524D1F2C500F27247 /* GoogleCivicAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleCivicAPI.m; sourceTree = "<group>"; };
+		CAAEF88724D202E400F27247 /* VoterInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoterInfoCell.h; sourceTree = "<group>"; };
+		CAAEF88824D202E400F27247 /* VoterInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoterInfoCell.m; sourceTree = "<group>"; };
 		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 				CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */,
 				CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */,
 				CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */,
+				CAAEF88424D1F2C500F27247 /* GoogleCivicAPI.h */,
+				CAAEF88524D1F2C500F27247 /* GoogleCivicAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -298,6 +306,8 @@
 				CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */,
 				CAAEF88124D1EF7200F27247 /* VoteWebView.h */,
 				CAAEF88224D1EF7200F27247 /* VoteWebView.m */,
+				CAAEF88724D202E400F27247 /* VoterInfoCell.h */,
+				CAAEF88824D202E400F27247 /* VoterInfoCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -569,6 +579,7 @@
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
 				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
+				CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
@@ -576,6 +587,7 @@
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
+				CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
