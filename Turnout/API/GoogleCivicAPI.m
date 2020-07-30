@@ -12,8 +12,6 @@ static NSString * const baseURLString = @"https://www.googleapis.com/civicinfo/v
 static NSString * const APIKey = @"AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI";
 static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv1o2TKhS1avCdS";
 
-//https://civicinfo.googleapis.com/civicinfo/v2/elections?key=[YOUR_API_KEY]
-
 @implementation GoogleCivicAPI
 
 + (instancetype)shared {

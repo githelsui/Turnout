@@ -126,7 +126,7 @@ NSIndexPath *lastIndexPath;
        [query orderByDescending:@"likeCount"];
        [query includeKey:@"zipcode"];
        [query includeKey:@"createdAt"];
-       [query setLimit:3];
+       [query setLimit:4];
        [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
            if(results){
                self.posts = results;
