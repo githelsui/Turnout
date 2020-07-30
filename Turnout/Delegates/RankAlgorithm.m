@@ -45,29 +45,9 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
-    [self.posts removeAllObjects];
-    [self.neighborDicts removeAllObjects];
-    [self.individualQueues removeAllObjects];
-    [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
-        NSLog(@"final neighborDicts array: %@", neighbors);
-        if(neighbors){
-            [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
-                if(self.individualQueues.count > 0){
-                    //fetch for non-neighboring posts for next edge case
-                    [self beginMerge:individualQueues];
-                    [self mergeBatches];
-                    completion(self.posts, nil);
-                }
-            }];
-        }
-    }];
-}
-
-- (void)refreshPosts:(void(^)(NSArray *posts, NSError *error))completion{
     [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
     [self.individualQueues removeAllObjects];
-    int skip = 0;
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
         self.neighborDicts = [neighbors mutableCopy];
         NSLog(@"final neighborDicts array: %@", neighbors);
@@ -84,6 +64,22 @@ static float const likesWeight = 1.75;
             }];
         }
     }];
+//    [self.posts removeAllObjects];
+//    [self.neighborDicts removeAllObjects];
+//    [self.individualQueues removeAllObjects];
+//    [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
+//        NSLog(@"final neighborDicts array: %@", neighbors);
+//        if(neighbors){
+//            [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
+//                if(self.individualQueues.count > 0){
+//                    //fetch for non-neighboring posts for next edge case
+//                    [self beginMerge:individualQueues];
+//                    [self mergeBatches];
+//                    completion(self.posts, nil);
+//                }
+//            }];
+//        }
+//    }];
 }
 
 - (void)getCurrentUserInfo:(void(^)(NSArray *neighbors, NSError *error))completion{
@@ -202,12 +198,12 @@ static float const likesWeight = 1.75;
                 [tempPost setObject:@(0) forKey:@"rank"];
                 [tempPost setObject:key forKey:@"zipcode"];
                 [tempPost setObject:post forKey:@"post"];
-                [postsArr addObject:tempPost];
+                [postsArr addObject:[tempPost copy]];
                 [batch setObject:postsArr forKey:@"postsArr"];
                 [self.individualQueues replaceObjectAtIndex:index withObject:batch];
             } else {
                 NSMutableDictionary *farDistanceBatch = [[NSMutableDictionary alloc] init];
-                NSMutableArray *postsArr =  [NSMutableArray array];
+                NSMutableArray *postsArr = [[NSMutableArray alloc] init];
                 NSNumber *loopIndex = @(0);
                 NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
                 [tempPost setObject:@(0) forKey:@"rank"];

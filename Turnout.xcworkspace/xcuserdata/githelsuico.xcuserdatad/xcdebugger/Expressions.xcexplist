@@ -56,6 +56,9 @@
             <PersistentString
                value = "results">
             </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -209,6 +212,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.loopIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborDicts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -511,6 +522,9 @@
       </ContextState>
       <ContextState
          contextName = "__50-[RankAlgorithm fetchNeighboringPosts:completion:]_block_invoke:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke_2:RankAlgorithm.m">
       </ContextState>
       <ContextState
          contextName = "-[RankAlgorithm mergeBatches]:RankAlgorithm.m">
