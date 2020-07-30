@@ -191,6 +191,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__30-[RankAlgorithm refreshPosts:]_block_invoke_3:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
          contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -217,6 +220,14 @@
             </PersistentString>
             <PersistentString
                value = "self.queue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__42-[RankAlgorithm fetchFarPosts:completion:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -322,6 +333,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm createPostBatch:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zip[@&quot;zipcode&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.21:RankAlgorithm.m">
       </ContextState>
       <ContextState
@@ -353,6 +372,14 @@
       </ContextState>
       <ContextState
          contextName = "__43-[RankAlgorithm fetchPostsPerZipcode:skip:]_block_invoke:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm batchExists:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[LiveFeedController reloadFeed]:LiveFeedController.m">
