@@ -133,7 +133,7 @@ NSIndexPath *lastIndexPath;
 - (void)fetchMorePosts{
     self.skipIndex += 3;
     [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
-        if(posts){
+        if(posts.count > 0){
             [self.mutablePosts addObjectsFromArray:posts];
             self.posts = [self.mutablePosts copy];
             self.rankAlgo.livefeed = self.mutablePosts;
@@ -141,6 +141,8 @@ NSIndexPath *lastIndexPath;
                 [self.tableView reloadData];
                 [self setUpFooter];
             });
+        } else {
+            NSLog(@"show alert here!");
         }
     }];
 }

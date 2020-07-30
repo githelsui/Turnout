@@ -52,11 +52,17 @@ static float const timeWeight = 0.000005;
         NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
-                [self fetchFarPosts:skip completion:^(NSMutableArray *individualQueues, NSError *error){
-                        [self beginMerge:self.individualQueues];
-                        [self mergeBatches];
-                        completion(self.posts, nil);
-                }];
+                if(individualQueues){
+                    [self fetchFarPosts:skip completion:^(NSMutableArray *farPosts, NSError *error){
+                        if(self.individualQueues.count > 0){
+                            [self beginMerge:self.individualQueues];
+                            [self mergeBatches];
+                            completion(self.posts, nil);
+                        } else{
+                            completion(self.posts, nil);
+                        }
+                    }];
+                }
             }];
         }
     }];
@@ -134,12 +140,12 @@ static float const timeWeight = 0.000005;
                 
                 [self.individualQueues addObject:zipcodeQueue];
                 if([lastItem isEqualToString:key]){
-                    NSLog(@"the neighboring posts: %@", self.individualQueues);
+                    NSLog(@"the neighboring posts 1: %@", self.individualQueues);
                     completion(self.individualQueues, nil);
                 }
             } else {
                 if([lastItem isEqualToString:key]){
-                    NSLog(@"the neighboring posts: %@", self.individualQueues);
+                    NSLog(@"no items in results");
                     completion(self.individualQueues, nil);
                 }
             }
@@ -169,6 +175,8 @@ static float const timeWeight = 0.000005;
             }
             NSLog(@"far away batches: %@", self.individualQueues);
             completion(self.individualQueues, nil);
+        } else {
+            completion(nil, error);
         }
     }];
 }
