@@ -11,15 +11,14 @@
 #import "Zipcode.h"
 #import "PriorityQueue.h"
 
-static float const timeWeight = 0.005;
-static float const distanceWeight = 0.00002;
-static float const likesWeight = 1.75;
+static float const timeWeight = 0.000005;
+static float const distanceWeight = 2;
+static float const likesWeight = 3;
 
 @interface RankAlgorithm ()
 @property (nonatomic, strong) NSMutableArray *postDicts;
 @property (nonatomic, strong, retain) NSMutableArray *individualQueues;
 @property (nonatomic, strong, retain) Zipcode *currentZip;
-@property NSInteger currentZipPosts;
 @property (nonatomic, strong) PriorityQueue *queue;
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
 
@@ -47,7 +46,6 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
-    if(skip == 0) self.currentZipPosts = 0;
     [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
     [self.individualQueues removeAllObjects];
@@ -119,16 +117,10 @@ static float const likesWeight = 1.75;
         [query orderByDescending:@"likeCount"];
         [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
         NSString *key = zipcode[@"zipcode"][@"zipcode"];
-        NSString *currZip = self.currentZip[@"zipcode"];
         NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
         NSLog(@"dict: %@", key);
-        if([currZip isEqual:key] == NO){ //for zipcodes that are NOT current zipcode, does not matter whether refreshing/load more function
-            [query setLimit:2];
-            [query setSkip:skip];
-        } else {
-            [query setSkip:self.currentZipPosts]; //keep track of how many posts under current users zipcode, skip = self.currentZipsPosts
-            //when skip == 0, refreshing functionality: reset self.currentZipsPost back to 0
-        }
+        [query setLimit:2];
+        [query setSkip:skip];
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
@@ -190,40 +182,30 @@ static float const likesWeight = 1.75;
                 NSUInteger index = [self.individualQueues indexOfObject:batch];
                 NSMutableArray *postsArr = batch[@"postsArr"];
                 if([self batchContainsPost:post batch:postsArr] == NO){
-//                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-//                    [tempPost setObject:@(0) forKey:@"rank"];
-//                    [tempPost setObject:key forKey:@"zipcode"];
-//                    [tempPost setObject:post forKey:@"post"];
-//                    [postsArr addObject:tempPost];
-                    NSMutableArray *updatedArr = [self addIndividualPost:post key:key postsArr:postsArr];
-                    [batch setObject:updatedArr forKey:@"postsArr"];
+                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+                    [tempPost setObject:@(0) forKey:@"rank"];
+                    [tempPost setObject:key forKey:@"zipcode"];
+                    [tempPost setObject:post forKey:@"post"];
+                    [postsArr addObject:tempPost];
+                    [batch setObject:postsArr forKey:@"postsArr"];
                     [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             } else {
                 NSMutableDictionary *farDistanceBatch = [[NSMutableDictionary alloc] init];
-                [farDistanceBatch setObject:key forKey:@"zipcode"];
-                NSNumber *loopIndex = @(0);
-                [farDistanceBatch setObject:loopIndex forKey:@"loopIndex"];
                 NSMutableArray *postsArr = [[NSMutableArray alloc] init];
-                NSMutableArray *updatedArr = [self addIndividualPost:post key:key postsArr:postsArr];
-                [farDistanceBatch setObject:updatedArr forKey:@"postsArr"];
+                NSNumber *loopIndex = @(0);
+                NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+                [tempPost setObject:@(0) forKey:@"rank"];
+                [tempPost setObject:key forKey:@"zipcode"];
+                [tempPost setObject:post forKey:@"post"];
+                [postsArr addObject:tempPost];
+                [farDistanceBatch setObject:key forKey:@"zipcode"];
+                [farDistanceBatch setObject:loopIndex forKey:@"loopIndex"];
+                [farDistanceBatch setObject:postsArr forKey:@"postsArr"];
                 [self.individualQueues addObject:farDistanceBatch];
             }
         }
     }];
-}
-
-- (NSMutableArray *)addIndividualPost:(Post *)post key:(NSString *)key postsArr:(NSMutableArray *)postsArr{
-    NSMutableArray *newArr = postsArr;
-    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-    [tempPost setObject:@(0) forKey:@"rank"];
-    [tempPost setObject:key forKey:@"zipcode"];
-    [tempPost setObject:post forKey:@"post"];
-    [newArr addObject:tempPost];
-    if([key isEqual:self.currentZip[@"zipcode"]]){
-        self.currentZipPosts += 1;
-    }
-    return newArr;
 }
 
 - (BOOL)batchContainsPost:(Post *)post batch:(NSMutableArray *)batch{
@@ -255,12 +237,8 @@ static float const likesWeight = 1.75;
         [tempPost setObject:rank forKey:@"rank"];
         [tempPost setObject:key forKey:@"zipcode"];
         [tempPost setObject:post forKey:@"post"];
-        if(![self.posts containsObject:post]){
+        if(![self.posts containsObject:post])
             [postsArr addObject:tempPost];
-            if([key isEqual:self.currentZip[@"zipcode"]]){
-                self.currentZipPosts += 1;
-            }
-        }
     }
     NSMutableArray *sortedArr = [[self sortPostsArr:postsArr] mutableCopy];
     NSLog(@"sorted array for %@: %@", key, sortedArr);
@@ -277,6 +255,8 @@ static float const likesWeight = 1.75;
 
 - (NSNumber *)getPostRank:(NSString *)distance post:(Post *)post{
     NSNumber *likes = post[@"likeCount"];
+    NSNumber *timeInterval = [self getCreatedAtConstant:post];
+    float creationSec = [timeInterval floatValue] * timeWeight;
     float likeCount = [likes floatValue];
     float distWeight;
     if([distance floatValue] != 0){
@@ -284,7 +264,7 @@ static float const likesWeight = 1.75;
     } else {
         distWeight = 1 + [distance floatValue];
     }
-    float rank = likeCount * distWeight;
+    float rank = (likeCount * likesWeight) * distWeight + creationSec;
     return @(rank);
 }
 
@@ -325,14 +305,6 @@ static float const likesWeight = 1.75;
     }
 }
 
-- (void)mergeSortForFeed{
-    while(self.queue.size > 0){
-        NSDictionary *queueData = [self.queue poll];
-        NSLog(@"post for livefeed: %@", queueData[@"post"]);
-        [self.posts addObject:queueData[@"post"]];
-    }
-}
-
 - (NSDictionary *)getZipcodeBatch:(NSString *)zipcode{
     for(NSDictionary *batch in self.individualQueues){
         NSString *key = batch[@"zipcode"];
@@ -350,134 +322,6 @@ static float const likesWeight = 1.75;
     return posts;
 }
 
-- (void)getPostDictsArr:(NSArray *)posts newArr:(NSMutableArray *)newArr completion:(void(^)(NSArray *postDicts, NSError *error))completion{
-    for (Post *post in posts) {
-        [self calculatePostRank:post withCompletion:^(NSNumber *rank, NSError *error){
-            [self createRankedDict:rank post:post withCompletion:^(NSDictionary *postDict, NSError *error){
-                [newArr addObject:postDict];
-                Post *lastObj = [posts lastObject];
-                if([post isEqual:lastObj]){
-                    completion(newArr, nil);
-                }
-            }];
-        }];
-    }
-}
-
-- (void)createRankedDict:(NSNumber *)rank post:(Post *)post withCompletion:(void(^)(NSDictionary *postDict, NSError *error))completion{
-    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-    [tempPost setObject:post forKey:@"post"];
-    [tempPost setObject:rank forKey:@"rank"];
-    completion(tempPost, nil);
-}
-
-- (void)calculatePostRank:(Post *)post withCompletion:(void(^)(NSNumber *rank, NSError *error))completion{
-    NSNumber *likeCount = post.likeCount;
-    PFUser *currentUser = PFUser.currentUser;
-    
-    Zipcode *postZipcode = post.zipcode;
-    Zipcode *currentZipcode = currentUser[@"zipcode"];
-    NSLog(@"zipcode for post = %@", postZipcode);
-    NSLog(@"zipcode for current = %@", currentZipcode);
-    
-    __block NSArray *postNeighbors = nil;
-    __block NSArray *currentNeighbors = nil;
-    
-    [self fetchNeighbors:postZipcode completion:^(NSArray *neighbors, NSError *error){
-        postNeighbors = neighbors;
-        NSLog(@"post neighbors for post zipcode:  %@", postNeighbors);
-        [self fetchNeighbors:currentZipcode completion:^(NSArray *current, NSError *error){
-            
-            currentNeighbors = current;
-            NSLog(@"neighbors for current zipcode:  %@", currentNeighbors);
-            NSDictionary *zipInPostsNeighbors = [self checkIfAnyNeighbors:postNeighbors current:currentZipcode];
-            NSDictionary *zipInCurrentNeighbors = [self checkIfAnyNeighbors:currentNeighbors current:postZipcode];
-            NSLog(@"currentIsPostNeighbor:  %@", zipInCurrentNeighbors);
-            NSNumber *distance;
-            if(zipInPostsNeighbors){
-                NSString *distanceStr = zipInPostsNeighbors[@"distance"];
-                distance = @([distanceStr floatValue]);
-                NSLog(@"zipinpostsneighbor:  %@", distance);
-            } else if(zipInCurrentNeighbors){
-                NSString *distanceStr = zipInCurrentNeighbors[@"distance"];
-                distance = @([distanceStr floatValue]);
-                NSLog(@"%s", "AAAAH");
-            } else {
-                //calc distance when neither zips are contained in each others arrays
-            }
-            
-            NSNumber *timeSinceCreated = [self getTimeSinceCreated:post];
-            NSNumber *rank = [self rankCalculation:distance likes:likeCount timeSinceCreation:timeSinceCreated];
-            NSLog(@"rank = %@", rank);
-            
-            completion(rank, nil);
-        }];
-    }];
-}
-
-- (NSNumber *)rankCalculation:(NSNumber *)distanceNum likes:(NSNumber *)likesCount timeSinceCreation:(NSNumber *)timeSinceCreation{
-    float likes = [likesCount floatValue];
-    float secondsAgo = [timeSinceCreation floatValue];
-    float distance = [distanceNum floatValue];
-    float score = likes + likesWeight;
-    float timeCreatedVal = secondsAgo * timeWeight;
-    float distanceVal = distance * distanceWeight;
-    float decay = timeCreatedVal + distanceVal;
-    float rankFloat = decay / score;
-    return [NSNumber numberWithFloat: rankFloat];
-}
-
-- (NSDictionary *)checkIfAnyNeighbors:(NSArray *)neighbors current:(Zipcode *)zipcode{
-    NSString *mainZip = zipcode.zipcode;
-    for(NSDictionary *neighbor in neighbors){
-        NSString *neighString = neighbor[@"zipcode"];
-        if([neighString isEqualToString:mainZip]){
-            return neighbor;
-        }
-    }
-    return nil;
-}
-
-
-- (void)getDistance{
-    
-}
-
-- (void)saveRankToParse:(Post *)post{
-    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (succeeded) {
-            NSLog(@"The rank was saved!");
-        } else {
-            NSLog(@"Problem saving rank: %@", error.localizedDescription);
-        }
-    }];
-}
-
-- (void)getZipcode:(PFUser *)user completion:(void(^)(Zipcode *zipcode, NSError *error))completion {
-    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
-        if(user){
-            Zipcode *zip = user[@"zipcode"];
-            completion(zip, error);
-            
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
-- (void)queryZipcode:(PFUser *)user completion:(void(^)(NSArray *zipcode, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"User"];
-    [query whereKey:@"typeId" equalTo:user];
-    [query includeKey:@"zipcode"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *zip, NSError *error) {
-        if (zip != nil) {
-            completion(zip, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
 - (void)fetchNeighbors:(Zipcode *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
     [zipcode fetchIfNeededInBackgroundWithBlock:^(PFObject *zip, NSError *error){
         if(zip){
@@ -489,13 +333,13 @@ static float const likesWeight = 1.75;
     }];
 }
 
-- (NSNumber *)getTimeSinceCreated:(Post *)post{
+- (NSNumber *)getCreatedAtConstant:(Post *)post{
     NSDate *created = [post createdAt];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EEE, MMM d, h:mm a"];
     NSString *dateStr = [dateFormat stringFromDate:created];
     NSLog(@"%@", dateStr);
-    NSTimeInterval timeInterval = -[created timeIntervalSinceNow];
+    NSTimeInterval timeInterval = [created timeIntervalSince1970];
     NSLog(@"%f seconds since creation", timeInterval);
     return [NSNumber numberWithDouble:timeInterval];
 }
@@ -505,18 +349,6 @@ static float const likesWeight = 1.75;
         if(post){
             NSDate *createdAt = post[@"createdAt"];
             completion(createdAt, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
-- (void)orderPostsByRank:(NSArray *)posts completion:(void(^)(NSArray *rankedPosts, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByAscending:@"rank"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            completion(posts, nil);
         } else {
             completion(nil, error);
         }

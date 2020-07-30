@@ -129,6 +129,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)refreshPosts{
+    self.skipIndex = 0;
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts){
             self.posts = posts;
