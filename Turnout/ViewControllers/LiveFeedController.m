@@ -42,9 +42,9 @@ NSIndexPath *lastIndexPath;
     [self initTableView];
     [self setUpFooter];
     self.rankAlgo = [[RankAlgorithm alloc]init];
-    [self reloadFeed];
+    [self loadFeed];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -115,10 +115,24 @@ NSIndexPath *lastIndexPath;
 //    NSLog(@"%s", "timer going off");
 //}
 
-- (void)reloadFeed{
+- (void)loadFeed{
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts){
             self.posts = posts;
+            self.mutablePosts = [posts mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self setUpFooter];
+            });
+        }
+    }];
+}
+
+- (void)refreshPosts{
+    [self.rankAlgo refreshPosts:^(NSArray *posts, NSError *error){
+        if(posts){
+            self.posts = posts;
+            [self.mutablePosts removeAllObjects];
             self.mutablePosts = [posts mutableCopy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];

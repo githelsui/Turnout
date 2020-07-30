@@ -37,8 +37,8 @@ static float const likesWeight = 1.75;
 - (instancetype)init {
     self = [super init];
     self.neighborDicts =  [NSMutableArray array];
-    self.posts =  [NSMutableArray array];
     self.individualQueues = [NSMutableArray array];
+    self.posts =  [NSMutableArray array];
     self.queue = [PriorityQueue new];
     self.priorityQueue = [PriorityQueue new];
     return self;
@@ -53,12 +53,30 @@ static float const likesWeight = 1.75;
                     //fetch for non-neighboring posts for next edge case
                     [self beginMerge:individualQueues];
                     [self mergeBatches];
+                    self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
                     completion(self.posts, nil);
                 }
             }];
         }
     }];
-    
+}
+
+- (void)refreshPosts:(void(^)(NSArray *posts, NSError *error))completion{
+    [self.posts removeAllObjects];
+    int skip = 0;
+    [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
+         NSLog(@"final neighborDicts array: %@", neighbors);
+        if(neighbors){
+            [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
+                if(individualQueues.count > 0){
+                    //fetch for non-neighboring posts for next edge case
+                    [self beginMerge:individualQueues];
+                    [self mergeBatches];
+                    completion(self.posts, nil);
+                }
+            }];
+        }
+    }];
 }
 
 - (void)getCurrentUserInfo:(void(^)(NSArray *neighbors, NSError *error))completion{
@@ -126,7 +144,7 @@ static float const likesWeight = 1.75;
                 [zipcodeQueue setObject:key forKey:@"zipcode"];
                 [zipcodeQueue setObject:loopIndex forKey:@"loopIndex"];
                 
-                [self addPostsToQueue:results zipcode:key completion:^(NSArray *postsArr, NSError *error){
+                [self postsArrPerBatch:results zipcode:key completion:^(NSArray *postsArr, NSError *error){
                     [zipcodeQueue setObject:postsArr forKey:@"postsArr"];
                 }];
             
@@ -147,7 +165,7 @@ static float const likesWeight = 1.75;
     }
 }
 
-- (void)addPostsToQueue:(NSArray *)posts zipcode:(NSString *)key completion:(void(^)(NSArray *posts, NSError *error))completion{
+- (void)postsArrPerBatch:(NSArray *)posts zipcode:(NSString *)key completion:(void(^)(NSArray *posts, NSError *error))completion{
     NSMutableArray *postsArr =  [NSMutableArray array];
     for(Post *post in posts){
         NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
@@ -155,15 +173,31 @@ static float const likesWeight = 1.75;
         [tempPost setObject:rank forKey:@"rank"];
         [tempPost setObject:key forKey:@"zipcode"];
         [tempPost setObject:post forKey:@"post"];
-        [postsArr addObject:tempPost];
+        if(![self.posts containsObject:post])
+            [postsArr addObject:tempPost];
     }
-    completion(postsArr, nil);
+    NSArray *sortedArr = [self sortPostsArr:postsArr];
+    NSLog(@"sorted array for %@: %@", key, sortedArr);
+    completion(sortedArr, nil);
+}
+
+- (NSArray *)sortPostsArr:(NSArray *)postDicts{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank"
+                                                 ascending:YES];
+    NSArray *sortedArray = [postDicts sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return sortedArray;
 }
 
 - (NSNumber *)getPostRank:(NSString *)distance post:(Post *)post{
     float likeCount = [post.likeCount floatValue];
     float distWeight = 1 / [distance floatValue];
-    float rank = likeCount + distWeight;
+//    if ([distance floatValue] != 0) {
+//        distWeight =  1 / [distance floatValue];
+//    } else {
+//        distWeight =  1 + [distance floatValue];
+//    }
+    float rank = likeCount * distWeight;
     return @(rank);
 }
 
@@ -239,14 +273,6 @@ static float const likesWeight = 1.75;
             }];
         }];
     }
-}
-
-- (NSArray *)sortPostDicts:(NSArray *)postDicts{
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank"
-                                                 ascending:YES];
-    NSArray *sortedArray = [postDicts sortedArrayUsingDescriptors:@[sortDescriptor]];
-    return sortedArray;
 }
 
 - (void)createRankedDict:(NSNumber *)rank post:(Post *)post withCompletion:(void(^)(NSDictionary *postDict, NSError *error))completion{

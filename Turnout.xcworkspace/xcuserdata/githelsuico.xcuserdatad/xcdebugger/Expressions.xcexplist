@@ -93,6 +93,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm addPostsToQueue:zipcode:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm fetchNeighboringPosts:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
