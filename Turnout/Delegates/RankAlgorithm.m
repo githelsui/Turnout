@@ -45,10 +45,11 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
+    [self.posts removeAllObjects];
     [self.neighborDicts removeAllObjects];
-     [self.individualQueues removeAllObjects];
+    [self.individualQueues removeAllObjects];
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
-         NSLog(@"final neighborDicts array: %@", neighbors);
+        NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 if(individualQueues.count > 0){
@@ -134,7 +135,7 @@ static float const likesWeight = 1.75;
         [query orderByDescending:@"likeCount"];
         [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
         NSString *key = zipcode[@"zipcode"][@"zipcode"];
-         NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
+        NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
         NSLog(@"dict: %@", key);
         [query setLimit:2];
         [query setSkip:skip];
@@ -150,7 +151,7 @@ static float const likesWeight = 1.75;
                 [self postsArrPerBatch:results zipcode:key completion:^(NSArray *postsArr, NSError *error){
                     [zipcodeQueue setObject:postsArr forKey:@"postsArr"];
                 }];
-            
+                
                 [self.individualQueues addObject:zipcodeQueue];
                 if([lastItem isEqualToString:key]){
                     NSLog(@"please help");
@@ -195,11 +196,6 @@ static float const likesWeight = 1.75;
 - (NSNumber *)getPostRank:(NSString *)distance post:(Post *)post{
     float likeCount = [post.likeCount floatValue];
     float distWeight = 1 / [distance floatValue];
-//    if ([distance floatValue] != 0) {
-//        distWeight =  1 / [distance floatValue];
-//    } else {
-//        distWeight =  1 + [distance floatValue];
-//    }
     float rank = likeCount * distWeight;
     return @(rank);
 }
@@ -208,14 +204,13 @@ static float const likesWeight = 1.75;
     for(NSDictionary *queue in individualQueues){
         NSMutableArray *postsArr = queue[@"postsArr"];
         [self.priorityQueue add:postsArr[0]];
-        //adds all first posts from each zipcode into priorityQueue
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
 
 - (void)mergeBatches{
     if(self.priorityQueue.size != 0) {
-        NSDictionary *priorityPost = [self.priorityQueue poll]; //add this to main livefeed array! this is sorted output
+        NSDictionary *priorityPost = [self.priorityQueue poll]; 
         [self.posts addObject:priorityPost[@"post"]];
         NSString *zipcode = priorityPost[@"zipcode"];
         NSDictionary *batch = [self getZipcodeBatch:zipcode];
@@ -230,7 +225,7 @@ static float const likesWeight = 1.75;
     } else {
         self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
     }
-
+    
 }
 
 - (void)addToPriorityQueue:(NSDictionary *)post batch:(NSDictionary *)batch{

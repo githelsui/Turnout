@@ -63,12 +63,12 @@ NSIndexPath *lastIndexPath;
     self.currentUser = PFUser.currentUser;
     Zipcode *zip = self.currentUser[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
-           if(zipcode){
-               NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
-               self.currentLoc.text = location;
-               self.currentZipcode.text = zipcode[@"zipcode"];
-           }
-       }];
+        if(zipcode){
+            NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
+            self.currentLoc.text = location;
+            self.currentZipcode.text = zipcode[@"zipcode"];
+        }
+    }];
 }
 
 - (void)setUpFooter{
@@ -147,8 +147,8 @@ NSIndexPath *lastIndexPath;
     self.skipIndex += 2;
     [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
         if(posts){
-            self.posts = posts;
-            self.mutablePosts = [posts mutableCopy];
+            [self.mutablePosts addObjectsFromArray:posts];
+            self.posts = [self.mutablePosts copy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self setUpFooter];
@@ -259,13 +259,13 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)refreshFeed{
-//    [self startTimer];
+    //    [self startTimer];
 }
 
 - (void)postToTopFeed:(Post *)post {
     [self.mutablePosts insertObject:post atIndex:0];
     NSLog(@"mutable posts = %@", self.mutablePosts);
-//    [self startTimer];
+    //    [self startTimer];
 }
 
 @end
