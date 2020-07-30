@@ -45,6 +45,8 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
+    [self.neighborDicts removeAllObjects];
+     [self.individualQueues removeAllObjects];
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
          NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
@@ -53,7 +55,6 @@ static float const likesWeight = 1.75;
                     //fetch for non-neighboring posts for next edge case
                     [self beginMerge:individualQueues];
                     [self mergeBatches];
-                    self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
                     completion(self.posts, nil);
                 }
             }];
@@ -62,10 +63,13 @@ static float const likesWeight = 1.75;
 }
 
 - (void)refreshPosts:(void(^)(NSArray *posts, NSError *error))completion{
+    [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
+    [self.individualQueues removeAllObjects];
     int skip = 0;
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
-         NSLog(@"final neighborDicts array: %@", neighbors);
+        self.neighborDicts = [neighbors mutableCopy];
+        NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 if(individualQueues.count > 0){
@@ -83,7 +87,6 @@ static float const likesWeight = 1.75;
     PFUser *currentUser = PFUser.currentUser;
     self.currentZip = currentUser[@"zipcode"];
     [self fetchNeighbors:self.currentZip completion:^(NSArray *neighbors, NSError *error){
-        NSLog(@"before neighborDicts array: %@", neighbors);
         if(neighbors){
             [self getNeighboringDicts:neighbors completion:^(NSArray *neighborDicts, NSError *error){
                 self.neighborDicts = [neighborDicts mutableCopy];
@@ -224,7 +227,10 @@ static float const likesWeight = 1.75;
         } else if(index < posts.count){
             [self addToPriorityQueue:posts[index] batch:batch];
         }
+    } else {
+        self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
     }
+
 }
 
 - (void)addToPriorityQueue:(NSDictionary *)post batch:(NSDictionary *)batch{

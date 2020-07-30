@@ -3,9 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
          contextName = "-[VoteWebView viewDidLoad]:VoteWebView.m">
          <PersistentStrings>
             <PersistentString
@@ -54,11 +51,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:main.m">
       </ContextState>
       <ContextState
          contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2:RankAlgorithm.m">
          <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm refreshPosts:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborDicts">
+            </PersistentString>
             <PersistentString
                value = "self.posts">
             </PersistentString>
@@ -156,6 +172,9 @@
                value = "self.neighborDicts">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__34-[LiveFeedController refreshPosts]_block_invoke:LiveFeedController.m">
       </ContextState>
       <ContextState
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
