@@ -56,6 +56,7 @@ static float const likesWeight = 1.75;
                 if(individualQueues.count > 0){
                     //fetch for non-neighboring posts for next edge case
                     [self beginMerge:individualQueues];
+                    [self mergeBatches];
                 }
             }];
         }
@@ -176,12 +177,25 @@ static float const likesWeight = 1.75;
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
 
-- (void)mergeQueues:(NSDictionary *)queue{
-    NSDictionary *priorityPost = [self.priorityQueue poll];
-    NSArray *posts = queue[@"postsArr"];
-    int index = [queue[@"loopIndex"] intValue];
+- (void)mergeBatches{
+    NSDictionary *priorityPost = [self.priorityQueue poll]; //add this to main livefeed array! this is sorted output
+    [self.posts addObject:priorityPost[@"post"]];
+    NSString *zipcode = priorityPost[@"zipcode"];
+    NSDictionary *batch = [self getZipcodeBatch:zipcode];
+    NSArray *posts = batch[@"postsArr"];
+    int index = [batch[@"loopIndex"] intValue] + 1;
+    [batch setValue:@(index) forKey:@"loopIndex"];
     if(posts.count != index){
-        
+        [self addToPriorityQueue:posts[index] batch:batch];
+    }
+}
+
+- (void)addToPriorityQueue:(NSDictionary *)post batch:(NSDictionary *)batch{
+    NSArray *posts = batch[@"postsArr"];
+    int index = [batch[@"loopIndex"] intValue];
+    if(posts.count != index){
+        [self.priorityQueue add:post];
+        [self mergeBatches];
     }
 }
 
@@ -191,6 +205,14 @@ static float const likesWeight = 1.75;
         NSLog(@"post for livefeed: %@", queueData[@"post"]);
         [self.posts addObject:queueData[@"post"]];
     }
+}
+
+- (NSDictionary *)getZipcodeBatch:(NSString *)zipcode{
+    for(NSDictionary *batch in self.individualQueues){
+        NSString *key = batch[@"zipcode"];
+        if([key isEqualToString:zipcode]) return batch;
+    }
+    return nil;
 }
 
 - (NSArray *)getSortedPosts:(NSArray *)dicts{
