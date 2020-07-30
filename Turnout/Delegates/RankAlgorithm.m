@@ -44,13 +44,11 @@ static float const likesWeight = 1.75;
     return self;
 }
 
-- (void)queryPosts:(NSMutableArray *)currentArr completion:(void(^)(NSArray *posts, NSError *error))completion{
-    self.posts = currentArr;
-    
+- (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
          NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
-            [self fetchNeighboringPosts:neighbors completion:^(NSMutableArray *individualQueues, NSError *error){
+            [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 if(individualQueues.count > 0){
                     //fetch for non-neighboring posts for next edge case
                     [self beginMerge:individualQueues];
@@ -109,7 +107,7 @@ static float const likesWeight = 1.75;
     }];
 }
 
-- (void)fetchNeighboringPosts:(NSArray *)zipcodes completion:(void(^)(NSMutableArray *neighborsPosts, NSError *error))completion{
+- (void)fetchNeighboringPosts:(NSArray *)zipcodes skip:(int)skip completion:(void(^)(NSMutableArray *neighborsPosts, NSError *error))completion{
     for(NSDictionary *zipcode in zipcodes){
         PFQuery *query = [PFQuery queryWithClassName:@"Post"];
         [query orderByDescending:@"likeCount"];
@@ -117,6 +115,8 @@ static float const likesWeight = 1.75;
         NSString *key = zipcode[@"zipcode"][@"zipcode"];
          NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
         NSLog(@"dict: %@", key);
+        [query setLimit:2];
+        [query setSkip:skip];
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
@@ -163,7 +163,7 @@ static float const likesWeight = 1.75;
 - (NSNumber *)getPostRank:(NSString *)distance post:(Post *)post{
     float likeCount = [post.likeCount floatValue];
     float distWeight = 1 / [distance floatValue];
-    float rank = likeCount * distWeight;
+    float rank = likeCount + distWeight;
     return @(rank);
 }
 

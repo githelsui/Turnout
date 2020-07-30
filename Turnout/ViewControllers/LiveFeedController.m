@@ -29,6 +29,7 @@
 @property (nonatomic, strong) RankAlgorithm *rankAlgo;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property int skipIndex;
 @end
 
 @implementation LiveFeedController
@@ -37,11 +38,11 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.skipIndex = 0;
     [self initTableView];
     [self setUpFooter];
     self.rankAlgo = [[RankAlgorithm alloc]init];
-    [self queryPostsWhenLoad];
-//    [self startTimer];
+    [self reloadFeed];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -114,8 +115,8 @@ NSIndexPath *lastIndexPath;
 //    NSLog(@"%s", "timer going off");
 //}
 
-- (void)queryPostsWhenLoad{
-    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+- (void)reloadFeed{
+    [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts){
             self.posts = posts;
             self.mutablePosts = [posts mutableCopy];
@@ -125,20 +126,21 @@ NSIndexPath *lastIndexPath;
             });
         }
     }];
-    
-//       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-//       [query orderByDescending:@"likeCount"];
-//       [query includeKey:@"zipcode"];
-//       [query includeKey:@"createdAt"];
-//       [query setLimit:4];
-//       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//           if(results){
-//               self.posts = results;
-//               self.mutablePosts = [results mutableCopy];
-//           }
-//       }];
-//       [self.tableView reloadData];
-//       [self setUpFooter];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)fetchMorePosts{
+    self.skipIndex += 2;
+    [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
+        if(posts){
+            self.posts = posts;
+            self.mutablePosts = [posts mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self setUpFooter];
+            });
+        }
+    }];
 }
 
 - (void)setGestureRecogs{
@@ -152,36 +154,6 @@ NSIndexPath *lastIndexPath;
     singleTap.numberOfTouchesRequired = 1;
     [singleTap requireGestureRecognizerToFail:doubleTap];
     [self.tableView addGestureRecognizer:singleTap];
-}
-
-- (void)fetchMorePosts{
-    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-        if(posts){
-                [self.mutablePosts addObjectsFromArray:posts];
-            }
-        }];
-    [self.tableView reloadData];
-}
-
-- (void)reloadFeed{
-    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-        if(posts){
-               self.posts = posts;
-               self.mutablePosts = [posts mutableCopy];
-           }
-    }];
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
-//    [[RankAlgorithm shared] queryPosts:^(NSArray *rankedPosts, NSError *error){
-//        if(rankedPosts){
-//            self.posts = rankedPosts;
-//            self.mutablePosts = [rankedPosts mutableCopy];
-//            [self.tableView reloadData];
-//        } else {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//        [self.refreshControl endRefreshing];
-//    }];
 }
 
 - (IBAction)logoutTapped:(id)sender {
@@ -250,7 +222,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)loadMore{
-    NSLog(@"add to charity");
+    NSLog(@"load more posts");
     [self fetchMorePosts];
 }
 
