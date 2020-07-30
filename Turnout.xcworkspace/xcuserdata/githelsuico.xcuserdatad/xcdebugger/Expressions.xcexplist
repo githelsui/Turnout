@@ -82,6 +82,9 @@
          contextName = "-[RankAlgorithm fetchNeighboringPosts:skip:completion:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+            <PersistentString
                value = "![currZip isEqual:key]">
             </PersistentString>
             <PersistentString
@@ -247,13 +250,22 @@
          contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+            <PersistentString
                value = "self.neighborDicts">
             </PersistentString>
             <PersistentString
                value = "postsArr.count">
             </PersistentString>
             <PersistentString
-               value = "self.individualQueues">
+               value = "zip">
+            </PersistentString>
+            <PersistentString
+               value = "zip[@&quot;zipcode&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -279,6 +291,9 @@
       <ContextState
          contextName = "__42-[RankAlgorithm fetchFarPosts:completion:]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
+            <PersistentString
+               value = "[self.livefeed containsObject:post]">
+            </PersistentString>
             <PersistentString
                value = "self.individualQueues">
             </PersistentString>
@@ -433,6 +448,14 @@
       </ContextState>
       <ContextState
          contextName = "__43-[RankAlgorithm fetchPostsPerZipcode:skip:]_block_invoke:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm postsArrPerBatch:zipcode:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[LiveFeedController reloadFeed]:LiveFeedController.m">

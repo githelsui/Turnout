@@ -38,13 +38,12 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.skipIndex = 0;
     [self initTableView];
     [self setUpFooter];
     self.rankAlgo = [[RankAlgorithm alloc]init];
     [self loadFeed];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -116,32 +115,19 @@ NSIndexPath *lastIndexPath;
 //}
 
 - (void)loadFeed{
-    [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
-        if(posts){
-            self.posts = posts;
-            self.mutablePosts = [posts mutableCopy];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self setUpFooter];
-            });
-        }
-    }];
-}
-
-- (void)refreshPosts{
     self.skipIndex = 0;
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts){
             self.posts = posts;
-            [self.mutablePosts removeAllObjects];
             self.mutablePosts = [posts mutableCopy];
+            self.rankAlgo.livefeed = self.mutablePosts;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self setUpFooter];
             });
         }
     }];
-    [self.refreshControl endRefreshing];
+     [self.refreshControl endRefreshing];
 }
 
 - (void)fetchMorePosts{
@@ -150,6 +136,7 @@ NSIndexPath *lastIndexPath;
         if(posts){
             [self.mutablePosts addObjectsFromArray:posts];
             self.posts = [self.mutablePosts copy];
+            self.rankAlgo.livefeed = self.mutablePosts;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self setUpFooter];

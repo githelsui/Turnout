@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *timeSinceCreation;
 @property (nonatomic, strong) NSMutableArray *neighborDicts;
 @property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) NSMutableArray *livefeed;
 @property (nonatomic, weak) id<RankAlgorithmDelegate> delegate;
 + (instancetype)shared;
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion;

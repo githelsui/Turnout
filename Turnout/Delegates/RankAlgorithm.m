@@ -12,8 +12,6 @@
 #import "PriorityQueue.h"
 
 static float const timeWeight = 0.000005;
-static float const distanceWeight = 2;
-static float const likesWeight = 3;
 
 @interface RankAlgorithm ()
 @property (nonatomic, strong) NSMutableArray *postDicts;
@@ -55,8 +53,7 @@ static float const likesWeight = 3;
         if(neighbors){
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 [self fetchFarPosts:skip completion:^(NSMutableArray *individualQueues, NSError *error){
-                        //fetch for non-neighboring posts for next edge case
-                        [self beginMerge:self.individualQueues]; //self.individualQueues
+                        [self beginMerge:self.individualQueues];
                         [self mergeBatches];
                         completion(self.posts, nil);
                 }];
@@ -122,6 +119,7 @@ static float const likesWeight = 3;
         [query setLimit:2];
         [query setSkip:skip];
         [query includeKey:@"zipcode"];
+        [query includeKey:@"objectId"];
         [query includeKey:@"createdAt"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
@@ -160,11 +158,14 @@ static float const likesWeight = 3;
     [query setSkip:skip];
     [query includeKey:@"zipcode"];
     [query includeKey:@"createdAt"];
+    [query includeKey:@"objectId"];
     [query includeKey:@"likeCount"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(results.count > 0){
             for(Post *post in results){
-                [self createPostBatch:post];
+                if([self livefeedContainsPost:post] == NO){
+                     [self createPostBatch:post];
+                 }
             }
             NSLog(@"far away batches: %@", self.individualQueues);
             completion(self.individualQueues, nil);
@@ -182,30 +183,43 @@ static float const likesWeight = 3;
                 NSUInteger index = [self.individualQueues indexOfObject:batch];
                 NSMutableArray *postsArr = batch[@"postsArr"];
                 if([self batchContainsPost:post batch:postsArr] == NO){
-                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-                    [tempPost setObject:@(0) forKey:@"rank"];
-                    [tempPost setObject:key forKey:@"zipcode"];
-                    [tempPost setObject:post forKey:@"post"];
-                    [postsArr addObject:tempPost];
-                    [batch setObject:postsArr forKey:@"postsArr"];
-                    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
+                      NSMutableArray *updatedArr = [self getZipcodePostsArr:post postArr:postsArr key:key];
+                      [batch setObject:updatedArr forKey:@"postsArr"];
+                      [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             } else {
-                NSMutableDictionary *farDistanceBatch = [[NSMutableDictionary alloc] init];
-                NSMutableArray *postsArr = [[NSMutableArray alloc] init];
-                NSNumber *loopIndex = @(0);
-                NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-                [tempPost setObject:@(0) forKey:@"rank"];
-                [tempPost setObject:key forKey:@"zipcode"];
-                [tempPost setObject:post forKey:@"post"];
-                [postsArr addObject:tempPost];
-                [farDistanceBatch setObject:key forKey:@"zipcode"];
-                [farDistanceBatch setObject:loopIndex forKey:@"loopIndex"];
-                [farDistanceBatch setObject:postsArr forKey:@"postsArr"];
-                [self.individualQueues addObject:farDistanceBatch];
+                    NSMutableDictionary *farDistanceBatch = [[NSMutableDictionary alloc] init];
+                    NSNumber *loopIndex = @(0);
+                    NSMutableArray *postsArr = [[NSMutableArray alloc] init];
+                    NSMutableArray *updatedArr = [self getZipcodePostsArr:post postArr:postsArr key:key];
+                    [farDistanceBatch setObject:key forKey:@"zipcode"];
+                    [farDistanceBatch setObject:loopIndex forKey:@"loopIndex"];
+                    [farDistanceBatch setObject:updatedArr forKey:@"postsArr"];
+                    [self.individualQueues addObject:farDistanceBatch];
             }
         }
     }];
+}
+
+- (NSMutableArray *)getZipcodePostsArr:(Post *)post postArr:(NSMutableArray *)postArr key:(NSString *)key{
+    NSMutableArray *copy = postArr;
+    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+    NSNumber *rank = [self getPostRank:@"1" post:post];
+    [tempPost setObject:rank forKey:@"rank"];
+    [tempPost setObject:key forKey:@"zipcode"];
+    [tempPost setObject:post forKey:@"post"];
+    [copy addObject:tempPost];
+    return copy;
+}
+
+- (BOOL)livefeedContainsPost:(Post *)post{
+    for(Post *livepost in self.livefeed){
+        NSString *postId = [livepost objectId];
+        NSString *currentId = [post objectId];
+        if([postId isEqual:currentId])
+            return YES;
+    }
+    return NO;
 }
 
 - (BOOL)batchContainsPost:(Post *)post batch:(NSMutableArray *)batch{
@@ -237,7 +251,7 @@ static float const likesWeight = 3;
         [tempPost setObject:rank forKey:@"rank"];
         [tempPost setObject:key forKey:@"zipcode"];
         [tempPost setObject:post forKey:@"post"];
-        if(![self.posts containsObject:post])
+        if([self livefeedContainsPost:post] == NO)
             [postsArr addObject:tempPost];
     }
     NSMutableArray *sortedArr = [[self sortPostsArr:postsArr] mutableCopy];
@@ -259,12 +273,14 @@ static float const likesWeight = 3;
     float creationSec = [timeInterval floatValue] * timeWeight;
     float likeCount = [likes floatValue];
     float distWeight;
-    if([distance floatValue] != 0){
+    if([distance floatValue] == 1){
+        distWeight = 0;
+    } else if([distance floatValue] != 0){
         distWeight = 1 / [distance floatValue];
     } else {
         distWeight = 1 + [distance floatValue];
     }
-    float rank = (likeCount * likesWeight) * distWeight + creationSec;
+    float rank = likeCount * distWeight + creationSec;
     return @(rank);
 }
 
