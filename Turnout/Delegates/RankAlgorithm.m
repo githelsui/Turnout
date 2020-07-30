@@ -153,6 +153,7 @@ static float const likesWeight = 1.75;
         NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
         NSNumber *rank = [self getPostRank:key post:post];
         [tempPost setObject:rank forKey:@"rank"];
+        [tempPost setObject:key forKey:@"zipcode"];
         [tempPost setObject:post forKey:@"post"];
         [postsArr addObject:tempPost];
     }
@@ -173,6 +174,15 @@ static float const likesWeight = 1.75;
         //adds all first posts from each zipcode into priorityQueue
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
+}
+
+- (void)mergeQueues:(NSDictionary *)queue{
+    NSDictionary *priorityPost = [self.priorityQueue poll];
+    NSArray *posts = queue[@"postsArr"];
+    int index = [queue[@"loopIndex"] intValue];
+    if(posts.count != index){
+        
+    }
 }
 
 - (void)mergeSortForFeed{
