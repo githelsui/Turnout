@@ -79,6 +79,17 @@
          contextName = "main:main.m">
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm fetchNeighboringPosts:skip:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "![currZip isEqual:key]">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentZip">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -99,9 +110,6 @@
                value = "self.posts">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm fetchFarPosts:completion:]:RankAlgorithm.m">
       </ContextState>
       <ContextState
          contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">

@@ -19,6 +19,7 @@ static float const likesWeight = 1.75;
 @property (nonatomic, strong) NSMutableArray *postDicts;
 @property (nonatomic, strong, retain) NSMutableArray *individualQueues;
 @property (nonatomic, strong, retain) Zipcode *currentZip;
+@property NSInteger currentZipPosts;
 @property (nonatomic, strong) PriorityQueue *queue;
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
 
@@ -46,6 +47,7 @@ static float const likesWeight = 1.75;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
+    if(skip == 0) self.currentZipPosts = 0;
     [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
     [self.individualQueues removeAllObjects];
@@ -117,10 +119,16 @@ static float const likesWeight = 1.75;
         [query orderByDescending:@"likeCount"];
         [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
         NSString *key = zipcode[@"zipcode"][@"zipcode"];
+        NSString *currZip = self.currentZip[@"zipcode"];
         NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
         NSLog(@"dict: %@", key);
-        [query setLimit:2];
-        [query setSkip:skip];
+        if([currZip isEqual:key] == NO){ //for zipcodes that are NOT current zipcode, does not matter whether refreshing/load more function
+            [query setLimit:2];
+            [query setSkip:skip];
+        } else {
+            [query setSkip:self.currentZipPosts]; //keep track of how many posts under current users zipcode, skip = self.currentZipsPosts
+            //when skip == 0, refreshing functionality: reset self.currentZipsPost back to 0
+        }
         [query includeKey:@"zipcode"];
         [query includeKey:@"createdAt"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
@@ -182,30 +190,40 @@ static float const likesWeight = 1.75;
                 NSUInteger index = [self.individualQueues indexOfObject:batch];
                 NSMutableArray *postsArr = batch[@"postsArr"];
                 if([self batchContainsPost:post batch:postsArr] == NO){
-                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-                    [tempPost setObject:@(0) forKey:@"rank"];
-                    [tempPost setObject:key forKey:@"zipcode"];
-                    [tempPost setObject:post forKey:@"post"];
-                    [postsArr addObject:tempPost];
-                    [batch setObject:postsArr forKey:@"postsArr"];
+//                    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+//                    [tempPost setObject:@(0) forKey:@"rank"];
+//                    [tempPost setObject:key forKey:@"zipcode"];
+//                    [tempPost setObject:post forKey:@"post"];
+//                    [postsArr addObject:tempPost];
+                    NSMutableArray *updatedArr = [self addIndividualPost:post key:key postsArr:postsArr];
+                    [batch setObject:updatedArr forKey:@"postsArr"];
                     [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             } else {
                 NSMutableDictionary *farDistanceBatch = [[NSMutableDictionary alloc] init];
-                NSMutableArray *postsArr = [[NSMutableArray alloc] init];
-                NSNumber *loopIndex = @(0);
-                NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-                [tempPost setObject:@(0) forKey:@"rank"];
-                [tempPost setObject:key forKey:@"zipcode"];
-                [tempPost setObject:post forKey:@"post"];
-                [postsArr addObject:tempPost];
                 [farDistanceBatch setObject:key forKey:@"zipcode"];
+                NSNumber *loopIndex = @(0);
                 [farDistanceBatch setObject:loopIndex forKey:@"loopIndex"];
-                [farDistanceBatch setObject:postsArr forKey:@"postsArr"];
+                NSMutableArray *postsArr = [[NSMutableArray alloc] init];
+                NSMutableArray *updatedArr = [self addIndividualPost:post key:key postsArr:postsArr];
+                [farDistanceBatch setObject:updatedArr forKey:@"postsArr"];
                 [self.individualQueues addObject:farDistanceBatch];
             }
         }
     }];
+}
+
+- (NSMutableArray *)addIndividualPost:(Post *)post key:(NSString *)key postsArr:(NSMutableArray *)postsArr{
+    NSMutableArray *newArr = postsArr;
+    NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
+    [tempPost setObject:@(0) forKey:@"rank"];
+    [tempPost setObject:key forKey:@"zipcode"];
+    [tempPost setObject:post forKey:@"post"];
+    [newArr addObject:tempPost];
+    if([key isEqual:self.currentZip[@"zipcode"]]){
+        self.currentZipPosts += 1;
+    }
+    return newArr;
 }
 
 - (BOOL)batchContainsPost:(Post *)post batch:(NSMutableArray *)batch{
@@ -237,8 +255,12 @@ static float const likesWeight = 1.75;
         [tempPost setObject:rank forKey:@"rank"];
         [tempPost setObject:key forKey:@"zipcode"];
         [tempPost setObject:post forKey:@"post"];
-        if(![self.posts containsObject:post])
+        if(![self.posts containsObject:post]){
             [postsArr addObject:tempPost];
+            if([key isEqual:self.currentZip[@"zipcode"]]){
+                self.currentZipPosts += 1;
+            }
+        }
     }
     NSMutableArray *sortedArr = [[self sortPostsArr:postsArr] mutableCopy];
     NSLog(@"sorted array for %@: %@", key, sortedArr);
