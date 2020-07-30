@@ -244,6 +244,9 @@
             <PersistentString
                value = "postsArr.count">
             </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
