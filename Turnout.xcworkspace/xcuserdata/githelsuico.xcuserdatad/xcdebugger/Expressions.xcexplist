@@ -58,6 +58,11 @@
       </ContextState>
       <ContextState
          contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">
@@ -398,6 +403,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm addToPriorityQueue:batch:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
       </ContextState>
       <ContextState
@@ -441,6 +457,23 @@
       </ContextState>
       <ContextState
          contextName = "__50-[RankAlgorithm fetchNeighboringPosts:completion:]_block_invoke:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm mergeBatches]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+            <PersistentString
+               value = "self.priorityQueue.size">
+            </PersistentString>
+            <PersistentString
+               value = "posts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__41+[Zipcode saveNewZipcode:withCompletion:]_block_invoke:Zipcode.m">
