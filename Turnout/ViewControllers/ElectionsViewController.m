@@ -23,7 +23,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchElections) userInfo:nil repeats:true];
+    [self fetchElections];
 }
 
 - (void)fetchElections{

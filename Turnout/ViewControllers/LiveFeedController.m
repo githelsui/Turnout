@@ -40,10 +40,8 @@ NSIndexPath *lastIndexPath;
     [self initTableView];
     [self setUpFooter];
     self.rankAlgo = [[RankAlgorithm alloc]init];
-//      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadFeed) userInfo:nil repeats:true];
-//    [self reloadFeed];
     [self queryPostsWhenLoad];
-    [self startTimer];
+//    [self startTimer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(reloadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -89,57 +87,58 @@ NSIndexPath *lastIndexPath;
     button.layer.borderColor = [UIColor grayColor].CGColor;
     [loadView addSubview:button];
     self.tableView.tableFooterView = loadView;
-//    [UIView animateWithDuration:4 animations:^{
-//        loadView.alpha = 1;
-//        button.alpha = 1;
-//    }];
+    [UIView animateWithDuration:4 animations:^{
+        loadView.alpha = 1;
+        button.alpha = 1;
+    }];
 }
 
-- (void)startTimer{
-    if(self.currentUser){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
-                       {
-            self.timer = [NSTimer timerWithTimeInterval:1
-                                                 target:self
-                                               selector:@selector(queryPostsWhenLoad)
-                                               userInfo:nil repeats:YES];
-            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-            dispatch_async(dispatch_get_main_queue(), ^(void)
-                           {
-            });
-        });
-    }
-}
+//- (void)startTimer{
+//    if(self.currentUser){
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+//                       {
+//            self.timer = [NSTimer timerWithTimeInterval:1
+//                                                 target:self
+//                                               selector:@selector(queryPostsWhenLoad)
+//                                               userInfo:nil repeats:YES];
+//            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//            dispatch_async(dispatch_get_main_queue(), ^(void)
+//                           {
+//            });
+//        });
+//    }
+//}
+
+//- (void)reloadData{
+//    [self.tableView reloadData];
+//    NSLog(@"%s", "timer going off");
+//}
 
 - (void)queryPostsWhenLoad{
-//        [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
-//           if(posts){
-//                  self.posts = posts;
-//                  self.mutablePosts = [posts mutableCopy];
-//                  [self.timer invalidate];
-//              }
+    [self.rankAlgo queryPosts: self.mutablePosts completion:^(NSArray *posts, NSError *error){
+        if(posts){
+            self.posts = posts;
+            self.mutablePosts = [posts mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self setUpFooter];
+            });
+        }
+    }];
+    
+//       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+//       [query orderByDescending:@"likeCount"];
+//       [query includeKey:@"zipcode"];
+//       [query includeKey:@"createdAt"];
+//       [query setLimit:4];
+//       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//           if(results){
+//               self.posts = results;
+//               self.mutablePosts = [results mutableCopy];
+//           }
 //       }];
 //       [self.tableView reloadData];
 //       [self setUpFooter];
-    
-       PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-       [query orderByDescending:@"likeCount"];
-       [query includeKey:@"zipcode"];
-       [query includeKey:@"createdAt"];
-       [query setLimit:4];
-       [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-           if(results){
-               self.posts = results;
-               self.mutablePosts = [results mutableCopy];
-           }
-       }];
-       [self.tableView reloadData];
-       [self setUpFooter];
-}
-
-- (void)reloadData{
-    [self.tableView reloadData];
-    NSLog(@"%s", "timer going off");
 }
 
 - (void)setGestureRecogs{
@@ -274,13 +273,13 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)refreshFeed{
-    [self startTimer];
+//    [self startTimer];
 }
 
 - (void)postToTopFeed:(Post *)post {
     [self.mutablePosts insertObject:post atIndex:0];
     NSLog(@"mutable posts = %@", self.mutablePosts);
-    [self startTimer];
+//    [self startTimer];
 }
 
 @end
