@@ -131,7 +131,6 @@ NSIndexPath *lastIndexPath;
 
 - (void)reloadData{
     [self.tableView reloadData];
-    NSLog(@"%s", "timer going off");
 }
 
 - (void)loadFeed{
