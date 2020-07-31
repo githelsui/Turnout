@@ -185,10 +185,12 @@ NSIndexPath *lastIndexPath;
     if (!hasContentView) {
         [cell addSubview:cell.contentView];
     }
-    Post *post = self.mutablePosts[indexPath.row];
-    cell.post = post;
-    cell.delegate = self;
-    [cell setCell];
+    if(self.mutablePosts.count > 0){
+        Post *post = self.mutablePosts[indexPath.row];
+        cell.post = post;
+        cell.delegate = self;
+        [cell setCell];
+    }
     return cell;
 }
 
