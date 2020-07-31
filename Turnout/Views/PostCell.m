@@ -200,8 +200,18 @@
     [UIView animateWithDuration:1 animations:^{
         self.likeAnimation.alpha = 1;
     }];
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         self.likeAnimation.alpha = 0;
+        self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
+                                                          green:180.0f/255.0f
+                                                           blue:171.0f/255.0f
+                                                          alpha:1.0f];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
+                                                              green:180.0f/255.0f
+                                                               blue:171.0f/255.0f
+                                                              alpha:0.2f];
+        }];
     }];
 }
 
