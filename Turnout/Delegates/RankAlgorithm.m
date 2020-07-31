@@ -209,7 +209,7 @@ static float const timeWeight = 0.000005;
                 }
             } else {
                     NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
-                    KSQueue *queue = batch[@"queue"];
+                    KSQueue *queue = [[KSQueue alloc] init];
                     KSQueue *updatedQueue =  [self updatePostQueue:post postArr:queue];
                     [newBatch setObject:key forKey:@"zipcode"];
                     [newBatch setObject:updatedQueue forKey:@"queue"];
@@ -240,9 +240,10 @@ static float const timeWeight = 0.000005;
 }
 
 - (void)beginMerge:(NSArray *)individualQueues{
-    for(NSDictionary *batch in individualQueues){
+    for(NSMutableDictionary *batch in individualQueues){
         KSQueue *queue = batch[@"queue"];
         NSDictionary *first = [queue dequeue];
+//        [self updateIndividualBatch:batch queue:queue];
         [self.priorityQueue add:first];
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
@@ -259,20 +260,27 @@ static float const timeWeight = 0.000005;
         if([posts getSize] == 0){
             [self fetchZipcodeBatch:zipcode];
         } else if([posts getSize] > 0){
-            NSDictionary *firstElement = [posts dequeue];
-            [self addToPriorityQueue:firstElement batch:batch];
+            [self addToPriorityQueue:batch];
         } //batch is exhausted in database
     } else {
         self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
     }
 }
 
-- (void)addToPriorityQueue:(NSDictionary *)post batch:(NSDictionary *)batch{
-    KSQueue *posts = batch[@"queue"];
-    if([posts getSize] == 0){
-        [self.priorityQueue add:post];
+- (void)addToPriorityQueue:(NSMutableDictionary *)batch{
+    KSQueue *queue = batch[@"queue"];
+    NSDictionary *firstElement = [queue dequeue];
+    [self updateIndividualBatch:batch queue:queue];
+    if([queue getSize] == 0){
+        [self.priorityQueue add:firstElement];
         [self mergeBatches];
     }
+}
+
+- (void)updateIndividualBatch:(NSMutableDictionary *)batch queue:(KSQueue *)queue{
+    NSUInteger index = [self.individualQueues indexOfObject:batch];
+    [batch setObject:queue forKey:@"queue"];
+    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
 }
 
 - (void)fetchZipcodeBatch:(Zipcode *)zipcode{
@@ -293,7 +301,8 @@ static float const timeWeight = 0.000005;
                  }
             }
             NSLog(@"far away batches: %@", self.individualQueues);
-//            [self addToPriorityQueue:<#(NSDictionary *)#> batch:<#(NSDictionary *)#>]
+            NSMutableDictionary *batch = [self getZipcodeBatch:zipcode[@"zipcode"]];
+            [self addToPriorityQueue:batch];
         }
     }];
 }
