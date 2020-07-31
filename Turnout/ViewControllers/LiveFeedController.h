@@ -20,6 +20,7 @@
 #import "Post.h"
 #import "PostDetailController.h"
 #import "ComposeViewController.h"
+#import "FCAlertView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -56,6 +56,21 @@ NSIndexPath *lastIndexPath;
     [self setGestureRecogs];
 }
 
+- (void)presentAlert:(NSString *)title msg:(NSString *)msg{
+    FCAlertView *alert = [[FCAlertView alloc] init];
+    alert.cornerRadius = 20;
+    alert.colorScheme = alert.flatOrange;
+    alert.detachButtons = YES;
+    alert.titleFont = [UIFont systemFontOfSize:25 weight:UIFontWeightThin];
+    alert.subtitleFont = [UIFont systemFontOfSize:14 weight:UIFontWeightThin];
+    [alert showAlertInView:self
+              withTitle:title
+           withSubtitle:msg
+        withCustomImage:nil
+    withDoneButtonTitle:@"OK"
+             andButtons:nil];
+}
+
 - (void)setUpHeader{
     self.currentUser = PFUser.currentUser;
     Zipcode *zip = self.currentUser[@"zipcode"];
@@ -142,7 +157,7 @@ NSIndexPath *lastIndexPath;
                 [self setUpFooter];
             });
         } else {
-            NSLog(@"show alert here!");
+            [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
         }
     }];
 }
