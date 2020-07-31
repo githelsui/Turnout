@@ -7,8 +7,13 @@
 //
 
 #import "CandidatesViewController.h"
+#import "OpenFECAPI.h"
+#import "CandidateCell.h"
 
-@interface CandidatesViewController ()
+@interface CandidatesViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *candidates;
 
 @end
 
@@ -16,8 +21,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self fetchCandidates];
 }
+
+- (void)fetchCandidates{
+    [[OpenFECAPI shared] fetchCandidates:^(NSArray *candidates, NSError *error){
+        if(candidates){
+            self.candidates = candidates;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.candidates.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CandidateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CandidateCell"];
+    if (cell == nil) {
+        cell = [[CandidateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CandidateCell"];
+    }
+    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+    if (!hasContentView) {
+        [cell addSubview:cell.contentView];
+    }
+    NSMutableDictionary *candidate = self.candidates[indexPath.row];
+    cell.candidate = candidate;
+    [cell setCell];
+    return cell;
+}
+
 
 /*
 #pragma mark - Navigation

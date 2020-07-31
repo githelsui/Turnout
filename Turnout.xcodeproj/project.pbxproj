@@ -30,6 +30,7 @@
 		CA5F03E724BCD58600F599CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03E624BCD58600F599CF /* main.m */; };
 		CA5F03F124BCD58700F599CF /* TurnoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03F024BCD58700F599CF /* TurnoutTests.m */; };
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
+		CA682ED524D4CFF000C74182 /* CandidateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682ED424D4CFF000C74182 /* CandidateCell.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
@@ -114,6 +115,8 @@
 		CA5F03F724BCD58700F599CF /* TurnoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TurnoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TurnoutUITests.m; sourceTree = "<group>"; };
 		CA5F03FD24BCD58700F599CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA682ED324D4CFF000C74182 /* CandidateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandidateCell.h; sourceTree = "<group>"; };
+		CA682ED424D4CFF000C74182 /* CandidateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandidateCell.m; sourceTree = "<group>"; };
 		CA7CFA7B24BFAC9900AADA69 /* Assoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assoc.h; sourceTree = "<group>"; };
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
 		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				CAAEF88824D202E400F27247 /* VoterInfoCell.m */,
 				CAAEF88A24D21F1200F27247 /* ElectionsPageControl.h */,
 				CAAEF88B24D21F1200F27247 /* ElectionsPageControl.m */,
+				CA682ED324D4CFF000C74182 /* CandidateCell.h */,
+				CA682ED424D4CFF000C74182 /* CandidateCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */,
 				CA15FA5D24BE23B600307BBD /* Zipcode.m in Sources */,
 				CA15FA6024BE51B400307BBD /* ComposeViewController.m in Sources */,
+				CA682ED524D4CFF000C74182 /* CandidateCell.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
 				CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
