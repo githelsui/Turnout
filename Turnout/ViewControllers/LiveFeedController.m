@@ -7,18 +7,8 @@
 //
 
 #import "LiveFeedController.h"
-#import "SceneDelegate.h"
-#import "LoginViewController.h"
-#import <FBSDKCoreKit/FBSDKProfile.h>
-#import <FBSDKLoginKit/FBSDKLoginManager.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Parse/Parse.h>
-#import <Parse/PFImageView.h>
-#import "RankAlgorithm.h"
-#import "PostCell.h"
-#import "Post.h"
-#import "PostDetailController.h"
-#import "ComposeViewController.h"
+
+static int const skipAmount = 3;
 
 @interface LiveFeedController () <RankAlgorithmDelegate, PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -131,7 +121,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)fetchMorePosts{
-    self.skipIndex += 3;
+    self.skipIndex += skipAmount;
     [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
         if(posts.count > 0){
             [self.mutablePosts addObjectsFromArray:posts];

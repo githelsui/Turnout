@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "SceneDelegate.h"
+#import "LoginViewController.h"
+#import <FBSDKCoreKit/FBSDKProfile.h>
+#import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Parse/PFImageView.h>
+#import "RankAlgorithm.h"
+#import "PostCell.h"
+#import "Post.h"
+#import "PostDetailController.h"
+#import "ComposeViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -53,21 +53,11 @@
                 if(individualQueues){
                     [self fetchFarPosts:skip completion:^(NSMutableArray *farPosts, NSError *error){
                         if(self.individualQueues.count > 0){
-//                            dispatch_queue_t mergeQueue;
-//                            dispatch_sync(mergeQueue, ^{
-//                                //beginMerge
-//                                //mergeBatches
-//                                //completion(self.posts, nil)
-//                                //separate dispatch for each
-//                            });
-                            
-                            //OR
                             
                             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                                 [self beginMerge:self.individualQueues];
                             });
                             
-                        
                             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                                 [self mergeBatches];
                             });
@@ -75,8 +65,8 @@
                             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                                completion(self.posts, nil);
                             });
+                            
                         } else{
-                            NSLog(@"entire self.posts: %@", self.posts);
                             completion(self.posts, nil);
                         }
                     }];
