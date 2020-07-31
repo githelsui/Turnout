@@ -134,7 +134,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.1990849743150685" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="7rq-oH-wBW" secondAttribute="trailing" constant="10" id="0wf-L5-kDd"/>
                                                         <constraint firstAttribute="bottom" secondItem="pH8-8c-SNg" secondAttribute="bottom" constant="16" id="2t9-hr-b7d"/>
@@ -516,10 +516,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-Ab-zZD">
-                                <rect key="frame" x="38" y="322" width="298" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
+                                <rect key="frame" x="16" y="71" width="343" height="630"/>
+                                <color key="tintColor" red="1" green="0.81790701489999995" blue="0.74818149320000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-Ab-zZD">
+                                <rect key="frame" x="38" y="338" width="298" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="G52-Pr-esM"/>
+                                    <constraint firstAttribute="width" constant="298" id="ubU-Z2-Fox"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                 <state key="normal" title="Register to Vote">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -529,10 +536,29 @@
                                     <segue destination="bXg-BL-uTG" kind="presentation" identifier="registerSegue" id="5Dk-R4-7Jj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5H-wv-zQC">
-                                <rect key="frame" x="38" y="187" width="298" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-xs-4ch">
+                                <rect key="frame" x="38" y="457" width="298" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7g7-lY-ZfX"/>
+                                    <constraint firstAttribute="width" constant="298" id="Lcp-M8-pm0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                <state key="normal" title="Absentee Ballot">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="absenteeSegue" id="x2Z-zs-ff5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5H-wv-zQC">
+                                <rect key="frame" x="38" y="225" width="298" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Blp-1n-s5Q"/>
+                                    <constraint firstAttribute="width" constant="298" id="NeZ-Gb-rTD"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                 <state key="normal" title="Am I Registered to Vote">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -543,21 +569,24 @@
                                     <segue destination="bXg-BL-uTG" kind="presentation" identifier="checkRegisterSegue" id="P0e-PU-Cvb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-xs-4ch">
-                                <rect key="frame" x="38" y="457" width="298" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
-                                <state key="normal" title="Absentee Ballot">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="absenteeSegue" id="x2Z-zs-ff5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="Iqb-Ab-zZD" secondAttribute="trailing" constant="39" id="2J7-FA-vYX"/>
+                            <constraint firstItem="ufG-xC-fmt" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="15" id="6vp-EM-YsP"/>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="ftE-xs-4ch" secondAttribute="trailing" constant="39" id="75O-kb-pyc"/>
+                            <constraint firstItem="ftE-xs-4ch" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="9an-7G-Fr0"/>
+                            <constraint firstItem="ufG-xC-fmt" firstAttribute="bottom" secondItem="GLu-k6-fs3" secondAttribute="bottom" constant="26" id="DnH-gB-5BA"/>
+                            <constraint firstItem="ufG-xC-fmt" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="16" id="NL7-jY-Pcd"/>
+                            <constraint firstItem="ftE-xs-4ch" firstAttribute="top" secondItem="Iqb-Ab-zZD" secondAttribute="bottom" constant="59" id="WGs-oi-pb5"/>
+                            <constraint firstItem="t5H-wv-zQC" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="ZHJ-ol-7lA"/>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="bottom" secondItem="ftE-xs-4ch" secondAttribute="bottom" constant="158" id="a04-9Y-CfN"/>
+                            <constraint firstItem="Iqb-Ab-zZD" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="fRv-u6-AQM"/>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="ufG-xC-fmt" secondAttribute="trailing" constant="16" id="rTy-HN-gGD"/>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="t5H-wv-zQC" secondAttribute="trailing" constant="39" id="rYH-SZ-qC5"/>
+                            <constraint firstItem="t5H-wv-zQC" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="169" id="s1k-MU-rXE"/>
+                            <constraint firstItem="Iqb-Ab-zZD" firstAttribute="top" secondItem="t5H-wv-zQC" secondAttribute="bottom" constant="53" id="zNW-jO-vaN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Vote" image="votermenu" id="kUe-su-o9i">
@@ -566,6 +595,7 @@
                     <navigationItem key="navigationItem" id="xj7-sP-fyR"/>
                     <connections>
                         <outlet property="absenteeBtn" destination="ftE-xs-4ch" id="hQI-O7-9MF"/>
+                        <outlet property="backgrndView" destination="ufG-xC-fmt" id="132-oa-dUZ"/>
                         <outlet property="checkRegistrationBtn" destination="t5H-wv-zQC" id="V5q-AX-Pp0"/>
                         <outlet property="registerBtn" destination="Iqb-Ab-zZD" id="foa-Y2-0j0"/>
                     </connections>
@@ -616,7 +646,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" red="0.89137848980000001" green="0.89137848980000001" blue="0.89137848980000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="359" id="5xe-fZ-fai"/>
                                                                 <constraint firstAttribute="height" constant="124" id="NxK-3j-Ar7"/>
@@ -716,7 +746,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" red="0.89137848980000001" green="0.89137848980000001" blue="0.89137848980000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="124" id="HDz-7M-6Sr"/>
                                                                         <constraint firstAttribute="width" constant="359" id="r2S-Hi-XQ9"/>
@@ -840,7 +870,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.89137848984771573" green="0.89137848984771573" blue="0.89137848984771573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="124" id="ifg-B5-7b1"/>
                                                         <constraint firstAttribute="width" constant="359" id="oY5-q7-O4m"/>
@@ -1105,9 +1135,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="eVj-so-SBW"/>
+        <segue reference="P0e-PU-Cvb"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Orange Coral" width="1120" height="1792"/>
         <image name="billprop_menu" width="25" height="25"/>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>

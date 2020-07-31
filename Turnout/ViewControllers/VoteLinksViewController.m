@@ -11,6 +11,7 @@
 
 @interface VoteLinksViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *checkRegistrationBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *backgrndView;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *absenteeBtn;
 @property (nonatomic, strong) NSString *linkURL;
@@ -21,9 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUI];
     [self setButtonUI:self.checkRegistrationBtn];
     [self setButtonUI:self.registerBtn];
     [self setButtonUI:self.absenteeBtn];
+}
+
+- (void)setUI{
+    self.backgrndView.alpha = 0.67;
+    self.backgrndView.layer.cornerRadius = 15;
 }
 
 - (void)setButtonUI:(UIButton *)button{
