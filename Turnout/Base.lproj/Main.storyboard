@@ -630,6 +630,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APL-7P-Bbz">
                                                             <rect key="frame" x="8" y="11" width="359" height="124"/>
                                                             <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="flipped_color" translatesAutoresizingMaskIntoConstraints="NO" id="qfx-ba-AoO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of Adminitration Body " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfN-jr-tzU">
                                                                     <rect key="frame" x="8" y="16" width="193" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -648,8 +651,12 @@
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="qfx-ba-AoO" secondAttribute="trailing" id="5Wx-K7-3ag"/>
                                                                 <constraint firstAttribute="width" constant="359" id="5xe-fZ-fai"/>
                                                                 <constraint firstAttribute="height" constant="124" id="NxK-3j-Ar7"/>
+                                                                <constraint firstAttribute="bottom" secondItem="qfx-ba-AoO" secondAttribute="bottom" id="Zd4-37-rG8"/>
+                                                                <constraint firstItem="qfx-ba-AoO" firstAttribute="top" secondItem="APL-7P-Bbz" secondAttribute="top" id="oaO-SF-HPk"/>
+                                                                <constraint firstItem="qfx-ba-AoO" firstAttribute="leading" secondItem="APL-7P-Bbz" secondAttribute="leading" id="u9N-Mp-mr0"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -663,6 +670,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="adminLabel" destination="GfN-jr-tzU" id="9LN-lv-JIT"/>
+                                                    <outlet property="backImage" destination="qfx-ba-AoO" id="Yuf-mc-gKD"/>
                                                     <outlet property="bubbleView" destination="APL-7P-Bbz" id="0Hr-tI-Sp2"/>
                                                     <outlet property="titleLabel" destination="TSg-61-EMI" id="lDp-bj-qTf"/>
                                                 </connections>
