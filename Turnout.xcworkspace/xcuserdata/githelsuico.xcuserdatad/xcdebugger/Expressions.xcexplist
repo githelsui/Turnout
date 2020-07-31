@@ -302,6 +302,9 @@
          contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+            <PersistentString
                value = "self.livefeed">
             </PersistentString>
             <PersistentString
@@ -566,9 +569,6 @@
             </PersistentString>
             <PersistentString
                value = "batch">
-            </PersistentString>
-            <PersistentString
-               value = "individualQueues">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

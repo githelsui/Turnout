@@ -76,6 +76,7 @@
                                completion(self.posts, nil);
                             });
                         } else{
+                            NSLog(@"entire self.posts: %@", self.posts);
                             completion(self.posts, nil);
                         }
                     }];
@@ -171,9 +172,12 @@
 - (void)queuePerBatch:(NSArray *)posts zipcode:(NSDictionary *)zipcode completion:(void(^)(KSQueue *posts, NSError *error))completion{
     KSQueue *queue = [[KSQueue alloc] init];
     Zipcode *zip = zipcode[@"zipcode"];
+    NSString *distance = zipcode[@"distance"];
     for(Post *post in posts){
         NSMutableDictionary *postValues = [[NSMutableDictionary alloc] init];
-        [postValues setObject:post[@"likeCount"] forKey:@"rank"];
+        NSNumber *likes = post[@"likeCount"];
+        NSNumber *rank = @([likes floatValue] * [distance floatValue]);
+        [postValues setObject:rank forKey:@"rank"];
         [postValues setObject:zip forKey:@"zipcode"];
         [postValues setObject:post forKey:@"post"];
         if([self livefeedContainsPost:post] == NO)
@@ -256,6 +260,16 @@
     return NO;
 }
 
+- (BOOL)postsContains:(Post *)post{
+    for(Post *livepost in self.posts){
+        NSString *postId = [livepost objectId];
+        NSString *currentId = [post objectId];
+        if([postId isEqual:currentId])
+            return YES;
+    }
+    return NO;
+}
+
 - (void)beginMerge:(NSArray *)individualQueues{
     for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
         KSQueue *queue = batch[@"queue"];
@@ -264,10 +278,6 @@
         [self.priorityQueue add:first];
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
-}
-
-- (void)checkIfMerged:(void(^)(NSMutableArray *posts, NSError *error))completion{
-    
 }
 
 - (void)mergeBatches{
@@ -285,8 +295,6 @@
             [self addToPriorityQueue:batch];
         }
     }
-    self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
-        //pass in this value as a completion block...
 }
 
 - (void)addToPriorityQueue:(NSMutableDictionary *)batch{
@@ -317,14 +325,20 @@
     [query includeKey:@"likeCount"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(results.count > 0){
+            BOOL lastItemInQuery = NO;
             for(Post *post in results){
-                if([self livefeedContainsPost:post] == NO){
+                if([self postsContains:post] == NO){
                      [self createPostBatch:post];
-                 }
+                } else {
+                     lastItemInQuery = YES;
+                     [self mergeBatches];
+                }
             }
             NSLog(@"far away batches: %@", self.individualQueues);
-            NSMutableDictionary *batch = [self getZipcodeBatch:zipcode[@"zipcode"]];
-            [self addToPriorityQueue:batch];
+            if(lastItemInQuery == NO){
+                NSMutableDictionary *batch = [self getZipcodeBatch:zipcode[@"zipcode"]];
+                [self addToPriorityQueue:batch];
+            }
         } else {
             [self mergeBatches];
         }
@@ -353,28 +367,6 @@
         if(zip){
             NSArray *neighbors = zip[@"neighbors"];
             completion(neighbors, nil);
-        } else {
-            completion(nil, error);
-        }
-    }];
-}
-
-- (NSNumber *)getCreatedAtConstant:(Post *)post{
-    NSDate *created = [post createdAt];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EEE, MMM d, h:mm a"];
-    NSString *dateStr = [dateFormat stringFromDate:created];
-    NSLog(@"%@", dateStr);
-    NSTimeInterval timeInterval = [created timeIntervalSince1970];
-    NSLog(@"%f seconds since creation", timeInterval);
-    return [NSNumber numberWithDouble:timeInterval];
-}
-
-- (void)getPostCreatedAt:(Post *)post completion:(void(^)(NSDate *createdAt, NSError *error))completion{
-    [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error){
-        if(post){
-            NSDate *createdAt = post[@"createdAt"];
-            completion(createdAt, nil);
         } else {
             completion(nil, error);
         }
