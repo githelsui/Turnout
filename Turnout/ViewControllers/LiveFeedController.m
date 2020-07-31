@@ -113,26 +113,26 @@ NSIndexPath *lastIndexPath;
     }];
 }
 
-//- (void)startTimer{
-//    if(self.currentUser){
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
-//                       {
-//            self.timer = [NSTimer timerWithTimeInterval:1
-//                                                 target:self
-//                                               selector:@selector(queryPostsWhenLoad)
-//                                               userInfo:nil repeats:YES];
-//            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-//            dispatch_async(dispatch_get_main_queue(), ^(void)
-//                           {
-//            });
-//        });
-//    }
-//}
+- (void)startTimer{
+    if(self.currentUser){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                       {
+            self.timer = [NSTimer timerWithTimeInterval:1
+                                                 target:self
+                                               selector:@selector(reloadData)
+                                               userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+                           {
+            });
+        });
+    }
+}
 
-//- (void)reloadData{
-//    [self.tableView reloadData];
-//    NSLog(@"%s", "timer going off");
-//}
+- (void)reloadData{
+    [self.tableView reloadData];
+    NSLog(@"%s", "timer going off");
+}
 
 - (void)loadFeed{
     self.skipIndex = 0;
@@ -146,6 +146,7 @@ NSIndexPath *lastIndexPath;
                 [self.tableView reloadData];
                 [self setUpFooter];
                 [self.activityHUD dismiss];
+                [self startTimer];
             });
         }
     }];
