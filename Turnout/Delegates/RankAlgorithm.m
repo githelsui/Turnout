@@ -12,8 +12,6 @@
 #import "PriorityQueue.h"
 #import "KSQueue.h"
 
-static float const timeWeight = 0.000005;
-
 @interface RankAlgorithm ()
 @property (nonatomic, strong) NSMutableArray *postDicts;
 @property (nonatomic, strong, retain) NSMutableArray *individualQueues;
@@ -55,9 +53,28 @@ static float const timeWeight = 0.000005;
                 if(individualQueues){
                     [self fetchFarPosts:skip completion:^(NSMutableArray *farPosts, NSError *error){
                         if(self.individualQueues.count > 0){
-                            [self beginMerge:self.individualQueues];
-                            [self mergeBatches];
-                            completion(self.posts, nil);
+//                            dispatch_queue_t mergeQueue;
+//                            dispatch_sync(mergeQueue, ^{
+//                                //beginMerge
+//                                //mergeBatches
+//                                //completion(self.posts, nil)
+//                                //separate dispatch for each
+//                            });
+                            
+                            //OR
+                            
+                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                                [self beginMerge:self.individualQueues];
+                            });
+                            
+                        
+                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                                [self mergeBatches];
+                            });
+                            
+                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                               completion(self.posts, nil);
+                            });
                         } else{
                             completion(self.posts, nil);
                         }
@@ -143,7 +160,7 @@ static float const timeWeight = 0.000005;
                 }
             } else {
                 if([lastItem isEqualToString:key]){
-                    NSLog(@"no items in results");
+                    NSLog(@"the neighboring posts 2: %@", self.individualQueues);
                     completion(self.individualQueues, nil);
                 }
             }
@@ -240,19 +257,24 @@ static float const timeWeight = 0.000005;
 }
 
 - (void)beginMerge:(NSArray *)individualQueues{
-    for(NSMutableDictionary *batch in individualQueues){
+    for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
         KSQueue *queue = batch[@"queue"];
         NSDictionary *first = [queue dequeue];
-//        [self updateIndividualBatch:batch queue:queue];
+        [self updateIndividualBatch:batch queue:queue];
         [self.priorityQueue add:first];
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
 
+- (void)checkIfMerged:(void(^)(NSMutableArray *posts, NSError *error))completion{
+    
+}
+
 - (void)mergeBatches{
-    if(self.priorityQueue.size != 0) {
+    while(self.priorityQueue.size != 0) {
         NSDictionary *priorityPost = [self.priorityQueue poll];
         [self.posts addObject:priorityPost[@"post"]];
+        NSLog(@"post in livefeed: %@" , priorityPost[@"post"]);
         Zipcode *zipcode = priorityPost[@"zipcode"];
         NSString *zipStr = zipcode[@"zipcode"];
         NSMutableDictionary *batch = [self getZipcodeBatch:zipStr];
@@ -261,10 +283,10 @@ static float const timeWeight = 0.000005;
             [self fetchZipcodeBatch:zipcode];
         } else if([posts getSize] > 0){
             [self addToPriorityQueue:batch];
-        } //batch is exhausted in database
-    } else {
-        self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
+        }
     }
+    self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
+        //pass in this value as a completion block...
 }
 
 - (void)addToPriorityQueue:(NSMutableDictionary *)batch{
@@ -303,6 +325,8 @@ static float const timeWeight = 0.000005;
             NSLog(@"far away batches: %@", self.individualQueues);
             NSMutableDictionary *batch = [self getZipcodeBatch:zipcode[@"zipcode"]];
             [self addToPriorityQueue:batch];
+        } else {
+            [self mergeBatches];
         }
     }];
 }
