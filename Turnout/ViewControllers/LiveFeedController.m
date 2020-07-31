@@ -117,7 +117,7 @@ NSIndexPath *lastIndexPath;
 - (void)loadFeed{
     self.skipIndex = 0;
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
-        if(posts){
+        if(posts.count > 0){
             self.posts = posts;
             self.mutablePosts = [posts mutableCopy];
             self.rankAlgo.livefeed = self.mutablePosts;

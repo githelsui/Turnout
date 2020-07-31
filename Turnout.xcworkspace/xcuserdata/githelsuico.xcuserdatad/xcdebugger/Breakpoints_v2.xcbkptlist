@@ -5,54 +5,130 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "3EDF9B74-82AE-4952-808A-0055EBD7BB87"
+            shouldBeEnabled = "No"
+            condition = "-[__NSArrayM objectAtIndexedSubscript:]:"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BACD2515-6BD1-4263-896F-18FA353049FA"
+            uuid = "822EC697-DDFA-4276-9124-8BDE6E885A37"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-fetchNeighboringPosts:skip:completion:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-queryPosts:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6271D811-1196-4630-B83A-7CDF63F8C978"
+            uuid = "C7A3B1A5-AF51-477D-851F-233F73020DFD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-fetchNeighboringPosts:skip:completion:"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-queryPosts:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55858571-22AF-4344-8C8F-7B2F5944099C"
+            uuid = "49263B43-CC43-4EEA-8C37-277F3875DE03"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-queryPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E21C937E-4700-4972-91B1-897952C0C4F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-queryPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20D01DE0-B662-484E-A313-8F2E199E991A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-queryPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2EA375B-6740-4815-85D8-F9D60A32C787"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "-queryPosts:completion:"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "55858571-22AF-4344-8C8F-7B2F5944099C - b8fdf1a03cdbdb73"
+                  uuid = "C2EA375B-6740-4815-85D8-F9D60A32C787 - 8b158ce7a9a57dc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RankAlgorithm queryPosts:completion:]"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "C2EA375B-6740-4815-85D8-F9D60A32C787 - b8fdf1a03cdbdb73"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -62,23 +138,8 @@
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "210">
-               </Location>
-               <Location
-                  uuid = "55858571-22AF-4344-8C8F-7B2F5944099C - 37107e4d6fc10fe0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2"
-                  moduleName = "Turnout"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
                   offsetFromSymbolStart = "15">
                </Location>
             </Locations>
@@ -87,20 +148,35 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB8D8448-2E36-421C-8172-13ABE0BC116E"
+            uuid = "AD81E243-09EF-4382-A7C0-6F499A3FF380"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-queryPosts:completion:"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "EB8D8448-2E36-421C-8172-13ABE0BC116E - 37107e4d6fc10fe0"
+                  uuid = "AD81E243-09EF-4382-A7C0-6F499A3FF380 - b8fdf1a03cdbdb73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "210">
+               </Location>
+               <Location
+                  uuid = "AD81E243-09EF-4382-A7C0-6F499A3FF380 - 37107e4d6fc10fe0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -112,21 +188,182 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
                   endingLineNumber = "56"
-                  offsetFromSymbolStart = "110">
+                  offsetFromSymbolStart = "78">
                </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E7770490-D6F2-4DCD-901A-0CC5B12C296F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-queryPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E232D5BD-C0B9-4031-90B9-B151B13DE17B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-queryPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "18E8584B-9A26-40B2-8DA6-3F0E9CFF4860"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-getCurrentUserInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40648434-AA48-4DF6-B2B4-14B3F6C25C31"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-getCurrentUserInfo:"
+            landmarkType = "7">
+            <Locations>
                <Location
-                  uuid = "EB8D8448-2E36-421C-8172-13ABE0BC116E - 37107e4d6bc10f1f"
+                  uuid = "40648434-AA48-4DF6-B2B4-14B3F6C25C31 - 2a66b872525487bb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_3"
+                  symbolName = "-[RankAlgorithm getCurrentUserInfo:]"
                   moduleName = "Turnout"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "40648434-AA48-4DF6-B2B4-14B3F6C25C31 - e32c19bf0dc765ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "78">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7FABE688-CD47-4E8D-8EBC-2846C685FB25"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "-getCurrentUserInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DFC1A7A-9761-41AE-8F1F-05A41E4EFAA8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-getCurrentUserInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D07AD33-E423-443A-B826-753C9B4E87E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-getCurrentUserInfo:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2D07AD33-E423-443A-B826-753C9B4E87E9 - e32c19bf0dc765ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  uuid = "2D07AD33-E423-443A-B826-753C9B4E87E9 - da0d6cc89814959b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke_2"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
                   offsetFromSymbolStart = "12">
                </Location>
             </Locations>
@@ -135,78 +372,109 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A31DC7A4-D1A6-4535-981C-103C0490EC3C"
+            uuid = "BA799551-B936-4263-98C7-2A30D0362F7A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-fetchFarPosts:completion:"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-getCurrentUserInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "506D98C8-4713-493D-B574-F37968D65BC9"
+            uuid = "BF444BB4-9C0D-4DB9-87A0-3EED35DF0691"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-fetchNeighboringPosts:skip:completion:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-getNeighboringDicts:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "42A4FF71-F024-486D-9DE7-34DC6708E6C0"
+            uuid = "EE6C4E03-2853-412F-BC4B-3DA4E36E9CC4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "-fetchNeighboringPosts:skip:completion:"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-getNeighboringDicts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4EB77B3B-50DC-4A2E-A88E-EEE9E9B4FF1C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-getNeighboringDicts:completion:"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "42A4FF71-F024-486D-9DE7-34DC6708E6C0 - d8531f8951dbdbb4"
+                  uuid = "4EB77B3B-50DC-4A2E-A88E-EEE9E9B4FF1C - 6a3281fa6dd43626"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke"
+                  symbolName = "-[RankAlgorithm getNeighboringDicts:completion:]"
                   moduleName = "Turnout"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "1111">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "377">
                </Location>
                <Location
-                  uuid = "42A4FF71-F024-486D-9DE7-34DC6708E6C0 - 55404f000075f5a4"
+                  uuid = "4EB77B3B-50DC-4A2E-A88E-EEE9E9B4FF1C - 32bc678ad2f02c44"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_e8_32s40s48s56s64b"
+                  symbolName = "__48-[RankAlgorithm getNeighboringDicts:completion:]_block_invoke"
                   moduleName = "Turnout"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "4EB77B3B-50DC-4A2E-A88E-EEE9E9B4FF1C - 38103efb34ec9de1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_e8_32s40s48s56s"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -215,78 +483,46 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2084C1D4-EEE7-48E1-BC4D-CA4AC6C85115"
+            uuid = "93222C4B-BAF1-474B-B79C-33DDE1CEF9C5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-fetchNeighboringPosts:skip:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2847DE67-6E33-41FE-B4D1-0468C4B47E98"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/Delegates/RankAlgorithm.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-queryPosts:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AF102E25-8AF4-412B-839A-9A9F92FBF180"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/Delegates/RankAlgorithm.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-queryPosts:completion:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-getNeighboringDicts:completion:"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "AF102E25-8AF4-412B-839A-9A9F92FBF180 - 37107e4d6bc10f1f"
+                  uuid = "93222C4B-BAF1-474B-B79C-33DDE1CEF9C5 - 32bc678ad2f02c44"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_3"
+                  symbolName = "__48-[RankAlgorithm getNeighboringDicts:completion:]_block_invoke"
                   moduleName = "Turnout"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "372">
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "630">
                </Location>
                <Location
-                  uuid = "AF102E25-8AF4-412B-839A-9A9F92FBF180 - 383bcb6860029047"
+                  uuid = "93222C4B-BAF1-474B-B79C-33DDE1CEF9C5 - 7b3dd38faa999cec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_e8_32s40b"
+                  symbolName = "__copy_helper_block_e8_32s40s48s56b"
                   moduleName = "Turnout"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -295,128 +531,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "64B315DB-D82E-48A5-ACDF-60C983E3A1BA"
+            uuid = "7B575B56-34F8-4417-94EE-0ECDA02D0449"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "-fetchFarPosts:completion:"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-findExistingZip:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0108F18F-19BF-4849-8473-C1972A7BE5BE"
+            uuid = "D60FE514-0C74-4021-9B75-B26449931573"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-queryPosts:completion:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-findExistingZip:completion:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D60FE514-0C74-4021-9B75-B26449931573 - 94df51fbf3e106ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RankAlgorithm findExistingZip:completion:]"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "D60FE514-0C74-4021-9B75-B26449931573 - 935e86cccb662b22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[RankAlgorithm findExistingZip:completion:]_block_invoke"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Delegates/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "75">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC2D87E4-90DA-4E97-A474-C7525B40C697"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Delegates/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-findExistingZip:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "89C84FEA-BCA9-4C6E-B876-726691ECD425"
+            uuid = "76FEA7CA-E9FD-48DD-B2AB-9BD6FD55ED4A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-queryPosts:completion:"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "-findExistingZip:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "138C5CF8-4BF0-4B7F-82B2-E0BFA34A8AA1"
+            uuid = "73B38AB1-4D61-4E31-8ECB-65D61C7A9B41"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-fetchFarPosts:completion:"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-findExistingZip:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6AB8E56C-ECA0-4D7D-94CD-8AD6F16F7B4E"
-            shouldBeEnabled = "No"
+            uuid = "9A5903FD-C232-475E-9645-105806B26FB0"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Turnout/Delegates/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-fetchFarPosts:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C4C1CC25-38D3-4E6E-9C26-5D587D685F6A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/Delegates/RankAlgorithm.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-queryPosts:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B0F9ADC8-C987-4769-8319-FFF1CAE44473"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/Delegates/RankAlgorithm.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-queryPosts:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "750DEE5C-DB62-48E5-8D5B-E64DCF585581"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/Delegates/RankAlgorithm.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-queryPosts:completion:"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "-mergeBatches"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

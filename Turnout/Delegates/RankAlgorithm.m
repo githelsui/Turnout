@@ -17,7 +17,6 @@ static float const timeWeight = 0.000005;
 @property (nonatomic, strong) NSMutableArray *postDicts;
 @property (nonatomic, strong, retain) NSMutableArray *individualQueues;
 @property (nonatomic, strong, retain) Zipcode *currentZip;
-@property (nonatomic, strong) PriorityQueue *queue;
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
 
 @end
@@ -38,12 +37,12 @@ static float const timeWeight = 0.000005;
     self.neighborDicts =  [NSMutableArray array];
     self.individualQueues = [NSMutableArray array];
     self.posts =  [NSMutableArray array];
-    self.queue = [PriorityQueue new];
     self.priorityQueue = [PriorityQueue new];
     return self;
 }
 
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion{
+    if(skip == 0) [self.livefeed removeAllObjects];
     [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
     [self.individualQueues removeAllObjects];
@@ -313,11 +312,10 @@ static float const timeWeight = 0.000005;
             [self mergeBatches];
         } else if(index < posts.count){
             [self addToPriorityQueue:posts[index] batch:batch];
-        }
+        } //batch is exhausted in database
     } else {
         self.posts = [[[self.posts reverseObjectEnumerator] allObjects] mutableCopy];
     }
-    
 }
 
 - (void)addToPriorityQueue:(NSDictionary *)post batch:(NSDictionary *)batch{

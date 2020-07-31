@@ -170,6 +170,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[RankAlgorithm queryPosts:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm fetchNeighboringPosts:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -473,6 +481,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.rankAlgo.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborDicts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
