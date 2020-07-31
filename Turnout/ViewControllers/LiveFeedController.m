@@ -19,6 +19,7 @@ static int const skipAmount = 3;
 @property (nonatomic, strong) RankAlgorithm *rankAlgo;
 @property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIButton *loadMoreBtn;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property int skipIndex;
 @end
@@ -72,6 +73,8 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)setUpHeader{
+    self.currentLoc.alpha = 0;
+    self.currentZipcode.alpha = 0;
     self.currentUser = PFUser.currentUser;
     Zipcode *zip = self.currentUser[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
@@ -79,30 +82,34 @@ NSIndexPath *lastIndexPath;
             NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
             self.currentLoc.text = location;
             self.currentZipcode.text = zipcode[@"zipcode"];
+            [UIView animateWithDuration:0.5 animations:^{
+                self.currentLoc.alpha = 1;
+                self.currentZipcode.alpha = 1;
+            }];
         }
     }];
 }
 
 - (void)setUpFooter{
     UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 65)];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.loadMoreBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loadView.alpha = 1;
-    button.alpha = 1;
-    [button setTitle:@"Load More" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
-    button.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
+    self.loadMoreBtn.alpha = 1;
+    [self.loadMoreBtn setTitle:@"Load More" forState:UIControlStateNormal];
+    [self.loadMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
+    self.loadMoreBtn.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
+    [self.loadMoreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.loadMoreBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
     loadView.center = CGPointMake(self.view.center.x, 0);
-    button.center = CGPointMake(self.view.center.x, 30);
-    button.layer.cornerRadius = 20;
-    button.layer.borderWidth = 0.5f;
-    button.layer.borderColor = [UIColor grayColor].CGColor;
-    [loadView addSubview:button];
+    self.loadMoreBtn.center = CGPointMake(self.view.center.x, 30);
+    self.loadMoreBtn.layer.cornerRadius = 20;
+    self.loadMoreBtn.layer.borderWidth = 0.5f;
+    self.loadMoreBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    [loadView addSubview:self.loadMoreBtn];
     self.tableView.tableFooterView = loadView;
     [UIView animateWithDuration:4 animations:^{
         loadView.alpha = 1;
-        button.alpha = 1;
+        self.loadMoreBtn.alpha = 1;
     }];
 }
 
@@ -243,7 +250,17 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)loadMore{
-    NSLog(@"load more posts");
+    [UIView animateWithDuration:1 animations:^{
+        self.loadMoreBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
+                                                          green:180.0f/255.0f
+                                                           blue:171.0f/255.0f
+                                                          alpha:1.0f];
+        [self.loadMoreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.loadMoreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            self.loadMoreBtn.backgroundColor = [UIColor whiteColor];
+        }];
+    }];
     [self fetchMorePosts];
 }
 
