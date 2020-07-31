@@ -41,6 +41,8 @@ NSIndexPath *lastIndexPath;
 - (void)customizeActivityIndic{
     self.activityHUD = [CCActivityHUD new];
     self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
 }
 
 - (void)initTableView{
