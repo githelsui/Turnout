@@ -43,6 +43,7 @@
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
 		CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */; };
 		CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CACE7C3C24CFD600009E3925 /* PriorityQueue.m */; };
+		CADFB98C24D39A460031557A /* KSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CADFB98B24D39A460031557A /* KSQueue.m */; };
 		CAE77A9824C7A9A8002B26D6 /* GeoNamesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */; };
 		CAFDC60124C6779F00BDB2AD /* ZipcodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,8 @@
 		CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardViewController.m; sourceTree = "<group>"; };
 		CACE7C3B24CFD600009E3925 /* PriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriorityQueue.h; sourceTree = "<group>"; };
 		CACE7C3C24CFD600009E3925 /* PriorityQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriorityQueue.m; sourceTree = "<group>"; };
+		CADFB98A24D39A460031557A /* KSQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSQueue.h; sourceTree = "<group>"; };
+		CADFB98B24D39A460031557A /* KSQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSQueue.m; sourceTree = "<group>"; };
 		CAE77A9624C7A9A8002B26D6 /* GeoNamesAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoNamesAPI.h; sourceTree = "<group>"; };
 		CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeoNamesAPI.m; sourceTree = "<group>"; };
 		CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZipcodeGenerator.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				CA7CFA7C24BFAC9900AADA69 /* Assoc.m */,
 				CACE7C3B24CFD600009E3925 /* PriorityQueue.h */,
 				CACE7C3C24CFD600009E3925 /* PriorityQueue.m */,
+				CADFB98A24D39A460031557A /* KSQueue.h */,
+				CADFB98B24D39A460031557A /* KSQueue.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA3BB1B824D22375006B58E4 /* CandidatesViewController.m in Sources */,
+				CADFB98C24D39A460031557A /* KSQueue.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CAAEF88C24D21F1200F27247 /* ElectionsPageControl.m in Sources */,
 				CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */,
