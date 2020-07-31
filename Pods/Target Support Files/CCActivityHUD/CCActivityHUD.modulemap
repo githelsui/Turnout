@@ -1,0 +1,6 @@
+framework module CCActivityHUD {
+  umbrella header "CCActivityHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -35,6 +35,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.29:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
          <PersistentStrings>
             <PersistentString
@@ -47,14 +55,6 @@
          <PersistentStrings>
             <PersistentString
                value = "self.neighborDicts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.29:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -104,13 +104,13 @@
          contextName = "-[RankAlgorithm fetchNeighboringPosts:skip:completion:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentZip">
+               value = "self.livefeed">
             </PersistentString>
             <PersistentString
                value = "![currZip isEqual:key]">
             </PersistentString>
             <PersistentString
-               value = "self.livefeed">
+               value = "self.currentZip">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -252,13 +252,13 @@
          contextName = "-[RankAlgorithm mergeSortForFeed]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.queue">
+            </PersistentString>
+            <PersistentString
                value = "self.posts">
             </PersistentString>
             <PersistentString
                value = "[self.queue isEmpty]">
-            </PersistentString>
-            <PersistentString
-               value = "self.queue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -277,13 +277,13 @@
          contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.zipcodes.count">
+               value = "self.currentUser">
             </PersistentString>
             <PersistentString
                value = "self.zipcodes">
             </PersistentString>
             <PersistentString
-               value = "self.currentUser">
+               value = "self.zipcodes.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -302,7 +302,7 @@
          contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.priorityQueue">
+               value = "zip[@&quot;zipcode&quot;]">
             </PersistentString>
             <PersistentString
                value = "self.livefeed">
@@ -317,10 +317,10 @@
                value = "postsArr.count">
             </PersistentString>
             <PersistentString
-               value = "zip">
+               value = "self.priorityQueue">
             </PersistentString>
             <PersistentString
-               value = "zip[@&quot;zipcode&quot;]">
+               value = "zip">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -540,10 +540,10 @@
          contextName = "__copy_helper_block_e8_32r:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "currentUser">
+               value = "likeCount">
             </PersistentString>
             <PersistentString
-               value = "likeCount">
+               value = "currentUser">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -651,6 +651,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[CCActivityHUD dismissWithText:delay:success:]:CCActivityHUD.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "success">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm fetchNeighbors:]:RankAlgorithm.m">
       </ContextState>
       <ContextState
@@ -693,7 +701,7 @@
          contextName = "-[RankAlgorithm mergeBatches]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.priorityQueue">
+               value = "[posts getSize]">
             </PersistentString>
             <PersistentString
                value = "priorityPost[@&quot;post&quot;]">
@@ -708,10 +716,10 @@
                value = "posts.count">
             </PersistentString>
             <PersistentString
-               value = "self.posts">
+               value = "self.priorityQueue">
             </PersistentString>
             <PersistentString
-               value = "[posts getSize]">
+               value = "self.posts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

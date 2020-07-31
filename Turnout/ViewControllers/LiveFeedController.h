@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import <CCActivityHUD/CCActivityHUD.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/PFImageView.h>
 #import "RankAlgorithm.h"

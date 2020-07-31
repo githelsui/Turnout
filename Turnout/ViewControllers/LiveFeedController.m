@@ -17,6 +17,7 @@ static int const skipAmount = 3;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) NSMutableArray *mutablePosts;
 @property (nonatomic, strong) RankAlgorithm *rankAlgo;
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property int skipIndex;
@@ -29,12 +30,17 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    [self setUpFooter];
+    [self customizeActivityIndic];
     self.rankAlgo = [[RankAlgorithm alloc]init];
     [self loadFeed];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
 }
 
 - (void)initTableView{
@@ -106,6 +112,7 @@ NSIndexPath *lastIndexPath;
 
 - (void)loadFeed{
     self.skipIndex = 0;
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts.count > 0){
             self.posts = posts;
@@ -114,6 +121,7 @@ NSIndexPath *lastIndexPath;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self setUpFooter];
+                [self.activityHUD dismiss];
             });
         }
     }];

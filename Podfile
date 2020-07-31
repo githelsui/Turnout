@@ -12,7 +12,8 @@ target 'Turnout' do
 	pod 'FBSDKLoginKit'
         pod 'FBSDKShareKit'
 	pod 'Parse/UI'
-
+	pod 'FCAlertView'
+	pod 'CCActivityHUD'
 
   target 'TurnoutTests' do
     inherit! :search_paths
