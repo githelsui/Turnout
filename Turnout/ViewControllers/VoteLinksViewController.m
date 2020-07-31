@@ -29,7 +29,7 @@
 }
 
 - (void)setUI{
-    self.backgrndView.alpha = 0.67;
+    self.backgrndView.alpha = 0.90;
     self.backgrndView.layer.cornerRadius = 15;
 }
 
