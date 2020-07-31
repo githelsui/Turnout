@@ -24,7 +24,7 @@
 - (void)setCell{
     NSString *url = self.infoCell[@"url"];
     self.bubbleView.alpha = 1;
-    self.backImage.alpha = 0.80;
+    self.backImage.alpha = 0.70;
     self.bubbleView.clipsToBounds = true;
     self.bubbleView.layer.cornerRadius = 15;
     self.addressLabel.alpha = 0;

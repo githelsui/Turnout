@@ -846,9 +846,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-AY-LN2">
                                                     <rect key="frame" x="8" y="11" width="359" height="124"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="flipped_color" translatesAutoresizingMaskIntoConstraints="NO" id="inj-xo-2lk">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="flipped_color" translatesAutoresizingMaskIntoConstraints="NO" id="inj-xo-2lk">
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of Adminitration Body " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7r-Gt-zHb">
                                                             <rect key="frame" x="8" y="16" width="193" height="18"/>
@@ -876,8 +875,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
+                                                        <constraint firstItem="inj-xo-2lk" firstAttribute="top" secondItem="h1p-AY-LN2" secondAttribute="top" id="4Nt-F7-IN8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="inj-xo-2lk" secondAttribute="bottom" id="PRF-Tj-wjR"/>
+                                                        <constraint firstItem="inj-xo-2lk" firstAttribute="leading" secondItem="h1p-AY-LN2" secondAttribute="leading" id="X7s-CT-Gej"/>
                                                         <constraint firstAttribute="height" constant="124" id="ifg-B5-7b1"/>
                                                         <constraint firstAttribute="width" constant="359" id="oY5-q7-O4m"/>
+                                                        <constraint firstAttribute="trailing" secondItem="inj-xo-2lk" secondAttribute="trailing" id="ys4-dQ-rws"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
