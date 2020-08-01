@@ -134,6 +134,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)loadFeed{
+    self.loadMoreBtn.alpha = 0;
     self.skipIndex = 0;
     [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
@@ -142,9 +143,9 @@ NSIndexPath *lastIndexPath;
             self.mutablePosts = [posts mutableCopy];
             self.rankAlgo.livefeed = self.mutablePosts;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self setUpFooter];
                 [self.activityHUD dismiss];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self setUpFooter];
                 [self startTimer];
             });
         }

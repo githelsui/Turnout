@@ -31,7 +31,7 @@
         if(elections)
             self.elections = elections;
             dispatch_async(dispatch_get_main_queue(), ^{
-                      [self.tableView reloadData];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                   });
     }];
 }

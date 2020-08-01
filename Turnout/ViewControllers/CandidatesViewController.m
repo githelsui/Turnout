@@ -9,11 +9,13 @@
 #import "CandidatesViewController.h"
 #import "OpenFECAPI.h"
 #import "CandidateCell.h"
+#import <CCActivityHUD/CCActivityHUD.h>
 
 @interface CandidatesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *candidates;
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 
 @end
 
@@ -28,12 +30,21 @@
     [self fetchCandidates];
 }
 
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
+}
+
 - (void)fetchCandidates{
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [[OpenFECAPI shared] fetchCandidates:^(NSArray *candidates, NSError *error){
         if(candidates){
             self.candidates = candidates;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
+                [self.activityHUD dismiss];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             });
         }
     }];
@@ -55,9 +66,9 @@
     NSMutableDictionary *candidate = self.candidates[indexPath.row];
     cell.candidate = candidate;
     [cell setCell];
+    cell.alpha = 0;
     return cell;
 }
-
 
 /*
 #pragma mark - Navigation

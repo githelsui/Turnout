@@ -287,7 +287,7 @@
     }
     
     //case 1: database items, queue with items -> continue merging
-    //case 2: database items, queue empty -> query the database, pause merge, add to queue (breaks out) -> task has to finish -> mergeBatches
+    //*case 2: database items, queue empty -> query the database, pause merge, add to queue (breaks out) -> task has to finish -> mergeBatches
     //case 3: database empty, queue with items -> contineu merge
     //case 4: both empty -> stop using zipcode, continue merge with rest of zipcodes
     //while loop: call mergebatches, or wait for database fetch
