@@ -27,6 +27,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self customizeActivityIndic];
     [self fetchCandidates];
 }
 

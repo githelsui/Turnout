@@ -65,13 +65,17 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
                    [contentType setObject:@"contest" forKey:@"contentType"];
                    NSArray *returnArr = [self getContests:dataDictionary];
                    [contentType setObject:returnArr forKey:@"details"];
+                   NSLog(@"dictionary: %@", contentType);
+                   completion(contentType, nil);
                } else {
-                   NSArray *returnArr = [self getNoContests:dataDictionary];
                    [contentType setObject:@"noContest" forKey:@"contentType"];
-                   [contentType setObject:returnArr forKey:@"details"];
+                   NSString *name = dataDictionary[@"election"][@"name"];
+                   NSString *state = [self getState:name];
+                   [self fetchVoterInfo:state completion:^(NSArray *info, NSError *error){
+                       [contentType setObject:info forKey:@"details"];
+                       completion(contentType, nil);
+                   }];
                }
-               NSLog(@"dictionary: %@", contentType);
-               completion(contentType, nil);
            }
        }];
        [task resume];
@@ -176,6 +180,11 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
     [correspondanceAddress setObject:@"address" forKey:@"type"];
     [newArr addObject:correspondanceAddress];
     return newArr;
+}
+
+- (NSString *)getState:(NSString *)fullName{
+    NSArray *substrings = [fullName componentsSeparatedByString:@" "];
+    return [substrings objectAtIndex:0];
 }
 
 @end
