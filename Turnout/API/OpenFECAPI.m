@@ -44,6 +44,10 @@ static NSString * const APIKey = @"SxlbqyaY2PKbvjUkyGWU8cG1FY5DwjXairvKVwYl";
        [task resume];
 }
 
+- (void)fetchCandidateDetails:(NSString *)id completion:(void(^)(NSArray *info, NSError *error))completion{
+    
+}
+
 - (NSArray *)createCandidateArr:(NSArray *)arr{
     NSMutableArray *candidates = [NSMutableArray array];
     for(NSDictionary *candidate in arr){

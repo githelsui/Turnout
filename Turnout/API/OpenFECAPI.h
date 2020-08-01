@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 - (void)fetchCandidates:(void(^)(NSArray *info, NSError *error))completion;
-
+- (void)fetchCandidateDetails:(NSString *)id completion:(void(^)(NSArray *info, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END
