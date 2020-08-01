@@ -7,8 +7,15 @@
 //
 
 #import "ElectionDetailController.h"
+#import "ElectionDetailCell.h"
+#import "GoogleCivicAPI.h"
+#import "Zipcode.h"
+#import <Parse/PFImageView.h>
 
-@interface ElectionDetailController ()
+@interface ElectionDetailController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSArray *details;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,23 +23,61 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self setNavigationBar];
+    [self fetchElectionDetail];
 }
 
 - (void)setNavigationBar{
     UILabel *lblTitle = [[UILabel alloc] init];
-    lblTitle.text = @"Specific Election";
+    lblTitle.text = self.election[@"name"];
     lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.textColor = [UIColor blackColor];
-    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    lblTitle.font = [UIFont systemFontOfSize:13 weight:UIFontWeightLight];
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
-    
-    UIBarButtonItem *myBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage
-    imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
-                                                                 action:@selector(goBack:)];
-    myBackButton.tintColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
-    self.navigationItem.backBarButtonItem = myBackButton;
+}
+
+- (void)fetchElectionDetail{
+    PFUser *currentUser = PFUser.currentUser;
+    Zipcode *zip = currentUser[@"zipcode"];
+    NSString *electionId = self.election[@"id"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        if(zipcode){
+            NSString *zipStr = zipcode[@"zipcode"];
+            [[GoogleCivicAPI shared] fetchElectionDetails:zipStr election:electionId completion:^(NSMutableDictionary *info, NSError *error){
+                if(info){
+                    NSArray *arr = info[@"details"];
+                    self.details = arr;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    });
+                }
+            }];
+        }
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.details.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ElectionDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ElectionDetailCell"];
+    if (cell == nil) {
+        cell = [[ElectionDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ElectionDetailCell"];
+    }
+    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+    if (!hasContentView) {
+        [cell addSubview:cell.contentView];
+    }
+    NSMutableDictionary *detail = self.details[indexPath.row];
+    cell.content = detail;
+    [cell setCell:detail[@"type"]];
+    return cell;
 }
 
 /*

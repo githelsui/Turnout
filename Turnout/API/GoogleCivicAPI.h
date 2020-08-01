@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
+- (void)fetchElectionDetails:(NSString *)zipcode election:(NSString *)election completion:(void(^)(NSMutableDictionary *info, NSError *error))completion;
+
 - (void)fetchVoterInfo:(NSString *)zipcode completion:(void(^)(NSArray *info, NSError *error))completion;
 
 - (void)fetchElections:(void(^)(NSArray *info, NSError *error))completion;

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectionDetailController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *election;
+
 @end
 
 NS_ASSUME_NONNULL_END
