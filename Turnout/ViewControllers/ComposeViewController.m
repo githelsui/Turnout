@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigationBar];
     [self setViews];
     [self.textView setDelegate:self];
 }
@@ -37,6 +38,16 @@
     [self getDateTime];
     self.dateLabel.text = self.dateString;
     self.timeLabel.text = self.timeString;
+}
+
+- (void)setNavigationBar{
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = @"New Status";
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    [lblTitle sizeToFit];
+    self.navigationItem.titleView = lblTitle;
 }
 
 - (void)getDateTime{

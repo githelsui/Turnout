@@ -241,11 +241,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="HHc-vL-MRA">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Uey-UV-zUU">
+                            <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="logoutTapped:" destination="03w-tc-kLs" id="t84-Ma-uFf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="AUw-jZ-rc5">
+                            <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="NMG-uD-ri0" kind="presentation" identifier="ComposeSegue" id="f4v-Kx-xeN"/>
                             </connections>
@@ -328,7 +330,6 @@
                                 <rect key="frame" x="15" y="543" width="140" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="7J5-n0-IuH"/>
-                                    <constraint firstAttribute="width" constant="140" id="qEN-bM-UfE"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="shareFBButton"/>
                                 <connections>
@@ -404,7 +405,7 @@
             </objects>
             <point key="canvasLocation" x="-2495.1999999999998" y="2335.7142857142858"/>
         </scene>
-        <!--Post-->
+        <!--New Status-->
         <scene sceneID="xjR-vQ-je7">
             <objects>
                 <viewController id="diD-SZ-OEx" customClass="ComposeViewController" sceneMemberID="viewController">
@@ -453,6 +454,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mu-cR-Qi7">
                                 <rect key="frame" x="16" y="317" width="48" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="camera" catalog="system"/>
                                 <connections>
                                     <action selector="cameraTapped:" destination="diD-SZ-OEx" eventType="touchUpInside" id="eDn-Wc-B5H"/>
@@ -462,6 +464,7 @@
                                 <rect key="frame" x="72" y="317" width="43" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="photo.on.rectangle" catalog="system"/>
                                 <connections>
                                     <action selector="photoTapped:" destination="diD-SZ-OEx" eventType="touchUpInside" id="2aU-xH-6KB"/>
@@ -482,7 +485,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Qom-gR-1A4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="dyg-2d-3Kz">
+                    <navigationItem key="navigationItem" title="New Status" id="dyg-2d-3Kz">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="gRd-4J-GZC">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -490,7 +493,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="checkmark" catalog="system" id="YtH-vU-yqy">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="postStatus:" destination="diD-SZ-OEx" id="zLC-rb-7Pj"/>
                             </connections>
@@ -673,6 +676,7 @@
                                                     <outlet property="backImage" destination="qfx-ba-AoO" id="Yuf-mc-gKD"/>
                                                     <outlet property="bubbleView" destination="APL-7P-Bbz" id="0Hr-tI-Sp2"/>
                                                     <outlet property="titleLabel" destination="TSg-61-EMI" id="lDp-bj-qTf"/>
+                                                    <segue destination="nVj-HU-suN" kind="show" id="d2H-4g-ld3"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -699,6 +703,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOY-mg-LlC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1804" y="2196.7980295566504"/>
+        </scene>
+        <!--Election Detail Controller-->
+        <scene sceneID="hrE-d2-uBP">
+            <objects>
+                <viewController id="nVj-HU-suN" customClass="ElectionDetailController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dH6-4B-Kv4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="d1H-x0-Qfd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bql-tb-5lh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vNF-dm-hJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="2905"/>
+        </scene>
+        <!--Candidate Detail Controller-->
+        <scene sceneID="VU8-nZ-7e2">
+            <objects>
+                <viewController id="3Jv-bV-v4J" customClass="CandidateDetailController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SCo-1S-2PC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9Pp-cS-HTt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vpq-Pf-exg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyd-kz-nmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="2905"/>
         </scene>
         <!--Candidates View Controller-->
         <scene sceneID="Qal-nR-zaJ">
@@ -795,6 +831,7 @@
                                                             <outlet property="officeLabel" destination="agG-RA-akv" id="zil-DB-Oz2"/>
                                                             <outlet property="partyLabel" destination="5jP-XC-L23" id="lJ7-uz-JaT"/>
                                                             <outlet property="typeLabel" destination="tHY-JN-wEb" id="KNX-hd-b4E"/>
+                                                            <segue destination="3Jv-bV-v4J" kind="show" id="xXQ-aT-JeO"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -1063,6 +1100,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.99813979860000002" green="0.68583655621278483" blue="0.53077580474029229" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="X1t-0x-5eW" kind="relationship" relationship="viewControllers" id="gmX-V4-F3B"/>

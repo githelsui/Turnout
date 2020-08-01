@@ -47,6 +47,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)initTableView{
+    [self setNavigationBar];
     [self setUpHeader];
     self.mutablePosts =  [NSMutableArray array];
     self.tableView.allowsSelection = false;
@@ -131,6 +132,22 @@ NSIndexPath *lastIndexPath;
 
 - (void)reloadData{
     [self.tableView reloadData];
+}
+
+- (void)setNavigationBar{
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = @"Turnout";
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.font = [UIFont systemFontOfSize:22 weight:UIFontWeightLight];
+    [lblTitle sizeToFit];
+    self.navigationItem.titleView = lblTitle;
+    
+    UIBarButtonItem *myBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage
+    imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
+                                                                 action:@selector(goBack:)];
+    myBackButton.tintColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    self.navigationItem.backBarButtonItem = myBackButton;
 }
 
 - (void)loadFeed{
@@ -263,6 +280,10 @@ NSIndexPath *lastIndexPath;
         }];
     }];
     [self fetchMorePosts];
+}
+
+- (void)goBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigation

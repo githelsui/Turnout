@@ -31,6 +31,8 @@
 		CA5F03F124BCD58700F599CF /* TurnoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03F024BCD58700F599CF /* TurnoutTests.m */; };
 		CA5F03FC24BCD58700F599CF /* TurnoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5F03FB24BCD58700F599CF /* TurnoutUITests.m */; };
 		CA682ED524D4CFF000C74182 /* CandidateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682ED424D4CFF000C74182 /* CandidateCell.m */; };
+		CA682EDC24D4F9F100C74182 /* CandidateDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */; };
+		CA682EDF24D4FA0E00C74182 /* ElectionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
@@ -117,6 +119,10 @@
 		CA5F03FD24BCD58700F599CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA682ED324D4CFF000C74182 /* CandidateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandidateCell.h; sourceTree = "<group>"; };
 		CA682ED424D4CFF000C74182 /* CandidateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandidateCell.m; sourceTree = "<group>"; };
+		CA682EDA24D4F9F100C74182 /* CandidateDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandidateDetailController.h; sourceTree = "<group>"; };
+		CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandidateDetailController.m; sourceTree = "<group>"; };
+		CA682EDD24D4FA0E00C74182 /* ElectionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectionDetailController.h; sourceTree = "<group>"; };
+		CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectionDetailController.m; sourceTree = "<group>"; };
 		CA7CFA7B24BFAC9900AADA69 /* Assoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assoc.h; sourceTree = "<group>"; };
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
 		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
@@ -249,6 +255,7 @@
 				CA15FA6424BE6D5000307BBD /* API */,
 				CAC2B06624BCE1C900F3B23A /* Delegates */,
 				CAC2B05F24BCD8D700F3B23A /* Views */,
+				CA682ED624D4F9AF00C74182 /* DetailScreens */,
 				CAC2B05E24BCD8CE00F3B23A /* ViewControllers */,
 				CAC2B05D24BCD8C700F3B23A /* Models */,
 				CA5F03DD24BCD58600F599CF /* Main.storyboard */,
@@ -277,6 +284,19 @@
 				CA5F03FD24BCD58700F599CF /* Info.plist */,
 			);
 			path = TurnoutUITests;
+			sourceTree = "<group>";
+		};
+		CA682ED624D4F9AF00C74182 /* DetailScreens */ = {
+			isa = PBXGroup;
+			children = (
+				CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */,
+				CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */,
+				CA682EDA24D4F9F100C74182 /* CandidateDetailController.h */,
+				CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */,
+				CA682EDD24D4FA0E00C74182 /* ElectionDetailController.h */,
+				CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */,
+			);
+			path = DetailScreens;
 			sourceTree = "<group>";
 		};
 		CAC2B05D24BCD8C700F3B23A /* Models */ = {
@@ -309,8 +329,6 @@
 				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
 				CA15FA5E24BE51B400307BBD /* ComposeViewController.h */,
 				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
-				CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */,
-				CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */,
 				CA17F0AE24D14DC100636CBB /* VoteLinksViewController.h */,
 				CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */,
 				CA17F0B124D14DCF00636CBB /* VoteInfoViewController.h */,
@@ -605,6 +623,7 @@
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */,
 				CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */,
+				CA682EDC24D4F9F100C74182 /* CandidateDetailController.m in Sources */,
 				CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */,
 				CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */,
 				CACE7C3D24CFD600009E3925 /* PriorityQueue.m in Sources */,
@@ -625,6 +644,7 @@
 				CAAEF88C24D21F1200F27247 /* ElectionsPageControl.m in Sources */,
 				CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
+				CA682EDF24D4FA0E00C74182 /* ElectionDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
