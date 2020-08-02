@@ -1156,7 +1156,7 @@
         <scene sceneID="0nu-Vf-Ux7">
             <objects>
                 <navigationController id="2P6-GK-Uy3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7BX-eh-22n"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-user-30" id="7BX-eh-22n"/>
                     <navigationItem key="navigationItem" title="Profile" id="fDw-jj-XIm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pv5-KI-pC5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -1295,7 +1295,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0vm-da-Nv7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bills" image="billprop_menu" id="JUu-w1-U1V"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-user-30" id="JUu-w1-U1V"/>
                     <navigationItem key="navigationItem" title="Profile" id="0Ky-dn-y8y"/>
                     <connections>
                         <outlet property="tableView" destination="CfR-D6-oMX" id="5qN-rB-TmL"/>
@@ -1305,11 +1305,11 @@
             </objects>
             <point key="canvasLocation" x="2208.8000000000002" y="230.54187192118226"/>
         </scene>
-        <!--Profile-->
+        <!--Ballot-->
         <scene sceneID="e38-jn-E4u">
             <objects>
                 <navigationController id="5wJ-8Z-GaU" customClass="ProfileNaviController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-user-30" id="SZ4-c6-Mkz"/>
+                    <tabBarItem key="tabBarItem" title="Ballot" image="billprop_menu" id="SZ4-c6-Mkz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WEc-CK-APn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>

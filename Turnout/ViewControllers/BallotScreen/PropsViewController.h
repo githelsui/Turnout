@@ -1,8 +1,8 @@
 //
-//  ProfileNaviController.h
+//  PropsViewController.h
 //  Turnout
 //
-//  Created by Githel Lynn Suico on 8/1/20.
+//  Created by Githel Lynn Suico on 8/2/20.
 //  Copyright © 2020 Githel Lynn Suico. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileNaviController : UINavigationController
+@interface PropsViewController : UIViewController
 
 @end
 
