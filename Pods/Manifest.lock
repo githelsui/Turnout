@@ -32,6 +32,8 @@ PODS:
   - FBSDKShareKit/Share (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
   - FCAlertView (1.4.0)
+  - GSKStretchyHeaderView (1.0.4)
+  - Masonry (1.1.0)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
@@ -46,6 +48,8 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - FCAlertView
+  - GSKStretchyHeaderView
+  - Masonry
   - Parse
   - Parse/UI
 
@@ -59,6 +63,8 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - FCAlertView
+    - GSKStretchyHeaderView
+    - Masonry
     - Parse
 
 SPEC CHECKSUMS:
@@ -70,8 +76,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   FBSDKShareKit: 00a055c1999b099596e00212dd1c0600c6697019
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
+  GSKStretchyHeaderView: 9743704c12bdc9cf7c7947bad3af8bf24f7061e3
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: ab8304ea3ce77ddf01ff8591721362e42ee7c2cf
+PODFILE CHECKSUM: a59da67c75185561f123dd4c34a8a27f8b4149b8
 
 COCOAPODS: 1.9.3

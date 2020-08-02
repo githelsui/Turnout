@@ -14,6 +14,8 @@ target 'Turnout' do
 	pod 'Parse/UI'
 	pod 'FCAlertView'
 	pod 'CCActivityHUD'
+        pod "GSKStretchyHeaderView"
+	pod 'Masonry'
 
   target 'TurnoutTests' do
     inherit! :search_paths

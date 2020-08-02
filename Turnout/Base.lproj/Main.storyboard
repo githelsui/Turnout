@@ -1155,23 +1155,33 @@
         <!--Bills-->
         <scene sceneID="wIA-Vj-z3y">
             <objects>
-                <viewController id="d6r-X9-Mk8" sceneMemberID="viewController">
+                <viewController id="d6r-X9-Mk8" customClass="ProfileTestController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8EE-q0-TRG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CfR-D6-oMX">
+                                <rect key="frame" x="0.0" y="94" width="375" height="581"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0vm-da-Nv7"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bills" image="billprop_menu" id="JUu-w1-U1V"/>
+                    <connections>
+                        <outlet property="tableView" destination="CfR-D6-oMX" id="5qN-rB-TmL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As7-cl-F3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2807.1999999999998" y="1070.6896551724139"/>
+            <point key="canvasLocation" x="3760.8000000000002" y="2892.8571428571431"/>
         </scene>
         <!--Profile-->
         <scene sceneID="e38-jn-E4u">
             <objects>
-                <navigationController id="5wJ-8Z-GaU" sceneMemberID="viewController">
+                <navigationController id="5wJ-8Z-GaU" customClass="ProfileNaviController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="icons8-user-30" id="SZ4-c6-Mkz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WEc-CK-APn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>

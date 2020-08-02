@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)pregenerateZip:( NSDictionary * _Nullable )zip rank:( NSNumber * _Nullable )rank withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
-+ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion:(void(^)(NSArray *zipcodeData, NSError *error))completion;
+//+ (void)saveNewZipcode:( NSString * _Nullable )zip withCompletion:(void(^)(NSArray *zipcodeData, NSError *error))completion;
 
 @end
 

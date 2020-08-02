@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<PostCellDelegate> delegate;
 - (void)doubleTapped;
 - (void)setCell;
++ (NSString *)reuseIdentifier;
++ (void)registerIn:(UITableView *)tableView;
 @end
 
 NS_ASSUME_NONNULL_END
