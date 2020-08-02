@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileStickyHeader : GSKStretchyHeaderView
 
+@property (nonatomic) UILabel *title;
+@property (nonatomic) UILabel *username;
+@property (nonatomic) UILabel *location;
+@property (nonatomic) UILabel *zipcode;
+
 @end
 
 NS_ASSUME_NONNULL_END

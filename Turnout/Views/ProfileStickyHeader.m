@@ -11,16 +11,10 @@
 #import <GSKStretchyHeaderView/GSKGeometry.h>
 #import <Masonry/Masonry.h>
 
-static const CGSize kUserImageSize = {.width = 64, .height = 64};
-
 @interface ProfileStickyHeader ()
 
 @property (nonatomic) UIImageView *backgroundImageView;
-@property (nonatomic) UIImageView *blurredBackgroundImageView;
-@property (nonatomic) UILabel *title;
-@property (nonatomic) UILabel *location;
-@property (nonatomic) UILabel *zipcode;
-//@property (nonatomic) UIButton *followButton;
+@property (nonatomic) UISegmentedControl *tabs;
 
 @end
 
@@ -40,26 +34,19 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
 - (void)setupViews {
     self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flipped_color"]];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    self.backgroundImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.backgroundImageView];
-
-    self.blurredBackgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"landscape_blur"]];
-    self.blurredBackgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    self.blurredBackgroundImageView.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:self.blurredBackgroundImageView];
-
-//    self.userImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"artist"]];
-//    self.userImageView.clipsToBounds = YES;
-//    self.userImageView.layer.cornerRadius = kUserImageSize.width / 2;
-//    self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-//    self.userImageView.layer.borderWidth = 4;
-//    [self.contentView addSubview:self.userImageView];
-
-    self.title = [[UILabel alloc] init];
-    self.title.text = @"Username";
-    self.title.textColor = [UIColor whiteColor];
-    self.title.font = [UIFont systemFontOfSize:25 weight:UIFontWeightThin];
-    [self.contentView addSubview:self.title];
+    
+    self.zipcode = [[UILabel alloc] init];
+    self.zipcode.text = @"92806";
+    self.zipcode.textColor = [UIColor whiteColor];
+    self.zipcode.font = [UIFont systemFontOfSize:13 weight:UIFontWeightThin];
+    [self.contentView addSubview:self.zipcode];
+    
+    self.username = [[UILabel alloc] init];
+    self.username.text = @"Username";
+    self.username.textColor = [UIColor whiteColor];
+    self.username.font = [UIFont systemFontOfSize:22 weight:UIFontWeightThin];
+    [self.contentView addSubview:self.username];
     
     self.location = [[UILabel alloc] init];
     self.location.text = @"City, State";
@@ -67,69 +54,70 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
     self.location.font = [UIFont systemFontOfSize:15 weight:UIFontWeightThin];
     [self.contentView addSubview:self.location];
     
-    self.zipcode = [[UILabel alloc] init];
-    self.zipcode.text = @"92806";
-    self.zipcode.textColor = [UIColor whiteColor];
-    self.zipcode.font = [UIFont systemFontOfSize:15 weight:UIFontWeightThin];
-    [self.contentView addSubview:self.zipcode];
+    [self setupTabs];
+}
+
+- (void)setupTabs {
+    self.tabs = [[UISegmentedControl alloc] initWithItems:@[@"Status", @"Likes"]];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor whiteColor], NSForegroundColorAttributeName,
+                                [UIFont systemFontOfSize:15 weight:UIFontWeightThin], NSFontAttributeName,
+                                nil];
     
-//    self.followButton = [[UIButton alloc] init];
-//    [self.followButton setTitle:@"  FOLLOW  " forState:UIControlStateNormal];
-//    self.followButton.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.8];
-//    self.followButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
-//    self.followButton.layer.cornerRadius = 4;
-//    self.followButton.layer.borderWidth = 1;
-//    self.followButton.layer.borderColor = [UIColor whiteColor].CGColor;
-//    [self.followButton addTarget:self
-//                          action:@selector(didTapFollowButton:)
-//                forControlEvents:UIControlEventTouchUpInside];
-//    [self.contentView addSubview:self.followButton];
+    [self.tabs setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor systemRedColor] forKey:NSForegroundColorAttributeName];
+    [self.tabs setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    [self.contentView addSubview:self.tabs];
 }
 
 - (void)setupViewConstraints {
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_centerX);
+        make.centerY.equalTo(self.contentView.mas_centerY);
         make.top.equalTo(@0);
         make.left.equalTo(@0);
         make.width.equalTo(self.contentView.mas_width);
         make.height.equalTo(self.contentView.mas_height);
     }];
 
-    [self.blurredBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.backgroundImageView);
-    }];
-
-    [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView.mas_centerX);
-        make.centerY.equalTo(self.contentView.mas_centerY).offset(-50);
+    [self.zipcode mas_makeConstraints:^(MASConstraintMaker *make) {
+           make.centerX.equalTo(self.contentView.mas_centerX);
+           make.top.equalTo(self.location.mas_bottom).offset(10);
+       }];
+    
+    [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.centerX.equalTo(self.contentView.mas_centerX);
+        make.centerY.equalTo(self.contentView.mas_centerY).offset(-30);
     }];
 
     [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.top.equalTo(self.title.mas_bottom).offset(10);
+        make.top.equalTo(self.username.mas_bottom).offset(10);
     }];
-
-    [self.zipcode mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView.mas_centerX);
-        make.top.equalTo(self.location.mas_bottom).offset(10);
-    }];
+    
+    [self.tabs mas_makeConstraints:^(MASConstraintMaker *make) {
+          make.bottom.equalTo(@(-15));
+          make.left.equalTo(@(15));
+          make.right.equalTo(@(-15));
+      }];
 
 }
 
 - (void)didChangeStretchFactor:(CGFloat)stretchFactor {
     CGFloat alpha = 1;
     CGFloat blurAlpha = 1;
-    if (stretchFactor > 1) {
+    if (stretchFactor > 0.5) {
         alpha = CGFloatTranslateRange(stretchFactor, 1, 1.12, 1, 0);
         blurAlpha = alpha;
-    } else if (stretchFactor < 0.8) {
+    } else if (stretchFactor < 0.4) {
         alpha = CGFloatTranslateRange(stretchFactor, 0.2, 0.8, 0, 1);
     }
 
     alpha = MAX(0, alpha);
-    self.blurredBackgroundImageView.alpha = blurAlpha;
-//    self.userImageView.alpha = alpha;
-    self.title.alpha = alpha;
-//    self.followButton.alpha = alpha;
+//    self.title.alpha = alpha;
+//    self.username.alpha = alpha;
+//    self.location.alpha = alpha;
+//    self.zipcode.alpha = alpha;
 }
 
 - (void)didTapFollowButton:(id)sender {
