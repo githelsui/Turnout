@@ -17,9 +17,10 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
 
 @property (nonatomic) UIImageView *backgroundImageView;
 @property (nonatomic) UIImageView *blurredBackgroundImageView;
-@property (nonatomic) UIImageView *userImageView;
 @property (nonatomic) UILabel *title;
-@property (nonatomic) UIButton *followButton;
+@property (nonatomic) UILabel *location;
+@property (nonatomic) UILabel *zipcode;
+//@property (nonatomic) UIButton *followButton;
 
 @end
 
@@ -39,38 +40,50 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
 - (void)setupViews {
     self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flipped_color"]];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.backgroundImageView.backgroundColor = [UIColor redColor];
+//    self.backgroundImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.backgroundImageView];
 
     self.blurredBackgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"landscape_blur"]];
     self.blurredBackgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.blurredBackgroundImageView.backgroundColor = [UIColor redColor];
+//    self.blurredBackgroundImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.blurredBackgroundImageView];
 
-    self.userImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"artist"]];
-    self.userImageView.clipsToBounds = YES;
-    self.userImageView.layer.cornerRadius = kUserImageSize.width / 2;
-    self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.userImageView.layer.borderWidth = 4;
-    [self.contentView addSubview:self.userImageView];
+//    self.userImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"artist"]];
+//    self.userImageView.clipsToBounds = YES;
+//    self.userImageView.layer.cornerRadius = kUserImageSize.width / 2;
+//    self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.userImageView.layer.borderWidth = 4;
+//    [self.contentView addSubview:self.userImageView];
 
     self.title = [[UILabel alloc] init];
-    self.title.text = @"Very important artist";
+    self.title.text = @"Username";
     self.title.textColor = [UIColor whiteColor];
-    self.title.font = [UIFont boldSystemFontOfSize:20];
+    self.title.font = [UIFont systemFontOfSize:25 weight:UIFontWeightThin];
     [self.contentView addSubview:self.title];
-
-    self.followButton = [[UIButton alloc] init];
-    [self.followButton setTitle:@"  FOLLOW  " forState:UIControlStateNormal];
-    self.followButton.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.8];
-    self.followButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
-    self.followButton.layer.cornerRadius = 4;
-    self.followButton.layer.borderWidth = 1;
-    self.followButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.followButton addTarget:self
-                          action:@selector(didTapFollowButton:)
-                forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.followButton];
+    
+    self.location = [[UILabel alloc] init];
+    self.location.text = @"City, State";
+    self.location.textColor = [UIColor whiteColor];
+    self.location.font = [UIFont systemFontOfSize:15 weight:UIFontWeightThin];
+    [self.contentView addSubview:self.location];
+    
+    self.zipcode = [[UILabel alloc] init];
+    self.zipcode.text = @"92806";
+    self.zipcode.textColor = [UIColor whiteColor];
+    self.zipcode.font = [UIFont systemFontOfSize:15 weight:UIFontWeightThin];
+    [self.contentView addSubview:self.zipcode];
+    
+//    self.followButton = [[UIButton alloc] init];
+//    [self.followButton setTitle:@"  FOLLOW  " forState:UIControlStateNormal];
+//    self.followButton.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.8];
+//    self.followButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
+//    self.followButton.layer.cornerRadius = 4;
+//    self.followButton.layer.borderWidth = 1;
+//    self.followButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//    [self.followButton addTarget:self
+//                          action:@selector(didTapFollowButton:)
+//                forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:self.followButton];
 }
 
 - (void)setupViewConstraints {
@@ -85,21 +98,19 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
         make.edges.equalTo(self.backgroundImageView);
     }];
 
-    [self.userImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView.mas_centerX);
-        make.centerY.equalTo(self.contentView.mas_centerY).offset(-10);
-        make.width.equalTo(@(kUserImageSize.width));
-        make.height.equalTo(@(kUserImageSize.height));
-    }];
-
     [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.top.equalTo(self.userImageView.mas_bottom).offset(10);
+        make.centerY.equalTo(self.contentView.mas_centerY).offset(-50);
     }];
 
-    [self.followButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.top.equalTo(self.title.mas_bottom).offset(10);
+    }];
+
+    [self.zipcode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView.mas_centerX);
+        make.top.equalTo(self.location.mas_bottom).offset(10);
     }];
 
 }
@@ -116,13 +127,13 @@ static const CGSize kUserImageSize = {.width = 64, .height = 64};
 
     alpha = MAX(0, alpha);
     self.blurredBackgroundImageView.alpha = blurAlpha;
-    self.userImageView.alpha = alpha;
+//    self.userImageView.alpha = alpha;
     self.title.alpha = alpha;
-    self.followButton.alpha = alpha;
+//    self.followButton.alpha = alpha;
 }
 
 - (void)didTapFollowButton:(id)sender {
-    [self.followButton setTitle:@"  FOLLOWING  " forState:UIControlStateNormal];
+//    [self.followButton setTitle:@"  FOLLOWING  " forState:UIControlStateNormal];
 }
 
 

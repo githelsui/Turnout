@@ -21,7 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    CGSize headerSize = CGSizeMake(self.tableView.frame.size.width, 200);
-    CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  100);
+    UIEdgeInsets contentInset = self.tableView.contentInset;
+    self.tableView.contentInset = contentInset;
+    CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  280);
     ProfileStickyHeader *header = [[ProfileStickyHeader alloc] initWithFrame:rect];
     [self.tableView addSubview:header];
 }
