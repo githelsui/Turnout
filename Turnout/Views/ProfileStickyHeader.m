@@ -105,18 +105,18 @@
 - (void)didChangeStretchFactor:(CGFloat)stretchFactor {
     CGFloat alpha = 1;
     CGFloat blurAlpha = 1;
-    if (stretchFactor > 0.5) {
+    if (stretchFactor > 1) {
         alpha = CGFloatTranslateRange(stretchFactor, 1, 1.12, 1, 0);
         blurAlpha = alpha;
-    } else if (stretchFactor < 0.4) {
+    } else if (stretchFactor < 0.8) {
         alpha = CGFloatTranslateRange(stretchFactor, 0.2, 0.8, 0, 1);
     }
 
     alpha = MAX(0, alpha);
-//    self.title.alpha = alpha;
-//    self.username.alpha = alpha;
-//    self.location.alpha = alpha;
-//    self.zipcode.alpha = alpha;
+    self.title.alpha = alpha;
+    self.username.alpha = alpha;
+    self.location.alpha = alpha;
+    self.zipcode.alpha = alpha;
 }
 
 /*

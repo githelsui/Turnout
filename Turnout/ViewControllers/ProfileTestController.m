@@ -8,6 +8,7 @@
 
 #import "ProfileTestController.h"
 #import "ProfileStickyHeader.h"
+#import "PostDetailController.h"
 #import "Post.h"
 #import "PostCell.h"
 #import "Assoc.h"
@@ -195,14 +196,26 @@
     return cell;
 }
 
-/*
  #pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PostDetailSegue"]){
+        if(self.tableType == 0){
+            UITableViewCell *tappedCell = sender;
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+            Post *post = self.posts[indexPath.row];
+            PostDetailController *detailController = [segue destinationViewController];
+            detailController.post = post;
+        } else if(self.tableType == 1){
+            UITableViewCell *tappedCell = sender;
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+            Post *post = self.likes[indexPath.row];
+            PostDetailController *detailController = [segue destinationViewController];
+            detailController.post = post;
+        }
+    }
+}
+
 
 @end

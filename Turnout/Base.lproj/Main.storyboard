@@ -403,7 +403,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2495.1999999999998" y="2335.7142857142858"/>
+            <point key="canvasLocation" x="-1719" y="1650"/>
         </scene>
         <!--New Status-->
         <scene sceneID="xjR-vQ-je7">
@@ -509,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-wl-nxg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1774" y="2336"/>
+            <point key="canvasLocation" x="-2495" y="3042"/>
         </scene>
         <!--Vote-->
         <scene sceneID="NUg-Kr-HXl">
@@ -1280,6 +1280,7 @@
                                             <outlet property="statusLabel" destination="6Xc-Xo-nTK" id="zOh-1j-eu4"/>
                                             <outlet property="timeLabel" destination="cgl-t8-zq6" id="H3S-30-bQJ"/>
                                             <outlet property="zipcodeLabel" destination="WWx-hS-SMU" id="NjE-PY-zE4"/>
+                                            <segue destination="alD-OT-Zmo" kind="show" identifier="PostDetailSegue" id="AMT-kr-M6G"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1467,7 +1468,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZN-CE-LdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1774" y="1650"/>
+            <point key="canvasLocation" x="-2495" y="2362"/>
         </scene>
         <!--Vote-->
         <scene sceneID="ReS-UG-7G2">
@@ -1486,12 +1487,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LS-wz-cfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1058" y="991"/>
+            <point key="canvasLocation" x="-969" y="978"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
         <segue reference="plP-LP-ePy"/>
+        <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Orange Coral" width="1120" height="1792"/>
