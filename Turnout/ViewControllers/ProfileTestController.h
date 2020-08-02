@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GSKStretchyHeaderView/GSKStretchyHeaderView.h>
+#import <GSKStretchyHeaderView/GSKGeometry.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

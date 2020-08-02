@@ -14,7 +14,6 @@
 @interface ProfileStickyHeader ()
 
 @property (nonatomic) UIImageView *backgroundImageView;
-@property (nonatomic) UISegmentedControl *tabs;
 
 @end
 
@@ -25,8 +24,6 @@
     if (self) {
         self.minimumContentHeight = 64;
         self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:1];
-        [self setupViews];
-        [self setupViewConstraints];
     }
     return self;
 }
@@ -37,24 +34,25 @@
     [self.contentView addSubview:self.backgroundImageView];
     
     self.zipcode = [[UILabel alloc] init];
-    self.zipcode.text = @"92806";
     self.zipcode.textColor = [UIColor whiteColor];
+    self.zipcode.text = self.zipcodeStr;
     self.zipcode.font = [UIFont systemFontOfSize:13 weight:UIFontWeightThin];
     [self.contentView addSubview:self.zipcode];
     
     self.username = [[UILabel alloc] init];
-    self.username.text = @"Username";
     self.username.textColor = [UIColor whiteColor];
+    self.username.text = self.usernameStr;
     self.username.font = [UIFont systemFontOfSize:22 weight:UIFontWeightThin];
     [self.contentView addSubview:self.username];
     
     self.location = [[UILabel alloc] init];
-    self.location.text = @"City, State";
     self.location.textColor = [UIColor whiteColor];
+    self.location.text = self.locationStr;
     self.location.font = [UIFont systemFontOfSize:15 weight:UIFontWeightThin];
     [self.contentView addSubview:self.location];
     
     [self setupTabs];
+    [self setupViewConstraints];
 }
 
 - (void)setupTabs {
@@ -67,6 +65,7 @@
     [self.tabs setTitleTextAttributes:attributes forState:UIControlStateNormal];
     NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor systemRedColor] forKey:NSForegroundColorAttributeName];
     [self.tabs setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    self.tabs.selectedSegmentIndex = 0;
     [self.contentView addSubview:self.tabs];
 }
 
@@ -86,7 +85,7 @@
        }];
     
     [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.centerX.equalTo(self.contentView.mas_centerX);
+        make.centerX.equalTo(self.contentView.mas_centerX);
         make.centerY.equalTo(self.contentView.mas_centerY).offset(-30);
     }];
 
@@ -119,11 +118,6 @@
 //    self.location.alpha = alpha;
 //    self.zipcode.alpha = alpha;
 }
-
-- (void)didTapFollowButton:(id)sender {
-//    [self.followButton setTitle:@"  FOLLOWING  " forState:UIControlStateNormal];
-}
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

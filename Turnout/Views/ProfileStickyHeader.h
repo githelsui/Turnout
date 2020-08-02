@@ -10,13 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileStickyHeader : GSKStretchyHeaderView
+@protocol ProfileStickyHeader
+- (void)refreshFeed:(NSInteger)index;
+@end
 
+@interface ProfileStickyHeader : GSKStretchyHeaderView
+@property (nonatomic, weak) id<ProfileStickyHeader> delegate;
+@property (nonatomic, strong) NSString *zipcodeStr;
+@property (nonatomic, strong) NSString *locationStr;
+@property (nonatomic, strong) NSString *usernameStr;
 @property (nonatomic) UILabel *title;
 @property (nonatomic) UILabel *username;
 @property (nonatomic) UILabel *location;
 @property (nonatomic) UILabel *zipcode;
-
+@property (nonatomic) UISegmentedControl *tabs;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (void)setupViews;
 @end
 
 NS_ASSUME_NONNULL_END
