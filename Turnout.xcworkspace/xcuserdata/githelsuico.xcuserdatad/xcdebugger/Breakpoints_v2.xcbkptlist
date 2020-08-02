@@ -206,8 +206,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
             <Locations>
@@ -270,8 +270,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "-getCurrentUserInfo"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "-fetchMyStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,8 +350,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-fetchMyStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,8 +366,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "-fetchMyStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,8 +382,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-fetchMyStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-fetchMyStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,10 +430,42 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "984C3D77-F6B1-4609-ACAB-3C7F94B6073E - bee3a5dc9aee5d57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/ViewControllers/ProfileTestController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "602">
+               </Location>
+               <Location
+                  uuid = "984C3D77-F6B1-4609-ACAB-3C7F94B6073E - bee3a5dc9aee5d57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/ViewControllers/ProfileTestController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "614">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -446,8 +478,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,42 +494,10 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E0662B11-533A-48D6-9E2A-EFCC5CB0F0AF - bee3a5dc9aee5d57"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]"
-                  moduleName = "Turnout"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/ViewControllers/ProfileTestController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "602">
-               </Location>
-               <Location
-                  uuid = "E0662B11-533A-48D6-9E2A-EFCC5CB0F0AF - bee3a5dc9aee5d57"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]"
-                  moduleName = "Turnout"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/ViewControllers/ProfileTestController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "614">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -510,8 +510,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,8 +526,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-fetchLikedStatuses"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-fetchLikedStatuses"
             landmarkType = "7">
             <Locations>
@@ -590,10 +590,132 @@
             filePath = "Turnout/ViewControllers/ProfileTestController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-fetchLikedStatuses"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5551DEF-FB46-44B1-8339-41FB4F782240"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8B0EBEF-3D65-41BB-AB4E-87DA44A4AAC9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44C7FE4F-7B26-4FBB-A425-D10C32D2E804"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "6F2ECB27-F0BD-482E-B952-4D02C97AB98A"
+            shouldBeEnabled = "Yes"
+            condition = "-[Assoc likeCount]:"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F756A20A-9E7F-4CE4-B2BD-349A7C42DB5C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-fetchLikedStatuses"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5862177-8A6B-4022-8CC6-FE1A3B949C7D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-fetchLikedStatuses"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DBB85913-AB9B-47D3-AD4E-4635CD2AB1E6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/ViewControllers/ProfileTestController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "-fetchLikedStatuses"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "3F2AB513-2611-451C-9580-C766911472EC"
+            shouldBeEnabled = "Yes"
+            condition = " -[__NSSingleObjectArrayI objectAtIndex:]:"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

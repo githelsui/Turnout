@@ -10,6 +10,7 @@
 #import "ProfileStickyHeader.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "Assoc.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Zipcode.h"
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic) int tableType;
+@property (nonatomic) NSInteger tableType;
 
 @end
 
@@ -41,7 +42,8 @@
     self.header.tableView = self.tableView;
     [self fetchMyStatuses];
     [self checkSegmentedControl];
-    [self.refreshControl addTarget:self.header.tabs action:@selector(tableChanged:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -73,8 +75,20 @@
 - (void)tableChanged:(UISegmentedControl *)segment{
     NSInteger index = segment.selectedSegmentIndex;
     if(index == 0){
+        self.tableType = 0;
         [self fetchMyStatuses];
-    } else {
+    } else if(index == 1){
+        self.tableType = 1;
+        [self fetchLikedStatuses];
+    }
+}
+
+- (void)refreshTable{
+    if(self.tableType == 0){
+        self.tableType = 0;
+        [self fetchMyStatuses];
+    } else if(self.tableType == 1){
+        self.tableType = 1;
         [self fetchLikedStatuses];
     }
 }
@@ -104,7 +118,12 @@
     [query includeKey:@"likedPost"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
         if (assocs != nil) {
-            self.likes = assocs;
+            NSMutableArray *posts = [NSMutableArray array];
+            for(Assoc *assoc in assocs){
+                Post *post = assoc[@"likedPost"];
+                [posts addObject:post];
+            }
+            self.likes = [posts copy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             });
@@ -136,10 +155,14 @@
         cell.post = post;
         [cell setCell];
     } else {
-        Post *post = self.likes[indexPath.row];
-        cell.post = post;
-        [cell setCell];
+        if(indexPath.row < self.likes.count){
+            Post *post = self.likes[indexPath.row];
+            cell.post = post;
+            [cell setCell];
+        }
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
