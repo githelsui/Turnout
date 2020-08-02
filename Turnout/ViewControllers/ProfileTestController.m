@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) PFUser *currentUser;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) int tableType;
 
 @end
@@ -36,10 +37,12 @@
     [self getCurrentUserInfo];
     [self.header setupViews];
     [self.tableView addSubview:self.header];
-//    header.delegate = self;
+    //    header.delegate = self;
     self.header.tableView = self.tableView;
     [self fetchMyStatuses];
     [self checkSegmentedControl];
+    [self.refreshControl addTarget:self.header.tabs action:@selector(tableChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)getCurrentUserInfo{
@@ -52,20 +55,15 @@
             self.zipcode = zipcode[@"zipcode"];
             self.header.locationStr = self.location;
             self.header.zipcodeStr = self.zipcode;
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.header setupViews];
-//                [self.tableView addSubview:self.header];
-            });
         }
     }];
 }
 
 - (void)initTableView{
-    [self.tableView registerClass:PostCell.class forCellReuseIdentifier:@"PostCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-       self.tableView.rowHeight = UITableViewAutomaticDimension;
-       self.tableView.dataSource = self;
-       self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 - (void)checkSegmentedControl{
@@ -90,10 +88,11 @@
         if(results){
             self.posts = results;
             dispatch_async(dispatch_get_main_queue(), ^{
-                           [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                      });
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            });
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)fetchLikedStatuses{
@@ -104,15 +103,16 @@
     [query whereKey:@"user" equalTo:self.currentUser];
     [query includeKey:@"likedPost"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *assocs, NSError *error) {
-           if (assocs != nil) {
-               self.likes = assocs;
-               dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                                   });
-           } else {
-               NSLog(@"%@", error.localizedDescription);
-           }
-       }];
+        if (assocs != nil) {
+            self.likes = assocs;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            });
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -145,13 +145,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

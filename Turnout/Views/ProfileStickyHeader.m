@@ -86,7 +86,7 @@
     
     [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.centerY.equalTo(self.contentView.mas_centerY).offset(-30);
+        make.centerY.equalTo(self.contentView.mas_centerY).offset(-50);
     }];
 
     [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
