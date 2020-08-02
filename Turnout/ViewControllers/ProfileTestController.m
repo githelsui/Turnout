@@ -25,6 +25,7 @@
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) NSInteger tableType;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -38,13 +39,32 @@
     [self getCurrentUserInfo];
     [self.header setupViews];
     [self.tableView addSubview:self.header];
-    //    header.delegate = self;
     self.header.tableView = self.tableView;
     [self fetchMyStatuses];
     [self checkSegmentedControl];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)startTimer{
+    if(self.currentUser){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                       {
+            self.timer = [NSTimer timerWithTimeInterval:1
+                                                 target:self
+                                               selector:@selector(reloadData)
+                                               userInfo:nil repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+                           {
+            });
+        });
+    }
+}
+
+- (void)reloadData{
+    [self.tableView reloadData];
 }
 
 - (void)getCurrentUserInfo{
@@ -103,6 +123,7 @@
             self.posts = results;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self startTimer];
             });
         }
     }];
@@ -126,6 +147,7 @@
             self.likes = [posts copy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self startTimer];
             });
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -135,7 +157,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.posts.count;
+    NSUInteger *rows;
+    if(self.tableType == 0){
+        rows = self.posts.count;
+    } else {
+        rows = self.likes.count;
+    }
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -144,7 +172,7 @@
     if (cell == nil) {
         cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
     }
-    
+
     BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
     if (!hasContentView) {
         [cell addSubview:cell.contentView];
@@ -154,7 +182,7 @@
         Post *post = self.posts[indexPath.row];
         cell.post = post;
         [cell setCell];
-    } else {
+    } else if(self.tableType == 1){
         if(indexPath.row < self.likes.count){
             Post *post = self.likes[indexPath.row];
             cell.post = post;

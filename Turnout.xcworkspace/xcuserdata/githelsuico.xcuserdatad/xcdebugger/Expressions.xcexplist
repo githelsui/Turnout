@@ -3,252 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[RankAlgorithm getPostRank:post:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[VoteWebView viewDidLoad]:VoteWebView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.linkURL">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.neighborData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm queryPosts]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.neighborDicts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.29:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.allData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__37-[RankAlgorithm fetchCurrentZipPosts]_block_invoke:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.neighborDicts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_3:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-            <PersistentString
-               value = "individualQueues">
-            </PersistentString>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "results">
-            </PersistentString>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborDicts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController fetchPosts]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ProfileViewController initWithData:]:ProfileViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "data.title">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "main:main.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm fetchNeighboringPosts:skip:completion:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.currentZip">
-            </PersistentString>
-            <PersistentString
-               value = "![currZip isEqual:key]">
-            </PersistentString>
-            <PersistentString
-               value = "self.livefeed">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm queuePerBatch:zipcode:completion:]:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm refreshPosts:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.neighborDicts">
-            </PersistentString>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "post">
-            </PersistentString>
-            <PersistentString
-               value = "post.author">
-            </PersistentString>
-            <PersistentString
-               value = "likeCount">
-            </PersistentString>
-            <PersistentString
-               value = "postZipcode">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__39-[GeoNamesAPI fetchZipInfo:completion:]_block_invoke:GeoNamesAPI.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm getNSPredicate]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "zip[@&quot;objectId&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm addPostsToQueue:zipcode:completion:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__abort:(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.queue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm queryPosts:completion:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.livefeed">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm fetchZipcodeBatch:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "zipcode[@&quot;zipcode&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm fetchNeighboringPosts:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts.count">
-            </PersistentString>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm addToPriorityQueue:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.24:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.neighborDicts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "mach_msg_trap:(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborhoods">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__34-[LiveFeedController refreshPosts]_block_invoke:LiveFeedController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[RankAlgorithm getNeighboringDicts:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -271,7 +25,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__37-[RankAlgorithm getNeighboringDicts:]_block_invoke:RankAlgorithm.m">
+         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zipcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm queryPosts]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
                value = "self.neighborDicts">
@@ -279,58 +41,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__30-[RankAlgorithm refreshPosts:]_block_invoke_3:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
+         contextName = "-[RankAlgorithm refreshPosts:]:RankAlgorithm.m">
          <PersistentStrings>
-            <PersistentString
-               value = "self.zipcodes.count">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-            <PersistentString
-               value = "self.currentUser">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RKSwipeBetweenViewControllers viewDidLoad]:RKSwipeBetweenViewControllers.m">
-      </ContextState>
-      <ContextState
-         contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "postsArr.count">
-            </PersistentString>
-            <PersistentString
-               value = "self.livefeed">
-            </PersistentString>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-            <PersistentString
-               value = "zip[@&quot;zipcode&quot;]">
-            </PersistentString>
-            <PersistentString
-               value = "zip">
-            </PersistentString>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
             <PersistentString
                value = "self.neighborDicts">
             </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController fetchPosts]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__34-[LiveFeedController refreshPosts]_block_invoke:LiveFeedController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CCActivityHUD dismissWithText:delay:success:]:CCActivityHUD.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "success">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
       </ContextState>
       <ContextState
          contextName = "__40-[ZipwiseAPI fetchNeighbors:completion:]_block_invoke:ZipwiseAPI.m">
@@ -341,32 +82,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.33:RankAlgorithm.m">
+         contextName = "mach_msg_trap:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "self.posts">
+               value = "self.priorityQueue">
             </PersistentString>
             <PersistentString
-               value = "self.queue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__42-[RankAlgorithm fetchFarPosts:completion:]_block_invoke:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[self.livefeed containsObject:post]">
-            </PersistentString>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[PostCell queryUsersLike]:PostCell.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.assocs">
+               value = "self.neighborhoods">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -379,6 +101,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm getNSPredicate]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zip[@&quot;objectId&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ElectionDetailController fetchElectionDetail]:ElectionDetailController.m">
          <PersistentStrings>
             <PersistentString
@@ -387,173 +120,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__41-[GeoNamesAPI fetchNeighbors:completion:]_block_invoke:GeoNamesAPI.m">
+         contextName = "-[VoteWebView viewDidLoad]:VoteWebView.m">
          <PersistentStrings>
             <PersistentString
-               value = "zipcode">
+               value = "self.linkURL">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[LiveFeedController reloadData]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.rankAlgo.neighborDicts">
-            </PersistentString>
-            <PersistentString
-               value = "self.rankAlgo">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RKSwipeBetweenViewControllers setupPageViewController]:RKSwipeBetweenViewControllers.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__45-[ComposeViewController postWithImage:image:]_block_invoke:ComposeViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.delegate">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "nei">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke_2:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "__43-[ProfileTestController getCurrentUserInfo]_block_invoke:ProfileTestController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.location">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.loopIndex">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborData.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController startTimer]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "[FBSDKAccessToken currentAccessToken]">
-            </PersistentString>
-            <PersistentString
-               value = "self.currentUser">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ZipcodeGenerator getNeighbors:]:ZipcodeGenerator.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.loopIndex">
-            </PersistentString>
-            <PersistentString
-               value = "self.myRange.location">
-            </PersistentString>
-            <PersistentString
-               value = "self.neighborhoods">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm batchExists:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.individualQueues">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.21:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm addPostPriorityQueue]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
-            <PersistentString
-               value = "self.queue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm zipcodeExhausted]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.allQueries">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController prepareForSegue:sender:]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "composeController.delegate">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm createPostBatch:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "zip[@&quot;zipcode&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__43-[RankAlgorithm fetchPostsPerZipcode:skip:]_block_invoke:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm mergeBatches:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm postsArrPerBatch:zipcode:completion:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.livefeed">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController reloadFeed]:LiveFeedController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.rankAlgo.posts">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke:RankAlgorithm.m">
+         contextName = "__37-[RankAlgorithm fetchCurrentZipPosts]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
                value = "self.neighborDicts">
@@ -561,41 +136,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ProfileNaviController viewDidLoad]:ProfileNaviController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__copy_helper_block_e8_32r:RankAlgorithm.m">
+         contextName = "__38-[OnboardViewController queryZipcodes]_block_invoke:OnboardViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "currentUser">
-            </PersistentString>
-            <PersistentString
-               value = "likeCount">
+               value = "self.zipcodes">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RankAlgorithm addPostToZipcodeArray:post:]:RankAlgorithm.m">
+         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.33:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.allQueries.count">
+               value = "self.posts">
             </PersistentString>
             <PersistentString
-               value = "self.allQueries">
-            </PersistentString>
-            <PersistentString
-               value = "self.allQueries[@&quot;postArray&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm beginMerge:]:RankAlgorithm.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.priorityQueue">
-            </PersistentString>
-            <PersistentString
-               value = "batch">
+               value = "self.queue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -614,7 +169,193 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
+         contextName = "__abort:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.queue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm batchExists:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ProfileNaviController viewDidLoad]:ProfileNaviController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.29:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__50-[RankAlgorithm fetchNeighboringPosts:completion:]_block_invoke:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm addToPriorityQueue:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm fetchNeighboringPosts:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController reloadData]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.rankAlgo.neighborDicts">
+            </PersistentString>
+            <PersistentString
+               value = "self.rankAlgo">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController prepareForSegue:sender:]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "composeController.delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "post">
+            </PersistentString>
+            <PersistentString
+               value = "post.author">
+            </PersistentString>
+            <PersistentString
+               value = "likeCount">
+            </PersistentString>
+            <PersistentString
+               value = "postZipcode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm createPostBatch:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zip[@&quot;zipcode&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2.32:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm fetchNeighbors:]:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "__43-[ProfileTestController getCurrentUserInfo]_block_invoke:ProfileTestController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.location">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm addPostsToQueue:zipcode:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke.24:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm zipcodeExhausted]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.allQueries">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm addPostToZipcodeArray:post:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.allQueries.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.allQueries">
+            </PersistentString>
+            <PersistentString
+               value = "self.allQueries[@&quot;postArray&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator generateZipcodes]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.allData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator getNeighbors:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.myRange.location">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborhoods">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__copy_helper_block_e8_32r:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentUser">
+            </PersistentString>
+            <PersistentString
+               value = "likeCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke.21:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController setUpHeader]:LiveFeedController.m">
       </ContextState>
       <ContextState
          contextName = "-[RankAlgorithm updateIndividualBatch:queue:]:RankAlgorithm.m">
@@ -628,43 +369,34 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2.32:RankAlgorithm.m">
+         contextName = "-[PostCell queryUsersLike]:PostCell.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.posts">
+               value = "self.assocs">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[OnboardViewController zipcodeToSave:]:OnboardViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.zipcodes">
-            </PersistentString>
-            <PersistentString
-               value = "self.zipcodes.count">
-            </PersistentString>
-            <PersistentString
-               value = "zip.zipcode">
-            </PersistentString>
-            <PersistentString
-               value = "zip.city">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RankAlgorithm addToPriorityQueue:batch:]:RankAlgorithm.m">
+         contextName = "-[RankAlgorithm addPostPriorityQueue]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
                value = "self.priorityQueue">
             </PersistentString>
             <PersistentString
-               value = "self.posts">
+               value = "self.queue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ZipcodeGenerator getNeighborZip:]:ZipcodeGenerator.m">
+         contextName = "-[LiveFeedController reloadFeed]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.rankAlgo.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__30-[RankAlgorithm refreshPosts:]_block_invoke_3:RankAlgorithm.m">
       </ContextState>
       <ContextState
          contextName = "__33-[ZipcodeGenerator getNeighbors:]_block_invoke:ZipcodeGenerator.m">
@@ -678,47 +410,41 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[CCActivityHUD dismissWithText:delay:success:]:CCActivityHUD.m">
+         contextName = "__40-[ProfileTestController fetchMyStatuses]_block_invoke:ProfileTestController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__37-[RankAlgorithm getNeighboringDicts:]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "success">
+               value = "self.neighborDicts">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RankAlgorithm fetchNeighbors:]:RankAlgorithm.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
+         contextName = "-[RankAlgorithm postsArrPerBatch:zipcode:completion:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.mutablePosts.count">
-            </PersistentString>
-            <PersistentString
-               value = "self.tableView">
-            </PersistentString>
-            <PersistentString
-               value = "self.mutablePosts">
-            </PersistentString>
-            <PersistentString
-               value = "self.mutablePosts[0]">
+               value = "self.livefeed">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__28-[RankAlgorithm queryPosts:]_block_invoke.21:RankAlgorithm.m">
+         contextName = "-[RankAlgorithm queryPosts:completion:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
-               value = "updatedPosts">
+               value = "self.livefeed">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__50-[RankAlgorithm fetchNeighboringPosts:completion:]_block_invoke:RankAlgorithm.m">
+         contextName = "__43-[RankAlgorithm fetchPostsPerZipcode:skip:]_block_invoke:RankAlgorithm.m">
       </ContextState>
       <ContextState
-         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke_2:RankAlgorithm.m">
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_2:RankAlgorithm.m">
          <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
             <PersistentString
                value = "self.individualQueues">
             </PersistentString>
@@ -751,6 +477,225 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ProfileViewController initWithData:]:ProfileViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "data.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__43-[ProfileTestController fetchLikedStatuses]_block_invoke:ProfileTestController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+            <PersistentString
+               value = "self.likes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm fetchZipcodeBatch:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "zipcode[@&quot;zipcode&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]:ProfileTestController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_3:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+            <PersistentString
+               value = "individualQueues">
+            </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__42-[RankAlgorithm fetchFarPosts:completion:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.livefeed containsObject:post]">
+            </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__39-[GeoNamesAPI fetchZipInfo:completion:]_block_invoke:GeoNamesAPI.m">
+      </ContextState>
+      <ContextState
+         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke_2:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator containsElement:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "nei">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController startTimer]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[FBSDKAccessToken currentAccessToken]">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RKSwipeBetweenViewControllers viewDidLoad]:RKSwipeBetweenViewControllers.m">
+      </ContextState>
+      <ContextState
+         contextName = "__36-[RankAlgorithm getCurrentUserInfo:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm mergeBatches:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:main.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator checkNeighbors:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.loopIndex">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborData.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm addToPriorityQueue:batch:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+            <PersistentString
+               value = "self.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm getPostRank:post:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController zipcodeToSave:]:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+            <PersistentString
+               value = "self.zipcodes.count">
+            </PersistentString>
+            <PersistentString
+               value = "zip.zipcode">
+            </PersistentString>
+            <PersistentString
+               value = "zip.city">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ZipcodeGenerator getNeighborhood:]:ZipcodeGenerator.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.neighborData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__33-[RankAlgorithm createPostBatch:]_block_invoke:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "postsArr.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+            <PersistentString
+               value = "self.individualQueues">
+            </PersistentString>
+            <PersistentString
+               value = "zip[@&quot;zipcode&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "zip">
+            </PersistentString>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+            <PersistentString
+               value = "self.neighborDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm queuePerBatch:zipcode:completion:]:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "__28-[RankAlgorithm queryPosts:]_block_invoke.21:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "updatedPosts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__41+[Zipcode saveNewZipcode:withCompletion:]_block_invoke:Zipcode.m">
          <PersistentStrings>
             <PersistentString
@@ -759,7 +704,79 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[LiveFeedController setUpHeader]:LiveFeedController.m">
+         contextName = "-[RKSwipeBetweenViewControllers setupPageViewController]:RKSwipeBetweenViewControllers.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__45-[ComposeViewController postWithImage:image:]_block_invoke:ComposeViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnboardViewController continueTapped:]:OnboardViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.zipcodes.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.zipcodes">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentUser">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm beginMerge:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.priorityQueue">
+            </PersistentString>
+            <PersistentString
+               value = "batch">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LiveFeedController postToTopFeed:]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mutablePosts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts">
+            </PersistentString>
+            <PersistentString
+               value = "self.mutablePosts[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__27-[RankAlgorithm queryPosts]_block_invoke_2:RankAlgorithm.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RankAlgorithm fetchNeighboringPosts:skip:completion:]:RankAlgorithm.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.currentZip">
+            </PersistentString>
+            <PersistentString
+               value = "![currZip isEqual:key]">
+            </PersistentString>
+            <PersistentString
+               value = "self.livefeed">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>
