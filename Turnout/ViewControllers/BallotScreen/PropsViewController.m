@@ -9,6 +9,7 @@
 #import "PropsViewController.h"
 #import "ProPublicaAPI.h"
 #import "VoterInfoCell.h"
+#import "PropViewController.h"
 
 @interface PropsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *props;
@@ -58,14 +59,16 @@
     return cell;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *prop = self.props[indexPath.row];
+    PropViewController *detailController = [segue destinationViewController];
+    detailController.prop = prop;
 }
-*/
+
 
 @end

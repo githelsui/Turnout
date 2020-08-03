@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 - (void)fetchHouseBills:(void(^)(NSArray *info, NSError *error))completion;
+- (void)fetchBillInfo:(NSString *)billId completion:(void(^)(NSArray *info, NSError *error))completion;
 
 @end
 

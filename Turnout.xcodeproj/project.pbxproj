@@ -50,6 +50,7 @@
 		CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88524D1F2C500F27247 /* GoogleCivicAPI.m */; };
 		CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88824D202E400F27247 /* VoterInfoCell.m */; };
 		CAAEF88C24D21F1200F27247 /* ElectionsPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88B24D21F1200F27247 /* ElectionsPageControl.m */; };
+		CAB3FFBE24D7D57D0059B16E /* PropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3FFBD24D7D57D0059B16E /* PropViewController.m */; };
 		CAC2B06224BCD96E00F3B23A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06124BCD96E00F3B23A /* LoginViewController.m */; };
 		CAC2B06524BCD99C00F3B23A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06424BCD99C00F3B23A /* User.m */; };
 		CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */; };
@@ -165,6 +166,8 @@
 		CAAEF88824D202E400F27247 /* VoterInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoterInfoCell.m; sourceTree = "<group>"; };
 		CAAEF88A24D21F1200F27247 /* ElectionsPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectionsPageControl.h; sourceTree = "<group>"; };
 		CAAEF88B24D21F1200F27247 /* ElectionsPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectionsPageControl.m; sourceTree = "<group>"; };
+		CAB3FFBC24D7D57D0059B16E /* PropViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropViewController.h; sourceTree = "<group>"; };
+		CAB3FFBD24D7D57D0059B16E /* PropViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PropViewController.m; sourceTree = "<group>"; };
 		CAC2B06024BCD96E00F3B23A /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CAC2B06124BCD96E00F3B23A /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CAC2B06324BCD99C00F3B23A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */,
 				CA682EDA24D4F9F100C74182 /* CandidateDetailController.h */,
 				CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */,
+				CAB3FFBC24D7D57D0059B16E /* PropViewController.h */,
+				CAB3FFBD24D7D57D0059B16E /* PropViewController.m */,
 			);
 			path = DetailScreens;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				CA682ED524D4CFF000C74182 /* CandidateCell.m in Sources */,
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
 				CA3540ED24D61EF00034082E /* UIView+GSKLayoutHelper.m in Sources */,
+				CAB3FFBE24D7D57D0059B16E /* PropViewController.m in Sources */,
 				CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
