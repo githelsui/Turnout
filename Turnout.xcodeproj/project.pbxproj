@@ -317,10 +317,10 @@
 			children = (
 				CA51CF1324BEC54E00EEFF1B /* PostDetailController.h */,
 				CA51CF1424BEC54E00EEFF1B /* PostDetailController.m */,
-				CA682EDA24D4F9F100C74182 /* CandidateDetailController.h */,
-				CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */,
 				CA682EDD24D4FA0E00C74182 /* ElectionDetailController.h */,
 				CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */,
+				CA682EDA24D4F9F100C74182 /* CandidateDetailController.h */,
+				CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */,
 			);
 			path = DetailScreens;
 			sourceTree = "<group>";
@@ -332,10 +332,10 @@
 				CA15FA6624BE6FA000307BBD /* PostCell.m */,
 				CAAEF88724D202E400F27247 /* VoterInfoCell.h */,
 				CAAEF88824D202E400F27247 /* VoterInfoCell.m */,
-				CA682ED324D4CFF000C74182 /* CandidateCell.h */,
-				CA682ED424D4CFF000C74182 /* CandidateCell.m */,
 				CA682EE324D54DD000C74182 /* ElectionDetailCell.h */,
 				CA682EE424D54DD000C74182 /* ElectionDetailCell.m */,
+				CA682ED324D4CFF000C74182 /* CandidateCell.h */,
+				CA682ED424D4CFF000C74182 /* CandidateCell.m */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";

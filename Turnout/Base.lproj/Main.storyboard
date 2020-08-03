@@ -921,18 +921,124 @@
         <!--Candidate Detail Controller-->
         <scene sceneID="VU8-nZ-7e2">
             <objects>
-                <viewController id="3Jv-bV-v4J" customClass="CandidateDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CandidateDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Jv-bV-v4J" customClass="CandidateDetailController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SCo-1S-2PC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-h2-YRW">
+                                <rect key="frame" x="16" y="72" width="343" height="638"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYy-zw-irC">
+                                <rect key="frame" x="34" y="90" width="307" height="42.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="un5-bo-C6f">
+                                        <rect key="frame" x="8" y="7.9999999999999982" width="291" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="un5-bo-C6f" secondAttribute="trailing" constant="8" id="0AA-Bz-kyY"/>
+                                    <constraint firstItem="un5-bo-C6f" firstAttribute="leading" secondItem="fYy-zw-irC" secondAttribute="leading" constant="8" id="a8v-8a-GoR"/>
+                                    <constraint firstItem="un5-bo-C6f" firstAttribute="top" secondItem="fYy-zw-irC" secondAttribute="top" constant="8" id="l6K-hp-azY"/>
+                                    <constraint firstAttribute="bottom" secondItem="un5-bo-C6f" secondAttribute="bottom" constant="8" id="yMP-C1-39c"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eX5-Xo-PG2">
+                                <rect key="frame" x="34" y="151.33333333333337" width="307" height="209.66666666666663"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Office Full" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-50-Qws">
+                                        <rect key="frame" x="8" y="15" width="291" height="21.666666666666671"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party Full" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHR-uE-2Jq">
+                                        <rect key="frame" x="8" y="54" width="291" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election District: #" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv6-FW-o0M">
+                                        <rect key="frame" x="8" y="147" width="291" height="19.333333333333343"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-zO-2IE" userLabel="Border1">
+                                        <rect key="frame" x="8" y="45" width="291" height="0.6666666666666643"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.93915277720000001" green="0.49286867010000002" blue="0.34499219019999999" alpha="0.31779751709999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SSs-pg-bXl" userLabel="Border2">
+                                        <rect key="frame" x="8" y="91" width="291" height="0.6666666666666714"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99813979860000002" green="0.61076626710000004" blue="0.56859463450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvf-hD-SmO" userLabel="Border3">
+                                        <rect key="frame" x="8" y="139" width="291" height="0.66666666666665719"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99771338700000001" green="0.37308424709999999" blue="0.38429385420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Candidate Type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q94-UW-fKS">
+                                        <rect key="frame" x="8" y="100" width="291" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City, State" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juM-ts-egF">
+                                        <rect key="frame" x="8" y="174" width="291" height="19.333333333333343"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="209.66999999999999" id="dQe-JN-Wn0"/>
+                                    <constraint firstAttribute="width" constant="307" id="veo-op-Ne6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fYy-zw-irC" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="34" id="1Xk-ih-NnJ"/>
+                            <constraint firstItem="eX5-Xo-PG2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fYy-zw-irC" secondAttribute="bottom" constant="19.000000000000028" id="30D-Dq-P9G"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="eX5-Xo-PG2" secondAttribute="trailing" constant="34" id="81a-Ab-EdO"/>
+                            <constraint firstItem="tzQ-h2-YRW" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="16" id="N1b-PA-aqH"/>
+                            <constraint firstItem="tzQ-h2-YRW" firstAttribute="top" secondItem="9Pp-cS-HTt" secondAttribute="top" constant="16" id="RZF-sr-iqu"/>
+                            <constraint firstAttribute="bottom" secondItem="tzQ-h2-YRW" secondAttribute="bottom" constant="48" id="cub-Ff-uJV"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="tzQ-h2-YRW" secondAttribute="trailing" constant="16" id="fhW-8K-Jkt"/>
+                            <constraint firstItem="fYy-zw-irC" firstAttribute="top" secondItem="9Pp-cS-HTt" secondAttribute="top" constant="34" id="koy-hq-gVS"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="fYy-zw-irC" secondAttribute="trailing" constant="34" id="tXP-Ho-T3L"/>
+                            <constraint firstItem="eX5-Xo-PG2" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="34" id="x5a-bt-Gsc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9Pp-cS-HTt"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vpq-Pf-exg"/>
+                    <connections>
+                        <outlet property="backColor" destination="tzQ-h2-YRW" id="syW-aB-bGV"/>
+                        <outlet property="candidateLabel" destination="q94-UW-fKS" id="BST-ic-hg7"/>
+                        <outlet property="districtLabel" destination="Dv6-FW-o0M" id="vQX-nu-GnT"/>
+                        <outlet property="infoView" destination="eX5-Xo-PG2" id="xo0-8n-HwG"/>
+                        <outlet property="locLabel" destination="juM-ts-egF" id="8Jk-Bc-dXe"/>
+                        <outlet property="nameLabel" destination="un5-bo-C6f" id="hG2-Vs-sLS"/>
+                        <outlet property="nameView" destination="fYy-zw-irC" id="GMe-Tn-ZUg"/>
+                        <outlet property="officeLabel" destination="sPO-50-Qws" id="hpD-AX-Slr"/>
+                        <outlet property="partyLabel" destination="eHR-uE-2Jq" id="4mz-bw-cBc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyd-kz-nmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5801" y="1453"/>
+            <point key="canvasLocation" x="5800.8000000000002" y="1452.7093596059115"/>
         </scene>
         <!--Candidates View Controller-->
         <scene sceneID="Qal-nR-zaJ">
@@ -1032,7 +1138,7 @@
                                                             <outlet property="officeLabel" destination="agG-RA-akv" id="zil-DB-Oz2"/>
                                                             <outlet property="partyLabel" destination="5jP-XC-L23" id="lJ7-uz-JaT"/>
                                                             <outlet property="typeLabel" destination="tHY-JN-wEb" id="KNX-hd-b4E"/>
-                                                            <segue destination="3Jv-bV-v4J" kind="show" id="xXQ-aT-JeO"/>
+                                                            <segue destination="3Jv-bV-v4J" kind="show" identifier="CandidateDetailSegue" id="xXQ-aT-JeO"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OpenFECAPI : AFURLSessionManager
 
 + (instancetype)shared;
-- (void)fetchCandidates:(void(^)(NSArray *info, NSError *error))completion;
+- (void)fetchCandidates:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion;
 - (void)fetchStateElections:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion;
-- (void)fetchCandidateDetails:(NSString *)id completion:(void(^)(NSArray *info, NSError *error))completion;
+- (void)fetchCandidateDetails:(NSString *)candidateId completion:(void(^)(NSArray *info, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

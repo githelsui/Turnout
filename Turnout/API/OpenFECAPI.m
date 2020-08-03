@@ -21,9 +21,9 @@ static NSString * const APIKey = @"SxlbqyaY2PKbvjUkyGWU8cG1FY5DwjXairvKVwYl";
     return sharedManager;
 }
 
-- (void)fetchCandidates:(void(^)(NSArray *info, NSError *error))completion{
+- (void)fetchCandidates:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion{
        NSString *baseURLString = @"https://api.open.fec.gov/v1/candidates/?";
-       NSString *address = [NSString stringWithFormat:@"page=1&api_key=%@&sort=name&sort_nulls_last=false&is_active_candidate=true&candidate_status=C&year=2020&sort_hide_null=false&incumbent_challenge=C&per_page=20&sort_null_only=false", APIKey];
+       NSString *address = [NSString stringWithFormat:@"page=1&api_key=%@&sort=name&sort_nulls_last=false&is_active_candidate=true&candidate_status=C&year=2020&sort_hide_null=false&incumbent_challenge=C&per_page=20&sort_null_only=false&state=%@", APIKey, state];
        NSString *fullURL = [baseURLString stringByAppendingString:address];
        NSLog(@"full URL: %@", fullURL);
        NSURL *url = [NSURL URLWithString:fullURL];
@@ -46,7 +46,7 @@ static NSString * const APIKey = @"SxlbqyaY2PKbvjUkyGWU8cG1FY5DwjXairvKVwYl";
 
 - (void)fetchStateElections:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion{
     NSString *baseURLString = @"https://api.open.fec.gov/v1/election-dates/?";
-    NSString *address = [NSString stringWithFormat:@"sort_null_only=false&sort_nulls_last=false&sort=-election_date&per_page=20&election_year=2020&page=1&sort_hide_null=false&election_state=%@&election_state=&api_key=%@", state,APIKey];
+    NSString *address = [NSString stringWithFormat:@"sort_null_only=false&sort_nulls_last=false&sort=-election_date&per_page=20&election_year=2020&page=1&sort_hide_null=false&election_state=%@&api_key=%@", state, APIKey];
     NSString *fullURL = [baseURLString stringByAppendingString:address];
     NSLog(@"full URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -65,8 +65,25 @@ static NSString * const APIKey = @"SxlbqyaY2PKbvjUkyGWU8cG1FY5DwjXairvKVwYl";
     [task resume];
 }
 
-- (void)fetchCandidateDetails:(NSString *)id completion:(void(^)(NSArray *info, NSError *error))completion{
-    
+- (void)fetchCandidateDetails:(NSString *)candidateId completion:(void(^)(NSArray *info, NSError *error))completion{
+    NSString *baseURLString = @"https://api.open.fec.gov/v1/candidate/";
+    NSString *address = [NSString stringWithFormat:@"%@/?sort_null_only=false&sort_nulls_last=false&sort=name&per_page=20&page=1&sort_hide_null=false&api_key=%@", candidateId, APIKey];
+    NSString *fullURL = [baseURLString stringByAppendingString:address];
+    NSLog(@"full URL: %@", fullURL);
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+        if (error) {
+            NSLog(@"zipcode error: %@", [error localizedDescription]);
+            completion(nil, error);
+        } else {
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSArray *results = dataDictionary[@"results"];
+            NSLog(@"array results: %@", results);
+            completion(results, nil);
+        }
+    }];
+    [task resume];
 }
 
 - (NSArray *)createCandidateArr:(NSArray *)arr{
