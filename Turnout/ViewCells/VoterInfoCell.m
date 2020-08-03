@@ -37,17 +37,29 @@
     }
 }
 
+- (void)setPropCell{
+    self.bubbleView.alpha = 1;
+    self.bubbleView.clipsToBounds = true;
+    self.bubbleView.layer.cornerRadius = 15;
+    NSString *date = [NSString stringWithFormat: @"Legislative Date: %@", self.infoCell[@"legislative_day"]];
+    self.adminLabel.text = date;
+    [self setPropositionTitle];
+}
+
 - (void)setPropositionTitle{
     NSString *fullTitle = self.infoCell[@"description"];
     NSString *newTitle = @"";
     NSArray *chunks = [fullTitle componentsSeparatedByString: @" "];
     for(NSString *word in chunks){
-        NSString *firstLetter = [word substringFromIndex:1];
+        NSString *firstLetter = [word substringWithRange:NSMakeRange(0, 1)];
         if([firstLetter isEqualToString:@"["]){
             break;
+        } else {
+        NSString *toAdd = [NSString stringWithFormat: @"%@ ", word];
+        newTitle = [newTitle stringByAppendingString:toAdd];
         }
     }
-    
+    self.titleLabel.text = newTitle;
 }
 
 @end

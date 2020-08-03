@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *bubbleView;
 @property (nonatomic, strong) NSMutableDictionary *infoCell;
 - (void)setCell;
+- (void)setPropCell;
 @end
 
 NS_ASSUME_NONNULL_END

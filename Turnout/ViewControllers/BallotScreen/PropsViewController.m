@@ -54,10 +54,7 @@
     }
     NSMutableDictionary *prop = self.props[indexPath.row];
     cell.infoCell = prop;
-    cell.adminLabel.text = prop[@"legislative_day"];
-    cell.titleLabel.text = prop[@"description"];
-    cell.bubbleView.clipsToBounds = true;
-    cell.bubbleView.layer.cornerRadius = 15;
+    [cell setPropCell];
     return cell;
 }
 
