@@ -74,7 +74,7 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
     NSInteger numControllers = [viewControllerArray count];
     
     if (!buttonText) {
-         buttonText = [[NSArray alloc]initWithObjects: @"Elections",@"Candidates",nil]; //%%%buttontitle
+         buttonText = [[NSArray alloc]initWithObjects: @"National Elections",@"State Elections",nil]; //%%%buttontitle
     }
     
     for (int i = 0; i<numControllers; i++) {
@@ -157,9 +157,9 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
 - (void)prepCustomViews{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* electionsView = [storyboard instantiateViewControllerWithIdentifier:@"ElectionsViewController"];
-    UIViewController* candidatesView = [storyboard instantiateViewControllerWithIdentifier:@"CandidatesViewController"];
+    UIViewController* stateElection = [storyboard instantiateViewControllerWithIdentifier:@"StateElectionController"];
     [viewControllerArray addObject:electionsView];
-    [viewControllerArray addObject:candidatesView];
+    [viewControllerArray addObject:stateElection];
    
 }
 

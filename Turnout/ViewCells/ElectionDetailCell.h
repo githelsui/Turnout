@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *header;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locLabel;
 @property (weak, nonatomic) NSDictionary *content;
 - (void)setCell:(NSString *)contentType;
+- (void)setStateElection;
 @end
 
 NS_ASSUME_NONNULL_END

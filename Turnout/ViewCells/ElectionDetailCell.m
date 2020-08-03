@@ -38,6 +38,29 @@
     }
 }
 
+- (void)setStateElection{
+    [self setBack];
+    self.header.text = self.content[@"election_date"];
+    NSString *electionNotes = self.content[@"election_notes"];
+    if([electionNotes isEqual:[NSNull null]]){
+        NSLog(@"content is nil: %@", self.content[@"election_date"]);
+        self.title.text = self.content[@"election_type_full"];
+        self.descLabel.alpha = 0;
+    } else {
+        NSLog(@"content is not nil: %@", self.content[@"election_date"]);
+        self.title.text = self.content[@"election_notes"];
+    }
+    self.descLabel.text = self.content[@"election_type_full"];
+    self.locLabel.text = [self getElectionLoc];
+}
+
+- (NSString *)getElectionLoc{
+    NSString *state = self.content[@"election_state"];
+    NSString *district = self.content[@"election_district"];
+    NSString *loc = [NSString stringWithFormat:@"District %@, %@", district, state];
+    return loc;
+}
+
 //header, title, desclabel
 - (void)setGeneralContest{
     self.header.text = self.content[@"type"];

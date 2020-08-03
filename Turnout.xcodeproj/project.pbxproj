@@ -17,7 +17,6 @@
 		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
 		CA17F0B024D14DC100636CBB /* VoteLinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */; };
 		CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0B224D14DCF00636CBB /* VoteInfoViewController.m */; };
-		CA262BA224D629E900B354E1 /* GSKExampleDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CA262BA124D629E900B354E1 /* GSKExampleDataSource.m */; };
 		CA3540EA24D61DBB0034082E /* ProfileStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540E924D61DBB0034082E /* ProfileStickyHeader.m */; };
 		CA3540ED24D61EF00034082E /* UIView+GSKLayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540EC24D61EF00034082E /* UIView+GSKLayoutHelper.m */; };
 		CA3540F324D622D00034082E /* UINavigationController+Transparency.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540F224D622D00034082E /* UINavigationController+Transparency.m */; };
@@ -101,8 +100,6 @@
 		CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteLinksViewController.m; sourceTree = "<group>"; };
 		CA17F0B124D14DCF00636CBB /* VoteInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteInfoViewController.h; sourceTree = "<group>"; };
 		CA17F0B224D14DCF00636CBB /* VoteInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteInfoViewController.m; sourceTree = "<group>"; };
-		CA262BA024D629E900B354E1 /* GSKExampleDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSKExampleDataSource.h; sourceTree = "<group>"; };
-		CA262BA124D629E900B354E1 /* GSKExampleDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSKExampleDataSource.m; sourceTree = "<group>"; };
 		CA3540E824D61DBB0034082E /* ProfileStickyHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileStickyHeader.h; sourceTree = "<group>"; };
 		CA3540E924D61DBB0034082E /* ProfileStickyHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileStickyHeader.m; sourceTree = "<group>"; };
 		CA3540EB24D61EF00034082E /* UIView+GSKLayoutHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+GSKLayoutHelper.h"; sourceTree = "<group>"; };
@@ -279,6 +276,7 @@
 		CA5F03D324BCD58600F599CF /* Turnout */ = {
 			isa = PBXGroup;
 			children = (
+				CA864AF424D782B9003EB7AC /* Utilities */,
 				CA15FA6424BE6D5000307BBD /* API */,
 				CAC2B06624BCE1C900F3B23A /* Delegates */,
 				CA864AE124D7789F003EB7AC /* ViewCells */,
@@ -375,6 +373,50 @@
 			path = BallotScreen;
 			sourceTree = "<group>";
 		};
+		CA864AF124D78230003EB7AC /* LiveFeed */ = {
+			isa = PBXGroup;
+			children = (
+				CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */,
+				CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */,
+				CA15FA5E24BE51B400307BBD /* ComposeViewController.h */,
+				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
+			);
+			path = LiveFeed;
+			sourceTree = "<group>";
+		};
+		CA864AF224D78246003EB7AC /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CAC2B06024BCD96E00F3B23A /* LoginViewController.h */,
+				CAC2B06124BCD96E00F3B23A /* LoginViewController.m */,
+				CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */,
+				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		CA864AF324D7825A003EB7AC /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CA68F01A24D65DD6008BD4E5 /* ProfileTestController.h */,
+				CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		CA864AF424D782B9003EB7AC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CA028F3424CA1A270034C211 /* RankAlgorithm.h */,
+				CA028F3524CA1A270034C211 /* RankAlgorithm.m */,
+				CA3540EB24D61EF00034082E /* UIView+GSKLayoutHelper.h */,
+				CA3540EC24D61EF00034082E /* UIView+GSKLayoutHelper.m */,
+				CA3540F124D622D00034082E /* UINavigationController+Transparency.h */,
+				CA3540F224D622D00034082E /* UINavigationController+Transparency.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		CAC2B05D24BCD8C700F3B23A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,19 +439,12 @@
 		CAC2B05E24BCD8CE00F3B23A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CAC2B06024BCD96E00F3B23A /* LoginViewController.h */,
-				CAC2B06124BCD96E00F3B23A /* LoginViewController.m */,
-				CAC2B06724BCE7F900F3B23A /* LiveFeedController.h */,
-				CAC2B06824BCE7F900F3B23A /* LiveFeedController.m */,
-				CAC2B06A24BD1CC600F3B23A /* OnboardViewController.h */,
-				CAC2B06B24BD1CC600F3B23A /* OnboardViewController.m */,
-				CA15FA5E24BE51B400307BBD /* ComposeViewController.h */,
-				CA15FA5F24BE51B400307BBD /* ComposeViewController.m */,
-				CA68F01A24D65DD6008BD4E5 /* ProfileTestController.h */,
-				CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */,
-				CA864AF024D781AF003EB7AC /* BallotScreen */,
-				CA864AEF24D781A9003EB7AC /* ElectionScreen */,
+				CA864AF224D78246003EB7AC /* LoginScreen */,
+				CA864AF124D78230003EB7AC /* LiveFeed */,
 				CA864AEE24D781A1003EB7AC /* VoteScreen */,
+				CA864AEF24D781A9003EB7AC /* ElectionScreen */,
+				CA864AF024D781AF003EB7AC /* BallotScreen */,
+				CA864AF324D7825A003EB7AC /* ProfileScreen */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -439,14 +474,6 @@
 				CA5F03D724BCD58600F599CF /* SceneDelegate.h */,
 				CA5F03D824BCD58600F599CF /* SceneDelegate.m */,
 				CA028F3324CA10D90034C211 /* RefreshFeedDelegate.h */,
-				CA028F3424CA1A270034C211 /* RankAlgorithm.h */,
-				CA028F3524CA1A270034C211 /* RankAlgorithm.m */,
-				CA3540EB24D61EF00034082E /* UIView+GSKLayoutHelper.h */,
-				CA3540EC24D61EF00034082E /* UIView+GSKLayoutHelper.m */,
-				CA3540F124D622D00034082E /* UINavigationController+Transparency.h */,
-				CA3540F224D622D00034082E /* UINavigationController+Transparency.m */,
-				CA262BA024D629E900B354E1 /* GSKExampleDataSource.h */,
-				CA262BA124D629E900B354E1 /* GSKExampleDataSource.m */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -715,7 +742,6 @@
 				CA5F03D624BCD58600F599CF /* AppDelegate.m in Sources */,
 				CA3540ED24D61EF00034082E /* UIView+GSKLayoutHelper.m in Sources */,
 				CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */,
-				CA262BA224D629E900B354E1 /* GSKExampleDataSource.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
