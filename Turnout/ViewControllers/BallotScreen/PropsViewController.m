@@ -53,6 +53,7 @@
     if (!hasContentView) {
         [cell addSubview:cell.contentView];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSMutableDictionary *prop = self.props[indexPath.row];
     cell.infoCell = prop;
     [cell setPropCell];

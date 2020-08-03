@@ -1294,27 +1294,33 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcK-Ov-7v3">
                                                 <rect key="frame" x="18" y="467" width="138" height="30"/>
-                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.99771338700000001" green="0.9682528876850417" blue="0.95061915633042182" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="KYz-Dy-d7J"/>
                                                     <constraint firstAttribute="width" constant="138" id="ZT7-wu-Mah"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                 <state key="normal" title="Texts">
-                                                    <color key="titleColor" red="0.99813979860000002" green="0.61076626710000004" blue="0.56859463450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="titleColor" red="0.99771338700000001" green="0.37308424709999999" blue="0.38429385420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="PropTextsSegue" id="BzJ-Ck-f8S"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouc-sW-Anx">
                                                 <rect key="frame" x="187" y="467" width="138" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" red="0.99771338700000001" green="0.9682528876850417" blue="0.95061915633042182" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="138" id="9ZY-Ev-fiF"/>
                                                     <constraint firstAttribute="height" constant="30" id="9qx-eY-KvY"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                 <state key="normal" title="Actions">
-                                                    <color key="titleColor" red="0.99813979860000002" green="0.61076626710000004" blue="0.56859463450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="titleColor" red="0.99771338700000001" green="0.37308424709999999" blue="0.38429385420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="PropActionsSegue" id="bV4-R5-ge5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2116,7 +2122,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="plP-LP-ePy"/>
+        <segue reference="BzJ-Ck-f8S"/>
         <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>
