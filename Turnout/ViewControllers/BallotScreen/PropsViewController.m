@@ -7,16 +7,58 @@
 //
 
 #import "PropsViewController.h"
+#import "ProPublicaAPI.h"
+#import "VoterInfoCell.h"
 
-@interface PropsViewController ()
-
+@interface PropsViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) NSArray *props;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation PropsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self fetchProps];
+}
+
+- (void)fetchProps{
+    [[ProPublicaAPI shared] fetchHouseBills:^(NSArray *propositions, NSError *error){
+        if(propositions){
+            self.props = propositions;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            });
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.props.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VoterInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VoterInfoCell"];
+    if (cell == nil) {
+        cell = [[VoterInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VoterInfoCell"];
+    }
+    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+    if (!hasContentView) {
+        [cell addSubview:cell.contentView];
+    }
+    NSMutableDictionary *prop = self.props[indexPath.row];
+    cell.infoCell = prop;
+    cell.adminLabel.text = prop[@"legislative_day"];
+    cell.titleLabel.text = prop[@"description"];
+    cell.bubbleView.clipsToBounds = true;
+    cell.bubbleView.layer.cornerRadius = 15;
+    return cell;
 }
 
 /*

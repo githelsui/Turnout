@@ -37,4 +37,17 @@
     }
 }
 
+- (void)setPropositionTitle{
+    NSString *fullTitle = self.infoCell[@"description"];
+    NSString *newTitle = @"";
+    NSArray *chunks = [fullTitle componentsSeparatedByString: @" "];
+    for(NSString *word in chunks){
+        NSString *firstLetter = [word substringFromIndex:1];
+        if([firstLetter isEqualToString:@"["]){
+            break;
+        }
+    }
+    
+}
+
 @end

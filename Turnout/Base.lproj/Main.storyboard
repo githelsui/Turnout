@@ -1560,14 +1560,90 @@
                     <view key="view" contentMode="scaleToFill" id="MW1-yp-44Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="11I-in-GIX">
+                                <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="149" id="tze-4Q-nwk" customClass="VoterInfoCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="149"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tze-4Q-nwk" id="gBd-40-NBT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUN-t9-bgF">
+                                                    <rect key="frame" x="8" y="11" width="359" height="124"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="flipped_color" translatesAutoresizingMaskIntoConstraints="NO" id="m9N-XP-iER">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legislative Date: yr-month-day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwS-eO-5qw">
+                                                            <rect key="frame" x="12" y="15" width="184.66666666666666" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lx-74-BPE">
+                                                            <rect key="frame" x="10" y="52" width="339" height="19.333333333333329"/>
+                                                            <gestureRecognizers/>
+                                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="0.70588235290000001" blue="0.6705882353" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="1lx-74-BPE" secondAttribute="trailing" constant="10" id="0nh-nu-6XJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="uwS-eO-5qw" secondAttribute="trailing" constant="162.33000000000001" id="Cyn-zg-GE6"/>
+                                                        <constraint firstItem="m9N-XP-iER" firstAttribute="leading" secondItem="gUN-t9-bgF" secondAttribute="leading" id="IPi-sP-mgI"/>
+                                                        <constraint firstItem="uwS-eO-5qw" firstAttribute="top" secondItem="gUN-t9-bgF" secondAttribute="top" constant="15" id="Np1-9r-WTG"/>
+                                                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="1lx-74-BPE" secondAttribute="bottom" constant="52.670000000000002" id="PRN-At-fYR"/>
+                                                        <constraint firstItem="1lx-74-BPE" firstAttribute="leading" secondItem="gUN-t9-bgF" secondAttribute="leading" constant="10" id="Qe7-ky-own"/>
+                                                        <constraint firstItem="m9N-XP-iER" firstAttribute="top" secondItem="gUN-t9-bgF" secondAttribute="top" id="S1t-v5-Mc1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="m9N-XP-iER" secondAttribute="bottom" id="YbE-vd-gQX"/>
+                                                        <constraint firstAttribute="width" constant="359" id="ZWY-ip-skJ"/>
+                                                        <constraint firstAttribute="height" constant="124" id="d0I-CU-rqH"/>
+                                                        <constraint firstItem="1lx-74-BPE" firstAttribute="top" secondItem="uwS-eO-5qw" secondAttribute="bottom" constant="21" id="ogN-eB-fGu"/>
+                                                        <constraint firstAttribute="trailing" secondItem="m9N-XP-iER" secondAttribute="trailing" id="qMJ-f8-pjq"/>
+                                                        <constraint firstItem="uwS-eO-5qw" firstAttribute="leading" secondItem="gUN-t9-bgF" secondAttribute="leading" constant="12" id="wGp-uz-c1r"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gUN-t9-bgF" firstAttribute="top" secondItem="gBd-40-NBT" secondAttribute="top" constant="11" id="5yl-lU-qiQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="gUN-t9-bgF" secondAttribute="trailing" constant="8" id="VV2-G1-hXX"/>
+                                                <constraint firstItem="gUN-t9-bgF" firstAttribute="leading" secondItem="gBd-40-NBT" secondAttribute="leading" constant="8" id="bOm-Iz-NEh"/>
+                                                <constraint firstAttribute="bottom" secondItem="gUN-t9-bgF" secondAttribute="bottom" constant="14" id="y8e-x2-gVY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="adminLabel" destination="uwS-eO-5qw" id="lnC-aW-d4C"/>
+                                            <outlet property="backImage" destination="m9N-XP-iER" id="ypr-kr-ly3"/>
+                                            <outlet property="bubbleView" destination="gUN-t9-bgF" id="xos-6a-JUR"/>
+                                            <outlet property="titleLabel" destination="1lx-74-BPE" id="5R3-jL-XcE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="11I-in-GIX" firstAttribute="bottom" secondItem="PA6-5y-SMF" secondAttribute="bottom" id="19U-Ub-cT1"/>
+                            <constraint firstItem="11I-in-GIX" firstAttribute="top" secondItem="PA6-5y-SMF" secondAttribute="top" id="F9F-0L-A6b"/>
+                            <constraint firstItem="11I-in-GIX" firstAttribute="leading" secondItem="PA6-5y-SMF" secondAttribute="leading" id="gnb-uk-FxW"/>
+                            <constraint firstItem="11I-in-GIX" firstAttribute="trailing" secondItem="PA6-5y-SMF" secondAttribute="trailing" id="uMA-Dw-Q1a"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PA6-5y-SMF"/>
                     </view>
                     <navigationItem key="navigationItem" id="itI-Dn-ZGn"/>
+                    <connections>
+                        <outlet property="tableView" destination="11I-in-GIX" id="I2h-n1-cg8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WEc-rC-GKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="2235"/>
+            <point key="canvasLocation" x="4976.8000000000002" y="2234.4827586206898"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="q9a-T3-gjm">
