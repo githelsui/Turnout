@@ -40,25 +40,42 @@
 
 - (void)setStateElection{
     [self setBack];
-    self.header.text = self.content[@"election_date"];
+    self.header.text = [NSString stringWithFormat:@"Election Date: %@", self.content[@"election_date"]];
     NSString *electionNotes = self.content[@"election_notes"];
     if([electionNotes isEqual:[NSNull null]]){
-        NSLog(@"content is nil: %@", self.content[@"election_date"]);
         self.title.text = self.content[@"election_type_full"];
-        self.descLabel.alpha = 0;
+        self.descLabel.text = [self getOfficeSought];
     } else {
-        NSLog(@"content is not nil: %@", self.content[@"election_date"]);
         self.title.text = self.content[@"election_notes"];
+        self.descLabel.text = [self getStateDesc];
     }
-    self.descLabel.text = self.content[@"election_type_full"];
     self.locLabel.text = [self getElectionLoc];
 }
 
 - (NSString *)getElectionLoc{
     NSString *state = self.content[@"election_state"];
     NSString *district = self.content[@"election_district"];
-    NSString *loc = [NSString stringWithFormat:@"District %@, %@", district, state];
+    NSString *loc;
+    if(self.content[@"election_district"] == nil){
+        loc = state;
+    } else {
+        loc  = [NSString stringWithFormat:@"District %@, %@", district, state];
+    }
     return loc;
+}
+
+- (NSString *)getStateDesc{
+    NSString *electionType = self.content[@"election_type_full"];
+    NSString *office = [self getOfficeSought];
+    NSString *returnStr = [NSString stringWithFormat:@"%@ | %@\r", electionType, office];
+    return returnStr;
+}
+
+- (NSString *)getOfficeSought{
+    NSString *key = self.content[@"office_sought"];
+    if([key isEqualToString:@"H"]) return @"Office Sought: House of Representatives";
+    else if([key isEqualToString:@"S"]) return @"Office Sought: Senate";
+    else return @"Office Sought: Presidential";
 }
 
 //header, title, desclabel
