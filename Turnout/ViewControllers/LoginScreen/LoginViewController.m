@@ -15,11 +15,14 @@
 #import "User.h"
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UIImageView *appImg;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) FBSDKProfile *fbsdkProfile;
+@property (strong, nonatomic) FBSDKLoginButton *fbButton;
 @end
 
 @implementation LoginViewController
@@ -31,34 +34,85 @@
         self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
     [self setUI];
-    [self setFBLogin];
 }
 
 - (void)setUI{
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [self setAnimation];
+    self.usernameField.alpha = 0;
+    self.passwordField.alpha = 0;
+    self.loginBtn.alpha = 0;
+    self.signUpButton.alpha = 0;
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+    UIView *padding = [[UIView alloc] initWithFrame:CGRectMake(0, 25, 15, 0)];
     self.usernameField.leftView = paddingView;
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
-    self.usernameField.layer.cornerRadius = 15;
-//    self.passwordField.layer.cornerRadius = 15;
-//    self.passwordField.leftView = paddingView;
-//    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
-    self.signUpButton.layer.cornerRadius = 15;
-    self.loginBtn.layer.cornerRadius = 15;
+    self.usernameField.rightView = paddingView;
+    self.usernameField.rightViewMode = UITextFieldViewModeAlways;
+    self.usernameField.layer.cornerRadius = 16;
+    self.passwordField.layer.cornerRadius = 16;
+    self.passwordField.leftView = padding;
+    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordField.rightView = padding;
+    self.passwordField.rightViewMode = UITextFieldViewModeAlways;
+    self.signUpButton.layer.cornerRadius = 17;
+    self.loginBtn.layer.cornerRadius = 17;
+}
+
+- (void)setAnimation{
+    self.appImg.alpha = 0;
+    self.titleLabel.alpha = 0;
+    CGPoint finalTitlePos = self.titleLabel.layer.position;
+    CGFloat titleY = finalTitlePos.y;
+    CGPoint finalIconPos  = self.appImg.layer.position;
+    CGFloat iconY = finalIconPos.y;
+    CGFloat startTitleY = titleY + 200;
+    CGFloat startIconY = iconY + 200;
+    CGPoint startTitlePos = CGPointMake(finalTitlePos.x, startTitleY);
+    CGPoint startIconPos = CGPointMake(finalIconPos.x, startIconY);
+    self.titleLabel.layer.position = startTitlePos;
+    self.appImg.layer.position = startIconPos;
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.appImg.alpha = 1;
+        self.titleLabel.alpha = 1;
+        self.appImg.layer.position = finalIconPos;
+        self.titleLabel.layer.position = finalTitlePos;
+    } completion:^(BOOL finished) {
+        if(finished){
+            [self animateLoginUI];
+        }
+    }];
+}
+
+- (void)animateLoginUI{
+    [self setFBLogin];
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.usernameField.alpha = 1;
+        self.passwordField.alpha = 1;
+        self.loginBtn.alpha = 1;
+        self.signUpButton.alpha = 1;
+        self.fbButton.alpha = 1;
+    } completion:^(BOOL finished) {
+        if(finished){
+            NSLog(@"yehaw");
+        }
+    }];
 }
 
 - (void)setFBLogin{
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
+    self.fbButton = [[FBSDKLoginButton alloc] init];
+    self.fbButton.alpha = 0;
+    self.fbButton.delegate = self;
     CGPoint point;
     point.x = self.view.center.x;
-    point.y = self.signUpButton.layer.frame.size.height + self.signUpButton.layer.position.y + 10;
-    loginButton.center = point;
+    point.y = self.signUpButton.layer.frame.size.height + self.signUpButton.layer.position.y + 17;
+    self.fbButton.center = point;
     int btnLength = self.usernameField.layer.frame.size.width;
-    CGRect rect = CGRectMake(0, 0,  btnLength,  40);
-    loginButton.bounds = rect;
-    [self.view addSubview:loginButton];
-    loginButton.permissions = @[@"public_profile", @"email"];
-    
+    CGRect rect = CGRectMake(0, 0,  btnLength,  45);
+    self.fbButton.bounds = rect;
+    self.fbButton.clipsToBounds = true;
+    self.fbButton.layer.cornerRadius = 15;
+    [self.view addSubview:self.fbButton];
+    self.fbButton.permissions = @[@"public_profile", @"email"];
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton

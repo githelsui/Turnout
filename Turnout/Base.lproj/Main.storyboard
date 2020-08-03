@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turnout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcA-9s-bvO">
-                                <rect key="frame" x="117" y="265" width="140" height="43"/>
+                                <rect key="frame" x="117" y="261" width="140" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="45"/>
                                 <color key="textColor" red="0.99771338700000001" green="0.96825288769999995" blue="0.95061915630000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -101,9 +101,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="appImg" destination="XMS-Yl-4OI" id="NJ0-oT-bL1"/>
                         <outlet property="loginBtn" destination="aXb-3M-dGl" id="7uu-Qw-b9W"/>
                         <outlet property="passwordField" destination="8E9-XF-uWv" id="0FO-ct-w70"/>
                         <outlet property="signUpButton" destination="FfY-LN-Txh" id="g61-a9-Qrb"/>
+                        <outlet property="titleLabel" destination="xcA-9s-bvO" id="Ak0-rv-bh9"/>
                         <outlet property="usernameField" destination="EOD-bl-qfU" id="y3x-FI-HfV"/>
                         <segue destination="JfA-qs-MeN" kind="show" identifier="TurnoutSegue" id="CgJ-YU-J4g"/>
                         <segue destination="YdN-fs-onp" kind="show" identifier="OnboardSegue" id="rcF-rl-gAH"/>
