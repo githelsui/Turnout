@@ -194,21 +194,42 @@
 }
 
 - (void)loadLikeAnim{
-    [UIView animateWithDuration:2.3 animations:^{
+//    [UIView animateWithDuration:2.3 animations:^{
+//        self.likeAnimation.alpha = 1;
+//    }];
+//    [UIView animateWithDuration:2 animations:^{
+//        self.likeAnimation.alpha = 0;
+//        self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
+//                                                          green:180.0f/255.0f
+//                                                           blue:171.0f/255.0f
+//                                                          alpha:1.0f];
+//    }];
+//    [UIView animateWithDuration:2 animations:^{
+//        self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
+//                                                          green:180.0f/255.0f
+//                                                           blue:171.0f/255.0f
+//                                                          alpha:0.2f];
+//    }];
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.likeAnimation.alpha = 1;
+        self.bubbleView.backgroundColor = [UIColor colorWithRed:255/255.0f
+                                                          green:170/255.0f
+                                                           blue:146/255.0f
+                                                          alpha:1.0f];
+    } completion:^(BOOL finished) {
+        [self returnOriginalState];
     }];
-    [UIView animateWithDuration:2 animations:^{
+}
+
+- (void)returnOriginalState{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.likeAnimation.alpha = 0;
         self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
                                                           green:180.0f/255.0f
                                                            blue:171.0f/255.0f
-                                                          alpha:1.0f];
-    }];
-    [UIView animateWithDuration:2 animations:^{
-        self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
-                                                          green:180.0f/255.0f
-                                                           blue:171.0f/255.0f
                                                           alpha:0.2f];
+    } completion:^(BOOL finished) {
     }];
 }
 

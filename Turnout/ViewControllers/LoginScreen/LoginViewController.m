@@ -92,9 +92,6 @@
         self.signUpButton.alpha = 1;
         self.fbButton.alpha = 1;
     } completion:^(BOOL finished) {
-        if(finished){
-            NSLog(@"yehaw");
-        }
     }];
 }
 
