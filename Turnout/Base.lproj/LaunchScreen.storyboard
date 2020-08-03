@@ -19,15 +19,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turnout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXo-wG-5WF">
-                                <rect key="frame" x="111" y="376" width="153" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turnout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXo-wG-5WF">
+                                <rect key="frame" x="111" y="422" width="153" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="turnoutAppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Eba-In-5D1">
+                                <rect key="frame" x="77" y="252" width="221" height="179"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Eba-In-5D1" secondAttribute="trailing" constant="77" id="2Md-O8-I9k"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AXo-wG-5WF" secondAttribute="bottom" constant="296" id="B6t-4S-goq"/>
+                            <constraint firstItem="Eba-In-5D1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="IhR-aH-Mp7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Eba-In-5D1" secondAttribute="bottom" constant="347" id="Uk1-KQ-A2g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AXo-wG-5WF" secondAttribute="trailing" constant="111" id="XOM-Pt-UMZ"/>
+                            <constraint firstItem="Eba-In-5D1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="208" id="lh1-VC-Fqg"/>
+                            <constraint firstItem="AXo-wG-5WF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="111" id="uAM-gG-i9B"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -38,5 +49,6 @@
     </scenes>
     <resources>
         <image name="Orange Coral" width="1120" height="1792"/>
+        <image name="turnoutAppIcon" width="500" height="500"/>
     </resources>
 </document>

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) FBSDKProfile *fbsdkProfile;
 @end
 
@@ -29,7 +30,20 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
+    [self setUI];
     [self setFBLogin];
+}
+
+- (void)setUI{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    self.usernameField.leftView = paddingView;
+    self.usernameField.leftViewMode = UITextFieldViewModeAlways;
+    self.usernameField.layer.cornerRadius = 15;
+//    self.passwordField.layer.cornerRadius = 15;
+//    self.passwordField.leftView = paddingView;
+//    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
+    self.signUpButton.layer.cornerRadius = 15;
+    self.loginBtn.layer.cornerRadius = 15;
 }
 
 - (void)setFBLogin{
