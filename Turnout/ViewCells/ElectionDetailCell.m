@@ -40,6 +40,7 @@
 
 - (void)setStateElection{
     [self setBack];
+    self.backColor.alpha = 0.70;
     self.header.text = [NSString stringWithFormat:@"Election Date: %@", self.content[@"election_date"]];
     NSString *electionNotes = self.content[@"election_notes"];
     if([electionNotes isEqual:[NSNull null]]){
@@ -67,7 +68,7 @@
 - (NSString *)getStateDesc{
     NSString *electionType = self.content[@"election_type_full"];
     NSString *office = [self getOfficeSought];
-    NSString *returnStr = [NSString stringWithFormat:@"%@ | %@\r", electionType, office];
+    NSString *returnStr = [NSString stringWithFormat:@"%@ \r%@", electionType, office];
     return returnStr;
 }
 
