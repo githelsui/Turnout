@@ -1048,13 +1048,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-QD-9nf">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-QD-9nf">
                                 <rect key="frame" x="16" y="73" width="343" height="612"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2y5-fI-3g2">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="612"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="RF0-Hn-gWQ">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="RF0-Hn-gWQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="612"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRs-eQ-O3d">
@@ -1299,9 +1299,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="KYz-Dy-d7J"/>
                                                     <constraint firstAttribute="width" constant="138" id="ZT7-wu-Mah"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                 <state key="normal" title="Texts">
-                                                    <color key="titleColor" red="0.99771338700000001" green="0.37308424709999999" blue="0.38429385420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="titleColor" red="0.99813979860000002" green="0.61076626710000004" blue="0.56859463450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouc-sW-Anx">
@@ -1311,9 +1311,9 @@
                                                     <constraint firstAttribute="width" constant="138" id="9ZY-Ev-fiF"/>
                                                     <constraint firstAttribute="height" constant="30" id="9qx-eY-KvY"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                 <state key="normal" title="Actions">
-                                                    <color key="titleColor" red="0.99771338700000001" green="0.37308424709999999" blue="0.38429385420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="titleColor" red="0.99813979860000002" green="0.61076626710000004" blue="0.56859463450000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                             </button>
                                         </subviews>
@@ -1364,6 +1364,23 @@
                         <viewLayoutGuide key="safeArea" id="OUk-fa-npT"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wr0-sb-4G1"/>
+                    <connections>
+                        <outlet property="actionBtn" destination="Ouc-sW-Anx" id="bvw-Zl-xgf"/>
+                        <outlet property="billLabel" destination="cgX-Qo-VoJ" id="kwm-x3-zMo"/>
+                        <outlet property="chamberLabel" destination="eMC-NM-Ttu" id="MXb-jB-ayz"/>
+                        <outlet property="committeeLabel" destination="PKV-Zw-NcQ" id="T25-vF-2j4"/>
+                        <outlet property="dateLabel" destination="JbR-Op-hYh" id="IiX-Ew-4bO"/>
+                        <outlet property="detailView" destination="OsM-vb-NEO" id="QHU-sc-HY6"/>
+                        <outlet property="generalView" destination="qNH-bU-Uwy" id="aOV-Gl-Asc"/>
+                        <outlet property="longTitleLabel" destination="p5G-NN-GYb" id="cYF-f1-1Ge"/>
+                        <outlet property="mainView" destination="2y5-fI-3g2" id="bPv-XN-WAh"/>
+                        <outlet property="nameLabel" destination="jJY-br-oOf" id="bfy-4g-b75"/>
+                        <outlet property="nameView" destination="HRs-eQ-O3d" id="lXm-Jx-Ouo"/>
+                        <outlet property="sponsorLabel" destination="KOt-Pe-Irc" id="I2v-Yh-zaq"/>
+                        <outlet property="subjectLabel" destination="eed-zq-aIM" id="PB7-Ao-yZJ"/>
+                        <outlet property="summaryLabel" destination="xBc-wx-7W2" id="9gB-Ea-2z1"/>
+                        <outlet property="textsBtn" destination="QcK-Ov-7v3" id="gEf-9T-KKG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y55-tf-rEt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
