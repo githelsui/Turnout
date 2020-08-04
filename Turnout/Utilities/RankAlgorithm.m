@@ -52,8 +52,7 @@
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 if(individualQueues){
                     [self fetchFarPosts:skip completion:^(NSMutableArray *farPosts, NSError *error){
-                        if(self.individualQueues.count > 0){
-                            
+                        
                             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                                 [self beginMerge:self.individualQueues];
                             });
@@ -66,14 +65,109 @@
                                completion(self.posts, nil);
                             });
                             
-                        } else{
-                            completion(self.posts, nil);
-                        }
                     }];
                 }
             }];
         }
     }];
+}
+
+- (void)fetchZipcodeBatch:(Zipcode *)zipcode{
+    NSMutableDictionary *batch = [self getZipcodeBatch:zipcode];
+    [self checkQuery:batch];
+    KSQueue *queue = batch[@"queue"];
+    
+    NSUInteger index = [self.individualQueues indexOfObject:batch];
+    NSNumber* cursor = @([batch[@"totalFetched"] intValue] + 1);
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"likeCount"];
+    [query whereKey:@"zipcode" equalTo:zipcode];
+    [query setLimit:2];
+    [query setSkip:[cursor integerValue]]; //skip the size of the zipcode batch's queue
+    [query includeKey:@"zipcode"];
+    [query includeKey:@"createdAt"];
+    [query includeKey:@"objectId"];
+    [query includeKey:@"likeCount"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if(results.count > 0){
+            BOOL lastItemInQuery = NO;
+            for(Post *post in results){
+                if([self postsContains:post] == NO){ //CASE 2: database is NOT empty, queue was empty -> fetch and add new posts to batch
+                     [self createPostBatch:post];
+                } else { //CASE 4
+                    lastItemInQuery = YES; //after this fetch, there are no more items in the database for this batch
+                    [batch setObject:@YES forKey:@"queryEmpty"];
+                    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
+                }
+            }
+        }
+    }];
+    //case 4: both query & queue are empty (exhausted batch) -> merge other zipcodes
+    if([queue getSize] == 0){
+        [self mergeBatches];
+    }
+}
+
+//inclue a key value pair called 'queryEmpty' with boolean to each zipcode batch ~
+//set queryEmpty == no, when creating new queue ~
+//set queryEmpty == yes, when batch's queue is empty and query is empty (or the last item in query is equal to the fetched post)
+//stop merge process when all batches have queryEmpty == yes
+
+//change skip value in fetchFarAwayPosts == how many posts have been fetched in TOTAL (not just batches)
+
+//check if at least one query still has items in it to fetch from database
+- (BOOL)allBatchQueryEmpty{
+    for(NSMutableDictionary *batch in self.individualQueues){
+        NSNumber *queryEmpty = batch[@"queryEmpty"];
+        if([queryEmpty isEqual:@NO])
+            return NO;
+    }
+    return YES;
+}
+
+- (void)beginMerge:(NSArray *)individualQueues{
+    for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
+        KSQueue *queue = batch[@"queue"];
+        NSDictionary *first = [queue dequeue];
+        [self updateIndividualBatch:batch queue:queue];
+        [self.priorityQueue add:first];
+    }
+    NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
+}
+
+- (void)mergeBatches{
+    while([self allBatchQueryEmpty] == NO){
+        
+        NSMutableDictionary *topPostsBatch = [self addPostToLiveFeed];
+        NSNumber *queryEmpty = topPostsBatch[@"queryEmpty"];
+        KSQueue *posts = topPostsBatch[@"queue"];
+        NSInteger queueSize = [posts getSize];
+        
+        if(queueSize > 0){ //case 1 or 3: database has/does not have items, queue has items -> continue merging
+            [self addToPriorityQueue:topPostsBatch];
+        } else if(queueSize == 0 && [queryEmpty isEqual:@NO]){ //case 2: database has items, queue is empty -> fetch again
+            [self fetchZipcodeBatch:topPostsBatch[@"zipcode"]];
+        }
+        
+    }
+}
+
+- (NSMutableDictionary *)addPostToLiveFeed{
+    NSDictionary *priorityPost = [self.priorityQueue poll];
+    [self.posts addObject:priorityPost[@"post"]];
+    Zipcode *zip = priorityPost[@"zipcode"];
+    NSMutableDictionary *batch = [self getZipcodeBatch:zip];
+    NSLog(@"post in livefeed: %@" , priorityPost[@"post"]);
+    return batch;
+}
+
+- (void)addToPriorityQueue:(NSMutableDictionary *)batch{
+    KSQueue *queue = batch[@"queue"];
+    NSDictionary *firstElement = [queue dequeue];
+    [self updateIndividualBatch:batch queue:queue];
+    [self.priorityQueue add:firstElement];
+    [self mergeBatches];
 }
 
 - (void)getCurrentUserInfo:(void(^)(NSArray *neighbors, NSError *error))completion{
@@ -124,12 +218,12 @@
 
 - (void)fetchNeighboringPosts:(NSArray *)zipcodes skip:(int)skip completion:(void(^)(NSMutableArray *neighborsPosts, NSError *error))completion{
     for(NSDictionary *zipcode in zipcodes){
+        Zipcode *zipObj = zipcode[@"zipcode"];
+        NSString *key = zipObj[@"zipcode"];
+        NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
         PFQuery *query = [PFQuery queryWithClassName:@"Post"];
         [query orderByDescending:@"likeCount"];
         [query whereKey:@"zipcode" equalTo:zipcode[@"zipcode"]];
-        NSString *key = zipcode[@"zipcode"][@"zipcode"];
-        NSString *lastItem = zipcodes.lastObject[@"zipcode"][@"zipcode"];
-        NSLog(@"dict: %@", key);
         [query setLimit:2];
         [query setSkip:skip];
         [query includeKey:@"zipcode"];
@@ -138,11 +232,20 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
                 NSMutableDictionary *batch = [[NSMutableDictionary alloc] init];
-                [batch setObject:key forKey:@"zipcode"];
+                [batch setObject:zipObj forKey:@"zipcode"];
                 
                 [self queuePerBatch:results zipcode:zipcode completion:^(KSQueue *posts, NSError *error){
                     [batch setObject:posts forKey:@"queue"];
+                    NSNumber *totalFetched = @([posts getSize]);
+                    [batch setObject:totalFetched forKey:@"totalFetched"];
                 }];
+                
+                
+                if([batch[@"queue"] getSize] == 0){
+                    [batch setObject:@YES forKey:@"queryEmpty"];
+                } else {
+                    [batch setObject:@NO forKey:@"queryEmpty"];
+                }
                 
                 [self.individualQueues addObject:batch];
                 if([lastItem isEqualToString:key]){
@@ -183,8 +286,6 @@
         [query whereKey:@"zipcode" notEqualTo:zip];
     }
     [query orderByDescending:@"likeCount"];
-    [query setLimit:2];
-    [query setSkip:skip];
     [query includeKey:@"zipcode"];
     [query includeKey:@"createdAt"];
     [query includeKey:@"objectId"];
@@ -208,23 +309,32 @@
     Zipcode *zip = post[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         if(zipcode){
-            NSString *key = zip[@"zipcode"];
-            NSMutableDictionary *batch = [self getZipcodeBatch:key];
+            NSMutableDictionary *batch = [self getZipcodeBatch:zip];
             if(batch){
                 NSUInteger index = [self.individualQueues indexOfObject:batch];
                 KSQueue *queue = batch[@"queue"];
                 if([queue contains:post] == NO){
-                      KSQueue *updatedQueue = [self updatePostQueue:post postArr:queue];
-                      [batch setObject:updatedQueue forKey:@"queue"];
-                      [self.individualQueues replaceObjectAtIndex:index withObject:batch];
+                    NSNumber *totalFetchedBefore = batch[@"totalFetched"];
+                    NSNumber *totalFetched = @([totalFetchedBefore intValue] + 1);
+                    KSQueue *updatedQueue = [self updatePostQueue:post postArr:queue];
+                    [batch setObject:updatedQueue forKey:@"queue"];
+                    [batch setObject:totalFetched forKey:@"totalFetched"];
+                    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             } else {
-                    NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
-                    KSQueue *queue = [[KSQueue alloc] init];
-                    KSQueue *updatedQueue =  [self updatePostQueue:post postArr:queue];
-                    [newBatch setObject:key forKey:@"zipcode"];
-                    [newBatch setObject:updatedQueue forKey:@"queue"];
-                    [self.individualQueues addObject:newBatch];
+                NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
+                KSQueue *queue = [[KSQueue alloc] init];
+                KSQueue *updatedQueue =  [self updatePostQueue:post postArr:queue];
+                NSNumber *totalFetched = @([updatedQueue getSize]);
+                [newBatch setObject:totalFetched forKey:@"totalFetched"];
+                [newBatch setObject:zip forKey:@"zipcode"];
+                [newBatch setObject:updatedQueue forKey:@"queue"];
+                if([updatedQueue getSize] == 0){
+                    [newBatch setObject:@YES forKey:@"queryEmpty"];
+                } else {
+                    [newBatch setObject:@NO forKey:@"queryEmpty"];
+                }
+                [self.individualQueues addObject:newBatch];
             }
         }
     }];
@@ -260,48 +370,14 @@
     return NO;
 }
 
-- (void)beginMerge:(NSArray *)individualQueues{
-    for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
+- (int)getAllPostsInQueueSize{
+    int count = 0;
+    for(NSMutableDictionary *batch in self.individualQueues){
         KSQueue *queue = batch[@"queue"];
-        NSDictionary *first = [queue dequeue];
-        [self updateIndividualBatch:batch queue:queue];
-        [self.priorityQueue add:first];
+        int size = (int)[queue getSize];
+        count += size;
     }
-    NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
-}
-
-- (void)mergeBatches{
-    while(self.priorityQueue.size != 0) {
-        NSDictionary *priorityPost = [self.priorityQueue poll];
-        [self.posts addObject:priorityPost[@"post"]];
-        NSLog(@"post in livefeed: %@" , priorityPost[@"post"]);
-        Zipcode *zipcode = priorityPost[@"zipcode"];
-        NSString *zipStr = zipcode[@"zipcode"];
-        NSMutableDictionary *batch = [self getZipcodeBatch:zipStr];
-        KSQueue *posts = batch[@"queue"];
-        if([posts getSize] == 0){
-            [self fetchZipcodeBatch:zipcode];
-        } else if([posts getSize] > 0){
-            [self addToPriorityQueue:batch];
-        }
-    }
-    
-    //case 1: database items, queue with items -> continue merging
-    //*case 2: database items, queue empty -> query the database, pause merge, add to queue (breaks out) -> task has to finish -> mergeBatches
-    //case 3: database empty, queue with items -> contineu merge
-    //case 4: both empty -> stop using zipcode, continue merge with rest of zipcodes
-    //while loop: call mergebatches, or wait for database fetch
-    //inside async task -> merge process
-}
-
-- (void)addToPriorityQueue:(NSMutableDictionary *)batch{
-    KSQueue *queue = batch[@"queue"];
-    NSDictionary *firstElement = [queue dequeue];
-    [self updateIndividualBatch:batch queue:queue];
-    if([queue getSize] == 0){
-        [self.priorityQueue add:firstElement];
-        [self mergeBatches];
-    }
+    return count;
 }
 
 - (void)updateIndividualBatch:(NSMutableDictionary *)batch queue:(KSQueue *)queue{
@@ -310,42 +386,10 @@
     [self.individualQueues replaceObjectAtIndex:index withObject:batch];
 }
 
-- (void)fetchZipcodeBatch:(Zipcode *)zipcode{
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"likeCount"];
-    [query whereKey:@"zipcode" equalTo:zipcode];
-    [query setLimit:2];
-    [query setSkip:2];
-    [query includeKey:@"zipcode"];
-    [query includeKey:@"createdAt"];
-    [query includeKey:@"objectId"];
-    [query includeKey:@"likeCount"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        if(results.count > 0){
-            BOOL lastItemInQuery = NO;
-            for(Post *post in results){
-                if([self postsContains:post] == NO){
-                     [self createPostBatch:post];
-                } else {
-                     lastItemInQuery = YES;
-                     [self mergeBatches];
-                }
-            }
-            NSLog(@"far away batches: %@", self.individualQueues);
-            if(lastItemInQuery == NO){
-                NSMutableDictionary *batch = [self getZipcodeBatch:zipcode[@"zipcode"]];
-                [self addToPriorityQueue:batch];
-            }
-        } else {
-            [self mergeBatches];
-        }
-    }];
-}
-
-- (NSMutableDictionary *)getZipcodeBatch:(NSString *)zipcode{
+- (NSMutableDictionary *)getZipcodeBatch:(Zipcode *)zipcode{
     for(NSMutableDictionary *batch in self.individualQueues){
-        NSString *key = batch[@"zipcode"];
-        if([key isEqualToString:zipcode]) return batch;
+        NSString *key = batch[@"zipcode"][@"zipcode"];
+        if([key isEqualToString:zipcode[@"zipcode"]]) return batch;
     }
     return nil;
 }
@@ -357,6 +401,12 @@
         [posts addObject:post];
     }
     return posts;
+}
+
+- (void)checkQuery:(NSMutableDictionary *)batch{
+    NSUInteger index = [self.individualQueues indexOfObject:batch];
+    [batch setObject:@YES forKey:@"queryEmpty"];
+    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
 }
 
 - (void)fetchNeighbors:(Zipcode *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
