@@ -79,6 +79,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[LiveFeedController presentToLivefeed]:LiveFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.pageNum">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[OnboardViewController zipcodeToCreate:]:OnboardViewController.m">
       </ContextState>
       <ContextState

@@ -44,6 +44,7 @@
     if(skip == 0) [self.livefeed removeAllObjects];
     [self.neighborDicts removeAllObjects];
     [self.posts removeAllObjects];
+    [self.livefeed removeAllObjects];
     [self.individualQueues removeAllObjects];
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
         self.neighborDicts = [neighbors mutableCopy];
@@ -53,17 +54,17 @@
                 if(individualQueues){
                     [self fetchFarPosts:skip completion:^(NSMutableArray *farPosts, NSError *error){
                         
-                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                                [self beginMerge:self.individualQueues];
-                            });
-                            
-                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                                [self mergeBatches];
-                            });
-                            
-                            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                               completion(self.posts, nil);
-                            });
+                        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            [self beginMerge:self.individualQueues];
+                        });
+                        
+                        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            [self mergeBatches];
+                        });
+                        
+                        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            completion(self.posts, nil);
+                        });
                             
                     }];
                 }

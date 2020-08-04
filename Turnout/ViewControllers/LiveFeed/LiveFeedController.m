@@ -22,6 +22,7 @@ static int const skipAmount = 3;
 @property (nonatomic, strong) UIButton *loadMoreBtn;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property int skipIndex;
+@property int pageNum;
 @end
 
 @implementation LiveFeedController
@@ -30,6 +31,7 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.pageNum = 1;
     [self initTableView];
     [self customizeActivityIndic];
     self.rankAlgo = [[RankAlgorithm alloc]init];
@@ -151,14 +153,14 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)loadFeed{
+    [self.mutablePosts removeAllObjects];
     self.loadMoreBtn.alpha = 0;
     self.skipIndex = 0;
     [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [self.rankAlgo queryPosts:0 completion:^(NSArray *posts, NSError *error){
         if(posts.count > 0){
             self.posts = posts;
-            self.mutablePosts = [posts mutableCopy];
-            self.rankAlgo.livefeed = self.mutablePosts;
+            [self loadLivefeed];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.activityHUD dismiss];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
@@ -171,20 +173,24 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)fetchMorePosts{
-    self.skipIndex += skipAmount;
-    [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
-        if(posts.count > 0){
-            [self.mutablePosts addObjectsFromArray:posts];
-            self.posts = [self.mutablePosts copy];
-            self.rankAlgo.livefeed = self.mutablePosts;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self setUpFooter];
-            });
-        } else {
-            [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
-        }
-    }];
+    self.pageNum++;
+    [self presentToLivefeed];
+    [self.tableView reloadData];
+    [self setUpFooter];
+    
+//    [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
+//        if(posts.count > 0){
+//            [self.mutablePosts addObjectsFromArray:posts];
+//            self.posts = [self.mutablePosts copy];
+//            self.rankAlgo.livefeed = self.mutablePosts;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.tableView reloadData];
+//                [self setUpFooter];
+//            });
+//        } else {
+//            [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
+//        }
+//    }];
 }
 
 - (void)setGestureRecogs{
@@ -198,6 +204,36 @@ NSIndexPath *lastIndexPath;
     singleTap.numberOfTouchesRequired = 1;
     [singleTap requireGestureRecognizerToFail:doubleTap];
     [self.tableView addGestureRecognizer:singleTap];
+}
+
+- (void)presentToLivefeed{
+    NSArray *livefeed = [NSArray array];
+    NSRange range;
+    int postsPerPage = 6 * self.pageNum;
+    if(self.posts.count > postsPerPage){
+        range.location = 0;
+        range.length = postsPerPage;
+        livefeed = [self.posts subarrayWithRange:range];
+        self.mutablePosts = [livefeed mutableCopy];
+    } else if(self.posts.count <= postsPerPage){
+         self.mutablePosts = [self.posts mutableCopy];
+    } else {
+       [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
+    }
+}
+
+- (void)loadLivefeed{
+    int postsPerPage = 6;
+    NSArray *livefeed = [NSArray array];
+    NSRange range;
+    if(self.posts.count > postsPerPage){
+        range.location = 0;
+        range.length = postsPerPage;
+        livefeed = [self.posts subarrayWithRange:range];
+        self.mutablePosts = [livefeed mutableCopy];
+    } else if(self.posts.count <= postsPerPage){
+        self.mutablePosts = [self.posts mutableCopy];
+    }
 }
 
 - (IBAction)logoutTapped:(id)sender {
