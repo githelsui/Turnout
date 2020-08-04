@@ -215,10 +215,10 @@ NSIndexPath *lastIndexPath;
         range.length = postsPerPage;
         livefeed = [self.posts subarrayWithRange:range];
         self.mutablePosts = [livefeed mutableCopy];
+    } else if(self.posts.count == self.mutablePosts.count){
+         [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
     } else if(self.posts.count <= postsPerPage){
-         self.mutablePosts = [self.posts mutableCopy];
-    } else {
-       [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
+        self.mutablePosts = [self.posts mutableCopy];
     }
 }
 
