@@ -5,7 +5,7 @@
 //  Created by Githel Lynn Suico on 7/14/20.
 //  Copyright © 2020 Githel Lynn Suico. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "PostCell.h"
 #import "Assoc.h"
 #import "Zipcode.h"
@@ -36,6 +36,10 @@
     self.likeAnimation.alpha = 0;
     self.bubbleView.layer.cornerRadius = 15;
     self.bubbleView.clipsToBounds = true;
+    self.bubbleView.layer.masksToBounds = NO;
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bubbleView.layer.shadowRadius = 3;
+    self.bubbleView.layer.shadowOpacity = 0.5;
     [self updateLikes];
     self.statusLabel.text = self.post.status;
     [self getTimeAgo];
@@ -208,10 +212,7 @@
 - (void)returnOriginalState{
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.likeAnimation.alpha = 0;
-        self.bubbleView.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
-                                                          green:180.0f/255.0f
-                                                           blue:171.0f/255.0f
-                                                          alpha:0.2f];
+        self.bubbleView.backgroundColor = [UIColor whiteColor];
     } completion:^(BOOL finished) {
     }];
 }
