@@ -85,7 +85,7 @@
 
 - (void)animateLoginUI{
     [self setFBLogin];
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.usernameField.alpha = 1;
         self.passwordField.alpha = 1;
         self.loginBtn.alpha = 1;
@@ -124,8 +124,6 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         NSLog(@"User has declined permission.");
     } else {
         [self getFBUser];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
 }
 
@@ -165,8 +163,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
             [self logExistingAcc:name password:password];
         } else {
             NSLog(@"User registered successfully");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"OnboardViewController"];
+            [self animateToOnboard];
         }
     }];
 }
@@ -178,8 +175,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
             [self showAlert:error.localizedDescription subtitle:@""];
         } else {
             NSLog(@"User logged in successfully");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            [self animateToLivefeed];
         }
     }];
 }
@@ -209,7 +205,35 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     });
 }
 
+- (void)animateToOnboard{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.usernameField.alpha = 0;
+        self.passwordField.alpha = 0;
+        self.loginBtn.alpha = 0;
+        self.signUpButton.alpha = 0;
+        self.fbButton.alpha = 0;
+        self.titleLabel.alpha = 0;
+        self.appImg.alpha = 0;
+    } completion:^(BOOL finished) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"OnboardViewController"];
+    }];
+}
 
+- (void)animateToLivefeed{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.usernameField.alpha = 0;
+        self.passwordField.alpha = 0;
+        self.loginBtn.alpha = 0;
+        self.signUpButton.alpha = 0;
+        self.appImg.alpha = 0;
+        self.fbButton.alpha = 0;
+        self.titleLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        self.view.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+    }];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

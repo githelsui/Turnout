@@ -148,7 +148,9 @@
         if(queueSize > 0){ //case 1 or 3: database has/does not have items, queue has items -> continue merging
             [self addToPriorityQueue:topPostsBatch];
         } else if(queueSize == 0 && [queryEmpty isEqual:@NO]){ //case 2: database has items, queue is empty -> fetch again
+            //NSCondition with lock -> sleep for 100milliseconds
             [self fetchZipcodeBatch:topPostsBatch[@"zipcode"]];
+//            while(!condition) //sleep until querys finished
         }
         
     }

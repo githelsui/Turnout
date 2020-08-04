@@ -11,10 +11,12 @@
 #import "GeoNamesAPI.h"
 
 @interface OnboardViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeMsg;
 @property (weak, nonatomic) IBOutlet UILabel *instrucLabel;
 @property (nonatomic, strong)  NSArray *zipcodes;
+@property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
+@property (weak, nonatomic) IBOutlet UIButton *continueBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -24,11 +26,37 @@
     [super viewDidLoad];
     self.currentUser = PFUser.currentUser;
     [self presentUI];
+    [self startAnimation];
 }
 
 - (void)presentUI{
+    self.welcomeMsg.alpha = 0;
+    self.instrucLabel.alpha = 0;
+    self.continueBtn.alpha = 0;
+    self.zipcodeField.alpha = 0;
+    self.titleLabel.alpha = 0;
     self.welcomeMsg.text = [NSString stringWithFormat:@"Welcome, %@", self.currentUser.username];
-    self.instrucLabel.text = @"Enter your zipcode so Turnout can refine your results.";
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+    self.zipcodeField.leftView = paddingView;
+    self.zipcodeField.leftViewMode = UITextFieldViewModeAlways;
+    self.zipcodeField.layer.cornerRadius = 17;
+    self.continueBtn.layer.cornerRadius = 17;
+}
+
+- (void)startAnimation{
+    CGPoint finalTitlePos = self.titleLabel.layer.position;
+    CGFloat titleY = finalTitlePos.y;
+    CGFloat startTitleY = titleY + 77;
+    CGPoint startTitlePos = CGPointMake(finalTitlePos.x, startTitleY);
+    self.titleLabel.layer.position = startTitlePos;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.titleLabel.layer.position = finalTitlePos;
+        self.titleLabel.alpha = 1;
+        self.welcomeMsg.alpha = 1;
+        self.instrucLabel.alpha = 1;
+        self.continueBtn.alpha = 1;
+        self.zipcodeField.alpha = 1;
+    } completion:^(BOOL finished) {}];
 }
 
 - (IBAction)continueTapped:(id)sender {

@@ -35,7 +35,7 @@ NSIndexPath *lastIndexPath;
     [self initTableView];
     [self customizeActivityIndic];
     self.rankAlgo = [[RankAlgorithm alloc]init];
-    [self loadFeed];
+//    [self loadFeed];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
