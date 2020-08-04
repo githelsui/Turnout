@@ -8,7 +8,7 @@
 
 #import "GeoNamesAPI.h"
 
-static NSString * const baseURLString = @"http://api.geonames.org/findNearbyPostalCodesJSON?";
+static NSString * const baseURLString = @"http://api.geonames.org/";
 static NSString * const username1 = @"githelsui";
 static NSString * const username2 = @"githelsuico";
 
@@ -67,6 +67,27 @@ static NSString * const username2 = @"githelsuico";
             NSError* error = nil;
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             NSArray *dicts = dataDictionary[@"postalCodes"];
+            NSLog(@"dictionary: %@",dicts);
+            completion(dicts, nil);
+        }
+    }];
+    [task resume];
+}
+
+- (void)fetchZipcode:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
+    NSString *parameters = [NSString stringWithFormat:@"postalCodeLookupJSON?postalcode=%@&country=US&username=%@", zipcode, username1];
+    NSString *fullURL = [baseURLString stringByAppendingString:parameters];
+    NSLog(@"full neighbor URL: %@", fullURL);
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+        if (error) {
+            NSLog(@"zipcode error: %@", [error localizedDescription]);
+            completion(nil, error);
+        } else {
+            NSError* error = nil;
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSArray *dicts = dataDictionary[@"postalcodes"];
             NSLog(@"dictionary: %@",dicts);
             completion(dicts, nil);
         }

@@ -9,6 +9,7 @@
 #import "OnboardViewController.h"
 #import "Zipcode.h"
 #import "GeoNamesAPI.h"
+#import <CCActivityHUD/CCActivityHUD.h>
 
 @interface OnboardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *welcomeMsg;
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 @end
 
 @implementation OnboardViewController
@@ -27,6 +28,14 @@
     self.currentUser = PFUser.currentUser;
     [self presentUI];
     [self startAnimation];
+    [self customizeActivityIndic];
+}
+
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
 }
 
 - (void)presentUI{
@@ -81,9 +90,13 @@
     self.currentUser[@"zipcode"] = zip;
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
-            [self segueToTurnout];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self segueToTurnout];
+            });
         } else {
-            [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
+            });
         }
     }];
 }
@@ -92,13 +105,37 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Zipcode"];
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"zipcode" equalTo:zipcode];
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [query findObjectsInBackgroundWithBlock:^(NSArray *zips, NSError *error) {
+        [self.activityHUD dismiss];
         if (zips.count > 0) {
             self.zipcodes = zips;
             [self saveZipInUser:self.zipcodes[0]];
         } else {
-            [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
-            NSLog(@"%s", "creating a new zipcode");
+            [self fetchZipcode:zipcode];
+        }
+    }];
+}
+
+- (void)fetchZipcode:(NSString *)zipcode{
+    [[GeoNamesAPI shared] fetchZipcode:zipcode completion:^(NSArray *zipcodes, NSError *error){
+        if(zipcodes.count > 0){
+            NSDictionary *zip = zipcodes[0];
+            [Zipcode createNewZip:zip withCompletion:^(BOOL succeeded, NSError * error){
+                if(succeeded){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self segueToTurnout];
+                    });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self showAlert:@"Problem saving zipcode" subtitle:error.localizedDescription];
+                    });
+                }
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showAlert:@"Not a Valid US Zipcode" subtitle:@"Try Again"];
+            });
         }
     }];
 }

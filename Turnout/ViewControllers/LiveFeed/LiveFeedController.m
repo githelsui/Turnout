@@ -8,8 +8,6 @@
 
 #import "LiveFeedController.h"
 
-static int const skipAmount = 3;
-
 @interface LiveFeedController () <RankAlgorithmDelegate, PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *currentLoc;
@@ -162,14 +160,14 @@ NSIndexPath *lastIndexPath;
             self.posts = posts;
             [self loadLivefeed];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.activityHUD dismiss];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                 [self setUpFooter];
                 [self startTimer];
             });
         }
+        [self.activityHUD dismiss];
     }];
-     [self.refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)fetchMorePosts{
