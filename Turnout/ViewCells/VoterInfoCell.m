@@ -69,4 +69,16 @@
     self.titleLabel.text = newTitle;
 }
 
+//create NSUser defaults arr in the livefeed
+//use NSUser defaults to store an array of current user's bookmarked info (stored as NSDictionary)
+   //fetch NSUser defaults for bookmarked info array, loop through to check if bookmarked info is inside the array
+   // if it exists in arr -> user has already bookmarked it = change btn image to 'didBookmark' else not, do nothing
+   //to pass in this data to detail view, use a public var in detail class called 'didBookmark' (BOOL) and set it to the right value inside the method forEachCellAtRowPath
+
+- (IBAction)tapBookmark:(id)sender {
+   //if didBookmark == false --> change btn image to didBookmark and add to the arr then save it back to NSUserDefaults
+   //if didBookmark == true -> change img to notBookmarked and update the array with the removed NSDictionary
+}
+
+
 @end

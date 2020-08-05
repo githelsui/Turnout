@@ -38,7 +38,7 @@
     self.bubbleView.clipsToBounds = true;
     self.bubbleView.layer.masksToBounds = NO;
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bubbleView.layer.shadowRadius = 3;
+    self.bubbleView.layer.shadowRadius = 0.5;
     self.bubbleView.layer.shadowOpacity = 0.5;
     [self updateLikes];
     self.statusLabel.text = self.post.status;

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VoterInfoCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *adminLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIView *bubbleView;
