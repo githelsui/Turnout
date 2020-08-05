@@ -54,10 +54,7 @@
     cell.infoCell = election;
     cell.adminLabel.text = [NSString stringWithFormat:@"Election Date: %@", election[@"electionDay"]];
     cell.titleLabel.text = election[@"name"];
-    cell.bubbleView.layer.cornerRadius = 15;
-    cell.backImage.alpha = 0.70;
-    cell.bubbleView.clipsToBounds = true;
-    cell.addressLabel.alpha = 0;
+    [cell createShadows];
     return cell;
 }
 

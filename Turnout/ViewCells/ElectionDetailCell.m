@@ -21,14 +21,18 @@
     // Configure the view for the selected state
 }
 
-- (void)setBack{
-     self.backColor.alpha = 0.70;
-     self.bubbleView.clipsToBounds = true;
-     self.bubbleView.layer.cornerRadius = 15;
+- (void)createShadows{
+     self.bubbleView.clipsToBounds = NO;
+     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+     self.bubbleView.layer.shadowRadius = 5;
+     self.bubbleView.layer.shadowOpacity = 0.5;
+    
+     self.backColor.clipsToBounds = YES;
+     self.backColor.layer.cornerRadius = 15;
 }
 
 - (void)setCell:(NSString *)contentType{
-    [self setBack];
+    [self createShadows];
     if([contentType isEqualToString:@"General"]){
         [self setGeneralContest];
     } else if([contentType isEqualToString:@"Referendum"]){
@@ -39,7 +43,7 @@
 }
 
 - (void)setStateElection{
-    [self setBack];
+    [self createShadows];
     self.backColor.alpha = 0.70;
     self.header.text = [NSString stringWithFormat:@"Election Date: %@", self.content[@"election_date"]];
     NSString *electionNotes = self.content[@"election_notes"];

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableDictionary *infoCell;
 - (void)setCell;
 - (void)setPropCell;
+- (void)createShadows;
 @end
 
 NS_ASSUME_NONNULL_END
