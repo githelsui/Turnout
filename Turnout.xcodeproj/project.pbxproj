@@ -44,6 +44,8 @@
 		CA864AEA24D780E0003EB7AC /* PropsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AE924D780E0003EB7AC /* PropsViewController.m */; };
 		CA864AED24D78102003EB7AC /* BallotNaviControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AEC24D78102003EB7AC /* BallotNaviControl.m */; };
 		CA864AF724D7A4E6003EB7AC /* ProPublicaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */; };
+		CAA79F9124DAABB500D0646B /* BookmarkedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */; };
+		CAA79F9224DAABB500D0646B /* BookmarkedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
 		CAAEF88024D1EF0400F27247 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAEF87F24D1EF0400F27247 /* WebKit.framework */; };
 		CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF88224D1EF7200F27247 /* VoteWebView.m */; };
@@ -155,6 +157,9 @@
 		CA864AEC24D78102003EB7AC /* BallotNaviControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BallotNaviControl.m; sourceTree = "<group>"; };
 		CA864AF524D7A4E6003EB7AC /* ProPublicaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProPublicaAPI.h; sourceTree = "<group>"; };
 		CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProPublicaAPI.m; sourceTree = "<group>"; };
+		CAA79F8E24DAABB500D0646B /* BookmarkedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedCell.h; sourceTree = "<group>"; };
+		CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedCell.m; sourceTree = "<group>"; };
+		CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkedCell.xib; sourceTree = "<group>"; };
 		CAAEF87C24D1D37E00F27247 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		CAAEF87F24D1EF0400F27247 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -346,6 +351,9 @@
 				CA682EE424D54DD000C74182 /* ElectionDetailCell.m */,
 				CA682ED324D4CFF000C74182 /* CandidateCell.h */,
 				CA682ED424D4CFF000C74182 /* CandidateCell.m */,
+				CAA79F8E24DAABB500D0646B /* BookmarkedCell.h */,
+				CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */,
+				CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -600,6 +608,7 @@
 				CA5F03E124BCD58600F599CF /* Assets.xcassets in Resources */,
 				CA5F03DF24BCD58600F599CF /* Main.storyboard in Resources */,
 				CA506C6C24C6386000037D45 /* USAZipcodes.txt in Resources */,
+				CAA79F9224DAABB500D0646B /* BookmarkedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +767,7 @@
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */,
+				CAA79F9124DAABB500D0646B /* BookmarkedCell.m in Sources */,
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA864AEA24D780E0003EB7AC /* PropsViewController.m in Sources */,

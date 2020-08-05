@@ -11,6 +11,7 @@
 #import "PostDetailController.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "BookmarkedCell.h"
 #import "Assoc.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ProfileStickyHeader *header;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) NSArray *bookmarks;
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *location;
@@ -101,6 +103,10 @@
     } else if(index == 1){
         self.tableType = 1;
         [self fetchLikedStatuses];
+    } else if(index == 2){
+        self.tableType = 2;
+        NSLog(@"index 2");
+        [self fetchBookmarks];
     }
 }
 
@@ -111,7 +117,15 @@
     } else if(self.tableType == 1){
         self.tableType = 1;
         [self fetchLikedStatuses];
+    } else if(self.tableType == 2){
+        self.tableType = 2;
+        NSLog(@"index 2");
+        [self fetchBookmarks];
     }
+}
+
+- (void)fetchBookmarks{
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)fetchMyStatuses{
@@ -161,39 +175,79 @@
     NSUInteger *rows;
     if(self.tableType == 0){
         rows = self.posts.count;
-    } else {
+    } else if(self.tableType == 1){
         rows = self.likes.count;
+    } else {
+        rows = self.bookmarks.count;
     }
     return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
-    if (cell == nil) {
-        cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
-    }
-
-    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
-    if (!hasContentView) {
-        [cell addSubview:cell.contentView];
-    }
+//    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+//
+//    if (cell == nil) {
+//        cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
+//    }
+//
+//    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+//    if (!hasContentView) {
+//        [cell addSubview:cell.contentView];
+//    }
     
     if(self.tableType == 0){
+        PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+          
+          if (cell == nil) {
+              cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
+          }
+
+          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+          if (!hasContentView) {
+              [cell addSubview:cell.contentView];
+          }
         Post *post = self.posts[indexPath.row];
         cell.post = post;
         [cell setCell];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     } else if(self.tableType == 1){
+        PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+          
+          if (cell == nil) {
+              cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
+          }
+
+          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+          if (!hasContentView) {
+              [cell addSubview:cell.contentView];
+          }
         if(indexPath.row < self.likes.count){
             Post *post = self.likes[indexPath.row];
             cell.post = post;
             [cell setCell];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else {
+        BookmarkedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookmarkCell"];
+        if (cell == nil) {
+              cell = [[BookmarkedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bookmarkCell"];
+          }
+
+          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+          if (!hasContentView) {
+              [cell addSubview:cell.contentView];
+          }
+        NSDictionary *bookmarkInfo = self.bookmarks[indexPath.row];
+        cell.bookmarkInfo = bookmarkInfo;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    return cell;
 }
 
  #pragma mark - Navigation

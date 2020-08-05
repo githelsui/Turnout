@@ -78,6 +78,14 @@
 - (IBAction)tapBookmark:(id)sender {
    //if didBookmark == false --> change btn image to didBookmark and add to the arr then save it back to NSUserDefaults
    //if didBookmark == true -> change img to notBookmarked and update the array with the removed NSDictionary
+    
+    //the array that will be stored in NSUserDefaults == conntains nsdictionaries with two key value pairs
+    // 'type' : either 'voterInfo', 'nationalElection', 'stateElection',  'electDetail', 'candidateInfo', 'propInfo'
+    // 'data' : the actual NSDictionary
+    
+    
+    //how to differentiate between what types of info in the bookmarks tab so that you can segue to the correct screen
+    //  --> if(bookmark.type == 'secific key') manually programmtically create a segue to correct view controller
 }
 
 

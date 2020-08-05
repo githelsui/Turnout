@@ -56,7 +56,7 @@
 }
 
 - (void)setupTabs {
-    self.tabs = [[UISegmentedControl alloc] initWithItems:@[@"Status", @"Liked"]];
+    self.tabs = [[UISegmentedControl alloc] initWithItems:@[@"Status", @"Likes", @"Bookmarks"]];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor whiteColor], NSForegroundColorAttributeName,
                                 [UIFont systemFontOfSize:15 weight:UIFontWeightThin], NSFontAttributeName,
