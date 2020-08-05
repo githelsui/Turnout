@@ -72,6 +72,8 @@
 - (void)loadImage{
     self.attachedPhoto.image = [UIImage imageNamed:@"..."];
     self.attachedPhoto.file = self.post.image;
+    self.attachedPhoto.clipsToBounds = YES;
+    self.attachedPhoto.layer.cornerRadius = 15;
     [self.attachedPhoto loadInBackground];
 }
 

@@ -18,18 +18,23 @@
 #import <FBSDKShareButton.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <Parse/PFImageView.h>
+#import <MASUtilities.h>
+#import <View+MASAdditions.h>
 
 @interface PostDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
+@property (weak, nonatomic) IBOutlet UIView *bubbleView;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likesBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *likeAnimation;
 @property (nonatomic, strong) NSArray *assocs;
+@property (weak, nonatomic) IBOutlet UILabel *zipcodeLabel;
 @property (nonatomic, strong) NSArray *userLiked;
 @end
 
@@ -37,31 +42,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"goback" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    [self createShadows];
     [self setUI];
     [self updateLikes];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(queryLikes) userInfo:nil repeats:true];
 }
 
+- (void)setScroll{
+    [self.scrollView setScrollEnabled:YES];
+    self.scrollView.frame = self.view.frame;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+}
+
 - (void)setUI{
     self.likeAnimation.alpha = 0;
     PFUser *user = self.post.author;
-     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
-           if(user){
-               self.nameLabel.text = user[@"username"];
-               [self getPostLocation:user];
-           }
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error){
+        if(user){
+            self.nameLabel.text = user[@"username"];
+            [self getPostLocation:user];
+        }
     }];
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
-    [self checkImageView];
+//    [self checkImageView];
     [self loadImage];
     if(![FBSDKAccessToken currentAccessToken]){
         self.shareButton.alpha = 0;
     }
+}
+
+- (void)createShadows{
+    self.bubbleView.clipsToBounds = NO;
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bubbleView.layer.shadowRadius = 5;
+    self.bubbleView.layer.shadowOpacity = 0.5;
+    self.bubbleView.layer.cornerRadius = 15;
 }
 
 - (IBAction)tapFacebookShare:(id)sender {
@@ -91,6 +109,7 @@
         if(zipcode){
             NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
             self.locationLabel.text = location;
+            self.zipcodeLabel.text = zipcode[@"zipcode"];
         }
     }];
 }
@@ -105,19 +124,64 @@
     if(self.post.image == nil){
         [self.attachedPhoto removeFromSuperview];
         self.attachedPhoto = nil;
-        self.locationLabel.translatesAutoresizingMaskIntoConstraints = YES;
-        CGFloat screenWidth = self.view.bounds.size.width;
-        CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
-        CGSize statusSize = self.statusLabel.layer.frame.size;
-        CGPoint statusPos = self.statusLabel.layer.position;
-        CGPoint pos;
-        pos.x = (screenWidth + locationWidth - statusSize.width) / 2;
-        pos.y = statusSize.height + statusPos.y + 75;
-        CGPoint likePoint;
-        likePoint.x = screenWidth - self.likesBtn.layer.frame.size.width;
-        likePoint.y = pos.y;
-        self.locationLabel.layer.position = pos;
-        self.likesBtn.layer.position = likePoint;
+                self.locationLabel.translatesAutoresizingMaskIntoConstraints = YES;
+                self.zipcodeLabel.translatesAutoresizingMaskIntoConstraints = YES;
+                self.likesBtn.translatesAutoresizingMaskIntoConstraints = YES;
+                self.statusLabel.translatesAutoresizingMaskIntoConstraints = YES;
+        
+        //        CGFloat screenWidth = self.bubbleView.bounds.size.width;
+        //        CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
+        //        CGSize statusSize = self.statusLabel.layer.frame.size;
+        //        CGPoint statusPos = self.statusLabel.layer.position;
+        //        CGPoint locPoint;
+        //        locPoint.x = (screenWidth + locationWidth - statusSize.width) / 2;
+        //        locPoint.y = statusSize.height + statusPos.y + 20;
+        //        CGPoint likePoint;
+        //        likePoint.x = screenWidth - self.likesBtn.layer.frame.size.width;
+        //        likePoint.y = locPoint.y;
+        //        self.locationLabel.layer.position = locPoint;
+        //        self.likesBtn.layer.position = likePoint;
+        
+        [self.bubbleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            CGRect frame = self.statusLabel.frame;
+            frame.size.height = self.statusLabel.intrinsicContentSize.height;
+            self.statusLabel.frame = frame;
+            CGFloat statusHeight = frame.size.height;
+            CGFloat nameHeight = self.nameLabel.frame.size.height;
+            CGFloat locHeight = self.locationLabel.frame.size.height;
+            CGFloat zipcodeHeight = self.zipcodeLabel.frame.size.height;
+            CGFloat total = statusHeight + nameHeight + locHeight + zipcodeHeight;
+            make.height.equalTo(@(total)).offset(10);
+        }];
+        
+        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.equalTo(self.bubbleView.mas_top).offset(5);
+        }];
+        
+        [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
+        }];
+        
+        [self.locationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.statusLabel.mas_left);
+            make.right.equalTo(self.statusLabel.mas_right);
+            make.top.equalTo(self.statusLabel.mas_bottom).offset(5);
+        }];
+        
+        [self.likesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.statusLabel.mas_right);
+            make.right.equalTo(self.statusLabel.mas_right);
+            make.top.equalTo(self.statusLabel.mas_bottom).offset(5);
+            //            make.bottom.equalTo(self.bubbleView.mas_bottom).offset(15);
+        }];
+        
+        [self.zipcodeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.statusLabel.mas_left);
+            make.right.equalTo(self.statusLabel.mas_right);
+            make.top.equalTo(self.locationLabel.mas_bottom).offset(3);
+            //            make.bottom.equalTo(self.bubbleView.mas_bottom).offset(15);
+        }];
+        
     }
 }
 

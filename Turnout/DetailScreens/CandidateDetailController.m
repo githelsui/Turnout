@@ -38,6 +38,8 @@
     self.backColor.layer.cornerRadius = 15;
     self.nameView.layer.cornerRadius = 15;
     self.infoView.layer.cornerRadius = 15;
+    self.nameView.alpha = 0;
+    self.infoView.alpha = 0;
 }
 
 - (void)setNavigationBar{
@@ -73,9 +75,17 @@
             self.details = details[0];
             dispatch_async(dispatch_get_main_queue(), ^{
                [self setInfoDetails];
+               [self animateInfo];
             });
         }
     }];
+}
+
+- (void)animateInfo{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.infoView.alpha = 1;
+        self.nameView.alpha = 1;
+       } completion:^(BOOL finished) {}];
 }
 
 /*
