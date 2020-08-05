@@ -10,12 +10,13 @@
 #import "VoteWebView.h"
 
 @interface VoteLinksViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *checkRegistrationBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *backgrndView;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (weak, nonatomic) IBOutlet UIButton *absenteeBtn;
 @property (nonatomic, strong) NSString *linkURL;
-
+@property (weak, nonatomic) IBOutlet UIView *verifyView;
+@property (weak, nonatomic) IBOutlet UIView *registerView;
+@property (weak, nonatomic) IBOutlet UIView *absenteeView;
+@property (weak, nonatomic) IBOutlet UIView *voteByMail;
+@property (weak, nonatomic) IBOutlet UIView *bubbleView;
 @end
 
 @implementation VoteLinksViewController
@@ -23,41 +24,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
-    [self setButtonUI:self.checkRegistrationBtn];
-    [self setButtonUI:self.registerBtn];
-    [self setButtonUI:self.absenteeBtn];
 }
 
 - (void)setUI{
+    [self createShadows];
     self.backgrndView.alpha = 0.90;
+    self.verifyView.layer.cornerRadius = 15;
+    self.registerView.layer.cornerRadius = 15;
+    self.absenteeView.layer.cornerRadius = 15;
+    self.voteByMail.layer.cornerRadius = 15;
+}
+
+- (void)createShadows{
+    self.bubbleView.clipsToBounds = NO;
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bubbleView.layer.shadowRadius = 5;
+    self.bubbleView.layer.shadowOpacity = 1;
+    self.backgrndView.clipsToBounds = YES;
     self.backgrndView.layer.cornerRadius = 15;
-}
-
-- (void)setButtonUI:(UIButton *)button{
-    button.layer.cornerRadius = 20;
-    button.layer.borderWidth = 0.5f;
-    button.layer.borderColor = [UIColor grayColor].CGColor;
-}
-
-- (IBAction)checkRegistrationTapped:(id)sender {
-    self.linkURL = @"https://www.vote.org/am-i-registered-to-vote/";
 }
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if ([segue.identifier isEqualToString:@"checkRegisterSegue"]){
-         VoteWebView *webView = [segue destinationViewController];
-         webView.linkURL = @"https://www.vote.org/am-i-registered-to-vote/";
+    if ([segue.identifier isEqualToString:@"checkRegisterSegue"]){
+        VoteWebView *webView = [segue destinationViewController];
+        webView.linkURL = @"https://www.vote.org/am-i-registered-to-vote/";
     }
     else if ([segue.identifier isEqualToString:@"registerSegue"]){
-         VoteWebView *webView = [segue destinationViewController];
-         webView.linkURL = @"https://www.vote.org/register-to-vote/";
+        VoteWebView *webView = [segue destinationViewController];
+        webView.linkURL = @"https://www.vote.org/register-to-vote/";
     }
     else if ([segue.identifier isEqualToString:@"absenteeSegue"]){
-         VoteWebView *webView = [segue destinationViewController];
-         webView.linkURL = @"https://www.vote.org/absentee-ballot/";
+        VoteWebView *webView = [segue destinationViewController];
+        webView.linkURL = @"https://www.vote.org/absentee-ballot/";
+    } else if([segue.identifier isEqualToString:@"mailSegue"]){
+        VoteWebView *webView = [segue destinationViewController];
+        webView.linkURL = @"https://votesaveamerica.com/everylastvote/#text-block-wysiwyg";
     }
 }
 

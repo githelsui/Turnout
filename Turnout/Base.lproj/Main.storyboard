@@ -572,77 +572,107 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
-                                <rect key="frame" x="16" y="71" width="343" height="630"/>
-                                <color key="tintColor" red="1" green="0.81790701489999995" blue="0.74818149320000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-Ab-zZD">
-                                <rect key="frame" x="38" y="338" width="298" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="G52-Pr-esM"/>
-                                    <constraint firstAttribute="width" constant="298" id="ubU-Z2-Fox"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
-                                <state key="normal" title="Register to Vote">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="registerSegue" id="5Dk-R4-7Jj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-xs-4ch">
-                                <rect key="frame" x="38" y="457" width="298" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="7g7-lY-ZfX"/>
-                                    <constraint firstAttribute="width" constant="298" id="Lcp-M8-pm0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
-                                <state key="normal" title="Absentee Ballot">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="absenteeSegue" id="x2Z-zs-ff5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5H-wv-zQC">
-                                <rect key="frame" x="38" y="225" width="298" height="60"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Blp-1n-s5Q"/>
-                                    <constraint firstAttribute="width" constant="298" id="NeZ-Gb-rTD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
-                                <state key="normal" title="Am I Registered to Vote">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="checkRegistrationTapped:" destination="gvZ-vD-c8V" eventType="touchUpInside" id="zkn-fm-ji4"/>
-                                    <segue destination="bXg-BL-uTG" kind="presentation" identifier="checkRegisterSegue" id="P0e-PU-Cvb"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GWb-02-ZEA">
+                                <rect key="frame" x="16" y="79" width="343" height="637"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="637"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="0.81790701489999995" blue="0.74818149320000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-4I-1EM">
+                                        <rect key="frame" x="22" y="306" width="298" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="absenteeballot" translatesAutoresizingMaskIntoConstraints="NO" id="LKY-6O-6pt">
+                                                <rect key="frame" x="17" y="17" width="64" height="63"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Absentee Ballot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4J-Ae-N12">
+                                                <rect key="frame" x="105" y="21" width="163" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="uPK-BN-XlI" appends="YES" id="DAh-WF-U5N"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZ0-oV-ZXH">
+                                        <rect key="frame" x="22" y="67" width="298" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="41R-2z-Au8">
+                                                <rect key="frame" x="8" y="12" width="69" height="71"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Am I Registered to Vote?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ir-x5-oRm">
+                                                <rect key="frame" x="85" y="17" width="205" height="61"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GdE-oU-Leq" appends="YES" id="svq-kU-OJF"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utp-WK-YbB">
+                                        <rect key="frame" x="22" y="185" width="298" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="register" translatesAutoresizingMaskIntoConstraints="NO" id="9tU-jd-xvf">
+                                                <rect key="frame" x="15" y="17" width="70" height="64"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register to Vote" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-aZ-j0C">
+                                                <rect key="frame" x="93" y="22" width="178" height="54"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Whc-rE-tF6" appends="YES" id="uJh-9K-qdh"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-ze-CDP">
+                                        <rect key="frame" x="22" y="425" width="298" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vote By Mail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qys-EF-e6p">
+                                                <rect key="frame" x="105" y="21" width="163" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="QPm-2j-mHa">
+                                                <rect key="frame" x="22" y="15" width="59" height="63"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="RLc-bi-qgX" appends="YES" id="YxR-dE-GhR"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="Iqb-Ab-zZD" secondAttribute="trailing" constant="39" id="2J7-FA-vYX"/>
-                            <constraint firstItem="ufG-xC-fmt" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="15" id="6vp-EM-YsP"/>
-                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="ftE-xs-4ch" secondAttribute="trailing" constant="39" id="75O-kb-pyc"/>
-                            <constraint firstItem="ftE-xs-4ch" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="9an-7G-Fr0"/>
-                            <constraint firstItem="ufG-xC-fmt" firstAttribute="bottom" secondItem="GLu-k6-fs3" secondAttribute="bottom" constant="26" id="DnH-gB-5BA"/>
-                            <constraint firstItem="ufG-xC-fmt" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="16" id="NL7-jY-Pcd"/>
-                            <constraint firstItem="ftE-xs-4ch" firstAttribute="top" secondItem="Iqb-Ab-zZD" secondAttribute="bottom" constant="59" id="WGs-oi-pb5"/>
-                            <constraint firstItem="t5H-wv-zQC" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="ZHJ-ol-7lA"/>
-                            <constraint firstItem="GLu-k6-fs3" firstAttribute="bottom" secondItem="ftE-xs-4ch" secondAttribute="bottom" constant="158" id="a04-9Y-CfN"/>
-                            <constraint firstItem="Iqb-Ab-zZD" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="38" id="fRv-u6-AQM"/>
-                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="ufG-xC-fmt" secondAttribute="trailing" constant="16" id="rTy-HN-gGD"/>
-                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="t5H-wv-zQC" secondAttribute="trailing" constant="39" id="rYH-SZ-qC5"/>
-                            <constraint firstItem="t5H-wv-zQC" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="169" id="s1k-MU-rXE"/>
-                            <constraint firstItem="Iqb-Ab-zZD" firstAttribute="top" secondItem="t5H-wv-zQC" secondAttribute="bottom" constant="53" id="zNW-jO-vaN"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Vote" image="votermenu" id="kUe-su-o9i">
@@ -650,13 +680,35 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="xj7-sP-fyR"/>
                     <connections>
-                        <outlet property="absenteeBtn" destination="ftE-xs-4ch" id="hQI-O7-9MF"/>
+                        <outlet property="absenteeView" destination="hbT-4I-1EM" id="guV-xd-SRK"/>
                         <outlet property="backgrndView" destination="ufG-xC-fmt" id="132-oa-dUZ"/>
-                        <outlet property="checkRegistrationBtn" destination="t5H-wv-zQC" id="V5q-AX-Pp0"/>
-                        <outlet property="registerBtn" destination="Iqb-Ab-zZD" id="foa-Y2-0j0"/>
+                        <outlet property="bubbleView" destination="GWb-02-ZEA" id="a2N-i7-hvc"/>
+                        <outlet property="registerView" destination="utp-WK-YbB" id="Gg1-1d-3vD"/>
+                        <outlet property="verifyView" destination="kZ0-oV-ZXH" id="9DP-Uj-Ufz"/>
+                        <outlet property="voteByMail" destination="I8m-ze-CDP" id="EUZ-jf-tIo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CNI-Zk-0A0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GdE-oU-Leq">
+                    <connections>
+                        <segue destination="bXg-BL-uTG" kind="presentation" identifier="checkRegisterSegue" id="Bx7-TE-XRi"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Whc-rE-tF6">
+                    <connections>
+                        <segue destination="bXg-BL-uTG" kind="presentation" identifier="registerSegue" id="BEr-PT-c97"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uPK-BN-XlI">
+                    <connections>
+                        <segue destination="bXg-BL-uTG" kind="presentation" identifier="absenteeSegue" id="did-d8-sIw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="RLc-bi-qgX">
+                    <connections>
+                        <segue destination="bXg-BL-uTG" kind="presentation" identifier="mailSegue" id="UAD-mI-QHt"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="784.79999999999995" y="2250.7389162561576"/>
         </scene>
@@ -2212,21 +2264,25 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hPc-1S-Tj9"/>
-        <segue reference="eVj-so-SBW"/>
+        <segue reference="UAD-mI-QHt"/>
         <segue reference="wdi-OM-u5K"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Orange Coral" width="1120" height="1792"/>
+        <image name="absenteeballot" width="500" height="500"/>
         <image name="billprop_menu" width="25" height="25"/>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="check" width="550" height="550"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="electionsmenu" width="30" height="30"/>
         <image name="flipped_color" width="1792" height="1120"/>
         <image name="homemenu" width="25" height="25"/>
         <image name="icons8-user-30" width="30" height="30"/>
         <image name="largeLike" width="100" height="100"/>
+        <image name="mail" width="550" height="550"/>
         <image name="notliked" width="25" height="25"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="register" width="500" height="500"/>
         <image name="shareFBButton" width="557" height="128"/>
         <image name="turnoutAppIcon" width="500" height="500"/>
         <image name="votermenu" width="25" height="25"/>

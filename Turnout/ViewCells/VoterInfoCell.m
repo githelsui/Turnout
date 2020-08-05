@@ -41,7 +41,6 @@
      self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
      self.bubbleView.layer.shadowRadius = 5;
      self.bubbleView.layer.shadowOpacity = 0.5;
-    
      self.backImage.clipsToBounds = YES;
      self.backImage.layer.cornerRadius = 15;
 }
