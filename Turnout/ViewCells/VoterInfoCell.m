@@ -25,9 +25,8 @@
     NSString *url = self.infoCell[@"url"];
     self.bubbleView.alpha = 1;
     self.backImage.alpha = 0.70;
-    self.bubbleView.clipsToBounds = true;
-    self.bubbleView.layer.cornerRadius = 15;
     self.addressLabel.alpha = 0;
+    [self createShadows];
     self.adminLabel.text = self.infoCell[@"desc"];
     self.titleLabel.text = self.infoCell[@"title"];
     if(url == nil){
@@ -37,10 +36,19 @@
     }
 }
 
+- (void)createShadows{
+     self.bubbleView.clipsToBounds = NO;
+     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+     self.bubbleView.layer.shadowRadius = 5;
+     self.bubbleView.layer.shadowOpacity = 0.5;
+    
+     self.backImage.clipsToBounds = YES;
+     self.backImage.layer.cornerRadius = 15;
+}
+
 - (void)setPropCell{
     self.bubbleView.alpha = 1;
-    self.bubbleView.clipsToBounds = true;
-    self.bubbleView.layer.cornerRadius = 15;
+    [self createShadows];
     NSString *date = [NSString stringWithFormat: @"Legislative Date: %@", self.infoCell[@"legislative_day"]];
     self.adminLabel.text = date;
     [self setPropositionTitle];
