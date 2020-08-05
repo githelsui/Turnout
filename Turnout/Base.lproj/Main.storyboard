@@ -572,26 +572,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GWb-02-ZEA">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWb-02-ZEA">
                                 <rect key="frame" x="16" y="79" width="343" height="637"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="637"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="1" green="0.81790701489999995" blue="0.74818149320000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-4I-1EM">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-4I-1EM">
                                         <rect key="frame" x="22" y="306" width="298" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="absenteeballot" translatesAutoresizingMaskIntoConstraints="NO" id="LKY-6O-6pt">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="absenteeballot" translatesAutoresizingMaskIntoConstraints="NO" id="LKY-6O-6pt">
                                                 <rect key="frame" x="17" y="17" width="64" height="63"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="64" id="Y7P-cY-EzU"/>
+                                                    <constraint firstAttribute="height" constant="63" id="hjM-Ab-MGd"/>
+                                                </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Absentee Ballot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4J-Ae-N12">
-                                                <rect key="frame" x="105" y="21" width="163" height="51"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Absentee Ballot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4J-Ae-N12">
+                                                <rect key="frame" x="104.99999999999999" y="21" width="159.66666666666663" height="51"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -599,21 +598,33 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="W4J-Ae-N12" secondAttribute="bottom" constant="22" id="0w8-ju-0NJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="W4J-Ae-N12" secondAttribute="trailing" constant="33.329999999999998" id="Chn-gV-2h9"/>
+                                            <constraint firstAttribute="height" constant="94" id="Fo1-ZW-dw8"/>
+                                            <constraint firstItem="LKY-6O-6pt" firstAttribute="top" secondItem="hbT-4I-1EM" secondAttribute="top" constant="17" id="GFS-zA-5sj"/>
+                                            <constraint firstItem="W4J-Ae-N12" firstAttribute="leading" secondItem="LKY-6O-6pt" secondAttribute="trailing" constant="24" id="H1r-Je-9K0"/>
+                                            <constraint firstAttribute="bottom" secondItem="LKY-6O-6pt" secondAttribute="bottom" constant="14" id="Qm9-Gu-Fo8"/>
+                                            <constraint firstItem="LKY-6O-6pt" firstAttribute="leading" secondItem="hbT-4I-1EM" secondAttribute="leading" constant="17" id="WNF-lg-NW9"/>
+                                            <constraint firstItem="W4J-Ae-N12" firstAttribute="top" secondItem="hbT-4I-1EM" secondAttribute="top" constant="21" id="fjy-cr-qZQ"/>
+                                            <constraint firstItem="W4J-Ae-N12" firstAttribute="leading" secondItem="LKY-6O-6pt" secondAttribute="trailing" constant="24" id="spw-H2-7KB"/>
+                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="uPK-BN-XlI" appends="YES" id="DAh-WF-U5N"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZ0-oV-ZXH">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZ0-oV-ZXH">
                                         <rect key="frame" x="22" y="67" width="298" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="41R-2z-Au8">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="41R-2z-Au8">
                                                 <rect key="frame" x="8" y="12" width="69" height="71"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="69" id="5PK-be-bDW"/>
+                                                    <constraint firstAttribute="height" constant="71" id="Bvi-TS-5cW"/>
+                                                </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Am I Registered to Vote?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ir-x5-oRm">
-                                                <rect key="frame" x="85" y="17" width="205" height="61"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Am I Registered to Vote?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ir-x5-oRm">
+                                                <rect key="frame" x="104" y="17" width="164" height="61"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -621,21 +632,32 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="41R-2z-Au8" firstAttribute="top" secondItem="kZ0-oV-ZXH" secondAttribute="top" constant="12" id="58t-lC-gmb"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Ir-x5-oRm" secondAttribute="trailing" constant="30" id="IDN-Ok-Ocm"/>
+                                            <constraint firstAttribute="bottom" secondItem="41R-2z-Au8" secondAttribute="bottom" constant="11" id="LHM-ih-BlA"/>
+                                            <constraint firstItem="3Ir-x5-oRm" firstAttribute="leading" secondItem="41R-2z-Au8" secondAttribute="trailing" constant="27" id="Ybb-yj-Sm4"/>
+                                            <constraint firstItem="41R-2z-Au8" firstAttribute="leading" secondItem="kZ0-oV-ZXH" secondAttribute="leading" constant="8" id="cWT-rj-hXe"/>
+                                            <constraint firstAttribute="bottom" secondItem="3Ir-x5-oRm" secondAttribute="bottom" constant="16" id="jX7-Ep-naM"/>
+                                            <constraint firstAttribute="height" constant="94" id="n39-Qk-1wk"/>
+                                            <constraint firstItem="3Ir-x5-oRm" firstAttribute="top" secondItem="kZ0-oV-ZXH" secondAttribute="top" constant="17" id="qXp-tb-10D"/>
+                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="GdE-oU-Leq" appends="YES" id="svq-kU-OJF"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utp-WK-YbB">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utp-WK-YbB">
                                         <rect key="frame" x="22" y="185" width="298" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="register" translatesAutoresizingMaskIntoConstraints="NO" id="9tU-jd-xvf">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="register" translatesAutoresizingMaskIntoConstraints="NO" id="9tU-jd-xvf">
                                                 <rect key="frame" x="15" y="17" width="70" height="64"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="35t-dv-SiV"/>
+                                                    <constraint firstAttribute="height" constant="64" id="IvD-ET-eXC"/>
+                                                </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register to Vote" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-aZ-j0C">
-                                                <rect key="frame" x="93" y="22" width="178" height="54"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register to Vote" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-aZ-j0C">
+                                                <rect key="frame" x="105.00000000000001" y="22" width="159.33333333333337" height="54"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -643,36 +665,85 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="9tU-jd-xvf" firstAttribute="top" secondItem="utp-WK-YbB" secondAttribute="top" constant="17" id="2J4-2i-gr4"/>
+                                            <constraint firstAttribute="height" constant="94" id="9hm-8D-p8Q"/>
+                                            <constraint firstAttribute="bottom" secondItem="9tU-jd-xvf" secondAttribute="bottom" constant="13" id="E2d-8t-MNF"/>
+                                            <constraint firstAttribute="bottom" secondItem="UZ6-aZ-j0C" secondAttribute="bottom" constant="18" id="Xha-7g-i7i"/>
+                                            <constraint firstAttribute="trailing" secondItem="UZ6-aZ-j0C" secondAttribute="trailing" constant="33.670000000000002" id="eMj-WG-KjY"/>
+                                            <constraint firstItem="9tU-jd-xvf" firstAttribute="leading" secondItem="utp-WK-YbB" secondAttribute="leading" constant="15" id="efG-VX-OPz"/>
+                                            <constraint firstItem="UZ6-aZ-j0C" firstAttribute="top" secondItem="utp-WK-YbB" secondAttribute="top" constant="22" id="nsm-Hg-qUS"/>
+                                            <constraint firstItem="UZ6-aZ-j0C" firstAttribute="leading" secondItem="9tU-jd-xvf" secondAttribute="trailing" constant="20" id="pjW-MB-VZ2"/>
+                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Whc-rE-tF6" appends="YES" id="uJh-9K-qdh"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-ze-CDP">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-ze-CDP">
                                         <rect key="frame" x="22" y="425" width="298" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vote By Mail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qys-EF-e6p">
-                                                <rect key="frame" x="105" y="21" width="163" height="51"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="QPm-2j-mHa">
+                                                <rect key="frame" x="22" y="15" width="59" height="63"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="63" id="ahU-Os-7uj"/>
+                                                    <constraint firstAttribute="width" constant="59" id="gLW-pM-Quj"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vote By Mail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qys-EF-e6p">
+                                                <rect key="frame" x="126" y="21" width="123.66666666666669" height="51"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="QPm-2j-mHa">
-                                                <rect key="frame" x="22" y="15" width="59" height="63"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="qys-EF-e6p" secondAttribute="bottom" constant="22" id="2jJ-8b-yqb"/>
+                                            <constraint firstAttribute="trailing" secondItem="qys-EF-e6p" secondAttribute="trailing" constant="48.329999999999998" id="K3p-pG-tWH"/>
+                                            <constraint firstAttribute="bottom" secondItem="QPm-2j-mHa" secondAttribute="bottom" constant="16" id="Pf3-RW-g0p"/>
+                                            <constraint firstItem="QPm-2j-mHa" firstAttribute="top" secondItem="I8m-ze-CDP" secondAttribute="top" constant="15" id="Usi-pM-ef9"/>
+                                            <constraint firstItem="QPm-2j-mHa" firstAttribute="leading" secondItem="I8m-ze-CDP" secondAttribute="leading" constant="22" id="VMc-fJ-6EE"/>
+                                            <constraint firstItem="qys-EF-e6p" firstAttribute="leading" secondItem="QPm-2j-mHa" secondAttribute="trailing" constant="45" id="dA3-Ka-IEf"/>
+                                            <constraint firstAttribute="height" constant="94" id="xnN-V3-NtE"/>
+                                            <constraint firstItem="qys-EF-e6p" firstAttribute="top" secondItem="I8m-ze-CDP" secondAttribute="top" constant="21" id="yyJ-le-zdY"/>
+                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="RLc-bi-qgX" appends="YES" id="YxR-dE-GhR"/>
                                         </connections>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kZ0-oV-ZXH" secondAttribute="trailing" constant="23" id="05U-Jc-EI6"/>
+                                    <constraint firstItem="ufG-xC-fmt" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" id="0bX-sd-YJN"/>
+                                    <constraint firstAttribute="trailing" secondItem="utp-WK-YbB" secondAttribute="trailing" constant="23" id="5TR-fj-Jxk"/>
+                                    <constraint firstAttribute="bottom" secondItem="ufG-xC-fmt" secondAttribute="bottom" id="5wW-aR-Fm0"/>
+                                    <constraint firstItem="kZ0-oV-ZXH" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="6F1-jB-H6N"/>
+                                    <constraint firstAttribute="trailing" secondItem="hbT-4I-1EM" secondAttribute="trailing" constant="23" id="BqP-Zk-yMj"/>
+                                    <constraint firstAttribute="trailing" secondItem="I8m-ze-CDP" secondAttribute="trailing" constant="23" id="Dxj-N1-79l"/>
+                                    <constraint firstItem="I8m-ze-CDP" firstAttribute="height" secondItem="kZ0-oV-ZXH" secondAttribute="height" id="Q0V-SY-ZQH"/>
+                                    <constraint firstItem="I8m-ze-CDP" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="UvC-g8-UFM"/>
+                                    <constraint firstItem="hbT-4I-1EM" firstAttribute="height" secondItem="kZ0-oV-ZXH" secondAttribute="height" id="VNW-N1-Xbq"/>
+                                    <constraint firstItem="I8m-ze-CDP" firstAttribute="top" secondItem="hbT-4I-1EM" secondAttribute="bottom" constant="25" id="Z2b-X9-SRX"/>
+                                    <constraint firstItem="ufG-xC-fmt" firstAttribute="top" secondItem="GWb-02-ZEA" secondAttribute="top" id="cFz-fK-JzO"/>
+                                    <constraint firstItem="hbT-4I-1EM" firstAttribute="top" secondItem="utp-WK-YbB" secondAttribute="bottom" constant="27" id="cOC-iB-shg"/>
+                                    <constraint firstItem="utp-WK-YbB" firstAttribute="height" secondItem="kZ0-oV-ZXH" secondAttribute="height" id="h1h-Y2-Yr6"/>
+                                    <constraint firstItem="utp-WK-YbB" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="o3R-Uf-zEy"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="I8m-ze-CDP" secondAttribute="bottom" constant="118" id="oHm-a5-cZI"/>
+                                    <constraint firstItem="kZ0-oV-ZXH" firstAttribute="top" relation="lessThanOrEqual" secondItem="GWb-02-ZEA" secondAttribute="top" constant="67" id="rJe-BN-ujz"/>
+                                    <constraint firstItem="hbT-4I-1EM" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="uuV-dw-gEQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="ufG-xC-fmt" secondAttribute="trailing" id="x74-Dh-wSW"/>
+                                    <constraint firstItem="utp-WK-YbB" firstAttribute="top" secondItem="kZ0-oV-ZXH" secondAttribute="bottom" constant="24" id="ySG-Gy-Smc"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GWb-02-ZEA" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="16" id="QM9-kp-96Q"/>
+                            <constraint firstAttribute="bottom" secondItem="GWb-02-ZEA" secondAttribute="bottom" constant="42" id="S5J-WW-GfX"/>
+                            <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="GWb-02-ZEA" secondAttribute="trailing" constant="16" id="ilO-3F-MKN"/>
+                            <constraint firstItem="GWb-02-ZEA" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="23" id="q8N-rp-gu8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Vote" image="votermenu" id="kUe-su-o9i">

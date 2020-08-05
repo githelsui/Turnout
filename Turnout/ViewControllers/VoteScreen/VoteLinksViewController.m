@@ -28,7 +28,7 @@
 
 - (void)setUI{
     [self createShadows];
-    self.backgrndView.alpha = 0.90;
+    self.backgrndView.alpha = 1;
     self.verifyView.layer.cornerRadius = 15;
     self.registerView.layer.cornerRadius = 15;
     self.absenteeView.layer.cornerRadius = 15;
