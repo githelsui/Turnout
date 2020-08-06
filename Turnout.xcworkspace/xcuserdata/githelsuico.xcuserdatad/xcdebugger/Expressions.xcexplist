@@ -956,5 +956,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[ElectionDetailController createEvent:]:ElectionDetailController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.startDate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
