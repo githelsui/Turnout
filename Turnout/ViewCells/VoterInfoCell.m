@@ -48,6 +48,8 @@
 }
 
 - (void)setPropCell{
+    [self checkBookmark];
+    [self loadBookmarks];
     self.bubbleView.alpha = 1;
     [self createShadows];
     NSString *date = [NSString stringWithFormat: @"Legislative Date: %@", self.infoCell[@"legislative_day"]];
@@ -122,6 +124,22 @@
     
     //how to differentiate between what types of info in the bookmarks tab so that you can segue to the correct screen
     //  --> if(bookmark.type == 'secific key') manually programmtically create a segue to correct view controller
+}
+
+- (IBAction)saveBillTap:(id)sender {
+    if(self.didBookmark == NO){
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        NSDate *bookmarkInfo = [self getBookmarkInfo:@"propInfo"];
+        [self.bookmarks addObject:bookmarkInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //[NSKeyedArchiver archivedDataWithRootObject:self.myDictionary]
+    } else {
+        [self removeBookmark];
+    }
 }
 
 - (void)removeBookmark{

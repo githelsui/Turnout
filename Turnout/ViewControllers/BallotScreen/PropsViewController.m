@@ -14,6 +14,7 @@
 @interface PropsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *props;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation PropsViewController
@@ -25,6 +26,9 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self fetchProps];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchProps) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchProps{
@@ -38,6 +42,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

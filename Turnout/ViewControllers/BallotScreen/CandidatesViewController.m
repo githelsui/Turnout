@@ -21,6 +21,7 @@
 @property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSString *currentState;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -35,6 +36,9 @@
     [self getCurrentUserInfo];
     [self customizeActivityIndic];
     [self fetchCandidates];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+      [self.refreshControl addTarget:self action:@selector(fetchCandidates) forControlEvents:UIControlEventValueChanged];
+      [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)customizeActivityIndic{
@@ -66,6 +70,7 @@
             });
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

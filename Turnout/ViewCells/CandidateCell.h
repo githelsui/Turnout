@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyLabel;
 @property (nonatomic, strong) NSMutableDictionary *candidate;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
+@property (nonatomic, strong) NSData *bookmarkInfo;
+@property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic) BOOL didBookmark;
 - (void)setCell;
 @end
 
