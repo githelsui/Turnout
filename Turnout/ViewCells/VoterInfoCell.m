@@ -105,7 +105,7 @@
         self.didBookmark = YES;
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
+        NSDate *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -133,19 +133,22 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSDictionary *)getBookmarkInfo:(NSString *)type{
+- (NSData *)getBookmarkInfo:(NSString *)type{
     NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
     [bookmarkInfo setValue:type forKey:@"type"];
     [bookmarkInfo setValue:self.infoCell forKey:@"data"];
-    return [bookmarkInfo copy];
+    NSData *data =  [NSKeyedArchiver archivedDataWithRootObject:[bookmarkInfo copy]];
+    return data;
 }
 
 - (void)checkBookmark{
     self.didBookmark = NO;
     self.bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
-    for(NSDictionary *bookmark in self.bookmarks){
-        NSDictionary *data = bookmark[@"data"];
-        if([data isEqual:self.infoCell]){
+    for(NSData *bookmark in self.bookmarks){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
+        NSDictionary *data = bookmarkDict[@"data"];
+        NSDictionary *compare = [self.infoCell copy];
+        if([data isEqual:compare]){
             self.bookmarkInfo = bookmark;
             self.didBookmark = YES;
         }

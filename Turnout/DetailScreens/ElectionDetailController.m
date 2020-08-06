@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSArray *details;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -29,6 +30,9 @@
     self.tableView.delegate = self;
     [self setNavigationBar];
     [self fetchElectionDetail];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+       [self.refreshControl addTarget:self action:@selector(fetchElectionDetail) forControlEvents:UIControlEventValueChanged];
+       [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)setNavigationBar{
@@ -54,11 +58,16 @@
                     self.details = arr;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                        NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+                        for(NSDictionary *content in bookmarks){
+                            NSLog(@"bookmark = %@", content);
+                        }
                     });
                 }
             }];
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

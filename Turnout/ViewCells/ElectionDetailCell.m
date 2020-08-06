@@ -187,7 +187,8 @@
              UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
              [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
              NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"electDetail"];
-             [self.bookmarks addObject:bookmarkInfo];
+             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:bookmarkInfo];
+             [self.bookmarks addObject:data];
              [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
              [[NSUserDefaults standardUserDefaults] synchronize];
          } else {
