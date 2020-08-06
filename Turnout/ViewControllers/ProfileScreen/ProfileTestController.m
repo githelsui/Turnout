@@ -11,6 +11,7 @@
 #import "ElectionDetailController.h"
 #import "PostDetailController.h"
 #import "CandidateDetailController.h"
+#import "StateElectionDetail.h"
 #import "PropViewController.h"
 #import "Post.h"
 #import "PostCell.h"
@@ -247,6 +248,7 @@
     else if([key isEqualToString:@"nationalElection"]) [self performSegueWithIdentifier: @"ElectionDetailSegue" sender: self];
     else if([key isEqualToString:@"candidateInfo"]) [self performSegueWithIdentifier: @"CandidateDetailSegue" sender: self];
     else if([key isEqualToString:@"propInfo"]) [self performSegueWithIdentifier: @"PropDetailSegue" sender: self];
+    else if([key isEqualToString:@"stateElection"]) [self performSegueWithIdentifier: @"StateDetailSegue" sender: self];
 }
 
 #pragma mark - Navigation
@@ -290,6 +292,13 @@
         NSDictionary *data = bookmarkDict[@"data"];
         PropViewController *detailController = [segue destinationViewController];
         detailController.prop = data;
+    } else if ([segue.identifier isEqualToString:@"StateDetailSegue"]){
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSDictionary *data = bookmarkDict[@"data"];
+        StateElectionDetail *detailController = [segue destinationViewController];
+        detailController.election = data;
+        
     }
 }
 

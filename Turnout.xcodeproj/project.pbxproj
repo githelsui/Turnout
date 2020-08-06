@@ -38,6 +38,7 @@
 		CA682EDF24D4FA0E00C74182 /* ElectionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682EDE24D4FA0E00C74182 /* ElectionDetailController.m */; };
 		CA682EE524D54DD000C74182 /* ElectionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682EE424D54DD000C74182 /* ElectionDetailCell.m */; };
 		CA68F01C24D65DD6008BD4E5 /* ProfileTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */; };
+		CA7B421024DC174E00D98681 /* StateElectionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7B420F24DC174E00D98681 /* StateElectionDetail.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CA864AE724D780BF003EB7AC /* StateElectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AE624D780BF003EB7AC /* StateElectionController.m */; };
@@ -145,6 +146,8 @@
 		CA682EE424D54DD000C74182 /* ElectionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectionDetailCell.m; sourceTree = "<group>"; };
 		CA68F01A24D65DD6008BD4E5 /* ProfileTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileTestController.h; sourceTree = "<group>"; };
 		CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileTestController.m; sourceTree = "<group>"; };
+		CA7B420E24DC174E00D98681 /* StateElectionDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateElectionDetail.h; sourceTree = "<group>"; };
+		CA7B420F24DC174E00D98681 /* StateElectionDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateElectionDetail.m; sourceTree = "<group>"; };
 		CA7CFA7B24BFAC9900AADA69 /* Assoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assoc.h; sourceTree = "<group>"; };
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
 		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				CA682EDB24D4F9F100C74182 /* CandidateDetailController.m */,
 				CAB3FFBC24D7D57D0059B16E /* PropViewController.h */,
 				CAB3FFBD24D7D57D0059B16E /* PropViewController.m */,
+				CA7B420E24DC174E00D98681 /* StateElectionDetail.h */,
+				CA7B420F24DC174E00D98681 /* StateElectionDetail.m */,
 			);
 			path = DetailScreens;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				CAC2B06924BCE7F900F3B23A /* LiveFeedController.m in Sources */,
 				CA028F3624CA1A270034C211 /* RankAlgorithm.m in Sources */,
 				CA864AEA24D780E0003EB7AC /* PropsViewController.m in Sources */,
+				CA7B421024DC174E00D98681 /* StateElectionDetail.m in Sources */,
 				CA3BB1B824D22375006B58E4 /* CandidatesViewController.m in Sources */,
 				CA682EE524D54DD000C74182 /* ElectionDetailCell.m in Sources */,
 				CADFB98C24D39A460031557A /* KSQueue.m in Sources */,

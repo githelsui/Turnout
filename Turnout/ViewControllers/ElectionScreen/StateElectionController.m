@@ -8,6 +8,7 @@
 
 #import "StateElectionController.h"
 #import "ElectionDetailCell.h"
+#import "StateElectionDetail.h"
 #import "OpenFECAPI.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
@@ -100,14 +101,15 @@
     return cell;
 }
 
-/*
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     UITableViewCell *tappedCell = sender;
+     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+     NSDictionary *election = self.elections[indexPath.row];
+     StateElectionDetail *detailController = [segue destinationViewController];
+     detailController.election = election;
  }
- */
 
 @end
