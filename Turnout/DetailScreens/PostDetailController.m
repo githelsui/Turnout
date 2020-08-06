@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *likeAnimation;
 @property (nonatomic, strong) NSArray *assocs;
 @property (weak, nonatomic) IBOutlet UILabel *zipcodeLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (nonatomic, strong) NSArray *userLiked;
 @end
 
@@ -67,8 +68,8 @@
     self.statusLabel.text = self.post.status;
     self.timeLabel.text = self.post.timePosted;
     self.dateLabel.text = self.post.datePosted;
-//    [self checkImageView];
     [self loadImage];
+    [self checkImageView];
     if(![FBSDKAccessToken currentAccessToken]){
         self.shareButton.alpha = 0;
     }
@@ -122,66 +123,7 @@
 
 - (void)checkImageView{
     if(self.post.image == nil){
-        [self.attachedPhoto removeFromSuperview];
-        self.attachedPhoto = nil;
-                self.locationLabel.translatesAutoresizingMaskIntoConstraints = YES;
-                self.zipcodeLabel.translatesAutoresizingMaskIntoConstraints = YES;
-                self.likesBtn.translatesAutoresizingMaskIntoConstraints = YES;
-                self.statusLabel.translatesAutoresizingMaskIntoConstraints = YES;
-        
-        //        CGFloat screenWidth = self.bubbleView.bounds.size.width;
-        //        CGFloat locationWidth = self.locationLabel.layer.frame.size.width;
-        //        CGSize statusSize = self.statusLabel.layer.frame.size;
-        //        CGPoint statusPos = self.statusLabel.layer.position;
-        //        CGPoint locPoint;
-        //        locPoint.x = (screenWidth + locationWidth - statusSize.width) / 2;
-        //        locPoint.y = statusSize.height + statusPos.y + 20;
-        //        CGPoint likePoint;
-        //        likePoint.x = screenWidth - self.likesBtn.layer.frame.size.width;
-        //        likePoint.y = locPoint.y;
-        //        self.locationLabel.layer.position = locPoint;
-        //        self.likesBtn.layer.position = likePoint;
-        
-        [self.bubbleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            CGRect frame = self.statusLabel.frame;
-            frame.size.height = self.statusLabel.intrinsicContentSize.height;
-            self.statusLabel.frame = frame;
-            CGFloat statusHeight = frame.size.height;
-            CGFloat nameHeight = self.nameLabel.frame.size.height;
-            CGFloat locHeight = self.locationLabel.frame.size.height;
-            CGFloat zipcodeHeight = self.zipcodeLabel.frame.size.height;
-            CGFloat total = statusHeight + nameHeight + locHeight + zipcodeHeight;
-            make.height.equalTo(@(total)).offset(10);
-        }];
-        
-        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.bubbleView.mas_top).offset(5);
-        }];
-        
-        [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
-        }];
-        
-        [self.locationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.statusLabel.mas_left);
-            make.right.equalTo(self.statusLabel.mas_right);
-            make.top.equalTo(self.statusLabel.mas_bottom).offset(5);
-        }];
-        
-        [self.likesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.statusLabel.mas_right);
-            make.right.equalTo(self.statusLabel.mas_right);
-            make.top.equalTo(self.statusLabel.mas_bottom).offset(5);
-            //            make.bottom.equalTo(self.bubbleView.mas_bottom).offset(15);
-        }];
-        
-        [self.zipcodeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.statusLabel.mas_left);
-            make.right.equalTo(self.statusLabel.mas_right);
-            make.top.equalTo(self.locationLabel.mas_bottom).offset(3);
-            //            make.bottom.equalTo(self.bubbleView.mas_bottom).offset(15);
-        }];
-        
+        [self.stackView removeArrangedSubview:self.attachedPhoto];
     }
 }
 
