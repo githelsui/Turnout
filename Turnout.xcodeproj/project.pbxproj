@@ -39,6 +39,7 @@
 		CA682EE524D54DD000C74182 /* ElectionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA682EE424D54DD000C74182 /* ElectionDetailCell.m */; };
 		CA68F01C24D65DD6008BD4E5 /* ProfileTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */; };
 		CA7B421024DC174E00D98681 /* StateElectionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7B420F24DC174E00D98681 /* StateElectionDetail.m */; };
+		CA7B421324DC374600D98681 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7B421224DC374600D98681 /* SettingsViewController.m */; };
 		CA7CFA7D24BFAC9900AADA69 /* Assoc.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7CFA7C24BFAC9900AADA69 /* Assoc.m */; };
 		CA84E42B24C0D1E4003D9BC6 /* GeocodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */; };
 		CA864AE724D780BF003EB7AC /* StateElectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AE624D780BF003EB7AC /* StateElectionController.m */; };
@@ -148,6 +149,8 @@
 		CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileTestController.m; sourceTree = "<group>"; };
 		CA7B420E24DC174E00D98681 /* StateElectionDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateElectionDetail.h; sourceTree = "<group>"; };
 		CA7B420F24DC174E00D98681 /* StateElectionDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateElectionDetail.m; sourceTree = "<group>"; };
+		CA7B421124DC374600D98681 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		CA7B421224DC374600D98681 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CA7CFA7B24BFAC9900AADA69 /* Assoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assoc.h; sourceTree = "<group>"; };
 		CA7CFA7C24BFAC9900AADA69 /* Assoc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assoc.m; sourceTree = "<group>"; };
 		CA84E42924C0D1E4003D9BC6 /* GeocodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodeManager.h; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 			children = (
 				CA68F01A24D65DD6008BD4E5 /* ProfileTestController.h */,
 				CA68F01B24D65DD6008BD4E5 /* ProfileTestController.m */,
+				CA7B421124DC374600D98681 /* SettingsViewController.h */,
+				CA7B421224DC374600D98681 /* SettingsViewController.m */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 				CA68F01C24D65DD6008BD4E5 /* ProfileTestController.m in Sources */,
 				CAC2B06524BCD99C00F3B23A /* User.m in Sources */,
 				CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */,
+				CA7B421324DC374600D98681 /* SettingsViewController.m in Sources */,
 				CA3540EA24D61DBB0034082E /* ProfileStickyHeader.m in Sources */,
 				CAAEF88324D1EF7200F27247 /* VoteWebView.m in Sources */,
 				CA682EDC24D4F9F100C74182 /* CandidateDetailController.m in Sources */,

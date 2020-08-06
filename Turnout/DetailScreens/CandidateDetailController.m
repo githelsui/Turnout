@@ -51,7 +51,7 @@
 
 - (void)setNavigationBar{
     UILabel *lblTitle = [[UILabel alloc] init];
-    lblTitle.text = @"Specific Candidate";
+    lblTitle.text = self.candidate[@"name"];
     lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.textColor = [UIColor blackColor];
     lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];

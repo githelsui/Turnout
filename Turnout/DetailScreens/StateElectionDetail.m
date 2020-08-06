@@ -31,6 +31,7 @@
     [super viewDidLoad];
     [self setViews];
     [self setElectionData];
+    [self setNavigationBar];
 }
 
 - (void)setViews{

@@ -40,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigationBar];
     [self checkBookmark];
     [self loadBookmarks];
     [self prepAnimation];
@@ -61,6 +62,16 @@
     self.subjectView.clipsToBounds = true;
     self.textsBtn.layer.cornerRadius = 15;
     self.actionBtn.layer.cornerRadius = 15;
+}
+
+- (void)setNavigationBar{
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = self.prop[@"short_title"];
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    [lblTitle sizeToFit];
+    self.navigationItem.titleView = lblTitle;
 }
 
 - (void)prepAnimation{
