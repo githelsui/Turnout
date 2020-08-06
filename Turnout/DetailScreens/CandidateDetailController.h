@@ -10,8 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CandidateDetailDelegate
+- (void)refreshFeed;
+@end
+
 @interface CandidateDetailController : UIViewController
 @property (nonatomic, strong) NSDictionary *candidate;
+@property (nonatomic, weak) id<CandidateDetailDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

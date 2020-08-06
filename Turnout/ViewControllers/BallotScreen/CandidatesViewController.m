@@ -14,7 +14,7 @@
 #import <Parse/Parse.h>
 #import "Zipcode.h"
 
-@interface CandidatesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CandidatesViewController () <CandidateDetailDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *candidates;
@@ -93,6 +93,10 @@
     return cell;
 }
 
+- (void)refreshFeed{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -102,6 +106,7 @@
     NSDictionary *candidate = self.candidates[indexPath.row];
     CandidateDetailController *detailController = [segue destinationViewController];
     detailController.candidate = candidate;
+    detailController.delegate = self;
 }
 
 @end
