@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ProfileStickyHeader *header;
 @property (nonatomic, strong) NSArray *posts;
-@property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic, strong) NSArray *bookmarks;
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *location;
@@ -85,7 +85,6 @@
 }
 
 - (void)initTableView{
-    self.bookmarks = [NSMutableArray array];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
@@ -106,7 +105,6 @@
         [self fetchLikedStatuses];
     } else if(index == 2){
         self.tableType = 2;
-        NSLog(@"index 2");
         [self fetchBookmarks];
     }
 }
@@ -120,20 +118,15 @@
         [self fetchLikedStatuses];
     } else if(self.tableType == 2){
         self.tableType = 2;
-        NSLog(@"index 2");
         [self fetchBookmarks];
     }
 }
 
 - (void)fetchBookmarks{
-    NSMutableArray *dataArr = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
-    for(NSData *bookmark in dataArr){
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
-        NSDictionary *data = bookmarkDict[@"data"];
-        [self.bookmarks addObject:data];
-        
-    }
+    NSArray *temp = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    self.bookmarks = [[temp reverseObjectEnumerator] allObjects];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)fetchMyStatuses{
@@ -170,7 +163,6 @@
             self.likes = [posts copy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                [self startTimer];
             });
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -220,12 +212,18 @@
         if (!hasContentView) {
             [cell addSubview:cell.contentView];
         }
-        NSDictionary *bookmarkInfo = self.bookmarks[indexPath.row];
-        cell.bookmarkInfo = bookmarkInfo;
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        cell.bookmarkInfo = bookmarkDict;
         [cell setCell];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.tableType == 2) return 146;
+    return 200;
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{

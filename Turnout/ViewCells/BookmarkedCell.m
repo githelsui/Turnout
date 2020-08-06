@@ -43,7 +43,7 @@
 - (void)createShadows{
     self.bubbleView.clipsToBounds = NO;
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bubbleView.layer.shadowRadius = 5;
+    self.bubbleView.layer.shadowRadius = 3;
     self.bubbleView.layer.shadowOpacity = 0.5;
     self.backImg.clipsToBounds = YES;
     self.backImg.layer.cornerRadius = 15;
@@ -61,6 +61,7 @@
 - (void)setVoterInfoCell:(NSDictionary *)data{
     NSString *url = data[@"url"];
     self.subHeader.alpha = 0;
+    self.sideHeaderLbl.alpha = 0;
     self.headerLabel.text = data[@"desc"];
     self.titleLbl.text = data[@"title"];
        if(url == nil){
@@ -73,6 +74,8 @@
 - (void)setNationalElection:(NSDictionary *)data{
     self.headerLabel.text = [NSString stringWithFormat:@"Election Date: %@", data[@"electionDay"]];
     self.titleLbl.text = data[@"name"];
+    self.sideHeaderLbl.alpha = 0;
+    self.subHeader.alpha = 0;
 }
 
 - (void)setStateElection:(NSDictionary *)data{
