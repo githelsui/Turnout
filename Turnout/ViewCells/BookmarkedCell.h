@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *subHeader;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
 @property (nonatomic, strong) NSDictionary *bookmarkInfo;
-
+@property (weak, nonatomic) IBOutlet UIView *bubbleView;
+@property (weak, nonatomic) IBOutlet UIImageView *backImg;
+- (void)setCell;
 @end
 
 NS_ASSUME_NONNULL_END

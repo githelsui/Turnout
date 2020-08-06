@@ -31,12 +31,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *committeeLabel;
 @property (nonatomic, strong) NSString *actionsURL;
+@property (nonatomic, strong) NSData *bookmarkInfo;
+@property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic) BOOL didBookmark;
 @end
 
 @implementation PropViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self checkBookmark];
+    [self loadBookmarks];
     [self prepAnimation];
     [self setBasicUI];
     [self setPropInfo];
@@ -126,6 +131,63 @@
             });
         }
     }];
+}
+
+- (void)removeBookmark{
+    self.didBookmark = NO;
+    UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+    [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    [self.bookmarks removeObject:self.bookmarkInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSData *)getBookmarkInfo:(NSString *)type{
+    NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
+    [bookmarkInfo setValue:type forKey:@"type"];
+    [bookmarkInfo setValue:self.prop forKey:@"data"];
+    NSData *data =  [NSKeyedArchiver archivedDataWithRootObject:[bookmarkInfo copy]];
+    return data;
+}
+
+- (void)loadBookmarks{
+    if(self.didBookmark == YES){
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    } else {
+        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    }
+}
+
+- (void)checkBookmark{
+    self.didBookmark = NO;
+    self.bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    for(NSData *bookmark in self.bookmarks){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
+        NSDictionary *data = bookmarkDict[@"data"];
+        NSDictionary *compare = [self.prop copy];
+        if([data isEqual:compare]){
+            self.bookmarkInfo = bookmark;
+            self.didBookmark = YES;
+        }
+    }
+}
+
+- (IBAction)tapBookmark:(id)sender {
+    if(self.didBookmark == NO){
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"propInfo"];
+        [self.bookmarks addObject:bookmarkInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.delegate refreshFeed];
+    } else {
+        [self removeBookmark];
+        [self.delegate refreshFeed];
+    }
 }
 
 #pragma mark - Navigation

@@ -8,9 +8,11 @@
 
 #import "VoteWebView.h"
 #import <WebKit/WebKit.h>
+#import <CCActivityHUD.h>
 
 @interface VoteWebView ()
 @property (weak, nonatomic) IBOutlet WKWebView *webKit;
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 
 @end
 
@@ -18,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self customizeActivityIndic];
     // Convert the url String to a NSURL object.
     NSURL *url = [NSURL URLWithString:self.linkURL];
 
@@ -27,6 +30,17 @@
                                          timeoutInterval:10.0];
     // Load Request into WebView.
     [self.webKit loadRequest:request];
+}
+
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [self.activityHUD dismiss];
 }
 
 /*

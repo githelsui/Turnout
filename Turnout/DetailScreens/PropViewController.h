@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol PropDetailSegue
+- (void)refreshFeed;
+@end
 
 @interface PropViewController : UIViewController
 @property (nonatomic, strong) NSDictionary *prop;
+@property (nonatomic, weak) id<PropDetailSegue> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ProfileStickyHeader *header;
 @property (nonatomic, strong) NSArray *posts;
-@property (nonatomic, strong) NSArray *bookmarks;
+@property (nonatomic, strong) NSMutableArray *bookmarks;
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic, strong) NSString *location;
@@ -85,6 +85,7 @@
 }
 
 - (void)initTableView{
+    self.bookmarks = [NSMutableArray array];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
@@ -125,6 +126,13 @@
 }
 
 - (void)fetchBookmarks{
+    NSMutableArray *dataArr = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    for(NSData *bookmark in dataArr){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
+        NSDictionary *data = bookmarkDict[@"data"];
+        [self.bookmarks addObject:data];
+        
+    }
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -184,74 +192,56 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-//
-//    if (cell == nil) {
-//        cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
-//    }
-//
-//    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
-//    if (!hasContentView) {
-//        [cell addSubview:cell.contentView];
-//    }
-    
-    if(self.tableType == 0){
+    if(self.tableType == 0 || self.tableType == 1){
         PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-          
-          if (cell == nil) {
-              cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
-          }
-
-          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
-          if (!hasContentView) {
-              [cell addSubview:cell.contentView];
-          }
-        Post *post = self.posts[indexPath.row];
+        
+        if (cell == nil) {
+            cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
+        }
+        
+        BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+        if (!hasContentView) {
+            [cell addSubview:cell.contentView];
+        }
+        Post *post;
+        if(self.tableType == 0 ) post = self.posts[indexPath.row];
+        else post = self.likes[indexPath.row];
         cell.post = post;
         [cell setCell];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if(self.tableType == 1){
-        PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-          
-          if (cell == nil) {
-              cell = [[PostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PostCell"];
-          }
-
-          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
-          if (!hasContentView) {
-              [cell addSubview:cell.contentView];
-          }
-        if(indexPath.row < self.likes.count){
-            Post *post = self.likes[indexPath.row];
-            cell.post = post;
-            [cell setCell];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
     } else {
-        BookmarkedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookmarkCell"];
-        if (cell == nil) {
-              cell = [[BookmarkedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bookmarkCell"];
-          }
-
-          BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
-          if (!hasContentView) {
-              [cell addSubview:cell.contentView];
-          }
+        BookmarkedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookmarkedCell"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"BookmarkedCell" bundle:nil] forCellReuseIdentifier:@"BookmarkedCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"BookmarkedCell"];
+        }
+        BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+        if (!hasContentView) {
+            [cell addSubview:cell.contentView];
+        }
         NSDictionary *bookmarkInfo = self.bookmarks[indexPath.row];
         cell.bookmarkInfo = bookmarkInfo;
+        [cell setCell];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-        
     }
-    
-    
 }
 
- #pragma mark - Navigation
- 
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+////    if(self.tableType == 2){
+////
+////    } else if(self.tableType == 1){
+////        Post *post = self.likes[indexPath.row];
+////        cell.post = post;
+////    } else if(self.tableType == 0){
+////
+////    }
+//    if([cell is ])
+//}
+
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PostDetailSegue"]){

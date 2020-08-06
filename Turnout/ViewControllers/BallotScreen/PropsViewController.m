@@ -11,7 +11,7 @@
 #import "VoterInfoCell.h"
 #import "PropViewController.h"
 
-@interface PropsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PropsViewController () <PropDetailSegue, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray *props;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -65,6 +65,10 @@
     return cell;
 }
 
+- (void)refreshFeed{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -74,6 +78,7 @@
     NSDictionary *prop = self.props[indexPath.row];
     PropViewController *detailController = [segue destinationViewController];
     detailController.prop = prop;
+    detailController.delegate = self;
 }
 
 
