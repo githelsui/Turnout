@@ -200,7 +200,7 @@
 }
 
 - (void)loadLikeAnim{
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.likeAnimation.alpha = 1;
         self.bubbleView.backgroundColor = [UIColor colorWithRed:255/255.0f
                                                           green:170/255.0f
@@ -212,7 +212,7 @@
 }
 
 - (void)returnOriginalState{
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
         self.likeAnimation.alpha = 0;
         self.bubbleView.backgroundColor = [UIColor whiteColor];
     } completion:^(BOOL finished) {
