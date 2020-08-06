@@ -2000,6 +2000,10 @@
                     <navigationItem key="navigationItem" title="Profile" id="0Ky-dn-y8y"/>
                     <connections>
                         <outlet property="tableView" destination="CfR-D6-oMX" id="5qN-rB-TmL"/>
+                        <segue destination="bXg-BL-uTG" kind="presentation" identifier="WebView" id="4kV-dX-LWj"/>
+                        <segue destination="nVj-HU-suN" kind="show" identifier="ElectionDetailSegue" id="ZST-2x-JmV"/>
+                        <segue destination="3Jv-bV-v4J" kind="show" identifier="CandidateDetailSegue" id="92W-3G-qz0"/>
+                        <segue destination="LUS-Xa-4vn" kind="show" identifier="PropDetailSegue" id="baP-kX-kvr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As7-cl-F3R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2300,7 +2304,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hPc-1S-Tj9"/>
-        <segue reference="eVj-so-SBW"/>
+        <segue reference="4kV-dX-LWj"/>
+        <segue reference="baP-kX-kvr"/>
+        <segue reference="92W-3G-qz0"/>
+        <segue reference="ZST-2x-JmV"/>
         <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>

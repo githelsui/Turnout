@@ -11,6 +11,7 @@
 #import "PostDetailController.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "VoteWebView.h"
 #import "BookmarkedCell.h"
 #import "Assoc.h"
 #import <UIKit/UIKit.h>
@@ -229,6 +230,21 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.tableType == 2){
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSString *type = bookmarkDict[@"type"];
+        [self segueToInfoScreen:type];
+    }
+}
+
+- (void)segueToInfoScreen:(NSString *)key{
+    if([key isEqualToString:@"voterInfo"]) [self performSegueWithIdentifier: @"WebView" sender: self];
+    else if([key isEqualToString:@"nationalElection"]) [self performSegueWithIdentifier: @"ElectionDetailSegue" sender: self];
+    
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -247,6 +263,15 @@
             PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
         }
+    } else if ([segue.identifier isEqualToString:@"WebView"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSDictionary *data = bookmarkDict[@"data"];
+        NSString *url = data[@"url"];
+        VoteWebView *webView = [segue destinationViewController];
+        webView.linkURL = url;
     }
 }
 
