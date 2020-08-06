@@ -19,9 +19,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *textsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *actionBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
+@property (weak, nonatomic) IBOutlet UIView *dateView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
 @property (nonatomic, strong) NSString *propId;
 @property (nonatomic, strong) NSDictionary *propInfo;
+@property (weak, nonatomic) IBOutlet UILabel *sponsorLabel;
 @property (nonatomic, strong) NSString *textsURL;
+@property (weak, nonatomic) IBOutlet UIView *subjectView;
+@property (weak, nonatomic) IBOutlet UILabel *chamberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *committeeLabel;
 @property (nonatomic, strong) NSString *actionsURL;
 @end
 
@@ -29,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self prepAnimation];
     [self setBasicUI];
     [self setPropInfo];
     [self fetchPropDetails];
@@ -41,8 +50,49 @@
     self.nameView.layer.cornerRadius = 15;
     self.generalView.clipsToBounds = true;
     self.generalView.layer.cornerRadius = 15;
+    self.dateView.clipsToBounds = true;
+    self.dateView.layer.cornerRadius = 15;
+    self.subjectView.layer.cornerRadius = 15;
+    self.subjectView.clipsToBounds = true;
     self.textsBtn.layer.cornerRadius = 15;
     self.actionBtn.layer.cornerRadius = 15;
+}
+
+- (void)prepAnimation{
+    self.nameView.alpha = 0;
+    self.generalView.alpha = 0;
+    self.dateView.alpha = 0;
+    self.subjectView.alpha = 0;
+    self.textsBtn.alpha = 0;
+    self.actionBtn.alpha = 0;
+    self.bookmarkBtn.alpha = 0;
+}
+
+- (void)startAnimate{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.nameView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self animateGeneralView];
+    }];
+}
+
+- (void)animateGeneralView{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.generalView.alpha = 1;
+        self.subjectView.alpha = 1;
+        self.dateView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self animateButtons];
+    }];
+}
+
+- (void)animateButtons{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+        self.textsBtn.alpha = 1;
+        self.actionBtn.alpha = 1;
+        self.bookmarkBtn.alpha = 1;
+    } completion:^(BOOL finished) {
+    }];
 }
 
 - (void)setPropInfo{
@@ -54,11 +104,15 @@
     self.longTitleLabel.text = self.propInfo[@"title"];
     self.textsURL = self.propInfo[@"congressdotgov_url"];
     self.actionsURL = self.propInfo[@"govtrack_url"];
+    self.chamberLabel.text = [NSString stringWithFormat:@"Chamber: %@", [self getChamber]];
+    self.sponsorLabel.text = [NSString stringWithFormat:@"Sponsor: %@", self.propInfo[@"sponsor"]];
+    self.subjectLabel.text = [NSString stringWithFormat:@"Subject: %@", self.propInfo[@"primary_subject"]];
+    self.committeeLabel.text = [NSString stringWithFormat:@"Committee: %@", self.propInfo[@"committees"]];
 }
 
 - (NSString *)getChamber{
-    NSString *chamber = self.propInfo[@"chamber"];
-    if([chamber isEqualToString:@"House"]) return @"House of Representatives";
+    NSString *chamber = self.prop[@"chamber"];
+    if([chamber isEqualToString:@"house"]) return @"House of Representatives";
     else return chamber;
 }
 
@@ -68,6 +122,7 @@
             self.propInfo = details[0];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setPropFetchedInfo];
+                [self startAnimate];
             });
         }
     }];
