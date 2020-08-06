@@ -1206,7 +1206,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXo-z9-MD5">
-                                <rect key="frame" x="303" y="372" width="38" height="38"/>
+                                <rect key="frame" x="309" y="369" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="notBookmarked"/>
                             </button>
@@ -1326,6 +1326,14 @@
                                                     <segue destination="bXg-BL-uTG" kind="presentation" identifier="PropActionsSegue" id="bV4-R5-ge5"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Weo-uq-b3f">
+                                                <rect key="frame" x="287" y="337" width="38" height="38"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="38" id="TAz-F9-KK9"/>
+                                                    <constraint firstAttribute="height" constant="38" id="w5O-KA-3DS"/>
+                                                </constraints>
+                                                <state key="normal" image="notBookmarked"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -1337,14 +1345,17 @@
                                             <constraint firstItem="QcK-Ov-7v3" firstAttribute="top" secondItem="qNH-bU-Uwy" secondAttribute="bottom" constant="37" id="Msv-e3-nfx"/>
                                             <constraint firstItem="HRs-eQ-O3d" firstAttribute="leading" secondItem="2y5-fI-3g2" secondAttribute="leading" constant="18" id="NnO-Ih-yuw"/>
                                             <constraint firstAttribute="trailing" secondItem="HRs-eQ-O3d" secondAttribute="trailing" constant="18" id="QA4-5J-0ff"/>
+                                            <constraint firstAttribute="bottom" secondItem="Weo-uq-b3f" secondAttribute="bottom" constant="237" id="Vls-hE-ITv"/>
                                             <constraint firstItem="Ouc-sW-Anx" firstAttribute="leading" secondItem="QcK-Ov-7v3" secondAttribute="trailing" constant="14" id="Wa2-eE-uhD"/>
                                             <constraint firstItem="HRs-eQ-O3d" firstAttribute="top" secondItem="2y5-fI-3g2" secondAttribute="top" constant="18" id="Woy-pm-sDA"/>
                                             <constraint firstItem="RF0-Hn-gWQ" firstAttribute="top" secondItem="2y5-fI-3g2" secondAttribute="top" id="XuP-8I-IiF"/>
+                                            <constraint firstItem="Weo-uq-b3f" firstAttribute="top" secondItem="Ouc-sW-Anx" secondAttribute="bottom" constant="8" id="a9g-Ra-bHi"/>
                                             <constraint firstItem="RF0-Hn-gWQ" firstAttribute="leading" secondItem="2y5-fI-3g2" secondAttribute="leading" id="aUB-0h-Q60"/>
                                             <constraint firstAttribute="trailing" secondItem="qNH-bU-Uwy" secondAttribute="trailing" constant="18" id="c7V-HH-vwD"/>
                                             <constraint firstItem="QcK-Ov-7v3" firstAttribute="leading" secondItem="2y5-fI-3g2" secondAttribute="leading" constant="18" id="frW-09-oSY"/>
                                             <constraint firstItem="Ouc-sW-Anx" firstAttribute="top" secondItem="qNH-bU-Uwy" secondAttribute="bottom" constant="37" id="iBU-Mz-xEe"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Ouc-sW-Anx" secondAttribute="bottom" constant="415" id="iOf-eS-UkM"/>
+                                            <constraint firstAttribute="trailing" secondItem="Weo-uq-b3f" secondAttribute="trailing" constant="18" id="kQ7-07-0rh"/>
                                             <constraint firstAttribute="bottom" secondItem="RF0-Hn-gWQ" secondAttribute="bottom" id="kck-YX-cQY"/>
                                             <constraint firstItem="qNH-bU-Uwy" firstAttribute="top" secondItem="HRs-eQ-O3d" secondAttribute="bottom" constant="36.333333333333343" id="tM3-en-U40"/>
                                             <constraint firstAttribute="trailing" secondItem="Ouc-sW-Anx" secondAttribute="trailing" constant="18" id="ydM-uM-zf0"/>
@@ -1374,6 +1385,7 @@
                     <navigationItem key="navigationItem" id="Wr0-sb-4G1"/>
                     <connections>
                         <outlet property="actionBtn" destination="Ouc-sW-Anx" id="bvw-Zl-xgf"/>
+                        <outlet property="backImage" destination="RF0-Hn-gWQ" id="GlW-QY-ZoK"/>
                         <outlet property="generalView" destination="qNH-bU-Uwy" id="aOV-Gl-Asc"/>
                         <outlet property="longTitleLabel" destination="p5G-NN-GYb" id="cYF-f1-1Ge"/>
                         <outlet property="mainView" destination="2y5-fI-3g2" id="bPv-XN-WAh"/>
@@ -1891,7 +1903,7 @@
         <scene sceneID="e38-jn-E4u">
             <objects>
                 <navigationController id="5wJ-8Z-GaU" customClass="BallotNaviControl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ballot" image="billprop_menu" id="SZ4-c6-Mkz"/>
+                    <tabBarItem key="tabBarItem" title="Ballot" image="ballot25" id="SZ4-c6-Mkz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WEc-CK-APn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2177,13 +2189,13 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hPc-1S-Tj9"/>
-        <segue reference="bV4-R5-ge5"/>
+        <segue reference="eVj-so-SBW"/>
         <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Orange Coral" width="1120" height="1792"/>
         <image name="absenteeballot" width="500" height="500"/>
-        <image name="billprop_menu" width="25" height="25"/>
+        <image name="ballot25" width="25" height="25"/>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="check" width="550" height="550"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>

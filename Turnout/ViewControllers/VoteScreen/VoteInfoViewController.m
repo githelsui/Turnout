@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *infoCells;
 @property (nonatomic, strong) NSString *zipcode;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation VoteInfoViewController
@@ -29,17 +30,25 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self fetchVoterInfo];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchVoterInfo) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchVoterInfo{
     [[GoogleCivicAPI shared] fetchVoterInfo:self.zipcode completion:^(NSArray *info, NSError *error){
         if(info){
-           self.infoCells = [info mutableCopy];
-           dispatch_async(dispatch_get_main_queue(), ^{
+            self.infoCells = [info mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-           });
+                NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+                for(NSDictionary *content in bookmarks){
+                    NSLog(@"bookmark = %@", content);
+                }
+            });
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)getZipcode{

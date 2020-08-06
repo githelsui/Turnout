@@ -14,18 +14,11 @@
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *generalView;
-@property (weak, nonatomic) IBOutlet UIView *detailView;
 @property (weak, nonatomic) IBOutlet UILabel *longTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *chamberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *billLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sponsorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *committeeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIButton *textsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *actionBtn;
-@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @property (nonatomic, strong) NSString *propId;
 @property (nonatomic, strong) NSDictionary *propInfo;
 @property (nonatomic, strong) NSString *textsURL;
@@ -48,8 +41,6 @@
     self.nameView.layer.cornerRadius = 15;
     self.generalView.clipsToBounds = true;
     self.generalView.layer.cornerRadius = 15;
-    self.detailView.clipsToBounds = true;
-    self.detailView.layer.cornerRadius = 15;
     self.textsBtn.layer.cornerRadius = 15;
     self.actionBtn.layer.cornerRadius = 15;
 }
@@ -61,15 +52,6 @@
 - (void)setPropFetchedInfo{
     self.nameLabel.text = self.propInfo[@"short_title"];
     self.longTitleLabel.text = self.propInfo[@"title"];
-    NSString *summary = self.propInfo[@"summary_short"];
-    if([summary isEqualToString:@""]) self.summaryLabel.text = @"No Summary Provided";
-    else self.summaryLabel.text = summary;
-    self.subjectLabel.text = self.propInfo[@"primary_subject"];
-    self.chamberLabel.text = [self getChamber];
-    self.billLabel.text = self.prop[@"bill_number"];
-    self.sponsorLabel.text = self.propInfo[@"sponsor"];
-    self.committeeLabel.text = self.propInfo[@"committees"];
-    self.dateLabel.text = self.prop[@"legislative_day"];
     self.textsURL = self.propInfo[@"congressdotgov_url"];
     self.actionsURL = self.propInfo[@"govtrack_url"];
 }

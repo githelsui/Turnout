@@ -22,6 +22,8 @@
 }
 
 - (void)setCell{
+    [self checkBookmark];
+    [self loadBookmarks];
     NSString *url = self.infoCell[@"url"];
     self.bubbleView.alpha = 1;
     self.backImage.alpha = 0.70;
@@ -37,12 +39,12 @@
 }
 
 - (void)createShadows{
-     self.bubbleView.clipsToBounds = NO;
-     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-     self.bubbleView.layer.shadowRadius = 5;
-     self.bubbleView.layer.shadowOpacity = 0.5;
-     self.backImage.clipsToBounds = YES;
-     self.backImage.layer.cornerRadius = 15;
+    self.bubbleView.clipsToBounds = NO;
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bubbleView.layer.shadowRadius = 5;
+    self.bubbleView.layer.shadowOpacity = 0.5;
+    self.backImage.clipsToBounds = YES;
+    self.backImage.layer.cornerRadius = 15;
 }
 
 - (void)setPropCell{
@@ -62,8 +64,8 @@
         if([firstLetter isEqualToString:@"["]){
             break;
         } else {
-        NSString *toAdd = [NSString stringWithFormat: @"%@ ", word];
-        newTitle = [newTitle stringByAppendingString:toAdd];
+            NSString *toAdd = [NSString stringWithFormat: @"%@ ", word];
+            newTitle = [newTitle stringByAppendingString:toAdd];
         }
     }
     self.titleLabel.text = newTitle;
@@ -71,13 +73,38 @@
 
 //create NSUser defaults arr in the livefeed
 //use NSUser defaults to store an array of current user's bookmarked info (stored as NSDictionary)
-   //fetch NSUser defaults for bookmarked info array, loop through to check if bookmarked info is inside the array
-   // if it exists in arr -> user has already bookmarked it = change btn image to 'didBookmark' else not, do nothing
-   //to pass in this data to detail view, use a public var in detail class called 'didBookmark' (BOOL) and set it to the right value inside the method forEachCellAtRowPath
+//fetch NSUser defaults for bookmarked info array, loop through to check if bookmarked info is inside the array
+// if it exists in arr -> user has already bookmarked it = change btn image to 'didBookmark' else not, do nothing
+//to pass in this data to detail view, use a public var in detail class called 'didBookmark' (BOOL) and set it to the right value inside the method forEachCellAtRowPath
+- (void)loadBookmarks{
+    if(self.didBookmark == YES){
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    } else {
+        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    }
+}
 
 - (IBAction)tapBookmark:(id)sender {
-   //if didBookmark == false --> change btn image to didBookmark and add to the arr then save it back to NSUserDefaults
-   //if didBookmark == true -> change img to notBookmarked and update the array with the removed NSDictionary
+    if(self.didBookmark == NO){
+        //if didBookmark == false --> change btn image to didBookmark and add to the arr then save it back to NSUserDefaults
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo];
+        [self.bookmarks addObject:bookmarkInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        //if didBookmark == true -> change img to notBookmarked and update the array with the removed NSDictionary
+        self.didBookmark = NO;
+        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        [self.bookmarks removeObject:self.bookmarkInfo];
+        [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     //the array that will be stored in NSUserDefaults == conntains nsdictionaries with two key value pairs
     // 'type' : either 'voterInfo', 'nationalElection', 'stateElection',  'electDetail', 'candidateInfo', 'propInfo'
@@ -86,6 +113,25 @@
     
     //how to differentiate between what types of info in the bookmarks tab so that you can segue to the correct screen
     //  --> if(bookmark.type == 'secific key') manually programmtically create a segue to correct view controller
+}
+
+- (NSDictionary *)getBookmarkInfo{
+    NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
+    [bookmarkInfo setValue:@"voterInfo" forKey:@"type"];
+    [bookmarkInfo setValue:self.infoCell forKey:@"data"];
+    return [bookmarkInfo copy];
+}
+
+- (void)checkBookmark{
+    self.didBookmark = NO;
+    self.bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    for(NSDictionary *bookmark in self.bookmarks){
+        NSDictionary *data = bookmark[@"data"];
+        if([data isEqual:self.infoCell]){
+            self.bookmarkInfo = bookmark;
+            self.didBookmark = YES;
+        }
+    }
 }
 
 

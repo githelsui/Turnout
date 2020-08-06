@@ -29,6 +29,7 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBookmarks];
     self.pageNum = 1;
     [self initTableView];
     [self customizeActivityIndic];
@@ -37,6 +38,15 @@ NSIndexPath *lastIndexPath;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadFeed) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)loadBookmarks{
+    NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    if(bookmarks == nil) {
+        bookmarks = [[NSMutableArray alloc] init];
+        [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 - (void)customizeActivityIndic{
