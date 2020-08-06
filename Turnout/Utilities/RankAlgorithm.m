@@ -17,7 +17,8 @@
 @property (nonatomic, strong, retain) NSMutableArray *individualQueues;
 @property (nonatomic, strong, retain) Zipcode *currentZip;
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
-
+@property (nonatomic) BOOL completeFetch;
+@property (nonatomic, strong) NSCondition *fetchCondition;
 @end
 
 @implementation RankAlgorithm
@@ -33,6 +34,8 @@
 
 - (instancetype)init {
     self = [super init];
+    self.fetchCondition = [[NSCondition alloc] init];
+    self.completeFetch = NO;
     self.neighborDicts =  [NSMutableArray array];
     self.individualQueues = [NSMutableArray array];
     self.posts =  [NSMutableArray array];
@@ -76,11 +79,8 @@
 - (void)fetchZipcodeBatch:(Zipcode *)zipcode{
     NSMutableDictionary *batch = [self getZipcodeBatch:zipcode];
     [self checkQuery:batch];
-    KSQueue *queue = batch[@"queue"];
-    
     NSUInteger index = [self.individualQueues indexOfObject:batch];
     NSNumber* cursor = @([batch[@"totalFetched"] intValue] + 1);
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"likeCount"];
     [query whereKey:@"zipcode" equalTo:zipcode];
@@ -92,32 +92,28 @@
     [query includeKey:@"likeCount"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         if(results.count > 0){
-            BOOL lastItemInQuery = NO;
+            self.completeFetch = YES;
             for(Post *post in results){
                 if([self postsContains:post] == NO){ //CASE 2: database is NOT empty, queue was empty -> fetch and add new posts to batch
                      [self createPostBatch:post];
-                } else { //CASE 4
-                    lastItemInQuery = YES; //after this fetch, there are no more items in the database for this batch
-                    [batch setObject:@YES forKey:@"queryEmpty"];
-                    [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             }
+            
+            [self checkQuery:batch];
+            self.completeFetch = YES;
+            [self addToPriorityQueue:batch];
+            
+        } else { //case 4: both query & queue are empty (exhausted batch) -> merge other zipcodes
+            [batch setObject:@YES forKey:@"queryEmpty"];
+            [self.individualQueues replaceObjectAtIndex:index withObject:batch];
+            [self.fetchCondition signal];
+            [self.fetchCondition unlock];
+            self.completeFetch = YES;
+            [self mergeBatches];
         }
     }];
-    //case 4: both query & queue are empty (exhausted batch) -> merge other zipcodes
-    if([queue getSize] == 0){
-        [self mergeBatches];
-    }
 }
 
-//inclue a key value pair called 'queryEmpty' with boolean to each zipcode batch ~
-//set queryEmpty == no, when creating new queue ~
-//set queryEmpty == yes, when batch's queue is empty and query is empty (or the last item in query is equal to the fetched post)
-//stop merge process when all batches have queryEmpty == yes
-
-//change skip value in fetchFarAwayPosts == how many posts have been fetched in TOTAL (not just batches)
-
-//check if at least one query still has items in it to fetch from database
 - (BOOL)allBatchQueryEmpty{
     for(NSMutableDictionary *batch in self.individualQueues){
         NSNumber *queryEmpty = batch[@"queryEmpty"];
@@ -148,11 +144,20 @@
         if(queueSize > 0){ //case 1 or 3: database has/does not have items, queue has items -> continue merging
             [self addToPriorityQueue:topPostsBatch];
         } else if(queueSize == 0 && [queryEmpty isEqual:@NO]){ //case 2: database has items, queue is empty -> fetch again
-            //NSCondition with lock -> sleep for 100milliseconds
+            //pause until callback sets complete fetch == yes
+            [self.fetchCondition lock];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                while(!self.completeFetch){
+                    [NSThread sleepForTimeInterval:0.1];
+                    NSLog(@"we waitin");
+                }
+            });
+            
             [self fetchZipcodeBatch:topPostsBatch[@"zipcode"]];
-//            while(!condition) //sleep until querys finished
+            
+            [self.fetchCondition unlock];
+            self.completeFetch = NO;
         }
-        
     }
 }
 
