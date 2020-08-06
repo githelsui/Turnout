@@ -89,6 +89,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.estimatedRowHeight = 148;
 }
 
 - (void)checkSegmentedControl{
@@ -99,11 +100,14 @@
     NSInteger index = segment.selectedSegmentIndex;
     if(index == 0){
         self.tableType = 0;
+         self.tableView.rowHeight = UITableViewAutomaticDimension;
         [self fetchMyStatuses];
     } else if(index == 1){
+         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableType = 1;
         [self fetchLikedStatuses];
     } else if(index == 2){
+        self.tableView.rowHeight = 146;
         self.tableType = 2;
         [self fetchBookmarks];
     }
@@ -112,11 +116,14 @@
 - (void)refreshTable{
     if(self.tableType == 0){
         self.tableType = 0;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         [self fetchMyStatuses];
     } else if(self.tableType == 1){
         self.tableType = 1;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         [self fetchLikedStatuses];
     } else if(self.tableType == 2){
+        self.tableView.rowHeight = 146;
         self.tableType = 2;
         [self fetchBookmarks];
     }
@@ -220,23 +227,6 @@
         return cell;
     }
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.tableType == 2) return 146;
-    return 200;
-}
-
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-////    if(self.tableType == 2){
-////
-////    } else if(self.tableType == 1){
-////        Post *post = self.likes[indexPath.row];
-////        cell.post = post;
-////    } else if(self.tableType == 0){
-////
-////    }
-//    if([cell is ])
-//}
 
 #pragma mark - Navigation
 
