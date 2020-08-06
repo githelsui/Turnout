@@ -130,6 +130,7 @@
 }
 
 - (void)fetchBookmarks{
+    [self.timer invalidate];
     NSArray *temp = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     self.bookmarks = [[temp reverseObjectEnumerator] allObjects];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

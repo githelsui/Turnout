@@ -17,12 +17,14 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 - (void)setCell{
     [self createShadows];
+    [self checkBookmark];
+    [self loadBookmarks];
     NSString *type = self.bookmarkInfo[@"type"];
     NSDictionary *data = self.bookmarkInfo[@"data"];
     if([type isEqualToString:@"voterInfo"]){
@@ -49,26 +51,17 @@
     self.backImg.layer.cornerRadius = 15;
 }
 
-//@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *sideHeaderLbl;
-//@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-//@property (weak, nonatomic) IBOutlet UILabel *subHeader;
-//@property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
-//@property (nonatomic, strong) NSDictionary *bookmarkInfo;
-//@property (weak, nonatomic) IBOutlet UIView *bubbleView;
-//@property (weak, nonatomic) IBOutlet UIImageView *backImg;
-
 - (void)setVoterInfoCell:(NSDictionary *)data{
     NSString *url = data[@"url"];
     self.subHeader.alpha = 0;
     self.sideHeaderLbl.alpha = 0;
     self.headerLabel.text = data[@"desc"];
     self.titleLbl.text = data[@"title"];
-       if(url == nil){
-           self.userInteractionEnabled = NO;
-           self.subHeader.text = data[@"address"];
-           self.subHeader.alpha = 1;
-       }
+    if(url == nil){
+        self.userInteractionEnabled = NO;
+        self.subHeader.text = data[@"address"];
+        self.subHeader.alpha = 1;
+    }
 }
 
 - (void)setNationalElection:(NSDictionary *)data{
@@ -149,7 +142,7 @@
         NSString *name = candidate[@"name"];
         NSString *party = candidate[@"party"];
         NSString *candidateStr = [NSString stringWithFormat:@"%@ | %@\r", name, party];
-         desc = [desc stringByAppendingString:candidateStr];
+        desc = [desc stringByAppendingString:candidateStr];
     }
     NSLog(@"candidate info string: %@", desc);
     return desc;
@@ -180,5 +173,61 @@
     else if([key isEqualToString:@"S"]) return @"Office Sought: Senate";
     else return @"Office Sought: Presidential";
 }
+
+- (void)checkBookmark{
+    self.didBookmark = NO;
+    self.bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    for(NSData *bookmark in self.bookmarks){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
+        NSDictionary *data = bookmarkDict[@"data"];
+        NSDictionary *compare = [self.bookmarkInfo[@"data"] copy];
+        if([data isEqual:compare]){
+            self.bookmarkData = bookmark;
+            self.didBookmark = YES;
+        }
+    }
+}
+
+- (void)loadBookmarks{
+    if(self.didBookmark == YES){
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    } else {
+        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    }
+}
+
+- (NSDictionary *)getBookmarkInfo:(NSString *)type{
+    NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
+    [bookmarkInfo setValue:type forKey:@"type"];
+    [bookmarkInfo setValue:self.bookmarkInfo[@"data"] forKey:@"data"];
+    return [bookmarkInfo copy];
+}
+
+- (void)removeBookmark{
+    self.didBookmark = NO;
+    UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+    [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    [self.bookmarks removeObject:self.bookmarkData];
+    [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)bookmarkTap:(id)sender {
+    if(self.didBookmark == NO){
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"stateElection"];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:bookmarkInfo];
+        [self.bookmarks addObject:data];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        [self removeBookmark];
+    }
+}
+
 
 @end

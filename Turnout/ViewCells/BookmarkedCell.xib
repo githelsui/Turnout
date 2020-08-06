@@ -53,6 +53,9 @@
                                     <constraint firstAttribute="width" constant="27" id="oeo-xd-tIi"/>
                                 </constraints>
                                 <state key="normal" image="notBookmarked"/>
+                                <connections>
+                                    <action selector="bookmarkTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BJa-73-lMf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

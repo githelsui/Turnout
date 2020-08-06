@@ -175,7 +175,6 @@
         [self.bookmarks addObject:data];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
        } else {
            [self removeBookmark];
        }

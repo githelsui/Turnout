@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *bookmarkInfo;
 @property (weak, nonatomic) IBOutlet UIView *bubbleView;
 @property (weak, nonatomic) IBOutlet UIImageView *backImg;
+@property (nonatomic, strong) NSData *bookmarkData;
+@property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic) BOOL didBookmark;
 - (void)setCell;
 @end
 
