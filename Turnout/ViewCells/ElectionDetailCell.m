@@ -36,8 +36,10 @@
     [self checkBookmark];
     [self loadBookmarks];
     if([contentType isEqualToString:@"General"]){
+        self.userInteractionEnabled = NO;
         [self setGeneralContest];
     } else if([contentType isEqualToString:@"Referendum"]){
+        self.userInteractionEnabled = NO;
         [self setReferendum];
     } else {
         [self setVoterInfo];

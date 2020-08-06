@@ -32,7 +32,6 @@
     self.adminLabel.text = self.infoCell[@"desc"];
     self.titleLabel.text = self.infoCell[@"title"];
     if(url == nil){
-        self.userInteractionEnabled = NO;
         self.addressLabel.text = self.infoCell[@"address"];
         self.addressLabel.alpha = 1;
     }
@@ -73,11 +72,6 @@
     self.titleLabel.text = newTitle;
 }
 
-//create NSUser defaults arr in the livefeed
-//use NSUser defaults to store an array of current user's bookmarked info (stored as NSDictionary)
-//fetch NSUser defaults for bookmarked info array, loop through to check if bookmarked info is inside the array
-// if it exists in arr -> user has already bookmarked it = change btn image to 'didBookmark' else not, do nothing
-//to pass in this data to detail view, use a public var in detail class called 'didBookmark' (BOOL) and set it to the right value inside the method forEachCellAtRowPath
 - (void)loadBookmarks{
     if(self.didBookmark == YES){
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
@@ -111,19 +105,9 @@
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        //[NSKeyedArchiver archivedDataWithRootObject:self.myDictionary]
     } else {
         [self removeBookmark];
     }
-    
-    //the array that will be stored in NSUserDefaults == conntains nsdictionaries with two key value pairs
-    // 'type' : either 'voterInfo', 'nationalElection', 'stateElection',  'electDetail', 'candidateInfo', 'propInfo'
-    // 'data' : the actual NSDictionary
-    
-    
-    //how to differentiate between what types of info in the bookmarks tab so that you can segue to the correct screen
-    //  --> if(bookmark.type == 'secific key') manually programmtically create a segue to correct view controller
 }
 
 - (IBAction)saveBillTap:(id)sender {
@@ -135,8 +119,6 @@
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        //[NSKeyedArchiver archivedDataWithRootObject:self.myDictionary]
     } else {
         [self removeBookmark];
     }

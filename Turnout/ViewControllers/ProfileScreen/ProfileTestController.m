@@ -8,7 +8,10 @@
 
 #import "ProfileTestController.h"
 #import "ProfileStickyHeader.h"
+#import "ElectionDetailController.h"
 #import "PostDetailController.h"
+#import "CandidateDetailController.h"
+#import "PropViewController.h"
 #import "Post.h"
 #import "PostCell.h"
 #import "VoteWebView.h"
@@ -101,10 +104,10 @@
     NSInteger index = segment.selectedSegmentIndex;
     if(index == 0){
         self.tableType = 0;
-         self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         [self fetchMyStatuses];
     } else if(index == 1){
-         self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableType = 1;
         [self fetchLikedStatuses];
     } else if(index == 2){
@@ -186,7 +189,7 @@
         rows = self.posts.count;
     } else if(self.tableType == 1){
         rows = self.likes.count;
-    } else {
+    } else if(self.tableType == 2){
         rows = self.bookmarks.count;
     }
     return rows;
@@ -242,6 +245,7 @@
 - (void)segueToInfoScreen:(NSString *)key{
     if([key isEqualToString:@"voterInfo"]) [self performSegueWithIdentifier: @"WebView" sender: self];
     else if([key isEqualToString:@"nationalElection"]) [self performSegueWithIdentifier: @"ElectionDetailSegue" sender: self];
+    else if([key isEqualToString:@"candidateInfo"]) [self performSegueWithIdentifier: @"CandidateDetailSegue" sender: self];
     
 }
 
@@ -249,29 +253,45 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
     if ([segue.identifier isEqualToString:@"PostDetailSegue"]){
         if(self.tableType == 0){
-            UITableViewCell *tappedCell = sender;
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
             Post *post = self.posts[indexPath.row];
             PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
         } else if(self.tableType == 1){
-            UITableViewCell *tappedCell = sender;
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
             Post *post = self.likes[indexPath.row];
             PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
         }
     } else if ([segue.identifier isEqualToString:@"WebView"]){
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         NSDictionary *data = bookmarkDict[@"data"];
         NSString *url = data[@"url"];
         VoteWebView *webView = [segue destinationViewController];
         webView.linkURL = url;
+    } else if ([segue.identifier isEqualToString:@"ElectionDetailSegue"]){
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSDictionary *data = bookmarkDict[@"data"];
+        ElectionDetailController *detailController = [segue destinationViewController];
+        detailController.election = data;
+    } else if ([segue.identifier isEqualToString:@"CandidateDetailSegue"]){
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSDictionary *data = bookmarkDict[@"data"];
+        CandidateDetailController *detailController = [segue destinationViewController];
+        detailController.candidate = data;
+        detailController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"PropDetailSegue"]){
+        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
+        NSDictionary *data = bookmarkDict[@"data"];
+        PropViewController *detailController = [segue destinationViewController];
+        detailController.prop = data;
+        detailController.delegate = self;
     }
 }
 
