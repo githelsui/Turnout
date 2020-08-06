@@ -77,7 +77,7 @@
 - (void)createShadows{
     self.bubbleView.clipsToBounds = NO;
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bubbleView.layer.shadowRadius = 5;
+    self.bubbleView.layer.shadowRadius = 0.5;
     self.bubbleView.layer.shadowOpacity = 0.5;
     self.bubbleView.layer.cornerRadius = 15;
 }
