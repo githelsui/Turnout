@@ -7,6 +7,7 @@
 //
 
 #import "ComposeViewController.h"
+#import <CCActivityHUD.h>
 #import "Post.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) UIImage *imagePost;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (nonatomic, strong) NSString *dateString;
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (weak, nonatomic) IBOutlet UILabel *textMessage;
 @property (nonatomic, strong) NSString *timeString;
 @end
@@ -25,8 +27,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavigationBar];
+    [self customizeActivityIndic];
     [self setViews];
     [self.textView setDelegate:self];
+}
+
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -107,10 +117,12 @@
 
 - (void)postWithImage:(NSString *)status image:(UIImage *)image{
     Post *post = [Post createNewPost:image withStatus:status date:self.dateString time:self.timeString];
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (error) {
             [self showAlert:error.localizedDescription msg:@""];
         } else {
+            [self.activityHUD dismiss];
             [self.delegate postToTopFeed:post];
             [self dismissViewControllerAnimated:true completion:nil];
         }
