@@ -107,8 +107,10 @@
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
         NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
         [self.bookmarks addObject:bookmarkInfo];
-        [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //[NSKeyedArchiver archivedDataWithRootObject:self.myDictionary]
     } else {
         [self removeBookmark];
     }

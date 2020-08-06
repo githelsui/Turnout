@@ -167,6 +167,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[StateElectionController tableView:cellForRowAtIndexPath:]:StateElectionController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.elections[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__37-[RankAlgorithm fetchCurrentZipPosts]_block_invoke:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -204,6 +212,14 @@
             </PersistentString>
             <PersistentString
                value = "self.assocs.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ElectionDetailCell nationalDetailBookmark:]:ElectionDetailCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bookmarks">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -281,6 +297,17 @@
       <ContextState
          contextName = "-[VoterInfoCell setCell]:VoterInfoCell.m">
          <PersistentStrings>
+            <PersistentString
+               value = "self.bookmarks">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ElectionDetailCell stateBookmarkTap:]:ElectionDetailCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.content">
+            </PersistentString>
             <PersistentString
                value = "self.bookmarks">
             </PersistentString>
@@ -409,6 +436,9 @@
       </ContextState>
       <ContextState
          contextName = "-[LiveFeedController setUpHeader]:LiveFeedController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ElectionDetailCell getBookmarkInfo:]:ElectionDetailCell.m">
       </ContextState>
       <ContextState
          contextName = "-[RankAlgorithm updateIndividualBatch:queue:]:RankAlgorithm.m">
@@ -572,6 +602,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ElectionDetailController tableView:cellForRowAtIndexPath:]:ElectionDetailController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.details[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm fetchZipcodeBatch:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
@@ -674,6 +712,14 @@
             </PersistentString>
             <PersistentString
                value = "self.neighborData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ElectionDetailCell checkBookmark]:ElectionDetailCell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bookmarks">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

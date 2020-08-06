@@ -950,6 +950,9 @@
                                                             <rect key="frame" x="326" y="85" width="25" height="25"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" image="notBookmarked"/>
+                                                            <connections>
+                                                                <action selector="stateBookmarkTap:" destination="BLV-by-RT5" eventType="touchUpInside" id="59P-QX-aLH"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.70588235290000001" blue="0.6705882353" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
@@ -984,6 +987,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="backColor" destination="l0l-83-7T8" id="Xgk-wf-poo"/>
+                                            <outlet property="bookmarkBtn" destination="8cO-G3-7KN" id="El4-mh-Nk9"/>
                                             <outlet property="bubbleView" destination="phd-Xh-hqi" id="wCp-d4-Ac7"/>
                                             <outlet property="descLabel" destination="uNn-79-MU0" id="Gtq-PX-y0r"/>
                                             <outlet property="header" destination="oL9-wM-GHO" id="xI6-8O-l7o"/>
@@ -1060,6 +1064,9 @@
                                                             <rect key="frame" x="326" y="116" width="25" height="25"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" image="notBookmarked"/>
+                                                            <connections>
+                                                                <action selector="nationalDetailBookmark:" destination="q8G-xo-Hjb" eventType="touchUpInside" id="Z6l-Ao-Ija"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.70588235290000001" blue="0.6705882353" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1092,6 +1099,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="backColor" destination="VjQ-Cu-Adk" id="9oe-Se-cG8"/>
+                                            <outlet property="bookmarkBtn" destination="uw2-Bz-JiJ" id="ZSx-Hu-AWp"/>
                                             <outlet property="bubbleView" destination="rzE-Od-Tmo" id="as4-Yi-KJQ"/>
                                             <outlet property="descLabel" destination="gac-0e-9gM" id="5Xd-a2-AYa"/>
                                             <outlet property="header" destination="bcE-9Y-Rgr" id="c8L-p1-vnU"/>
@@ -2193,7 +2201,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="hPc-1S-Tj9"/>
-        <segue reference="eVj-so-SBW"/>
+        <segue reference="plP-LP-ePy"/>
         <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>

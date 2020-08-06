@@ -38,10 +38,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                   });
-        NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
-        for(NSDictionary *content in bookmarks){
-            NSLog(@"bookmark = %@", content);
-        }
     }];
     [self.refreshControl endRefreshing];
 }

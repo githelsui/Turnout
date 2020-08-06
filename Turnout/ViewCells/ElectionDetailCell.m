@@ -33,6 +33,8 @@
 
 - (void)setCell:(NSString *)contentType{
     [self createShadows];
+    [self checkBookmark];
+    [self loadBookmarks];
     if([contentType isEqualToString:@"General"]){
         [self setGeneralContest];
     } else if([contentType isEqualToString:@"Referendum"]){
@@ -44,6 +46,8 @@
 
 - (void)setStateElection{
     [self createShadows];
+    [self checkBookmark];
+    [self loadBookmarks];
     self.backColor.alpha = 0.70;
     self.header.text = [NSString stringWithFormat:@"Election Date: %@", self.content[@"election_date"]];
     NSString *electionNotes = self.content[@"election_notes"];
@@ -121,4 +125,73 @@
     }
 }
 
+- (void)checkBookmark{
+    self.didBookmark = NO;
+    self.bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+    for(NSData *bookmark in self.bookmarks){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmark];
+        NSDictionary *data = bookmarkDict[@"data"];
+        NSDictionary *compare = [self.content copy];
+        if([data isEqual:compare]){
+            self.bookmarkInfo = bookmark;
+            self.didBookmark = YES;
+        }
+    }
+}
+
+- (void)loadBookmarks{
+    if(self.didBookmark == YES){
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    } else {
+        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    }
+}
+
+- (NSDictionary *)getBookmarkInfo:(NSString *)type{
+    NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
+    [bookmarkInfo setValue:type forKey:@"type"];
+    [bookmarkInfo setValue:self.content forKey:@"data"];
+    return [bookmarkInfo copy];
+}
+
+- (void)removeBookmark{
+    self.didBookmark = NO;
+    UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+    [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    [self.bookmarks removeObject:self.bookmarkInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)stateBookmarkTap:(id)sender {
+    if(self.didBookmark == NO){
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+        [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"stateElection"];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:bookmarkInfo];
+        [self.bookmarks addObject:data];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+       } else {
+           [self removeBookmark];
+       }
+}
+
+- (IBAction)nationalDetailBookmark:(id)sender {
+    if(self.didBookmark == NO){
+             self.didBookmark = YES;
+             UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
+             [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+             NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"electDetail"];
+             [self.bookmarks addObject:bookmarkInfo];
+             [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+         } else {
+             [self removeBookmark];
+         }
+}
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *currentState;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *elections;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,6 +33,9 @@
     self.tableView.delegate = self;
     [self getCurrentUserInfo];
     [self fetchElections];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchElections) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)getCurrentUserInfo{
@@ -50,9 +54,14 @@
             self.elections = elections;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+                for(NSDictionary *content in bookmarks){
+                    NSLog(@"bookmark = %@", content);
+                }
             });
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -69,6 +78,7 @@
         [cell addSubview:cell.contentView];
     }
     NSMutableDictionary *election = self.elections[indexPath.row];
+    NSLog(@"type of data: %@ ", election);
     cell.content = election;
     [cell setStateElection];
     return cell;

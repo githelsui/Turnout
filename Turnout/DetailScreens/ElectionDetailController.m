@@ -75,6 +75,7 @@
         [cell addSubview:cell.contentView];
     }
     NSMutableDictionary *detail = self.details[indexPath.row];
+    NSLog(@"type of data: %@ ", detail);
     cell.content = detail;
     [cell setCell:detail[@"type"]];
     return cell;
