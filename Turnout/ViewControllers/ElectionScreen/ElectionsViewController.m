@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *elections;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation ElectionsViewController
@@ -31,13 +32,32 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)startTimer{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                   {
+        self.timer = [NSTimer timerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(reloadTable)
+                                           userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+        });
+    });
+}
+
+- (void)reloadTable{
+    [self.tableView reloadData];
+}
+
 - (void)fetchElections{
     [[GoogleCivicAPI shared]fetchElections:^(NSArray *elections, NSError *error){
         if(elections)
             self.elections = elections;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                  });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [self startTimer];
+        });
     }];
     [self.refreshControl endRefreshing];
 }
@@ -65,15 +85,15 @@
     return cell;
 }
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     UITableViewCell *tappedCell = sender;
-     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-     NSDictionary *election = self.elections[indexPath.row];
-     ElectionDetailController *detailController = [segue destinationViewController];
-     detailController.election = election;
- }
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *election = self.elections[indexPath.row];
+    ElectionDetailController *detailController = [segue destinationViewController];
+    detailController.election = election;
+}
 
 @end

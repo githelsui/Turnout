@@ -38,7 +38,7 @@
     } else if([type isEqualToString:@"candidateInfo"]){
         [self setCandidate:data];
     } else if([type isEqualToString:@"propInfo"]){
-        
+        [self setPropInfo:data];
     }
 }
 
@@ -55,7 +55,9 @@
     NSString *url = data[@"url"];
     self.subHeader.alpha = 0;
     self.sideHeaderLbl.alpha = 0;
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = data[@"desc"];
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"title"];
     if(url == nil){
         self.userInteractionEnabled = NO;
@@ -65,22 +67,30 @@
 }
 
 - (void)setNationalElection:(NSDictionary *)data{
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = [NSString stringWithFormat:@"Election Date: %@", data[@"electionDay"]];
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"name"];
     self.sideHeaderLbl.alpha = 0;
     self.subHeader.alpha = 0;
 }
 
 - (void)setStateElection:(NSDictionary *)data{
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = [NSString stringWithFormat:@"Election Date: %@", data[@"election_date"]];
     NSString *electionNotes = data[@"election_notes"];
     if([electionNotes isEqual:[NSNull null]]){
+        self.titleLbl.alpha = 1;
         self.titleLbl.text = data[@"election_type_full"];
+        self.subHeader.alpha = 1;
         self.subHeader.text = [self getOfficeSought:data];
     } else {
+        self.titleLbl.alpha = 1;
         self.titleLbl.text = data[@"election_notes"];
+        self.subHeader.alpha = 1;
         self.subHeader.text = [self getStateDesc:data];
     }
+    self.sideHeaderLbl.alpha = 1;
     self.sideHeaderLbl.text = [self getElectionLoc:data];
 }
 
@@ -96,13 +106,18 @@
 }
 
 - (void)setCandidate:(NSDictionary *)data{
+    self.sideHeaderLbl.alpha = 1;
     self.sideHeaderLbl.text = data[@"candidateType"];
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"name"];
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = data[@"office"];
+    self.subHeader.alpha = 1;
     self.subHeader.text = data[@"party"];
 }
 
 - (void)setPropInfo:(NSDictionary *)data{
+    self.headerLabel.alpha = 1;
     self.headerLabel.text =  [NSString stringWithFormat: @"Legislative Date: %@", data[@"legislative_day"]];
     [self setPropositionTitle:data];
 }
@@ -120,19 +135,28 @@
             newTitle = [newTitle stringByAppendingString:toAdd];
         }
     }
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = newTitle;
 }
 
 - (void)setGeneralContest:(NSDictionary *)data{
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = data[@"type"];
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"office"];
+    self.subHeader.alpha = 1;
     self.subHeader.text = [self getCandidateInfo:data];
+    self.sideHeaderLbl.alpha = 0;
 }
 
 - (void)setReferendum:(NSDictionary *)data{
+    self.headerLabel.alpha = 1;
     self.headerLabel.text = data[@"type"];
+    self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"office"];
+    self.subHeader.alpha = 1;
     self.subHeader.text = data[@"description"];
+    self.sideHeaderLbl.alpha = 0;
 }
 
 - (NSString *)getCandidateInfo:(NSDictionary *)data{

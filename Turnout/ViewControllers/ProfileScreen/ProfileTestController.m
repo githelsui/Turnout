@@ -134,11 +134,11 @@
 }
 
 - (void)fetchBookmarks{
-    [self.timer invalidate];
     NSArray *temp = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     self.bookmarks = [[temp reverseObjectEnumerator] allObjects];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self.refreshControl endRefreshing];
+    [self startTimer];
 }
 
 - (void)fetchMyStatuses{
@@ -246,7 +246,7 @@
     if([key isEqualToString:@"voterInfo"]) [self performSegueWithIdentifier: @"WebView" sender: self];
     else if([key isEqualToString:@"nationalElection"]) [self performSegueWithIdentifier: @"ElectionDetailSegue" sender: self];
     else if([key isEqualToString:@"candidateInfo"]) [self performSegueWithIdentifier: @"CandidateDetailSegue" sender: self];
-    
+    else if([key isEqualToString:@"propInfo"]) [self performSegueWithIdentifier: @"PropDetailSegue" sender: self];
 }
 
 #pragma mark - Navigation
@@ -284,14 +284,12 @@
         NSDictionary *data = bookmarkDict[@"data"];
         CandidateDetailController *detailController = [segue destinationViewController];
         detailController.candidate = data;
-        detailController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"PropDetailSegue"]){
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         NSDictionary *data = bookmarkDict[@"data"];
         PropViewController *detailController = [segue destinationViewController];
         detailController.prop = data;
-        detailController.delegate = self;
     }
 }
 

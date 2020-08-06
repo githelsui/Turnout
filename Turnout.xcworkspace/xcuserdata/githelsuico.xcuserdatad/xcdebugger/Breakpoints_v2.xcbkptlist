@@ -7,30 +7,14 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "6BCA158B-5A50-44FE-AB05-5B47269A88CD"
+            uuid = "59853313-B641-4D2E-B330-CBF5B49710AF"
             shouldBeEnabled = "Yes"
-            condition = "-[__NSArrayM objectAtIndexedSubscript:]:"
+            condition = "-[__NSDictionaryM setObject:forKey:]:"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             breakpointStackSelectionBehavior = "1"
             scope = "1"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3DED1569-44D8-43C1-9198-4620124DE621"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Turnout/ViewCells/VoterInfoCell.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-setCell"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

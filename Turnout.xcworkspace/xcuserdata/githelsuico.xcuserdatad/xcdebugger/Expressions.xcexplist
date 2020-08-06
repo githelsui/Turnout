@@ -650,6 +650,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ProfileTestController tableView:cellForRowAtIndexPath:]:ProfileTestController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bookmarks">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__39-[RankAlgorithm queryPosts:completion:]_block_invoke_4:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString

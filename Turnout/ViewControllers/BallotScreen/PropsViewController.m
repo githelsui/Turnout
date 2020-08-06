@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *props;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation PropsViewController
@@ -31,12 +32,31 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)startTimer{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                   {
+        self.timer = [NSTimer timerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(reloadTable)
+                                           userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+        });
+    });
+}
+
+- (void)reloadTable{
+    [self.tableView reloadData];
+}
+
 - (void)fetchProps{
     [[ProPublicaAPI shared] fetchHouseBills:^(NSArray *propositions, NSError *error){
         if(propositions){
             self.props = propositions;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self startTimer];
             });
         } else {
             NSLog(@"%@", error.localizedDescription);

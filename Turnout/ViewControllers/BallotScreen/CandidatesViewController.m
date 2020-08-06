@@ -22,6 +22,7 @@
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSString *currentState;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -39,6 +40,24 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
       [self.refreshControl addTarget:self action:@selector(fetchCandidates) forControlEvents:UIControlEventValueChanged];
       [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)startTimer{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                   {
+        self.timer = [NSTimer timerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(reloadTable)
+                                           userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+        });
+    });
+}
+
+- (void)reloadTable{
+    [self.tableView reloadData];
 }
 
 - (void)customizeActivityIndic{
@@ -67,6 +86,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.activityHUD dismiss];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self startTimer];
             });
         }
     }];
