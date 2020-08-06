@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setCell;
 - (void)setPropCell;
 - (void)createShadows;
+- (void)checkBookmark;
+- (void)loadBookmarks;
 @end
 
 NS_ASSUME_NONNULL_END

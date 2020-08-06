@@ -86,24 +86,31 @@
     }
 }
 
-- (IBAction)tapBookmark:(id)sender {
+- (IBAction)saveElectTap:(id)sender {
     if(self.didBookmark == NO){
-        //if didBookmark == false --> change btn image to didBookmark and add to the arr then save it back to NSUserDefaults
         self.didBookmark = YES;
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        NSDictionary *bookmarkInfo = [self getBookmarkInfo];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"nationalElection"];
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
-        //if didBookmark == true -> change img to notBookmarked and update the array with the removed NSDictionary
-        self.didBookmark = NO;
-        UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+        [self removeBookmark];
+    }
+}
+
+- (IBAction)tapBookmark:(id)sender {
+    if(self.didBookmark == NO){
+        self.didBookmark = YES;
+        UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        [self.bookmarks removeObject:self.bookmarkInfo];
+        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
+        [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        [self removeBookmark];
     }
     
     //the array that will be stored in NSUserDefaults == conntains nsdictionaries with two key value pairs
@@ -115,9 +122,18 @@
     //  --> if(bookmark.type == 'secific key') manually programmtically create a segue to correct view controller
 }
 
-- (NSDictionary *)getBookmarkInfo{
+- (void)removeBookmark{
+    self.didBookmark = NO;
+    UIImage *bookmark = [UIImage imageNamed:@"notBookmarked.png"];
+    [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
+    [self.bookmarks removeObject:self.bookmarkInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDictionary *)getBookmarkInfo:(NSString *)type{
     NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
-    [bookmarkInfo setValue:@"voterInfo" forKey:@"type"];
+    [bookmarkInfo setValue:type forKey:@"type"];
     [bookmarkInfo setValue:self.infoCell forKey:@"data"];
     return [bookmarkInfo copy];
 }

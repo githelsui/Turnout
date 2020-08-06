@@ -838,6 +838,9 @@
                                                                     <rect key="frame" x="326" y="87" width="25" height="25"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" image="notBookmarked"/>
+                                                                    <connections>
+                                                                        <action selector="saveElectTap:" destination="mFQ-wh-Ieb" eventType="touchUpInside" id="pIF-b7-HPL"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="0.70588235294117641" blue="0.6705882352941176" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
@@ -862,6 +865,7 @@
                                                 <connections>
                                                     <outlet property="adminLabel" destination="GfN-jr-tzU" id="9LN-lv-JIT"/>
                                                     <outlet property="backImage" destination="qfx-ba-AoO" id="Yuf-mc-gKD"/>
+                                                    <outlet property="bookmarkBtn" destination="eTa-Ft-GGN" id="Wj6-b9-oyn"/>
                                                     <outlet property="bubbleView" destination="APL-7P-Bbz" id="0Hr-tI-Sp2"/>
                                                     <outlet property="titleLabel" destination="TSg-61-EMI" id="lDp-bj-qTf"/>
                                                     <segue destination="nVj-HU-suN" kind="show" id="d2H-4g-ld3"/>

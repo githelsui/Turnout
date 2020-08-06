@@ -14,6 +14,7 @@
 @interface ElectionsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *elections;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation ElectionsViewController
@@ -25,6 +26,9 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self fetchElections];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchElections) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchElections{
@@ -34,7 +38,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                   });
+        NSMutableArray *bookmarks = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
+        for(NSDictionary *content in bookmarks){
+            NSLog(@"bookmark = %@", content);
+        }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -55,6 +64,8 @@
     cell.adminLabel.text = [NSString stringWithFormat:@"Election Date: %@", election[@"electionDay"]];
     cell.titleLabel.text = election[@"name"];
     [cell createShadows];
+    [cell checkBookmark];
+    [cell loadBookmarks];
     return cell;
 }
 
