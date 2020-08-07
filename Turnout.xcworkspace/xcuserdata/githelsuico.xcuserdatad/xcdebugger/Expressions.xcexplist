@@ -323,6 +323,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[CommentViewController typing:]:CommentViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.typingCommentField">
+            </PersistentString>
+            <PersistentString
+               value = "self.commentView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[RankAlgorithm calculatePostRank:]:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString

@@ -7,8 +7,10 @@
 //
 
 #import "CommentViewController.h"
+#import "Comment.h"
+#import "CommentCell.h"
 
-@interface CommentViewController () <UITextFieldDelegate>
+@interface CommentViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *postUserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postLabel;
@@ -17,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (nonatomic) CGRect originalCommentField;
+@property (nonatomic) CGRect typingCommentField;
+@property (nonatomic, strong) NSArray *comments;
 @end
 
 @implementation CommentViewController
@@ -24,11 +28,29 @@ CGRect inputFrame;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     self.commentField.delegate = self;
     [self.commentField resignFirstResponder];
     [self setNavigationBar];
     [self presentUI];
     [self setPostContent];
+    [self queryComments];
+}
+
+- (void)queryComments{
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"post" equalTo:self.post];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil) {
+            self.comments = comments;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)presentUI{
@@ -67,6 +89,7 @@ CGRect inputFrame;
     [UIView animateWithDuration:0.2 animations:^{
         inputFrame.origin.y -= 310;
         self.commentView.frame = inputFrame;
+        self.typingCommentField = inputFrame;
     }];
 }
 
@@ -89,13 +112,31 @@ CGRect inputFrame;
     [self changeCommentFieldHeight];
 }
 
+
+
 - (IBAction)enterTapped:(id)sender {
     [[self view] endEditing:YES];
     [self returnOriginalHeight];
+    if(self.commentField.text.length > 0) [self saveComment];
+}
+
+- (void)saveComment{
+    NSString *comment = self.commentField.text;
+    self.commentField.text = @"";
+    [[Comment class]saveComment:comment post:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error){
+        if(succeeded){
+            [self queryComments];
+        }
+    }];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
+}
+
+- (IBAction)typingContinues:(id)sender {
+    self.commentView.frame = self.typingCommentField;
+    NSLog(@"why");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -106,6 +147,25 @@ CGRect inputFrame;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [[self view] endEditing:YES];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.comments.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    if (cell == nil) {
+        cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CommentCell"];
+    }
+    BOOL hasContentView = [cell.subviews containsObject:cell.contentView];
+    if (!hasContentView) {
+        [cell addSubview:cell.contentView];
+    }
+    Comment *comment = self.comments[indexPath.row];
+    cell.comment = comment;
+    [cell setCellContent];
+    return cell;
 }
 
 /*

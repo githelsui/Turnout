@@ -48,6 +48,7 @@
 		CA864AED24D78102003EB7AC /* BallotNaviControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AEC24D78102003EB7AC /* BallotNaviControl.m */; };
 		CA864AF724D7A4E6003EB7AC /* ProPublicaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */; };
 		CAA62CE824DD30B2001461D0 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA62CE724DD30B2001461D0 /* CommentViewController.m */; };
+		CAA62CEB24DD41D3001461D0 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA62CEA24DD41D3001461D0 /* CommentCell.m */; };
 		CAA79F9124DAABB500D0646B /* BookmarkedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */; };
 		CAA79F9224DAABB500D0646B /* BookmarkedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
@@ -169,6 +170,8 @@
 		CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProPublicaAPI.m; sourceTree = "<group>"; };
 		CAA62CE624DD30B2001461D0 /* CommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		CAA62CE724DD30B2001461D0 /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		CAA62CE924DD41D3001461D0 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		CAA62CEA24DD41D3001461D0 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		CAA79F8E24DAABB500D0646B /* BookmarkedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedCell.h; sourceTree = "<group>"; };
 		CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedCell.m; sourceTree = "<group>"; };
 		CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkedCell.xib; sourceTree = "<group>"; };
@@ -370,6 +373,8 @@
 				CAA79F8E24DAABB500D0646B /* BookmarkedCell.h */,
 				CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */,
 				CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */,
+				CAA62CE924DD41D3001461D0 /* CommentCell.h */,
+				CAA62CEA24DD41D3001461D0 /* CommentCell.m */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -799,6 +804,7 @@
 				CADFB98C24D39A460031557A /* KSQueue.m in Sources */,
 				CA5F03E724BCD58600F599CF /* main.m in Sources */,
 				CAAEF88C24D21F1200F27247 /* ElectionsPageControl.m in Sources */,
+				CAA62CEB24DD41D3001461D0 /* CommentCell.m in Sources */,
 				CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
 				CAA62CE824DD30B2001461D0 /* CommentViewController.m in Sources */,
