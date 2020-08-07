@@ -93,6 +93,9 @@
                 if(succeeded){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.delegate updateZipcode];
+                        [[NSNotificationCenter defaultCenter]
+                         postNotificationName:@"SettingNotification"
+                         object:self];
                         [self showAlert:@"New Zipcode Saved" msg:@""];
                         [self dismissViewControllerAnimated:true completion:nil];
                     });
@@ -116,6 +119,9 @@
         if (succeeded) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate updateZipcode];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"SettingNotification"
+                 object:self];
                 [self showAlert:@"New Zipcode Saved" msg:@""];
                 [self dismissViewControllerAnimated:true completion:nil];
             });

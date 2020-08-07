@@ -29,7 +29,8 @@ NSIndexPath *lastIndexPath;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
+    [self prepNotifications];
+//    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
     [self loadBookmarks];
     self.pageNum = 1;
     [self initTableView];
@@ -186,20 +187,6 @@ NSIndexPath *lastIndexPath;
     [self presentToLivefeed];
     [self.tableView reloadData];
     [self setUpFooter];
-    
-//    [self.rankAlgo queryPosts:self.skipIndex completion:^(NSArray *posts, NSError *error){
-//        if(posts.count > 0){
-//            [self.mutablePosts addObjectsFromArray:posts];
-//            self.posts = [self.mutablePosts copy];
-//            self.rankAlgo.livefeed = self.mutablePosts;
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.tableView reloadData];
-//                [self setUpFooter];
-//            });
-//        } else {
-//            [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
-//        }
-//    }];
 }
 
 - (void)setGestureRecogs{
@@ -331,6 +318,22 @@ NSIndexPath *lastIndexPath;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)receiveSettingUpdate:(NSNotification *)notification{
+    if ([[notification name] isEqualToString:@"SettingNotification"]){
+        NSLog(@"Successfully received the test notification!");
+        [self setUpHeader];
+        [self loadFeed];
+    }
+}
+
+- (void)prepNotifications{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+           selector:@selector(receiveSettingUpdate:)
+           name:@"SettingNotification"
+           object:nil];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -349,14 +352,8 @@ NSIndexPath *lastIndexPath;
     }
 }
 
-- (void)refreshFeed{
-    //    [self startTimer];
-}
-
 - (void)postToTopFeed:(Post *)post {
     [self.mutablePosts insertObject:post atIndex:0];
-    NSLog(@"mutable posts = %@", self.mutablePosts);
-    //    [self startTimer];
 }
 
 @end
