@@ -92,8 +92,9 @@
             [Zipcode createNewZip:zip withCompletion:^(BOOL succeeded, NSError * error){
                 if(succeeded){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                       [self showAlert:@"New Zipcode Saved" msg:@""];
-                       [self dismissViewControllerAnimated:true completion:nil];
+                        [self.delegate updateZipcode];
+                        [self showAlert:@"New Zipcode Saved" msg:@""];
+                        [self dismissViewControllerAnimated:true completion:nil];
                     });
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -114,8 +115,9 @@
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self showAlert:@"New Zipcode Saved" msg:@""];
-                 [self dismissViewControllerAnimated:true completion:nil];
+                [self.delegate updateZipcode];
+                [self showAlert:@"New Zipcode Saved" msg:@""];
+                [self dismissViewControllerAnimated:true completion:nil];
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -133,20 +135,20 @@
     alert.titleFont = [UIFont systemFontOfSize:25 weight:UIFontWeightThin];
     alert.subtitleFont = [UIFont systemFontOfSize:14 weight:UIFontWeightThin];
     [alert showAlertInView:self
-              withTitle:title
-           withSubtitle:msg
-        withCustomImage:nil
-    withDoneButtonTitle:@"OK"
-             andButtons:nil];
+                 withTitle:title
+              withSubtitle:msg
+           withCustomImage:nil
+       withDoneButtonTitle:@"OK"
+                andButtons:nil];
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 @end

@@ -2141,7 +2141,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings-1" id="xWt-Fk-zw1">
                             <color key="tintColor" red="0.99813979860000002" green="0.65943420704860889" blue="0.52555919295150255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="qLU-zt-u5c" kind="presentation" id="qSi-wy-YPN"/>
+                                <segue destination="qLU-zt-u5c" kind="presentation" identifier="SettingsSegue" id="qSi-wy-YPN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2202,7 +2202,7 @@
                                     <constraint firstAttribute="height" constant="44" id="le3-LY-i8d"/>
                                 </constraints>
                                 <color key="textColor" red="0.99771338700000001" green="0.96825288769999995" blue="0.95061915630000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="zipcodeField:" destination="vmP-ca-vUV" eventType="editingDidEnd" id="wBj-jd-vyw"/>

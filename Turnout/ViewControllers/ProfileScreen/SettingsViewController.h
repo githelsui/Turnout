@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SettingsViewController : UIViewController
+@protocol SettingsViewDelegate
+- (void)updateZipcode;
+@end
 
+@interface SettingsViewController : UIViewController
+@property (nonatomic, weak) id<SettingsViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

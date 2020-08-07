@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) UISegmentedControl *tabs;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (void)setupViews;
+- (void)updateHeader;
 @end
 
 NS_ASSUME_NONNULL_END

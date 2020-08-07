@@ -55,6 +55,12 @@
     [self setupViewConstraints];
 }
 
+- (void)updateHeader{
+    self.username.text = self.usernameStr;
+    self.location.text = self.locationStr;
+    self.zipcode.text = self.zipcodeStr;
+}
+
 - (void)setupTabs {
     self.tabs = [[UISegmentedControl alloc] initWithItems:@[@"Status", @"Likes", @"Bookmarks"]];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:

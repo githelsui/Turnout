@@ -7,6 +7,7 @@
 //
 
 #import "ProfileTestController.h"
+#import "SettingsViewController.h"
 #import "ProfileStickyHeader.h"
 #import "ElectionDetailController.h"
 #import "PostDetailController.h"
@@ -22,7 +23,7 @@
 #import <Parse/Parse.h>
 #import "Zipcode.h"
 
-@interface ProfileTestController () <UITableViewDelegate, UITableViewDataSource>
+@interface ProfileTestController () <SettingsViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ProfileStickyHeader *header;
 @property (nonatomic, strong) NSArray *posts;
@@ -44,15 +45,19 @@
     [self initTableView];
     CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  200);
     self.header = [[ProfileStickyHeader alloc] initWithFrame:rect];
+    [self setHeader];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)setHeader{
     [self getCurrentUserInfo];
     [self.header setupViews];
     [self.tableView addSubview:self.header];
     self.header.tableView = self.tableView;
     [self fetchMyStatuses];
     [self checkSegmentedControl];
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)startTimer{
@@ -176,6 +181,7 @@
             self.likes = [posts copy];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self startTimer];
             });
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -251,6 +257,12 @@
     else if([key isEqualToString:@"stateElection"]) [self performSegueWithIdentifier: @"StateDetailSegue" sender: self];
 }
 
+- (void)updateZipcode{
+    [self getCurrentUserInfo];
+    [self.header updateHeader];
+    [self refreshTable];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -298,7 +310,11 @@
         NSDictionary *data = bookmarkDict[@"data"];
         StateElectionDetail *detailController = [segue destinationViewController];
         detailController.election = data;
-        
+    } else if([segue.identifier isEqualToString:@"SettingsSegue"]){
+        [self.timer invalidate];
+        self.timer = nil;
+        SettingsViewController *settingControl = [segue destinationViewController];
+        settingControl.delegate = self;
     }
 }
 
