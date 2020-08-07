@@ -21,6 +21,7 @@
 #import <MASUtilities.h>
 #import <View+MASAdditions.h>
 #import "CommentViewController.h"
+#import "Comment.h"
 
 @interface PostDetailController ()
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
@@ -45,43 +46,81 @@
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (nonatomic, strong) NSArray *userLiked;
 @property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, strong) NSMutableArray *recentComments;
 @end
 
 @implementation PostDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.recentComments = [NSMutableArray array];
     [self setNavigationBar];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"goback" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createShadows];
-    [self prepCommentSection];
     [self setUI];
     [self updateLikes];
+    [self queryRecentComments];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(queryLikes) userInfo:nil repeats:true];
 }
 
-- (void)prepCommentSection{
+- (void)noCommentsFound{
     [self.commentStack removeArrangedSubview:self.firstCommView];
-    [self.commentStack removeArrangedSubview:self.firstCommLabel];
     self.firstCommLabel.hidden = true;
     self.firstCommView.hidden = true;
     [self.commentStack removeArrangedSubview:self.secondCommView];
+    self.secondCommView.hidden = true;
+    self.secondCommView.hidden = true;
+}
+
+- (void)onlyOneComment{
     [self.commentStack removeArrangedSubview:self.secondCommView];
     self.secondCommView.hidden = true;
     self.secondCommView.hidden = true;
 }
 
 - (void)queryRecentComments{
+    [self.recentComments removeAllObjects];
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"post" equalTo:self.post];
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
+        if (comments.count > 0) {
             self.comments = comments;
+            if(comments.count == 1) [self onlyOneComment];
+            [self saveRecentComments];
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            [self noCommentsFound];
         }
     }];
+}
+
+- (void)saveRecentComments{
+    int index = 0;
+    for(Comment *comment in self.comments){
+        [self createComment:comment];
+        if(index == 1) break;
+        index++;
+    }
+}
+
+- (void)createComment:(Comment *)comment{
+    PFUser *commenter = comment.commenter;
+    [commenter fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+        if(user){
+            NSString *username = commenter[@"username"];
+            NSString *strComment = [NSString stringWithFormat:@"%@: %@", username, comment.comment];
+            [self.recentComments addObject:strComment];
+            [self showComment];
+        }
+    }];
+}
+
+- (void)showComment{
+    if(self.recentComments.count == 1){
+        self.firstCommLabel.text = self.recentComments[0];
+    } else if(self.recentComments.count == 2){
+        self.secondCommLabel.text = self.recentComments[1];
+    }
 }
 
 - (void)setUI{
@@ -119,8 +158,8 @@
     self.commentSection.clipsToBounds = NO;
     self.commentSection.layer.cornerRadius = 15;
     self.commentBtn.layer.cornerRadius = 12;
-    self.firstCommView.layer.cornerRadius = 8;
-    self.secondCommView.layer.cornerRadius = 8;
+    self.firstCommView.layer.cornerRadius = 12;
+    self.secondCommView.layer.cornerRadius = 12;
     self.firstCommView.layer.borderColor = [UIColor grayColor].CGColor;
     self.firstCommView.layer.borderWidth = 0.5f;
     self.secondCommView.layer.borderColor = [UIColor grayColor].CGColor;
@@ -317,7 +356,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"CommentSegue"]){
         UINavigationController *navigationController = [segue destinationViewController];
-      CommentViewController *comments = (CommentViewController*)navigationController.topViewController;
+        CommentViewController *comments = (CommentViewController*)navigationController.topViewController;
         comments.post = self.post;
     }
 }

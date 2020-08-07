@@ -41,7 +41,7 @@ CGRect inputFrame;
 
 - (void)queryComments{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
     [query whereKey:@"post" equalTo:self.post];
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil) {

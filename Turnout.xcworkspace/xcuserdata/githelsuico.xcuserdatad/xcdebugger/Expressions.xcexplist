@@ -736,6 +736,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[PostDetailController showComment]:PostDetailController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.recentComments[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__55-[RankAlgorithm fetchNeighboringPosts:skip:completion:]_block_invoke_2:RankAlgorithm.m">
          <PersistentStrings>
             <PersistentString
