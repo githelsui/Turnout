@@ -144,17 +144,15 @@
         if(queueSize > 0){ //case 1 or 3: database has/does not have items, queue has items -> continue merging
             [self addToPriorityQueue:topPostsBatch];
         } else if(queueSize == 0 && [queryEmpty isEqual:@NO]){ //case 2: database has items, queue is empty -> fetch again
-            //pause until callback sets complete fetch == yes
             [self.fetchCondition lock];
+            [self fetchZipcodeBatch:topPostsBatch[@"zipcode"]];
+            //pause until callback sets complete fetch == yes
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 while(!self.completeFetch){
                     [NSThread sleepForTimeInterval:0.1];
                     NSLog(@"we waitin");
                 }
             });
-            
-            [self fetchZipcodeBatch:topPostsBatch[@"zipcode"]];
-            
             [self.fetchCondition unlock];
             self.completeFetch = NO;
         }

@@ -66,7 +66,7 @@
 
 - (void)setNavigationBar{
     UILabel *lblTitle = [[UILabel alloc] init];
-    lblTitle.text = self.prop[@"short_title"];
+    lblTitle.text = @"Proposition Details";
     lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.textColor = [UIColor blackColor];
     lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];

@@ -51,6 +51,16 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)setNavigationBar{
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = @"Profile";
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    [lblTitle sizeToFit];
+    self.navigationItem.titleView = lblTitle;
+}
+
 - (void)setHeader{
     [self getCurrentUserInfo];
     [self.header setupViews];

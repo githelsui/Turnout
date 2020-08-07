@@ -43,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigationBar];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"goback" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createShadows];
     [self setUI];
@@ -73,6 +74,16 @@
     if(![FBSDKAccessToken currentAccessToken]){
         self.shareButton.alpha = 0;
     }
+}
+
+- (void)setNavigationBar{
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = @"Status";
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    [lblTitle sizeToFit];
+    self.navigationItem.titleView = lblTitle;
 }
 
 - (void)createShadows{
