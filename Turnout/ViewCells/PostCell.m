@@ -40,6 +40,7 @@
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
     self.bubbleView.layer.shadowRadius = 1;
     self.bubbleView.layer.shadowOpacity = 0.5;
+    [self setCommentCount];
     [self updateLikes];
     self.statusLabel.text = self.post.status;
     [self getTimeAgo];
@@ -51,6 +52,11 @@
             [self getPostLocation:user];
         }
     }];
+}
+
+- (void)setCommentCount{
+     NSString *count = [self.post.commentCount stringValue];
+     [self.commentBtn setTitle:count forState:UIControlStateNormal];
 }
 
 - (void)getTimeAgo{

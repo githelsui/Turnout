@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *bubbleView;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *attachedPhoto;
+@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSArray *assocs;
 @property (nonatomic, strong) NSArray *userLiked;

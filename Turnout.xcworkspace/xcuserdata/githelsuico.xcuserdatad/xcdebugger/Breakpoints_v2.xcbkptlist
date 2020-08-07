@@ -280,8 +280,8 @@
             filePath = "Turnout/DetailScreens/PostDetailController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-queryRecentComments"
             landmarkType = "7">
             <Locations>
@@ -328,8 +328,8 @@
             filePath = "Turnout/DetailScreens/PostDetailController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "-queryRecentComments"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,8 +344,8 @@
             filePath = "Turnout/DetailScreens/PostDetailController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "-queryRecentComments"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,8 +360,8 @@
             filePath = "Turnout/DetailScreens/PostDetailController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-showComment"
             landmarkType = "7">
          </BreakpointContent>
@@ -376,8 +376,8 @@
             filePath = "Turnout/DetailScreens/PostDetailController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-showComment"
             landmarkType = "7">
          </BreakpointContent>

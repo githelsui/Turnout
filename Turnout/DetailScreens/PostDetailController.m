@@ -24,6 +24,7 @@
 #import "Comment.h"
 
 @interface PostDetailController ()
+@property (weak, nonatomic) IBOutlet UIButton *commentCount;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UILabel *secondCommLabel;
 @property (weak, nonatomic) IBOutlet UILabel *firstCommLabel;
@@ -60,7 +61,13 @@
     [self setUI];
     [self updateLikes];
     [self queryRecentComments];
+    [self setCommentCount];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(queryLikes) userInfo:nil repeats:true];
+}
+
+- (void)setCommentCount{
+     NSString *count = [self.post.commentCount stringValue];
+     [self.commentCount setTitle:count forState:UIControlStateNormal];
 }
 
 - (void)noCommentsFound{

@@ -235,6 +235,7 @@
                                         <connections>
                                             <outlet property="attachedPhoto" destination="9hJ-1t-PDb" id="L3e-Ql-Wch"/>
                                             <outlet property="bubbleView" destination="xjR-sS-FIj" id="WmW-DD-MkM"/>
+                                            <outlet property="commentBtn" destination="994-Ac-4yO" id="bXb-NJ-k6g"/>
                                             <outlet property="likeAnimation" destination="92N-hP-6yt" id="mac-wt-oMf"/>
                                             <outlet property="likeButton" destination="pH8-8c-SNg" id="YBy-as-8Mr"/>
                                             <outlet property="locationLabel" destination="MgJ-3F-7AX" id="NCw-JQ-XBZ"/>
@@ -580,6 +581,7 @@
                         <outlet property="attachedPhoto" destination="RCL-bm-tpI" id="PeL-S3-KEC"/>
                         <outlet property="bubbleView" destination="s8f-Se-OrQ" id="bdh-SO-6bk"/>
                         <outlet property="commentBtn" destination="s50-tU-lxu" id="Ae8-wX-Fa6"/>
+                        <outlet property="commentCount" destination="IqU-vm-iZa" id="xrk-LY-y4x"/>
                         <outlet property="commentSection" destination="t2o-G5-q4K" id="5nc-Mu-Ibt"/>
                         <outlet property="commentStack" destination="0Mx-8Z-tJI" id="z3X-Xh-b1M"/>
                         <outlet property="dateLabel" destination="th0-2m-ENi" id="4aD-40-F8B"/>
@@ -911,7 +913,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1719.2" y="3128.5714285714289"/>
+            <point key="canvasLocation" x="-1721" y="3367"/>
         </scene>
         <!--Vote-->
         <scene sceneID="NUg-Kr-HXl">
@@ -2163,7 +2165,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIw-vq-avq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1718" y="2404"/>
+            <point key="canvasLocation" x="-1721" y="2452"/>
         </scene>
         <!--Vote Info View Controller-->
         <scene sceneID="JYg-5K-vY2">
@@ -2480,6 +2482,7 @@
                                         <connections>
                                             <outlet property="attachedPhoto" destination="0ZP-6P-eyc" id="EA8-Mp-klN"/>
                                             <outlet property="bubbleView" destination="89H-IP-Pa2" id="7lG-fb-rz6"/>
+                                            <outlet property="commentBtn" destination="Xau-gf-qEy" id="isz-u7-sdU"/>
                                             <outlet property="likeButton" destination="gFc-eL-cL8" id="dcG-Mg-d1v"/>
                                             <outlet property="locationLabel" destination="PKk-4j-CVc" id="cmv-Rf-rZt"/>
                                             <outlet property="nameLabel" destination="NIl-bZ-gYb" id="RWr-u8-Scr"/>
