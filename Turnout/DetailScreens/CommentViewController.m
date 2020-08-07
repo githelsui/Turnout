@@ -93,6 +93,17 @@ CGRect inputFrame;
     }];
 }
 
+- (void)saveCommentCount{
+    self.post.commentCount = @([self.post.commentCount intValue] + [@1 intValue]);
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (succeeded) {
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
+        }
+    }];
+}
+
 - (void)returnOriginalHeight{
     [UIView animateWithDuration:0.2 animations:^{
         self.commentView.frame = self.originalCommentField;
@@ -112,8 +123,6 @@ CGRect inputFrame;
     [self changeCommentFieldHeight];
 }
 
-
-
 - (IBAction)enterTapped:(id)sender {
     [[self view] endEditing:YES];
     [self returnOriginalHeight];
@@ -121,6 +130,7 @@ CGRect inputFrame;
 }
 
 - (void)saveComment{
+    [self saveCommentCount];
     NSString *comment = self.commentField.text;
     self.commentField.text = @"";
     [[Comment class]saveComment:comment post:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error){
