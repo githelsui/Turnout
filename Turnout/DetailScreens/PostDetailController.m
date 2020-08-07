@@ -23,7 +23,7 @@
 #import "CommentViewController.h"
 #import "Comment.h"
 
-@interface PostDetailController ()
+@interface PostDetailController () <CommentDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *commentCount;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UILabel *secondCommLabel;
@@ -66,15 +66,20 @@
 }
 
 - (void)setCommentCount{
-     NSString *count = [self.post.commentCount stringValue];
-     [self.commentCount setTitle:count forState:UIControlStateNormal];
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"objectId" equalTo:self.post.objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *post, NSError *error) {
+          if (post) {
+            NSString *count = [post[0][@"commentCount"] stringValue];
+            [self.commentCount setTitle:count forState:UIControlStateNormal];
+          }
+      }];
 }
 
 - (void)noCommentsFound{
-    [self.commentStack removeArrangedSubview:self.firstCommView];
     self.firstCommLabel.hidden = true;
     self.firstCommView.hidden = true;
-    [self.commentStack removeArrangedSubview:self.secondCommView];
     self.secondCommView.hidden = true;
     self.secondCommView.hidden = true;
 }
@@ -125,8 +130,12 @@
 - (void)showComment{
     if(self.recentComments.count == 1){
         self.firstCommLabel.text = self.recentComments[0];
+        self.firstCommView.hidden = false;
+        self.firstCommLabel.hidden = false;
     } else if(self.recentComments.count == 2){
         self.secondCommLabel.text = self.recentComments[1];
+        self.secondCommView.hidden = false;
+        self.secondCommLabel.hidden = false;
     }
 }
 
@@ -356,6 +365,11 @@
     [self queryLikes];
 }
 
+- (void)refreshComments{
+    [self setCommentCount];
+    [self queryRecentComments];
+}
+
 - (IBAction)commentTap:(id)sender {
     [self performSegueWithIdentifier: @"CommentSegue" sender: self];
 }
@@ -365,6 +379,7 @@
         UINavigationController *navigationController = [segue destinationViewController];
         CommentViewController *comments = (CommentViewController*)navigationController.topViewController;
         comments.post = self.post;
+        comments.delegate = self;
     }
 }
 

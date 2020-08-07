@@ -136,6 +136,7 @@ CGRect inputFrame;
     [[Comment class]saveComment:comment post:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error){
         if(succeeded){
             [self queryComments];
+            [self.delegate refreshComments];
         }
     }];
 }
