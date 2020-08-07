@@ -22,6 +22,7 @@
 @dynamic datePosted;
 @dynamic timePosted;
 @dynamic timeAgo;
+@dynamic commentCount;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -33,6 +34,7 @@
     newPost.author = [PFUser currentUser];
     newPost.status = status;
     newPost.likeCount = @(0);
+    newPost.commentCount = @(0);
     newPost.rank = @(0);
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;
@@ -47,6 +49,7 @@
     newPost.status = status;
     newPost.likeCount = @(0);
     newPost.rank = @(0);
+    newPost.commentCount = @(0);
     newPost.zipcode = [PFUser currentUser][@"zipcode"];
     newPost.timeAgo = [newPost getTimeAgo: newPost];
     newPost.datePosted = date;

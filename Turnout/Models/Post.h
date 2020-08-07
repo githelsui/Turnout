@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *timePosted;
 @property (nonatomic, strong) Zipcode *zipcode;
 @property (nonatomic, strong) NSNumber *rank;
+@property (nonatomic, strong) NSNumber *commentCount;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 + (void) postStatus:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (Post *)createNewPost:(UIImage * _Nullable )image withStatus: (NSString * _Nullable )status date: (NSString * _Nullable )date time: (NSString * _Nullable )time;
