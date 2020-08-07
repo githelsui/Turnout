@@ -22,9 +22,15 @@
 #import <View+MASAdditions.h>
 
 @interface PostDetailController ()
+@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
+@property (weak, nonatomic) IBOutlet UILabel *secondCommLabel;
+@property (weak, nonatomic) IBOutlet UILabel *firstCommLabel;
+@property (weak, nonatomic) IBOutlet UIView *secondCommView;
+@property (weak, nonatomic) IBOutlet UIView *firstCommView;
+@property (weak, nonatomic) IBOutlet UIStackView *commentStack;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *commentSection;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
@@ -46,15 +52,22 @@
     [self setNavigationBar];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"goback" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createShadows];
+    [self prepCommentSection];
     [self setUI];
     [self updateLikes];
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(queryLikes) userInfo:nil repeats:true];
 }
 
-- (void)setScroll{
-    [self.scrollView setScrollEnabled:YES];
-    self.scrollView.frame = self.view.frame;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+- (void)prepCommentSection{
+    [self.commentStack removeArrangedSubview:self.firstCommView];
+    [self.commentStack removeArrangedSubview:self.firstCommLabel];
+    self.firstCommLabel.hidden = true;
+    self.firstCommView.hidden = true;
+    [self.commentStack removeArrangedSubview:self.secondCommView];
+    [self.commentStack removeArrangedSubview:self.secondCommView];
+    self.secondCommView.hidden = true;
+    self.secondCommView.hidden = true;
+    
 }
 
 - (void)setUI{
@@ -88,10 +101,16 @@
 
 - (void)createShadows{
     self.bubbleView.clipsToBounds = NO;
-    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bubbleView.layer.shadowRadius = 0.5;
-    self.bubbleView.layer.shadowOpacity = 0.5;
     self.bubbleView.layer.cornerRadius = 15;
+    self.commentSection.clipsToBounds = NO;
+    self.commentSection.layer.cornerRadius = 15;
+    self.commentBtn.layer.cornerRadius = 12;
+    self.firstCommView.layer.cornerRadius = 8;
+    self.secondCommView.layer.cornerRadius = 8;
+    self.firstCommView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.firstCommView.layer.borderWidth = 0.5f;
+    self.secondCommView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.secondCommView.layer.borderWidth = 0.5f;
 }
 
 - (IBAction)tapFacebookShare:(id)sender {
@@ -276,6 +295,11 @@
     [self removeLikeCount];
     [self queryLikes];
 }
+
+- (IBAction)commentTap:(id)sender {
+}
+
+
 
 /*
  #pragma mark - Navigation
