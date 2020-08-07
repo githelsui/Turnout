@@ -275,7 +275,8 @@
     for(Post *post in posts){
         NSMutableDictionary *postValues = [[NSMutableDictionary alloc] init];
         NSNumber *likes = post[@"likeCount"];
-        NSNumber *rank = @([likes floatValue] * [distance floatValue]);
+        NSNumber *comments = post[@"commentCount"];
+        NSNumber *rank = @([likes floatValue] * (0.002 * [distance floatValue]) * [comments floatValue]);
         [postValues setObject:rank forKey:@"rank"];
         [postValues setObject:zip forKey:@"zipcode"];
         [postValues setObject:post forKey:@"post"];
@@ -349,7 +350,10 @@
 - (KSQueue *)updatePostQueue:(Post *)post postArr:(KSQueue *)queue{
     KSQueue *copy = queue;
     NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-    [tempPost setObject:post[@"likeCount"] forKey:@"rank"];
+    NSNumber *likes = post[@"likeCount"];
+    NSNumber *comments = post[@"commentCount"];
+    NSNumber *rank = @([likes floatValue] * [comments floatValue]);
+    [tempPost setObject:rank forKey:@"rank"];
     [tempPost setObject:post[@"zipcode"] forKey:@"zipcode"];
     [tempPost setObject:post forKey:@"post"];
     [copy enqueue:tempPost];
