@@ -18,6 +18,10 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="D4W-HB-MOB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="csR-dp-Lfr" appends="YES" id="PPI-cP-VrC"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8E9-XF-uWv">
                                 <rect key="frame" x="33" y="390" width="308" height="45"/>
@@ -112,6 +116,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="csR-dp-Lfr">
+                    <connections>
+                        <action selector="tapOutside:" destination="BYZ-38-t0r" id="CAs-6e-bQG"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="568.79999999999995" y="-1257.6354679802955"/>
         </scene>
@@ -2816,6 +2825,10 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="tr1-No-Ul0">
                                 <rect key="frame" x="0.0" y="-56" width="375" height="814"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mHM-LC-stC" appends="YES" id="32R-Cs-nQf"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eRp-5B-7E3">
                                 <rect key="frame" x="33" y="357" width="308" height="44"/>
@@ -2899,6 +2912,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nH-ai-Bj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mHM-LC-stC">
+                    <connections>
+                        <action selector="tapOutside:" destination="YdN-fs-onp" id="dvv-Xc-PN5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-71.200000000000003" y="-517.24137931034488"/>
         </scene>
@@ -2941,7 +2959,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hPc-1S-Tj9"/>
+        <segue reference="CgJ-YU-J4g"/>
         <segue reference="4kV-dX-LWj"/>
         <segue reference="baP-kX-kvr"/>
         <segue reference="92W-3G-qz0"/>

@@ -127,6 +127,14 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     }
 }
 
+- (IBAction)tapOutside:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)loginButtonDidLogOut:(nonnull FBSDKLoginButton *)loginButton {
     NSLog(@"%s", "User logged in");
 }

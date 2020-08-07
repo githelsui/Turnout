@@ -30,6 +30,10 @@
     [self presentUI];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)saveTap:(id)sender {
     NSString *zipcode = self.zipcodeField.text;
     if(zipcode.length > 0){

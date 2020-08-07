@@ -156,6 +156,14 @@
     [self presentViewController:alert animated:YES completion:^{}];
 }
 
+- (IBAction)tapOutside:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 /*
  #pragma mark - Navigation
  

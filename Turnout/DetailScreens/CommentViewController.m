@@ -112,7 +112,7 @@ CGRect inputFrame;
 
 - (IBAction)tapOutside:(id)sender {
     [self.view endEditing:YES];
-    [self returnOriginalHeight];
+//    [self returnOriginalHeight];
 }
 
 - (IBAction)cancelTapped:(id)sender {
@@ -125,7 +125,7 @@ CGRect inputFrame;
 
 - (IBAction)enterTapped:(id)sender {
     [[self view] endEditing:YES];
-    [self returnOriginalHeight];
+//    [self returnOriginalHeight];
     if(self.commentField.text.length > 0) [self saveComment];
 }
 
@@ -141,9 +141,9 @@ CGRect inputFrame;
     }];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return YES;
-}
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    return YES;
+//} //remove this
 
 - (IBAction)typingContinues:(id)sender {
     self.commentView.frame = self.typingCommentField;
@@ -151,14 +151,14 @@ CGRect inputFrame;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self returnOriginalHeight];
+//    [self returnOriginalHeight];
     [textField resignFirstResponder];
     return YES;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [[self view] endEditing:YES];
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    [[self view] endEditing:YES];
+//} //remove this
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.comments.count;

@@ -192,7 +192,7 @@
 - (void)getNeighboringDicts:(NSArray *)neighbors completion:(void(^)(NSArray *neighborDicts, NSError *error))completion{
     for(NSDictionary *neighbor in neighbors){
         [self findExistingZip:neighbor[@"zipcode"] completion:^(NSArray *returnNeighbors, NSError *error){
-            if(returnNeighbors){
+            if(returnNeighbors.count > 0){
                 NSMutableDictionary *tempZip = [[NSMutableDictionary alloc] init];
                 Zipcode *zipObj = returnNeighbors[0];
                 [tempZip setObject:zipObj forKey:@"zipcode"];
@@ -202,7 +202,7 @@
                 if([neighbor isEqual:lastObj]){
                     completion(self.neighborDicts, nil);
                 }
-            }
+            } else completion(self.neighborDicts, nil);
         }];
     }
 }
@@ -217,7 +217,7 @@
             completion(zips, error);
         } else {
             NSLog(@"%s", "no zipcode found");
-            completion(nil, error);
+            completion(zips, error);
         }
     }];
 }
@@ -276,7 +276,7 @@
         NSMutableDictionary *postValues = [[NSMutableDictionary alloc] init];
         NSNumber *likes = post[@"likeCount"];
         NSNumber *comments = post[@"commentCount"];
-        NSNumber *rank = @([likes floatValue] * (0.002 * [distance floatValue]) * [comments floatValue]);
+        NSNumber *rank = @(([likes floatValue] * [comments floatValue]) + (0.05 * [distance floatValue]));
         [postValues setObject:rank forKey:@"rank"];
         [postValues setObject:zip forKey:@"zipcode"];
         [postValues setObject:post forKey:@"post"];

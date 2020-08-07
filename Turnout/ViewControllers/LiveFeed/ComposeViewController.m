@@ -50,6 +50,10 @@
     self.timeLabel.text = self.timeString;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)setNavigationBar{
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = @"New Status";
