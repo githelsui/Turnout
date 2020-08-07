@@ -17,6 +17,7 @@
 		CA15FA6724BE6FA000307BBD /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA15FA6624BE6FA000307BBD /* PostCell.m */; };
 		CA17F0B024D14DC100636CBB /* VoteLinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */; };
 		CA17F0B324D14DCF00636CBB /* VoteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17F0B224D14DCF00636CBB /* VoteInfoViewController.m */; };
+		CA29DBDB24DD289500F0DB7B /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29DBDA24DD289500F0DB7B /* Comment.m */; };
 		CA3540EA24D61DBB0034082E /* ProfileStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540E924D61DBB0034082E /* ProfileStickyHeader.m */; };
 		CA3540ED24D61EF00034082E /* UIView+GSKLayoutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540EC24D61EF00034082E /* UIView+GSKLayoutHelper.m */; };
 		CA3540F324D622D00034082E /* UINavigationController+Transparency.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3540F224D622D00034082E /* UINavigationController+Transparency.m */; };
@@ -46,6 +47,7 @@
 		CA864AEA24D780E0003EB7AC /* PropsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AE924D780E0003EB7AC /* PropsViewController.m */; };
 		CA864AED24D78102003EB7AC /* BallotNaviControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AEC24D78102003EB7AC /* BallotNaviControl.m */; };
 		CA864AF724D7A4E6003EB7AC /* ProPublicaAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */; };
+		CAA62CE824DD30B2001461D0 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA62CE724DD30B2001461D0 /* CommentViewController.m */; };
 		CAA79F9124DAABB500D0646B /* BookmarkedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */; };
 		CAA79F9224DAABB500D0646B /* BookmarkedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */; };
 		CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAEF87D24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m */; };
@@ -106,6 +108,8 @@
 		CA17F0AF24D14DC100636CBB /* VoteLinksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteLinksViewController.m; sourceTree = "<group>"; };
 		CA17F0B124D14DCF00636CBB /* VoteInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteInfoViewController.h; sourceTree = "<group>"; };
 		CA17F0B224D14DCF00636CBB /* VoteInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteInfoViewController.m; sourceTree = "<group>"; };
+		CA29DBD924DD289500F0DB7B /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		CA29DBDA24DD289500F0DB7B /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		CA3540E824D61DBB0034082E /* ProfileStickyHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileStickyHeader.h; sourceTree = "<group>"; };
 		CA3540E924D61DBB0034082E /* ProfileStickyHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileStickyHeader.m; sourceTree = "<group>"; };
 		CA3540EB24D61EF00034082E /* UIView+GSKLayoutHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+GSKLayoutHelper.h"; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		CA864AEC24D78102003EB7AC /* BallotNaviControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BallotNaviControl.m; sourceTree = "<group>"; };
 		CA864AF524D7A4E6003EB7AC /* ProPublicaAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProPublicaAPI.h; sourceTree = "<group>"; };
 		CA864AF624D7A4E6003EB7AC /* ProPublicaAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProPublicaAPI.m; sourceTree = "<group>"; };
+		CAA62CE624DD30B2001461D0 /* CommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		CAA62CE724DD30B2001461D0 /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		CAA79F8E24DAABB500D0646B /* BookmarkedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookmarkedCell.h; sourceTree = "<group>"; };
 		CAA79F8F24DAABB500D0646B /* BookmarkedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookmarkedCell.m; sourceTree = "<group>"; };
 		CAA79F9024DAABB500D0646B /* BookmarkedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkedCell.xib; sourceTree = "<group>"; };
@@ -344,6 +350,8 @@
 				CAB3FFBD24D7D57D0059B16E /* PropViewController.m */,
 				CA7B420E24DC174E00D98681 /* StateElectionDetail.h */,
 				CA7B420F24DC174E00D98681 /* StateElectionDetail.m */,
+				CAA62CE624DD30B2001461D0 /* CommentViewController.h */,
+				CAA62CE724DD30B2001461D0 /* CommentViewController.m */,
 			);
 			path = DetailScreens;
 			sourceTree = "<group>";
@@ -460,6 +468,8 @@
 				CACE7C3C24CFD600009E3925 /* PriorityQueue.m */,
 				CADFB98A24D39A460031557A /* KSQueue.h */,
 				CADFB98B24D39A460031557A /* KSQueue.m */,
+				CA29DBD924DD289500F0DB7B /* Comment.h */,
+				CA29DBDA24DD289500F0DB7B /* Comment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -775,6 +785,7 @@
 				CAB3FFBE24D7D57D0059B16E /* PropViewController.m in Sources */,
 				CAAEF88624D1F2C500F27247 /* GoogleCivicAPI.m in Sources */,
 				CA51CF1524BEC54E00EEFF1B /* PostDetailController.m in Sources */,
+				CA29DBDB24DD289500F0DB7B /* Comment.m in Sources */,
 				CA15FA6324BE653B00307BBD /* Post.m in Sources */,
 				CAC2B06C24BD1CC600F3B23A /* OnboardViewController.m in Sources */,
 				CAAEF87E24D1D37E00F27247 /* RKSwipeBetweenViewControllers.m in Sources */,
@@ -790,6 +801,7 @@
 				CAAEF88C24D21F1200F27247 /* ElectionsPageControl.m in Sources */,
 				CAAEF88924D202E400F27247 /* VoterInfoCell.m in Sources */,
 				CA5F03D924BCD58600F599CF /* SceneDelegate.m in Sources */,
+				CAA62CE824DD30B2001461D0 /* CommentViewController.m in Sources */,
 				CA682EDF24D4FA0E00C74182 /* ElectionDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

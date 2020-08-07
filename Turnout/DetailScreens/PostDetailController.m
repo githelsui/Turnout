@@ -20,6 +20,7 @@
 #import <Parse/PFImageView.h>
 #import <MASUtilities.h>
 #import <View+MASAdditions.h>
+#import "CommentViewController.h"
 
 @interface PostDetailController ()
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
@@ -43,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *zipcodeLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (nonatomic, strong) NSArray *userLiked;
+@property (nonatomic, strong) NSArray *comments;
 @end
 
 @implementation PostDetailController
@@ -67,7 +69,19 @@
     [self.commentStack removeArrangedSubview:self.secondCommView];
     self.secondCommView.hidden = true;
     self.secondCommView.hidden = true;
-    
+}
+
+- (void)queryRecentComments{
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"post" equalTo:self.post];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil) {
+            self.comments = comments;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)setUI{
@@ -297,18 +311,15 @@
 }
 
 - (IBAction)commentTap:(id)sender {
+    [self performSegueWithIdentifier: @"CommentSegue" sender: self];
 }
 
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"CommentSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+      CommentViewController *comments = (CommentViewController*)navigationController.topViewController;
+        comments.post = self.post;
+    }
+}
 
 @end
