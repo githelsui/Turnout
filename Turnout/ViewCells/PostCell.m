@@ -33,6 +33,12 @@
 }
 
 - (void)setCell{
+    [self setPostFrame];
+    [self updateLikes];
+    [self loadImage];
+}
+
+- (void)setPostFrame{
     self.likeAnimation.alpha = 0;
     self.bubbleView.layer.cornerRadius = 15;
     self.bubbleView.clipsToBounds = true;
@@ -40,15 +46,16 @@
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
     self.bubbleView.layer.shadowRadius = 0.5;
     self.bubbleView.layer.shadowOpacity = 0.5;
-    [self updateLikes];
+}
+
+- (void)createPostContent{
     self.statusLabel.text = self.post.status;
     [self getTimeAgo];
-    [self loadImage];
     PFUser *user = self.post.author;
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if(user){
             self.nameLabel.text = user[@"username"];
-            [self getPostLocation:user];
+            [self getPostLocation];
         }
     }];
 }
@@ -58,8 +65,8 @@
     self.timeLabel.text = timeAgoStr;
 }
 
-- (void)getPostLocation:(PFObject *)user{
-    Zipcode *zip = user[@"zipcode"];
+- (void)getPostLocation{
+    Zipcode *zip = self.post[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         if(zipcode){
             NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
@@ -70,11 +77,15 @@
 }
 
 - (void)loadImage{
+    self.attachedPhoto.alpha = 0;
     self.attachedPhoto.image = [UIImage imageNamed:@"..."];
     self.attachedPhoto.file = self.post.image;
     self.attachedPhoto.clipsToBounds = YES;
     self.attachedPhoto.layer.cornerRadius = 15;
-    [self.attachedPhoto loadInBackground];
+    [self.attachedPhoto loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error){
+        if(image) self.attachedPhoto.image = image;
+        [self createPostContent];
+    }];
 }
 
 - (void)queryLikes{
