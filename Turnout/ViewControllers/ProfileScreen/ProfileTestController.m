@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    [self setNavigationBar];
+//    [self setNavigationBar];
     CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  200);
     self.header = [[ProfileStickyHeader alloc] initWithFrame:rect];
     [self setHeader];

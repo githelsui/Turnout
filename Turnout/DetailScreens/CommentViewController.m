@@ -120,7 +120,7 @@ CGRect inputFrame;
 }
 
 - (IBAction)textfieldTapped:(id)sender {
-    [self changeCommentFieldHeight];
+//    [self changeCommentFieldHeight];
 }
 
 - (IBAction)enterTapped:(id)sender {
