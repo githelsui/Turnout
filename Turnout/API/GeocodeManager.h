@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)pregenZip:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion;
 
+- (void)fetchDistance:(NSString *)zipcode current:(NSString *)current completion:(void(^)(NSString *distance, NSError *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

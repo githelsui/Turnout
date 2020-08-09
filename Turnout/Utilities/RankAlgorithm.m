@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Zipcode.h"
 #import "PriorityQueue.h"
+#import "GeocodeManager.h"
 #import "KSQueue.h"
 
 @interface RankAlgorithm ()
@@ -124,6 +125,7 @@
 }
 
 - (void)beginMerge:(NSArray *)individualQueues{
+//    [self sortQueues];
     for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
         KSQueue *queue = batch[@"queue"];
         NSDictionary *first = [queue dequeue];
@@ -132,6 +134,23 @@
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
+
+- (void)sortQueues{
+    for(NSMutableDictionary *batch in [self.individualQueues reverseObjectEnumerator]){
+        KSQueue *queue = batch[@"queue"];
+        KSQueue *sortedQueue = [queue getSortedQueue];
+//        [self printQueueItems:queue];
+        [self updateIndividualBatch:batch queue:sortedQueue];
+    }
+}
+
+//- (void)printQueueItems:(KSQueue *)queue{
+//    for(NSDictionary *item in queue){
+//        NSNumber *rank = item[@"rank"];
+//        Post *post = item[@"post"];
+//        NSLog(@"this is the post = %@ and rank = %@", post, rank);
+//    }
+//}
 
 - (void)mergeBatches{
     while([self allBatchQueryEmpty] == NO){
@@ -238,7 +257,9 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
             if(results.count > 0){
                 NSMutableDictionary *batch = [[NSMutableDictionary alloc] init];
+                NSString *distance = zipcode[@"distance"];
                 [batch setObject:zipObj forKey:@"zipcode"];
+                [batch setObject:distance forKey:@"distance"];
                 
                 [self queuePerBatch:results zipcode:zipcode completion:^(KSQueue *posts, NSError *error){
                     [batch setObject:posts forKey:@"queue"];
@@ -274,9 +295,7 @@
     NSString *distance = zipcode[@"distance"];
     for(Post *post in posts){
         NSMutableDictionary *postValues = [[NSMutableDictionary alloc] init];
-        NSNumber *likes = post[@"likeCount"];
-        NSNumber *comments = post[@"commentCount"];
-        NSNumber *rank = @(([likes floatValue] * [comments floatValue]) + (0.05 * [distance floatValue]));
+        NSNumber *rank = [self calcRank:distance post:post];
         [postValues setObject:rank forKey:@"rank"];
         [postValues setObject:zip forKey:@"zipcode"];
         [postValues setObject:post forKey:@"post"];
@@ -323,41 +342,73 @@
                 if([queue contains:post] == NO){
                     NSNumber *totalFetchedBefore = batch[@"totalFetched"];
                     NSNumber *totalFetched = @([totalFetchedBefore intValue] + 1);
-                    KSQueue *updatedQueue = [self updatePostQueue:post postArr:queue];
+                    NSString *distance = batch[@"distance"];
+                    KSQueue *updatedQueue = [self updatePostQueue:post distance:distance postArr:queue];
                     [batch setObject:updatedQueue forKey:@"queue"];
                     [batch setObject:totalFetched forKey:@"totalFetched"];
                     [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
             } else {
-                NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
-                KSQueue *queue = [[KSQueue alloc] init];
-                KSQueue *updatedQueue =  [self updatePostQueue:post postArr:queue];
-                NSNumber *totalFetched = @([updatedQueue getSize]);
-                [newBatch setObject:totalFetched forKey:@"totalFetched"];
-                [newBatch setObject:zip forKey:@"zipcode"];
-                [newBatch setObject:updatedQueue forKey:@"queue"];
-                if([updatedQueue getSize] == 0){
-                    [newBatch setObject:@YES forKey:@"queryEmpty"];
-                } else {
-                    [newBatch setObject:@NO forKey:@"queryEmpty"];
-                }
-                [self.individualQueues addObject:newBatch];
+                [self createNewBatch:post];
             }
         }
     }];
 }
 
-- (KSQueue *)updatePostQueue:(Post *)post postArr:(KSQueue *)queue{
+- (void)createNewBatch:(Post *)post{
+    Zipcode *zip = post[@"zipcode"];
+    NSString *zipStr = zip[@"zipcode"];
+    [self distancePerBatch:zipStr completion:^(NSString *distance, NSError *error){
+        NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
+        KSQueue *queue = [[KSQueue alloc] init];
+        KSQueue *updatedQueue =  [self updatePostQueue:post distance:distance postArr:queue];
+        NSNumber *totalFetched = @([updatedQueue getSize]);
+        [newBatch setObject:totalFetched forKey:@"totalFetched"];
+        [newBatch setObject:zip forKey:@"zipcode"];
+        [newBatch setObject:distance forKey:@"distance"];
+        [newBatch setObject:updatedQueue forKey:@"queue"];
+        if([updatedQueue getSize] == 0){
+            [newBatch setObject:@YES forKey:@"queryEmpty"];
+        } else {
+            [newBatch setObject:@NO forKey:@"queryEmpty"];
+        }
+        [self.individualQueues addObject:newBatch];
+    }];
+}
+
+- (void)distancePerBatch:(NSString *)zipCompare completion:(void(^)(NSString *distance, NSError *error))completion{
+    NSString *zipStr = self.currentZip[@"zipcode"];
+    [[GeocodeManager shared]fetchDistance:zipStr current:zipCompare completion:^(NSString *distance, NSError *error){
+        if(distance){
+            completion(distance, nil);
+        } else {
+            completion(@"0", nil);
+        }
+    }];
+}
+
+- (KSQueue *)updatePostQueue:(Post *)post distance:(NSString *)distance postArr:(KSQueue *)queue{
     KSQueue *copy = queue;
     NSMutableDictionary *tempPost = [[NSMutableDictionary alloc] init];
-    NSNumber *likes = post[@"likeCount"];
-    NSNumber *comments = post[@"commentCount"];
-    NSNumber *rank = @([likes floatValue] * [comments floatValue]);
+    NSNumber *rank = [self calcRank:distance post:post];
+    NSLog(@"post = %@ and rank = %@", post, rank);
     [tempPost setObject:rank forKey:@"rank"];
     [tempPost setObject:post[@"zipcode"] forKey:@"zipcode"];
     [tempPost setObject:post forKey:@"post"];
     [copy enqueue:tempPost];
     return copy;
+}
+
+- (NSNumber *)calcRank:(NSString *)distance post:(Post *)post{
+    float likes = [post[@"likeCount"] floatValue];
+    float comments = [post[@"commentCount"] floatValue];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    float dist = [[f numberFromString:distance] floatValue];
+    float numerator = dist + 1;
+    float denomenator = ((2 * likes) + comments) + 1;
+    NSNumber *rank = @(numerator / denomenator);
+    return rank;
 }
 
 - (BOOL)livefeedContainsPost:(Post *)post{

@@ -21,6 +21,7 @@
 -(void)enqueue:(NSDictionary *)anObject{
     [self.data addObject:anObject];
     self.data = [self sortPostsArr:self.data];
+    NSLog(@"items in queue = %@" , self.data);
     
 }
 
@@ -50,8 +51,16 @@
 - (NSMutableArray *)sortPostsArr:(NSMutableArray *)postDicts{
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank"
-                                                 ascending:NO];
+                                                 ascending:YES];
     NSArray *sortedArray = [postDicts sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return [sortedArray mutableCopy];
+}
+
+- (KSQueue *)getSortedQueue{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank"
+                                                 ascending:YES];
+    NSArray *sortedArray = [self.data sortedArrayUsingDescriptors:@[sortDescriptor]];
     return [sortedArray mutableCopy];
 }
 

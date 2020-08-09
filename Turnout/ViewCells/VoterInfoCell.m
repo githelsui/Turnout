@@ -87,7 +87,7 @@
         self.didBookmark = YES;
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        NSDictionary *bookmarkInfo = [self getBookmarkInfo:@"nationalElection"];
+        NSData *bookmarkInfo = [self getBookmarkInfo:@"nationalElection"];
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:self.bookmarks forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -101,7 +101,7 @@
         self.didBookmark = YES;
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        NSDate *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
+        NSData *bookmarkInfo = [self getBookmarkInfo:@"voterInfo"];
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -115,7 +115,7 @@
         self.didBookmark = YES;
         UIImage *bookmark = [UIImage imageNamed:@"didBookmark.png"];
         [self.bookmarkBtn setImage:bookmark forState:UIControlStateNormal];
-        NSDate *bookmarkInfo = [self getBookmarkInfo:@"propInfo"];
+        NSData *bookmarkInfo = [self getBookmarkInfo:@"propInfo"];
         [self.bookmarks addObject:bookmarkInfo];
         [[NSUserDefaults standardUserDefaults] setObject:[self.bookmarks copy] forKey:@"Bookmarks"];
         [[NSUserDefaults standardUserDefaults] synchronize];
