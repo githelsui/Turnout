@@ -260,7 +260,7 @@
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         NSString *type = bookmarkDict[@"type"];
-        //        [self segueToInfoScreen:type];
+        [self segueToInfoScreen:type];
     }
 }
 

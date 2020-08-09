@@ -128,9 +128,11 @@
 - (void)beginMerge:(NSArray *)individualQueues{
     for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
         KSQueue *queue = batch[@"queue"];
-        NSDictionary *first = [queue dequeue];
-        [self updateIndividualBatch:batch queue:queue];
-        [self.priorityQueue add:first];
+        if([queue getSize] != 0){
+            NSDictionary *first = [queue dequeue];
+            [self updateIndividualBatch:batch queue:queue];
+            [self.priorityQueue add:first];
+        }
     }
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
