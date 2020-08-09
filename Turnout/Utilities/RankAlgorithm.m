@@ -20,6 +20,8 @@
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
 @property (nonatomic) BOOL completeFetch;
 @property (nonatomic, strong) NSCondition *fetchCondition;
+@property (nonatomic) BOOL neighborsFetched;
+@property (nonatomic, strong) NSCondition *neighborsCondition;
 @end
 
 @implementation RankAlgorithm
@@ -52,7 +54,6 @@
     [self.individualQueues removeAllObjects];
     [self getCurrentUserInfo:^(NSArray *neighbors, NSError *error){
         self.neighborDicts = [neighbors mutableCopy];
-        NSLog(@"final neighborDicts array: %@", neighbors);
         if(neighbors){
             [self fetchNeighboringPosts:neighbors skip:skip completion:^(NSMutableArray *individualQueues, NSError *error){
                 if(individualQueues){
@@ -125,7 +126,6 @@
 }
 
 - (void)beginMerge:(NSArray *)individualQueues{
-//    [self sortQueues];
     for(NSMutableDictionary *batch in [individualQueues reverseObjectEnumerator]){
         KSQueue *queue = batch[@"queue"];
         NSDictionary *first = [queue dequeue];
@@ -135,27 +135,11 @@
     NSLog(@"posts inside priorityQueue: %@", self.priorityQueue);
 }
 
-- (void)sortQueues{
-    for(NSMutableDictionary *batch in [self.individualQueues reverseObjectEnumerator]){
-        KSQueue *queue = batch[@"queue"];
-        KSQueue *sortedQueue = [queue getSortedQueue];
-//        [self printQueueItems:queue];
-        [self updateIndividualBatch:batch queue:sortedQueue];
-    }
-}
-
-//- (void)printQueueItems:(KSQueue *)queue{
-//    for(NSDictionary *item in queue){
-//        NSNumber *rank = item[@"rank"];
-//        Post *post = item[@"post"];
-//        NSLog(@"this is the post = %@ and rank = %@", post, rank);
-//    }
-//}
-
 - (void)mergeBatches{
     while([self allBatchQueryEmpty] == NO){
         
         NSMutableDictionary *topPostsBatch = [self addPostToLiveFeed];
+        if(!topPostsBatch) break;
         NSNumber *queryEmpty = topPostsBatch[@"queryEmpty"];
         KSQueue *posts = topPostsBatch[@"queue"];
         NSInteger queueSize = [posts getSize];
@@ -179,12 +163,16 @@
 }
 
 - (NSMutableDictionary *)addPostToLiveFeed{
-    NSDictionary *priorityPost = [self.priorityQueue poll];
-    [self.posts addObject:priorityPost[@"post"]];
-    Zipcode *zip = priorityPost[@"zipcode"];
-    NSMutableDictionary *batch = [self getZipcodeBatch:zip];
-    NSLog(@"post in livefeed: %@" , priorityPost[@"post"]);
-    return batch;
+    if([self.priorityQueue size] > 0){
+        NSDictionary *priorityPost = [self.priorityQueue poll];
+        [self.posts addObject:priorityPost[@"post"]];
+        Zipcode *zip = priorityPost[@"zipcode"];
+        NSMutableDictionary *batch = [self getZipcodeBatch:zip];
+        NSLog(@"post in livefeed: %@" , priorityPost[@"post"]);
+        return batch;
+    } else {
+        return nil;
+    }
 }
 
 - (void)addToPriorityQueue:(NSMutableDictionary *)batch{
@@ -307,10 +295,6 @@
 
 - (void)fetchFarPosts:(int)skip completion:(void(^)(NSMutableArray *neighborsPosts, NSError *error))completion{
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    for(NSDictionary *zipcode in self.neighborDicts){
-        Zipcode *zip = zipcode[@"zipcode"];
-        [query whereKey:@"zipcode" notEqualTo:zip];
-    }
     [query orderByDescending:@"likeCount"];
     [query includeKey:@"zipcode"];
     [query includeKey:@"createdAt"];
@@ -357,23 +341,21 @@
 
 - (void)createNewBatch:(Post *)post{
     Zipcode *zip = post[@"zipcode"];
-    NSString *zipStr = zip[@"zipcode"];
-    [self distancePerBatch:zipStr completion:^(NSString *distance, NSError *error){
-        NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
-        KSQueue *queue = [[KSQueue alloc] init];
-        KSQueue *updatedQueue =  [self updatePostQueue:post distance:distance postArr:queue];
-        NSNumber *totalFetched = @([updatedQueue getSize]);
-        [newBatch setObject:totalFetched forKey:@"totalFetched"];
-        [newBatch setObject:zip forKey:@"zipcode"];
-        [newBatch setObject:distance forKey:@"distance"];
-        [newBatch setObject:updatedQueue forKey:@"queue"];
-        if([updatedQueue getSize] == 0){
-            [newBatch setObject:@YES forKey:@"queryEmpty"];
-        } else {
-            [newBatch setObject:@NO forKey:@"queryEmpty"];
-        }
-        [self.individualQueues addObject:newBatch];
-    }];
+    NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
+    KSQueue *queue = [[KSQueue alloc] init];
+    NSString *distance = @"12";
+    KSQueue *updatedQueue =  [self updatePostQueue:post distance:distance postArr:queue];
+    NSNumber *totalFetched = @([updatedQueue getSize]);
+    [newBatch setObject:totalFetched forKey:@"totalFetched"];
+    [newBatch setObject:zip forKey:@"zipcode"];
+    [newBatch setObject:distance forKey:@"distance"];
+    [newBatch setObject:updatedQueue forKey:@"queue"];
+    if([updatedQueue getSize] == 0){
+        [newBatch setObject:@YES forKey:@"queryEmpty"];
+    } else {
+        [newBatch setObject:@NO forKey:@"queryEmpty"];
+    }
+    [self.individualQueues addObject:newBatch];
 }
 
 - (void)distancePerBatch:(NSString *)zipCompare completion:(void(^)(NSString *distance, NSError *error))completion{

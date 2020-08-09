@@ -65,8 +65,8 @@
 }
 
 - (void)getPostLocation:(PFObject *)user{
-    Zipcode *zip = user[@"zipcode"];
-    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+    Zipcode *postZip = self.post[@"zipcode"];
+    [postZip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         if(zipcode){
             NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
             self.locationLabel.text = location;

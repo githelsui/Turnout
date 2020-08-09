@@ -36,7 +36,7 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
 
 - (void)fetchDistance:(NSString *)zipcode current:(NSString *)current completion:(void(^)(NSString *distance, NSError *error))completion{
     NSString *address = [NSString stringWithFormat:@"&origins=%@&destinations=%@&key=%@", current, zipcode, APIKey];
-    NSString *fullURL = [baseURLString stringByAppendingString:address];
+    NSString *fullURL = [baseDistanceURL stringByAppendingString:address];
     NSLog(@"full URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
