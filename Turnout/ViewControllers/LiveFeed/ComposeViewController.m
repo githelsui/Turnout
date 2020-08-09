@@ -58,8 +58,8 @@
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = @"New Status";
     lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.textColor = [UIColor blackColor];
-    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    lblTitle.font = [UIFont systemFontOfSize:18 weight:UIFontWeightLight];
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
 }

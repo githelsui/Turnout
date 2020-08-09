@@ -8,7 +8,7 @@
 
 #import "LiveFeedController.h"
 
-@interface LiveFeedController () <RankAlgorithmDelegate, PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface LiveFeedController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *currentLoc;
 @property (weak, nonatomic) IBOutlet UILabel *currentZipcode;
@@ -30,7 +30,7 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepNotifications];
-//    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
     [self loadBookmarks];
     self.pageNum = 1;
     [self initTableView];
@@ -150,7 +150,7 @@ NSIndexPath *lastIndexPath;
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = @"Turnout";
     lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
     lblTitle.font = [UIFont systemFontOfSize:22 weight:UIFontWeightLight];
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
@@ -334,6 +334,11 @@ NSIndexPath *lastIndexPath;
            object:nil];
 }
 
+- (void)postToTopFeed:(Post *)post {
+    [self.mutablePosts insertObject:post atIndex:0];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -350,10 +355,6 @@ NSIndexPath *lastIndexPath;
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
     }
-}
-
-- (void)postToTopFeed:(Post *)post {
-    [self.mutablePosts insertObject:post atIndex:0];
 }
 
 @end

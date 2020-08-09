@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
+    [self setNavigationBar];
     CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  200);
     self.header = [[ProfileStickyHeader alloc] initWithFrame:rect];
     [self setHeader];
@@ -55,8 +56,8 @@
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = @"Profile";
     lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.textColor = [UIColor blackColor];
-    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
+    lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    lblTitle.font = [UIFont systemFontOfSize:22 weight:UIFontWeightLight];
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
 }
@@ -152,6 +153,10 @@
 - (void)fetchBookmarks{
     NSArray *temp = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     self.bookmarks = [[temp reverseObjectEnumerator] allObjects];
+    for(NSData *data in self.bookmarks){
+        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSLog(@"bookmark = %@", bookmarkDict);
+    }
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self.refreshControl endRefreshing];
     [self startTimer];
@@ -255,7 +260,7 @@
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         NSString *type = bookmarkDict[@"type"];
-        [self segueToInfoScreen:type];
+        //        [self segueToInfoScreen:type];
     }
 }
 
@@ -279,7 +284,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    if ([segue.identifier isEqualToString:@"PostDetailSegue"]){
+    if (self.tableType !=2 && [segue.identifier isEqualToString:@"PostDetailSegue"]){
         if(self.tableType == 0){
             Post *post = self.posts[indexPath.row];
             PostDetailController *detailController = [segue destinationViewController];
@@ -289,42 +294,33 @@
             PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
         }
-    } else if ([segue.identifier isEqualToString:@"WebView"]){
+    } else if(self.tableType == 2){
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         NSDictionary *data = bookmarkDict[@"data"];
-        NSString *url = data[@"url"];
-        VoteWebView *webView = [segue destinationViewController];
-        webView.linkURL = url;
-    } else if ([segue.identifier isEqualToString:@"ElectionDetailSegue"]){
-        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSDictionary *data = bookmarkDict[@"data"];
-        ElectionDetailController *detailController = [segue destinationViewController];
-        detailController.election = data;
-    } else if ([segue.identifier isEqualToString:@"CandidateDetailSegue"]){
-        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSDictionary *data = bookmarkDict[@"data"];
-        CandidateDetailController *detailController = [segue destinationViewController];
-        detailController.candidate = data;
-    } else if ([segue.identifier isEqualToString:@"PropDetailSegue"]){
-        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSDictionary *data = bookmarkDict[@"data"];
-        PropViewController *detailController = [segue destinationViewController];
-        detailController.prop = data;
-    } else if ([segue.identifier isEqualToString:@"StateDetailSegue"]){
-        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSDictionary *data = bookmarkDict[@"data"];
-        StateElectionDetail *detailController = [segue destinationViewController];
-        detailController.election = data;
-    } else if([segue.identifier isEqualToString:@"SettingsSegue"]){
-        [self.timer invalidate];
-        self.timer = nil;
-        SettingsViewController *settingControl = [segue destinationViewController];
-        settingControl.delegate = self;
+        NSString *type = bookmarkDict[@"type"];
+        if ([segue.identifier isEqualToString:@"WebView"]){
+            NSString *url = data[@"url"];
+            VoteWebView *webView = [segue destinationViewController];
+            webView.linkURL = url;
+        } else if ([segue.identifier isEqualToString:@"ElectionDetailSegue"]){
+            ElectionDetailController *detailController = [segue destinationViewController];
+            detailController.election = data;
+        } else if ([type isEqualToString:@"candidateInfo"]){
+            CandidateDetailController *detailController = [segue destinationViewController];
+            detailController.candidate = data;
+        } else if ([segue.identifier isEqualToString:@"PropDetailSegue"]){
+            PropViewController *detailController = [segue destinationViewController];
+            detailController.prop = data;
+        } else if ([segue.identifier isEqualToString:@"StateDetailSegue"]){
+            StateElectionDetail *detailController = [segue destinationViewController];
+            detailController.election = data;
+        } else if([segue.identifier isEqualToString:@"SettingsSegue"]){
+            [self.timer invalidate];
+            self.timer = nil;
+            SettingsViewController *settingControl = [segue destinationViewController];
+            settingControl.delegate = self;
+        }
     }
 }
 
