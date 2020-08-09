@@ -284,6 +284,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    if([segue.identifier isEqualToString:@"SettingsSegue"]){
+        [self.timer invalidate];
+        self.timer = nil;
+        SettingsViewController *settingControl = [segue destinationViewController];
+        settingControl.delegate = self;
+    }
+    
     if (self.tableType !=2 && [segue.identifier isEqualToString:@"PostDetailSegue"]){
         if(self.tableType == 0){
             Post *post = self.posts[indexPath.row];
@@ -315,11 +323,6 @@
         } else if ([segue.identifier isEqualToString:@"StateDetailSegue"]){
             StateElectionDetail *detailController = [segue destinationViewController];
             detailController.election = data;
-        } else if([segue.identifier isEqualToString:@"SettingsSegue"]){
-            [self.timer invalidate];
-            self.timer = nil;
-            SettingsViewController *settingControl = [segue destinationViewController];
-            settingControl.delegate = self;
         }
     }
 }
