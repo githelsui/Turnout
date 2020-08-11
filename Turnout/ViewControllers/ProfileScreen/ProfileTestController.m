@@ -22,6 +22,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Zipcode.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @interface ProfileTestController () <SettingsViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -43,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    //    [self setNavigationBar];
+    [self setNavigationBar];
     CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  200);
     self.header = [[ProfileStickyHeader alloc] initWithFrame:rect];
     [self setHeader];
@@ -113,6 +114,7 @@
     self.tableView.estimatedRowHeight = 148;
     self.tableView.dragInteractionEnabled = YES;
     self.tableView.allowsSelection = YES;
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)checkSegmentedControl{

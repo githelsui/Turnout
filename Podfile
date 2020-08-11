@@ -16,6 +16,7 @@ target 'Turnout' do
 	pod 'CCActivityHUD'
         pod "GSKStretchyHeaderView"
 	pod 'Masonry'
+	pod 'DZNEmptyDataSet'
 
   target 'TurnoutTests' do
     inherit! :search_paths

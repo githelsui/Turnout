@@ -17,6 +17,7 @@ PODS:
   - Bolts/Tasks (1.9.1)
   - CCActivityHUD (2.1.7)
   - DateTools (2.0.0)
+  - DZNEmptyDataSet (1.8.1)
   - FBSDKCoreKit (7.1.1):
     - FBSDKCoreKit/Basics (= 7.1.1)
     - FBSDKCoreKit/Core (= 7.1.1)
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - AFNetworking
   - CCActivityHUD
   - DateTools
+  - DZNEmptyDataSet
   - FBSDKLoginKit
   - FBSDKShareKit
   - FCAlertView
@@ -59,6 +61,7 @@ SPEC REPOS:
     - Bolts
     - CCActivityHUD
     - DateTools
+    - DZNEmptyDataSet
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -72,6 +75,7 @@ SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   CCActivityHUD: cfae116562e5279befbcf588de86490efe3f359b
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   FBSDKShareKit: 00a055c1999b099596e00212dd1c0600c6697019
@@ -80,6 +84,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: a59da67c75185561f123dd4c34a8a27f8b4149b8
+PODFILE CHECKSUM: 0a54fa444487128fe44d542cb8cf14f4d3114051
 
 COCOAPODS: 1.9.3
