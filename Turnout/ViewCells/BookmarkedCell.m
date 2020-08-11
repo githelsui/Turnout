@@ -60,7 +60,7 @@
     self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"title"];
     if(url == nil){
-        self.userInteractionEnabled = NO;
+//        self.userInteractionEnabled = NO;
         self.subHeader.text = data[@"address"];
         self.subHeader.alpha = 1;
     }

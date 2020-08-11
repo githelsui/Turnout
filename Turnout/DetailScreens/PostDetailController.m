@@ -77,6 +77,13 @@
       }];
 }
 
+- (void)prepComments{
+    self.firstCommLabel.hidden = true;
+    self.firstCommView.hidden = true;
+    self.secondCommView.hidden = true;
+    self.secondCommView.hidden = true;
+}
+
 - (void)noCommentsFound{
     self.firstCommLabel.hidden = true;
     self.firstCommView.hidden = true;
@@ -85,9 +92,11 @@
 }
 
 - (void)onlyOneComment{
-    [self.commentStack removeArrangedSubview:self.secondCommView];
+//    [self.commentStack removeArrangedSubview:self.secondCommView];
     self.secondCommView.hidden = true;
     self.secondCommView.hidden = true;
+    self.firstCommLabel.hidden = false;
+    self.firstCommView.hidden = false;
 }
 
 - (void)queryRecentComments{

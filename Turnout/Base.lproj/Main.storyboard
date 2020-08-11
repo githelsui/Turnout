@@ -1373,7 +1373,7 @@
         <!--Election Detail Controller-->
         <scene sceneID="hrE-d2-uBP">
             <objects>
-                <viewController id="nVj-HU-suN" customClass="ElectionDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ElectionDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nVj-HU-suN" customClass="ElectionDetailController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dH6-4B-Kv4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1477,7 +1477,7 @@
         <!--State Election Detail-->
         <scene sceneID="94s-Kt-KSB">
             <objects>
-                <viewController id="aG4-D0-LaI" customClass="StateElectionDetail" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StateElectionDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aG4-D0-LaI" customClass="StateElectionDetail" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B9S-eE-woA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1759,7 +1759,7 @@
         <!--Prop View Controller-->
         <scene sceneID="yyP-Xk-saX">
             <objects>
-                <viewController id="LUS-Xa-4vn" customClass="PropViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PropViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LUS-Xa-4vn" customClass="PropViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="On4-32-ysI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2133,7 +2133,7 @@
         <!--Vote Web View-->
         <scene sceneID="0QE-WM-cXX">
             <objects>
-                <viewController id="bXg-BL-uTG" customClass="VoteWebView" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VoteWebView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bXg-BL-uTG" customClass="VoteWebView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UAT-Fk-xTZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2960,7 +2960,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="4kV-dX-LWj"/>
+        <segue reference="BzJ-Ck-f8S"/>
         <segue reference="baP-kX-kvr"/>
         <segue reference="92W-3G-qz0"/>
         <segue reference="jgm-Rg-7bY"/>

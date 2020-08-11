@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-//    [self setNavigationBar];
+    //    [self setNavigationBar];
     CGRect rect = CGRectMake(0, 0,  self.tableView.frame.size.width,  200);
     self.header = [[ProfileStickyHeader alloc] initWithFrame:rect];
     [self setHeader];
@@ -111,6 +111,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.estimatedRowHeight = 148;
+    self.tableView.dragInteractionEnabled = YES;
+    self.tableView.allowsSelection = YES;
 }
 
 - (void)checkSegmentedControl{
@@ -153,6 +155,7 @@
 - (void)fetchBookmarks{
     NSArray *temp = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"Bookmarks"] mutableCopy];
     self.bookmarks = [[temp reverseObjectEnumerator] allObjects];
+    NSLog(@"THE bookmarks");
     for(NSData *data in self.bookmarks){
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         NSLog(@"bookmark = %@", bookmarkDict);
@@ -250,6 +253,7 @@
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
         cell.bookmarkInfo = bookmarkDict;
         [cell setCell];
+        cell.userInteractionEnabled = YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -259,17 +263,40 @@
     if(self.tableType == 2){
         NSData *bookmarkInfo = self.bookmarks[indexPath.row];
         NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSString *type = bookmarkDict[@"type"];
-        [self segueToInfoScreen:type];
+        [self segueToInfoScreen:bookmarkDict];
     }
 }
 
-- (void)segueToInfoScreen:(NSString *)key{
-    if([key isEqualToString:@"voterInfo"]) [self performSegueWithIdentifier: @"WebView" sender: self];
-    else if([key isEqualToString:@"nationalElection"]) [self performSegueWithIdentifier: @"ElectionDetailSegue" sender: self];
-    else if([key isEqualToString:@"candidateInfo"]) [self performSegueWithIdentifier: @"CandidateDetailSegue" sender: self];
-    else if([key isEqualToString:@"propInfo"]) [self performSegueWithIdentifier: @"PropDetailSegue" sender: self];
-    else if([key isEqualToString:@"stateElection"]) [self performSegueWithIdentifier: @"StateDetailSegue" sender: self];
+- (void)segueToInfoScreen:(NSDictionary *)bookmark{
+    NSDictionary *data = bookmark[@"data"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    NSString *key = bookmark[@"type"];
+    if([key isEqualToString:@"voterInfo"]){
+        VoteWebView *vc = [storyboard instantiateViewControllerWithIdentifier:@"VoteWebView"];
+        NSString *url = data[@"url"];
+        vc.linkURL = url;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+    else if([key isEqualToString:@"nationalElection"]){
+        ElectionDetailController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ElectionDetailController"];
+        vc.election = data;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+    else if([key isEqualToString:@"candidateInfo"]){
+        CandidateDetailController *detailController = [storyboard instantiateViewControllerWithIdentifier:@"CandidateDetailController"];
+        detailController.candidate = data;
+        [self presentViewController:detailController animated:YES completion:nil];
+    }
+    else if([key isEqualToString:@"propInfo"]){
+        PropViewController *detailController = [storyboard instantiateViewControllerWithIdentifier:@"PropViewController"];
+        detailController.prop = data;
+        [self presentViewController:detailController animated:YES completion:nil];
+    }
+    else if([key isEqualToString:@"stateElection"]){
+        StateElectionDetail *detailController = [storyboard instantiateViewControllerWithIdentifier:@"StateElectionDetail"];
+        detailController.election = data;
+        [self presentViewController:detailController animated:YES completion:nil];
+    }
 }
 
 - (void)updateZipcode{
@@ -284,45 +311,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    
     if([segue.identifier isEqualToString:@"SettingsSegue"]){
         [self.timer invalidate];
         self.timer = nil;
         SettingsViewController *settingControl = [segue destinationViewController];
         settingControl.delegate = self;
     }
-    
     if (self.tableType !=2 && [segue.identifier isEqualToString:@"PostDetailSegue"]){
+        PostDetailController *detailController = [segue destinationViewController];
         if(self.tableType == 0){
             Post *post = self.posts[indexPath.row];
-            PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
         } else if(self.tableType == 1){
             Post *post = self.likes[indexPath.row];
-            PostDetailController *detailController = [segue destinationViewController];
             detailController.post = post;
-        }
-    } else if(self.tableType == 2){
-        NSData *bookmarkInfo = self.bookmarks[indexPath.row];
-        NSDictionary *bookmarkDict = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarkInfo];
-        NSDictionary *data = bookmarkDict[@"data"];
-        NSString *type = bookmarkDict[@"type"];
-        if ([segue.identifier isEqualToString:@"WebView"]){
-            NSString *url = data[@"url"];
-            VoteWebView *webView = [segue destinationViewController];
-            webView.linkURL = url;
-        } else if ([segue.identifier isEqualToString:@"ElectionDetailSegue"]){
-            ElectionDetailController *detailController = [segue destinationViewController];
-            detailController.election = data;
-        } else if ([type isEqualToString:@"candidateInfo"]){
-            CandidateDetailController *detailController = [segue destinationViewController];
-            detailController.candidate = data;
-        } else if ([segue.identifier isEqualToString:@"PropDetailSegue"]){
-            PropViewController *detailController = [segue destinationViewController];
-            detailController.prop = data;
-        } else if ([segue.identifier isEqualToString:@"StateDetailSegue"]){
-            StateElectionDetail *detailController = [segue destinationViewController];
-            detailController.election = data;
         }
     }
 }
