@@ -402,8 +402,8 @@
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
     float dist = [[f numberFromString:distance] floatValue];
-    float numerator = dist + 1;
-    float denomenator = ((2 * likes) + comments) + 1;
+    float numerator = (dist * 2) + 1;
+    float denomenator = ((0.5 * likes) + (0.2 * comments)) + 1;
     NSNumber *rank = @(numerator / denomenator);
     return rank;
 }
