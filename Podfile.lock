@@ -41,6 +41,7 @@ PODS:
     - Bolts/Tasks (= 1.9.1)
   - Parse/UI (1.18.0):
     - Parse/Core
+  - PTCardTabBar (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - Masonry
   - Parse
   - Parse/UI
+  - PTCardTabBar
 
 SPEC REPOS:
   trunk:
@@ -69,6 +71,7 @@ SPEC REPOS:
     - GSKStretchyHeaderView
     - Masonry
     - Parse
+    - PTCardTabBar
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -83,7 +86,8 @@ SPEC CHECKSUMS:
   GSKStretchyHeaderView: 9743704c12bdc9cf7c7947bad3af8bf24f7061e3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+  PTCardTabBar: 9112a6d4eb2b73da9cf4e7f3aefe04504479cf98
 
-PODFILE CHECKSUM: 0a54fa444487128fe44d542cb8cf14f4d3114051
+PODFILE CHECKSUM: e07fa861645991e33861be7fba91fd03379b2166
 
 COCOAPODS: 1.9.3

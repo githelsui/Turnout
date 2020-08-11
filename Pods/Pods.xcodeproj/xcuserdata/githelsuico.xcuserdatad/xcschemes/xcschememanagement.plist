@@ -88,6 +88,13 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>PTCardTabBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>Parse-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
