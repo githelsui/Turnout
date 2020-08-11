@@ -80,15 +80,19 @@
 
 - (void)fetchCandidates{
     [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
-    [[OpenFECAPI shared] fetchCandidates:self.currentState completion:^(NSArray *candidates, NSError *error){
-        if(candidates){
-            self.candidates = candidates;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.activityHUD dismiss];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                [self startTimer];
-            });
-        }
+    Zipcode *zip = PFUser.currentUser[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        NSString *stateStr = zipcode[@"shortState"];
+        [[OpenFECAPI shared] fetchCandidates:stateStr completion:^(NSArray *candidates, NSError *error){
+            if(candidates){
+                self.candidates = candidates;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.activityHUD dismiss];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    [self startTimer];
+                });
+            }
+        }];
     }];
     [self.refreshControl endRefreshing];
 }

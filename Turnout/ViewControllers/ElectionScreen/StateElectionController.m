@@ -69,14 +69,18 @@
 }
 
 - (void)fetchElections{
-    [[OpenFECAPI shared] fetchStateElections:self.currentState completion:^(NSArray *elections, NSError *error){
-        if(elections){
-            self.elections = elections;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                [self startTimer];
-            });
-        }
+    Zipcode *zip = PFUser.currentUser[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        NSString *stateStr = zipcode[@"shortState"];
+        [[OpenFECAPI shared] fetchStateElections:stateStr completion:^(NSArray *elections, NSError *error){
+            if(elections){
+                self.elections = elections;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    [self startTimer];
+                });
+            }
+        }];
     }];
     [self.refreshControl endRefreshing];
 }
