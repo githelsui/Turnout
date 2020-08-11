@@ -10,6 +10,11 @@
 #import "Comment.h"
 #import "CommentCell.h"
 
+static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
+static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
+static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+
 @interface CommentViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *postUserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
@@ -25,6 +30,7 @@
 
 @implementation CommentViewController
 CGRect inputFrame;
+CGFloat animatedDistance;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +43,34 @@ CGRect inputFrame;
     [self presentUI];
     [self setPostContent];
     [self queryComments];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y -= 310;
+        self.view.frame = f;
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = 0.0f;
+        self.view.frame = f;
+    }];
 }
 
 - (void)queryComments{
@@ -54,7 +88,7 @@ CGRect inputFrame;
 }
 
 - (void)presentUI{
-     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
     self.commentField.leftView = paddingView;
     self.commentField.leftViewMode = UITextFieldViewModeAlways;
     self.commentField.layer.cornerRadius = 17;
@@ -112,20 +146,14 @@ CGRect inputFrame;
 
 - (IBAction)tapOutside:(id)sender {
     [self.view endEditing:YES];
-//    [self returnOriginalHeight];
 }
 
 - (IBAction)cancelTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)textfieldTapped:(id)sender {
-//    [self changeCommentFieldHeight];
-}
-
 - (IBAction)enterTapped:(id)sender {
     [[self view] endEditing:YES];
-//    [self returnOriginalHeight];
     if(self.commentField.text.length > 0) [self saveComment];
 }
 
@@ -141,24 +169,10 @@ CGRect inputFrame;
     }];
 }
 
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    return YES;
-//} //remove this
-
-- (IBAction)typingContinues:(id)sender {
-    self.commentView.frame = self.typingCommentField;
-    NSLog(@"why");
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    [self returnOriginalHeight];
     [textField resignFirstResponder];
     return YES;
 }
-
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [[self view] endEditing:YES];
-//} //remove this
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.comments.count;
@@ -180,13 +194,13 @@ CGRect inputFrame;
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

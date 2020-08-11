@@ -845,10 +845,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="textfieldTapped:" destination="Tlp-Fh-aIQ" eventType="editingDidBegin" id="M1F-5R-DK4"/>
-                                            <action selector="typingContinues:" destination="Tlp-Fh-aIQ" eventType="editingChanged" id="Omi-0h-gm2"/>
-                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-s3-SDI">
                                         <rect key="frame" x="293" y="10" width="65" height="35"/>
