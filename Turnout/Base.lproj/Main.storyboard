@@ -2020,26 +2020,26 @@
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="flipped_color" translatesAutoresizingMaskIntoConstraints="NO" id="HST-z0-NGa">
                                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="124"/>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House of Representatives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agG-RA-akv">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House of Representatives" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agG-RA-akv">
                                                                             <rect key="frame" x="12" y="15" width="154" height="16"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incumbent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHY-JN-wEb">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incumbent" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHY-JN-wEb">
                                                                             <rect key="frame" x="284" y="14" width="64" height="16"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-3Z-eQ1">
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-3Z-eQ1">
                                                                             <rect key="frame" x="12" y="52" width="339" height="20.333333333333329"/>
                                                                             <gestureRecognizers/>
                                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-XC-L23">
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-XC-L23">
                                                                             <rect key="frame" x="12" y="92" width="337" height="17"/>
                                                                             <gestureRecognizers/>
                                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
@@ -2958,7 +2958,7 @@
         <segue reference="CgJ-YU-J4g"/>
         <segue reference="BzJ-Ck-f8S"/>
         <segue reference="baP-kX-kvr"/>
-        <segue reference="92W-3G-qz0"/>
+        <segue reference="xXQ-aT-JeO"/>
         <segue reference="n0F-KO-kwX"/>
         <segue reference="ZST-2x-JmV"/>
         <segue reference="wdi-OM-u5K"/>
