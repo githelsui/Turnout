@@ -20,8 +20,8 @@
 @property (nonatomic, strong) PriorityQueue *priorityQueue;
 @property (nonatomic) BOOL completeFetch;
 @property (nonatomic, strong) NSCondition *fetchCondition;
-@property (nonatomic) BOOL neighborsFetched;
-@property (nonatomic, strong) NSCondition *neighborsCondition;
+@property (nonatomic) BOOL distanceFetched;
+@property (nonatomic, strong) NSCondition *distanceCondition;
 @end
 
 @implementation RankAlgorithm
@@ -39,6 +39,7 @@
     self = [super init];
     self.fetchCondition = [[NSCondition alloc] init];
     self.completeFetch = NO;
+    self.distanceFetched = NO;
     self.neighborDicts =  [NSMutableArray array];
     self.individualQueues = [NSMutableArray array];
     self.posts =  [NSMutableArray array];
@@ -306,7 +307,12 @@
         if(results.count > 0){
             for(Post *post in results){
                 if([self livefeedContainsPost:post] == NO){
-                     [self createPostBatch:post];
+                    [self createPostBatch:post];
+                    while(!self.distanceFetched){
+                        [NSThread sleepForTimeInterval:0.1];
+                        NSLog(@"gettin distance");
+                    }
+                    self.distanceFetched = NO;
                  }
             }
             NSLog(@"far away batches: %@", self.individualQueues);
@@ -334,6 +340,7 @@
                     [batch setObject:totalFetched forKey:@"totalFetched"];
                     [self.individualQueues replaceObjectAtIndex:index withObject:batch];
                 }
+            self.distanceFetched = YES;
             } else {
                 [self createNewBatch:post];
             }
@@ -359,6 +366,7 @@
             [newBatch setObject:@NO forKey:@"queryEmpty"];
         }
         [self.individualQueues addObject:newBatch];
+        self.distanceFetched = YES;
     }];
 }
 

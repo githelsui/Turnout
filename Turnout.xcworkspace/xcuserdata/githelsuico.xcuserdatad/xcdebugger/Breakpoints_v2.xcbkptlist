@@ -14,9 +14,9 @@
             filePath = "Turnout/Utilities/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "-updatePostQueue:distance:postArr:"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
+            landmarkName = "-distancePerBatch:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,9 +94,9 @@
             filePath = "Turnout/Utilities/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "-updatePostQueue:distance:postArr:"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-distancePerBatch:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,9 +110,9 @@
             filePath = "Turnout/Utilities/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "-updatePostQueue:distance:postArr:"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "-distancePerBatch:completion:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -126,8 +126,8 @@
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Utilities/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "367"
-                  endingLineNumber = "367"
+                  startingLineNumber = "375"
+                  endingLineNumber = "375"
                   offsetFromSymbolStart = "183">
                </Location>
                <Location
@@ -141,8 +141,8 @@
                   urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Utilities/RankAlgorithm.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "367"
-                  endingLineNumber = "367"
+                  startingLineNumber = "375"
+                  endingLineNumber = "375"
                   offsetFromSymbolStart = "15">
                </Location>
             </Locations>
@@ -158,9 +158,9 @@
             filePath = "Turnout/Utilities/RankAlgorithm.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-updatePostQueue:distance:postArr:"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
+            landmarkName = "-distancePerBatch:completion:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -242,6 +242,118 @@
             endingLineNumber = "62"
             landmarkName = "-getDistance:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75AB8C8D-D3CC-4101-B87E-6F06147E32A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Utilities/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-fetchFarPosts:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2FB030F-3CA8-4EB9-AE2B-05E860578A27"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Utilities/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-createPostBatch:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2035B384-9EEA-4EFE-BDE8-F05CA2012BEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Utilities/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-createPostBatch:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "244AD817-5393-4857-B8E1-0300C1E777E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Utilities/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "-createNewBatch:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EFF0196-0003-43DA-A98C-D13D6636A509"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turnout/Utilities/RankAlgorithm.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "-createNewBatch:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6EFF0196-0003-43DA-A98C-D13D6636A509 - 63baa58350e27be9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RankAlgorithm createNewBatch:]"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Utilities/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "147">
+               </Location>
+               <Location
+                  uuid = "6EFF0196-0003-43DA-A98C-D13D6636A509 - be141530301be656"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[RankAlgorithm createNewBatch:]_block_invoke"
+                  moduleName = "Turnout"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/githelsuico/Documents/FBU_Assignments/Turnout/Turnout/Utilities/RankAlgorithm.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
