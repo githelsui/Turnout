@@ -205,7 +205,7 @@ NSIndexPath *lastIndexPath;
 - (void)presentToLivefeed{
     NSArray *livefeed = [NSArray array];
     NSRange range;
-    int postsPerPage = 10 * self.pageNum;
+    int postsPerPage = 8 * self.pageNum;
     if(self.posts.count > postsPerPage){
         range.location = 0;
         range.length = postsPerPage;
@@ -219,7 +219,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)loadLivefeed{
-    int postsPerPage = 10;
+    int postsPerPage = 8;
     NSArray *livefeed = [NSArray array];
     NSRange range;
     if(self.posts.count > postsPerPage){
