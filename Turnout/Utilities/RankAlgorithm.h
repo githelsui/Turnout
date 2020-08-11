@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<RankAlgorithmDelegate> delegate;
 + (instancetype)shared;
 - (void)queryPosts:(int)skip completion:(void(^)(NSArray *posts, NSError *error))completion;
-
+- (void)distancePerBatch:(NSString *)zipCompare completion:(void(^)(NSString *distance, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

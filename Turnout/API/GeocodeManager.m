@@ -9,7 +9,7 @@
 #import "GeocodeManager.h"
 
 static NSString * const baseURLString = @"https://maps.googleapis.com/maps/api/geocode/json?";
-static NSString * const baseDistanceURL = @" https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial";
+static NSString * const baseDistanceURL = @"https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial";
 //&origins=92806&destinations=92857&key=AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI
 static NSString * const APIKey = @"AIzaSyB_9yrwJD6S1XZtaQM1v9sPcTnTJ0pzRiI";
 static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv1o2TKhS1avCdS";
@@ -59,14 +59,7 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
 - (NSString *)getDistance:(NSString *)str{
     NSString *newDist = @"";
     NSArray *string = [str componentsSeparatedByString: @" "];
-    for(NSString *digit in string){
-        NSString *firstDigit = [digit substringWithRange:NSMakeRange(0, 1)];
-        if([firstDigit isEqualToString:@"m"])
-            break;
-        else {
-            newDist = [newDist stringByAppendingString:firstDigit];
-        }
-    }
+    newDist = [newDist stringByAppendingString:string[0]];
     return newDist;
 }
 

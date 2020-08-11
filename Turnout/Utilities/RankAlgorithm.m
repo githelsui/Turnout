@@ -343,31 +343,36 @@
 
 - (void)createNewBatch:(Post *)post{
     Zipcode *zip = post[@"zipcode"];
-    NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
-    KSQueue *queue = [[KSQueue alloc] init];
-    NSString *distance = @"12";
-    KSQueue *updatedQueue =  [self updatePostQueue:post distance:distance postArr:queue];
-    NSNumber *totalFetched = @([updatedQueue getSize]);
-    [newBatch setObject:totalFetched forKey:@"totalFetched"];
-    [newBatch setObject:zip forKey:@"zipcode"];
-    [newBatch setObject:distance forKey:@"distance"];
-    [newBatch setObject:updatedQueue forKey:@"queue"];
-    if([updatedQueue getSize] == 0){
-        [newBatch setObject:@YES forKey:@"queryEmpty"];
-    } else {
-        [newBatch setObject:@NO forKey:@"queryEmpty"];
-    }
-    [self.individualQueues addObject:newBatch];
+    NSString *key = zip[@"zipcode"];
+    [self distancePerBatch:key completion:^(NSString *distance, NSError *error){
+        NSMutableDictionary *newBatch = [[NSMutableDictionary alloc] init];
+        KSQueue *queue = [[KSQueue alloc] init];
+        KSQueue *updatedQueue =  [self updatePostQueue:post distance:distance postArr:queue];
+        NSNumber *totalFetched = @([updatedQueue getSize]);
+        [newBatch setObject:totalFetched forKey:@"totalFetched"];
+        [newBatch setObject:zip forKey:@"zipcode"];
+        [newBatch setObject:distance forKey:@"distance"];
+        [newBatch setObject:updatedQueue forKey:@"queue"];
+        if([updatedQueue getSize] == 0){
+            [newBatch setObject:@YES forKey:@"queryEmpty"];
+        } else {
+            [newBatch setObject:@NO forKey:@"queryEmpty"];
+        }
+        [self.individualQueues addObject:newBatch];
+    }];
 }
 
 - (void)distancePerBatch:(NSString *)zipCompare completion:(void(^)(NSString *distance, NSError *error))completion{
-    NSString *zipStr = self.currentZip[@"zipcode"];
-    [[GeocodeManager shared]fetchDistance:zipStr current:zipCompare completion:^(NSString *distance, NSError *error){
-        if(distance){
-            completion(distance, nil);
-        } else {
-            completion(@"0", nil);
-        }
+    Zipcode *zip = PFUser.currentUser[@"zipcode"];
+    [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
+        NSString *zipStr = zipcode[@"zipcode"];
+        [[GeocodeManager shared]fetchDistance:zipCompare current:zipStr completion:^(NSString *distance, NSError *error){
+            if(distance){
+                completion(distance, nil);
+            } else {
+                completion(@"12", nil);
+            }
+        }];
     }];
 }
 
