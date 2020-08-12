@@ -180,8 +180,6 @@
     self.bubbleView.clipsToBounds = NO;
     self.bubbleView.layer.cornerRadius = 15;
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bubbleView.layer.borderWidth = 0.5;
-    self.bubbleView.layer.borderColor =  [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f].CGColor;
     self.bubbleView.layer.shadowRadius = 5;
     self.bubbleView.layer.shadowOpacity = 0.5;
     self.bubbleView.layer.shadowColor = [UIColor colorWithRed:221/255.0f green:153/255.0f blue:147/255.0f alpha:1.0f].CGColor;
@@ -191,8 +189,6 @@
     self.commentSection.layer.shadowRadius = 5;
     self.commentSection.layer.shadowOpacity = 0.5;
     self.commentSection.layer.shadowColor = [UIColor colorWithRed:221/255.0f green:153/255.0f blue:147/255.0f alpha:1.0f].CGColor;
-    self.commentSection.layer.borderWidth = 0.5;
-    self.commentSection.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f].CGColor;
     self.commentBtn.layer.cornerRadius = 12;
     self.firstCommView.layer.cornerRadius = 12;
     self.secondCommView.layer.cornerRadius = 12;
