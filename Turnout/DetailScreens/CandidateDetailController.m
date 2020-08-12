@@ -95,7 +95,7 @@
 }
 
 - (void)fetchCandidateInfo{
-    [self.activityHUD show];
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [[ProPublicaAPI shared]fetchSpecificCand:self.candidateId completion:^(NSDictionary *details, NSError *error){
         if(details){
             self.details = details;

@@ -88,8 +88,8 @@
 }
 
 - (void)fetchCandidates{
-    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     Zipcode *zip = PFUser.currentUser[@"zipcode"];
+    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         NSString *stateStr = zipcode[@"shortState"];
         self.currentState = zipcode[@"shortState"];
