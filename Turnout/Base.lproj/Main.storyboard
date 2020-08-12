@@ -504,7 +504,7 @@
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s50-tU-lxu">
                                                                 <rect key="frame" x="0.0" y="110.66666666666663" width="341" height="34"/>
-                                                                <color key="backgroundColor" red="0.86540291878172593" green="0.60015178347476661" blue="0.57581452868724314" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" red="0.8666666666666667" green="0.60015178347476661" blue="0.57581452868724314" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Leave a Comment">
