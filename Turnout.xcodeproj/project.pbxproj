@@ -267,8 +267,6 @@
 				CA84E42A24C0D1E4003D9BC6 /* GeocodeManager.m */,
 				CAE77A9624C7A9A8002B26D6 /* GeoNamesAPI.h */,
 				CAE77A9724C7A9A8002B26D6 /* GeoNamesAPI.m */,
-				CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */,
-				CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */,
 				CAAEF88424D1F2C500F27247 /* GoogleCivicAPI.h */,
 				CAAEF88524D1F2C500F27247 /* GoogleCivicAPI.m */,
 				CA3BB1B924D2309B006B58E4 /* OpenFECAPI.h */,
@@ -448,6 +446,8 @@
 		CA864AF424D782B9003EB7AC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CAFDC5FF24C6779F00BDB2AD /* ZipcodeGenerator.h */,
+				CAFDC60024C6779F00BDB2AD /* ZipcodeGenerator.m */,
 				CA028F3424CA1A270034C211 /* RankAlgorithm.h */,
 				CA028F3524CA1A270034C211 /* RankAlgorithm.m */,
 				CA3540EB24D61EF00034082E /* UIView+GSKLayoutHelper.h */,

@@ -36,7 +36,7 @@
 
 - (void)generateZipcodes{
     self.index = 0;
-    self.loopIndex = 20904;
+    self.loopIndex = 1612;
     self.neighborhoods = [NSMutableArray array];
     NSString *myPath = [[NSBundle mainBundle]pathForResource:@"USAZipcodes" ofType:@"txt"];
     NSError *err = nil;
@@ -46,8 +46,8 @@
     [mutableRows removeLastObject];
     NSLog(@"zipcode arr length: %lu", (unsigned long)mutableRows.count);
     NSRange range;
-    range.location = 40904;
-    range.length = 54;
+    range.location = 2590;
+    range.length = 979; //indexes: 2317 to 4907
     self.myRange = range;
     NSMutableArray *tempArr = [[mutableRows subarrayWithRange:range] mutableCopy];
     self.allData  = [self getCSVData:tempArr];

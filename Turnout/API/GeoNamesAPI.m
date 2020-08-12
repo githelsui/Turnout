@@ -33,7 +33,7 @@ static NSString * const username2 = @"githelsuico";
 }
 
 - (void)fetchNeighbors:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *parameters = [NSString stringWithFormat:@"findNearbyPostalCodesJSON?postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username1];
+    NSString *parameters = [NSString stringWithFormat:@"findNearbyPostalCodesJSON?postalcode=%@&country=US&radius=30&maxRows=15&username=%@", zipcode, username2];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -54,7 +54,7 @@ static NSString * const username2 = @"githelsuico";
 }
 
 - (void)fetchZipInfo:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion {
-    NSString *parameters = [NSString stringWithFormat:@"postalCodeLookupJSON?postalcode=%@&country=US&maxRows=1&username=%@", zipcode, username1];
+    NSString *parameters = [NSString stringWithFormat:@"postalCodeLookupJSON?postalcode=%@&country=US&maxRows=1&username=%@", zipcode, username2];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -75,7 +75,7 @@ static NSString * const username2 = @"githelsuico";
 }
 
 - (void)fetchZipcode:(NSString *)zipcode completion:(void(^)(NSArray *zipcodeData, NSError *error))completion{
-    NSString *parameters = [NSString stringWithFormat:@"postalCodeLookupJSON?postalcode=%@&country=US&username=%@", zipcode, username1];
+    NSString *parameters = [NSString stringWithFormat:@"postalCodeLookupJSON?postalcode=%@&country=US&username=%@", zipcode, username2];
     NSString *fullURL = [baseURLString stringByAppendingString:parameters];
     NSLog(@"full neighbor URL: %@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL];
