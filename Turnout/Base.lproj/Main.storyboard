@@ -1145,8 +1145,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Lv-op-IVe">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="819"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <rect key="frame" x="0.0" y="107" width="375" height="769"/>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="148" id="mFQ-wh-Ieb" customClass="VoterInfoCell">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="148"/>
@@ -1196,7 +1196,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="APL-7P-Bbz" secondAttribute="bottom" constant="13" id="BV7-iT-yhW"/>
                                                         <constraint firstItem="APL-7P-Bbz" firstAttribute="top" secondItem="DRV-6A-F0F" secondAttribute="top" constant="11" id="NGW-T4-JwX"/>
@@ -1216,17 +1216,17 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="bottom" secondItem="UXi-2N-Cwa" secondAttribute="bottom" constant="200" id="EBA-kS-G0V"/>
+                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="bottom" secondItem="UXi-2N-Cwa" secondAttribute="bottom" constant="201" id="EBA-kS-G0V"/>
                                     <constraint firstItem="9Lv-op-IVe" firstAttribute="leading" secondItem="UXi-2N-Cwa" secondAttribute="leading" id="ebb-bG-xg8"/>
                                     <constraint firstItem="9Lv-op-IVe" firstAttribute="trailing" secondItem="UXi-2N-Cwa" secondAttribute="trailing" id="v20-qS-gyD"/>
-                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="top" secondItem="UXi-2N-Cwa" secondAttribute="top" id="zZy-Fa-H5Y"/>
+                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="top" secondItem="UXi-2N-Cwa" secondAttribute="top" constant="51" id="zZy-Fa-H5Y"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="UXi-2N-Cwa"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="rkW-66-c36"/>
                     </view>
                     <navigationItem key="navigationItem" id="e6u-KW-Opp"/>
@@ -1247,8 +1247,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-b1-EBf">
-                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="107" width="375" height="819"/>
+                                <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ElectionDetailCell" rowHeight="142" id="BLV-by-RT5" customClass="ElectionDetailCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="142"/>
@@ -1320,6 +1320,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="phd-Xh-hqi" secondAttribute="bottom" constant="9" id="Fmr-fX-qR1"/>
                                                 <constraint firstItem="phd-Xh-hqi" firstAttribute="leading" secondItem="uer-9h-BpK" secondAttribute="leading" constant="8" id="JlN-nK-jiB"/>
@@ -1341,10 +1342,10 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9NG-b1-EBf" firstAttribute="bottom" secondItem="bKT-RZ-Pe6" secondAttribute="bottom" constant="200" id="0Qm-w2-4EP"/>
-                            <constraint firstItem="9NG-b1-EBf" firstAttribute="top" secondItem="bKT-RZ-Pe6" secondAttribute="top" id="696-PQ-6qT"/>
+                            <constraint firstItem="9NG-b1-EBf" firstAttribute="bottom" secondItem="bKT-RZ-Pe6" secondAttribute="bottom" constant="251" id="0Qm-w2-4EP"/>
+                            <constraint firstItem="9NG-b1-EBf" firstAttribute="top" secondItem="bKT-RZ-Pe6" secondAttribute="top" constant="51" id="696-PQ-6qT"/>
                             <constraint firstItem="9NG-b1-EBf" firstAttribute="leading" secondItem="bKT-RZ-Pe6" secondAttribute="leading" id="Xbh-WO-pdf"/>
                             <constraint firstItem="9NG-b1-EBf" firstAttribute="trailing" secondItem="bKT-RZ-Pe6" secondAttribute="trailing" id="b1r-rT-xlg"/>
                         </constraints>
@@ -1611,7 +1612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFj-EO-aq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568.8000000000002" y="2944.5812807881775"/>
+            <point key="canvasLocation" x="2570" y="3027"/>
         </scene>
         <!--Candidate Detail Controller-->
         <scene sceneID="VU8-nZ-7e2">

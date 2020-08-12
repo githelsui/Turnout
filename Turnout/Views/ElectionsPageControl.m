@@ -18,7 +18,7 @@ static CGFloat const HEIGHT = 70.0; //%%% height of the segment
 static CGFloat const BOUNCE_BUFFER = 10.0; //%%% adds bounce to the selection bar when you scroll
 static CGFloat const ANIMATION_SPEED = 0.2; //%%% the number of seconds it takes to complete the animation
 static CGFloat const SELECTOR_Y_BUFFER = 85.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
-static CGFloat const SELECTOR_HEIGHT = 3; //%%% thickness of the selector bar
+static CGFloat const SELECTOR_HEIGHT = 5; //%%% thickness of the selector bar
 
 static CGFloat const X_OFFSET = 8.0; 
 
