@@ -92,7 +92,6 @@
 }
 
 - (void)onlyOneComment{
-//    [self.commentStack removeArrangedSubview:self.secondCommView];
     self.secondCommView.hidden = true;
     self.secondCommView.hidden = true;
     self.firstCommLabel.hidden = false;
@@ -180,8 +179,14 @@
 - (void)createShadows{
     self.bubbleView.clipsToBounds = NO;
     self.bubbleView.layer.cornerRadius = 15;
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bubbleView.layer.shadowRadius = 3;
+    self.bubbleView.layer.shadowOpacity = 0.5;
     self.commentSection.clipsToBounds = NO;
     self.commentSection.layer.cornerRadius = 15;
+    self.commentSection.layer.shadowOffset = CGSizeMake(0, 0);
+    self.commentSection.layer.shadowRadius = 3;
+    self.commentSection.layer.shadowOpacity = 0.5;
     self.commentBtn.layer.cornerRadius = 12;
     self.firstCommView.layer.cornerRadius = 12;
     self.secondCommView.layer.cornerRadius = 12;
