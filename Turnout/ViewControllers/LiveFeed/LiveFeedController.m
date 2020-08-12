@@ -104,20 +104,20 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)setUpFooter{
-    UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 65)];
+    UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 140)];
     self.loadMoreBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loadView.alpha = 1;
     self.loadMoreBtn.alpha = 1;
     [self.loadMoreBtn setTitle:@"Load More" forState:UIControlStateNormal];
     [self.loadMoreBtn addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
-    self.loadMoreBtn.frame=CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
-    [self.loadMoreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.loadMoreBtn.frame = CGRectMake(0, 0, self.view.bounds.size.width - 10, 50);
+    [self.loadMoreBtn setTitleColor:[UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     self.loadMoreBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
     loadView.center = CGPointMake(self.view.center.x, 0);
     self.loadMoreBtn.center = CGPointMake(self.view.center.x, 30);
     self.loadMoreBtn.layer.cornerRadius = 20;
     self.loadMoreBtn.layer.borderWidth = 0.5f;
-    self.loadMoreBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    self.loadMoreBtn.layer.borderColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f].CGColor;
     [loadView addSubview:self.loadMoreBtn];
     self.tableView.tableFooterView = loadView;
     [UIView animateWithDuration:4 animations:^{
