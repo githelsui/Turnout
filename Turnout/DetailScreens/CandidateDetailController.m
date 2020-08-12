@@ -83,8 +83,10 @@
 }
 
 - (NSString *)getType:(NSString *)type{
-    if([type isEqualToString:@"C"]) return @"Challenger";
-    else return @"Incumbent";
+    if([type isEqual:[NSNull null]]){
+        return @"Status: N/A";
+    } else if([type isEqualToString:@"C"]) return @"Status: Challenger";
+    else return @"Status: Incumbent";
 }
 
 - (NSString *)getParty:(NSString *)type{
