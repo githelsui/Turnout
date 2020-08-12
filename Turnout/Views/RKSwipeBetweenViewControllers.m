@@ -17,7 +17,7 @@ static CGFloat const HEIGHT = 70.0; //%%% height of the segment
 static CGFloat const BOUNCE_BUFFER = 10.0; //%%% adds bounce to the selection bar when you scroll
 static CGFloat const ANIMATION_SPEED = 0.2; //%%% the number of seconds it takes to complete the animation
 static CGFloat const SELECTOR_Y_BUFFER = 85.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
-static CGFloat const SELECTOR_HEIGHT = 3; //%%% thickness of the selector bar
+static CGFloat const SELECTOR_HEIGHT = 5; //%%% thickness of the selector bar
 
 static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
 
@@ -70,7 +70,6 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
 //%%% sets up the tabs using a loop.  You can take apart the loop to customize individual buttons, but remember to tag the buttons.  (button.tag=0 and the second button.tag=1, etc)
 -(void)setupSegmentButtons {
     navigationView = [[UIView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.navigationBar.frame.size.height)];
-    
     NSInteger numControllers = [viewControllerArray count];
     
     if (!buttonText) {
