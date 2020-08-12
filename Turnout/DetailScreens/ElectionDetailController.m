@@ -34,7 +34,7 @@
     [self setElectionData];
     [self checkBookmark];
     [self loadBookmarks];
-    [self setNavigationBar];
+//    [self setNavigationBar];
 }
 
 - (void)setViews{

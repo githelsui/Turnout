@@ -11,16 +11,16 @@
 #import "RKSwipeBetweenViewControllers.h"
 
 static CGFloat const X_BUFFER = 0.0; //%%% the number of pixels on either side of the segment
-static CGFloat const Y_BUFFER = 14.0; //%%% number of pixels on top of the segment
-static CGFloat const HEIGHT = 20.0; //%%% height of the segment
+static CGFloat const Y_BUFFER = 20.0; //%%% number of pixels on top of the segment
+static CGFloat const HEIGHT = 70.0; //%%% height of the segment
 
 //%%% customizeable selector bar attributes (the black bar under the buttons)
 static CGFloat const BOUNCE_BUFFER = 10.0; //%%% adds bounce to the selection bar when you scroll
 static CGFloat const ANIMATION_SPEED = 0.2; //%%% the number of seconds it takes to complete the animation
-static CGFloat const SELECTOR_Y_BUFFER = 40.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
-static CGFloat const SELECTOR_HEIGHT = 4.0; //%%% thickness of the selector bar
+static CGFloat const SELECTOR_Y_BUFFER = 85.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
+static CGFloat const SELECTOR_HEIGHT = 3; //%%% thickness of the selector bar
 
-static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
+static CGFloat const X_OFFSET = 8.0; 
 
 
 @interface ElectionsPageControl ()
@@ -74,23 +74,31 @@ static CGFloat const X_OFFSET = 8.0; //%%% for some reason there's a little bit 
     NSInteger numControllers = [viewControllerArray count];
     
     if (!buttonText) {
-         buttonText = [[NSArray alloc]initWithObjects: @"National Elections",@"State Elections",nil]; //%%%buttontitle
+         buttonText = [[NSArray alloc]initWithObjects: @"National",@"State",nil]; //%%%buttontitle
     }
     
-    for (int i = 0; i<numControllers; i++) {
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+i*(self.view.frame.size.width-2*X_BUFFER)/numControllers-X_OFFSET, Y_BUFFER, (self.view.frame.size.width-2*X_BUFFER)/numControllers, HEIGHT)];
-        [navigationView addSubview:button];
-        
-        button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
-        button.backgroundColor = [UIColor whiteColor];//%%% buttoncolors
-        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightLight];
-        [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
-    }
-    
-    pageController.navigationController.navigationBar.topItem.titleView = navigationView;
+     for (int i = 0; i<numControllers; i++) {
+           UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+i*(self.view.frame.size.width-2*X_BUFFER)/numControllers-X_OFFSET, Y_BUFFER, (self.view.frame.size.width-2*X_BUFFER)/numControllers, HEIGHT)];
+           [navigationView addSubview:button];
+           
+           button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
+           button.backgroundColor = [UIColor whiteColor];//%%% buttoncolors
+           
+           [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+           button.titleLabel.font = [UIFont systemFontOfSize:22 weight:UIFontWeightThin];
+           [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+           
+           [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
+       }
+       
+       UILabel *lblTitle = [[UILabel alloc] init];
+       lblTitle.text = @"Elections";
+       lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+       lblTitle.font = [UIFont systemFontOfSize:28 weight:UIFontWeightThin];
+       [lblTitle sizeToFit];
+       lblTitle.center = CGPointMake((self.view.frame.size.width  / 2) - 5, 15);
+       [navigationView addSubview:lblTitle];
+       pageController.navigationController.navigationBar.topItem.titleView = navigationView;
     
     //%%% example custom buttons example:
     /*
