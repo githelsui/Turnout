@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigationBar];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
@@ -30,6 +31,18 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchElections) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)setNavigationBar{
+    UIBarButtonItem *myBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage
+    imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
+                                                                 action:@selector(goBack:)];
+    myBackButton.tintColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    self.navigationItem.backBarButtonItem = myBackButton;
+}
+
+- (void)goBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)startTimer{

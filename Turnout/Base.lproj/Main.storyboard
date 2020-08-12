@@ -922,14 +922,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWb-02-ZEA">
-                                <rect key="frame" x="16" y="79" width="343" height="637"/>
+                                <rect key="frame" x="16" y="119" width="343" height="466"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-xC-fmt">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="637"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="480"/>
                                         <color key="tintColor" red="1" green="0.81790701489999995" blue="0.74818149320000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-4I-1EM">
-                                        <rect key="frame" x="22" y="306" width="298" height="94"/>
+                                        <rect key="frame" x="22" y="253" width="298" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="absenteeballot" translatesAutoresizingMaskIntoConstraints="NO" id="LKY-6O-6pt">
                                                 <rect key="frame" x="17" y="17" width="64" height="63"/>
@@ -963,7 +963,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZ0-oV-ZXH">
-                                        <rect key="frame" x="22" y="67" width="298" height="94"/>
+                                        <rect key="frame" x="22" y="14" width="298" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="41R-2z-Au8">
                                                 <rect key="frame" x="8" y="12" width="69" height="71"/>
@@ -996,7 +996,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utp-WK-YbB">
-                                        <rect key="frame" x="22" y="185" width="298" height="94"/>
+                                        <rect key="frame" x="22" y="132" width="298" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="register" translatesAutoresizingMaskIntoConstraints="NO" id="9tU-jd-xvf">
                                                 <rect key="frame" x="15" y="17" width="70" height="64"/>
@@ -1029,7 +1029,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-ze-CDP">
-                                        <rect key="frame" x="22" y="425" width="298" height="94"/>
+                                        <rect key="frame" x="22" y="372" width="298" height="94"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="QPm-2j-mHa">
                                                 <rect key="frame" x="22" y="15" width="59" height="63"/>
@@ -1066,7 +1066,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kZ0-oV-ZXH" secondAttribute="trailing" constant="23" id="05U-Jc-EI6"/>
                                     <constraint firstItem="ufG-xC-fmt" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" id="0bX-sd-YJN"/>
                                     <constraint firstAttribute="trailing" secondItem="utp-WK-YbB" secondAttribute="trailing" constant="23" id="5TR-fj-Jxk"/>
-                                    <constraint firstAttribute="bottom" secondItem="ufG-xC-fmt" secondAttribute="bottom" id="5wW-aR-Fm0"/>
+                                    <constraint firstAttribute="bottom" secondItem="ufG-xC-fmt" secondAttribute="bottom" constant="-14" id="5wW-aR-Fm0"/>
                                     <constraint firstItem="kZ0-oV-ZXH" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="6F1-jB-H6N"/>
                                     <constraint firstAttribute="trailing" secondItem="hbT-4I-1EM" secondAttribute="trailing" constant="23" id="BqP-Zk-yMj"/>
                                     <constraint firstAttribute="trailing" secondItem="I8m-ze-CDP" secondAttribute="trailing" constant="23" id="Dxj-N1-79l"/>
@@ -1078,8 +1078,8 @@
                                     <constraint firstItem="hbT-4I-1EM" firstAttribute="top" secondItem="utp-WK-YbB" secondAttribute="bottom" constant="27" id="cOC-iB-shg"/>
                                     <constraint firstItem="utp-WK-YbB" firstAttribute="height" secondItem="kZ0-oV-ZXH" secondAttribute="height" id="h1h-Y2-Yr6"/>
                                     <constraint firstItem="utp-WK-YbB" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="o3R-Uf-zEy"/>
-                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="I8m-ze-CDP" secondAttribute="bottom" constant="118" id="oHm-a5-cZI"/>
-                                    <constraint firstItem="kZ0-oV-ZXH" firstAttribute="top" relation="lessThanOrEqual" secondItem="GWb-02-ZEA" secondAttribute="top" constant="67" id="rJe-BN-ujz"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="I8m-ze-CDP" secondAttribute="bottom" constant="137" id="oHm-a5-cZI"/>
+                                    <constraint firstItem="kZ0-oV-ZXH" firstAttribute="top" secondItem="GWb-02-ZEA" secondAttribute="top" constant="14" id="rJe-BN-ujz"/>
                                     <constraint firstItem="hbT-4I-1EM" firstAttribute="leading" secondItem="GWb-02-ZEA" secondAttribute="leading" constant="22" id="uuV-dw-gEQ"/>
                                     <constraint firstAttribute="trailing" secondItem="ufG-xC-fmt" secondAttribute="trailing" id="x74-Dh-wSW"/>
                                     <constraint firstItem="utp-WK-YbB" firstAttribute="top" secondItem="kZ0-oV-ZXH" secondAttribute="bottom" constant="24" id="ySG-Gy-Smc"/>
@@ -1089,9 +1089,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="GWb-02-ZEA" firstAttribute="leading" secondItem="GLu-k6-fs3" secondAttribute="leading" constant="16" id="QM9-kp-96Q"/>
-                            <constraint firstAttribute="bottom" secondItem="GWb-02-ZEA" secondAttribute="bottom" constant="42" id="S5J-WW-GfX"/>
+                            <constraint firstAttribute="bottom" secondItem="GWb-02-ZEA" secondAttribute="bottom" constant="173" id="S5J-WW-GfX"/>
                             <constraint firstItem="GLu-k6-fs3" firstAttribute="trailing" secondItem="GWb-02-ZEA" secondAttribute="trailing" constant="16" id="ilO-3F-MKN"/>
-                            <constraint firstItem="GWb-02-ZEA" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="23" id="q8N-rp-gu8"/>
+                            <constraint firstItem="GWb-02-ZEA" firstAttribute="top" secondItem="GLu-k6-fs3" secondAttribute="top" constant="63" id="q8N-rp-gu8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GLu-k6-fs3"/>
                     </view>
@@ -2180,7 +2180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcr-90-YaV">
-                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
+                                <rect key="frame" x="0.0" y="107" width="375" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="148" id="BD9-Rj-DP2" customClass="VoterInfoCell">
@@ -2277,7 +2277,7 @@
                             <constraint firstItem="fcr-90-YaV" firstAttribute="trailing" secondItem="gHU-Kx-WWY" secondAttribute="trailing" id="5bs-qE-zlx"/>
                             <constraint firstItem="fcr-90-YaV" firstAttribute="bottom" secondItem="gHU-Kx-WWY" secondAttribute="bottom" constant="200" id="7SG-l2-kcV"/>
                             <constraint firstItem="fcr-90-YaV" firstAttribute="leading" secondItem="gHU-Kx-WWY" secondAttribute="leading" id="U6h-d3-wDY"/>
-                            <constraint firstItem="fcr-90-YaV" firstAttribute="top" secondItem="gHU-Kx-WWY" secondAttribute="top" id="yRP-Nj-jMD"/>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="top" secondItem="gHU-Kx-WWY" secondAttribute="top" constant="51" id="yRP-Nj-jMD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gHU-Kx-WWY"/>
                     </view>
@@ -2959,7 +2959,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="BzJ-Ck-f8S"/>
+        <segue reference="did-d8-sIw"/>
         <segue reference="47q-a5-aTP"/>
         <segue reference="xXQ-aT-JeO"/>
         <segue reference="n0F-KO-kwX"/>

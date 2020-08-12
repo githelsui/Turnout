@@ -43,7 +43,7 @@ static CGFloat const X_OFFSET = 8.0;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-           
+        
     }
     return self;
 }
@@ -64,7 +64,7 @@ static CGFloat const X_OFFSET = 8.0;
 //%%% color of the status bar
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-//    return UIStatusBarStyleDefault;
+    //    return UIStatusBarStyleDefault;
 }
 
 //%%% sets up the tabs using a loop.  You can take apart the loop to customize individual buttons, but remember to tag the buttons.  (button.tag=0 and the second button.tag=1, etc)
@@ -74,58 +74,58 @@ static CGFloat const X_OFFSET = 8.0;
     NSInteger numControllers = [viewControllerArray count];
     
     if (!buttonText) {
-         buttonText = [[NSArray alloc]initWithObjects: @"National",@"State",nil]; //%%%buttontitle
+        buttonText = [[NSArray alloc]initWithObjects: @"National",@"State",nil]; //%%%buttontitle
     }
     
-     for (int i = 0; i<numControllers; i++) {
-           UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+i*(self.view.frame.size.width-2*X_BUFFER)/numControllers-X_OFFSET, Y_BUFFER, (self.view.frame.size.width-2*X_BUFFER)/numControllers, HEIGHT)];
-           [navigationView addSubview:button];
-           
-           button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
-           button.backgroundColor = [UIColor whiteColor];//%%% buttoncolors
-           
-           [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-           button.titleLabel.font = [UIFont systemFontOfSize:22 weight:UIFontWeightThin];
-           [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-           
-           [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
-       }
-       
-       UILabel *lblTitle = [[UILabel alloc] init];
-       lblTitle.text = @"Elections";
-       lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
-       lblTitle.font = [UIFont systemFontOfSize:28 weight:UIFontWeightThin];
-       [lblTitle sizeToFit];
-       lblTitle.center = CGPointMake((self.view.frame.size.width  / 2) - 5, 15);
-       [navigationView addSubview:lblTitle];
-       pageController.navigationController.navigationBar.topItem.titleView = navigationView;
+    for (int i = 0; i<numControllers; i++) {
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+i*(self.view.frame.size.width-2*X_BUFFER)/numControllers-X_OFFSET, Y_BUFFER, (self.view.frame.size.width-2*X_BUFFER)/numControllers, HEIGHT)];
+        [navigationView addSubview:button];
+        
+        button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
+        button.backgroundColor = [UIColor whiteColor];//%%% buttoncolors
+        
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:22 weight:UIFontWeightThin];
+        [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
+    }
+    
+    UILabel *lblTitle = [[UILabel alloc] init];
+    lblTitle.text = @"Elections";
+    lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    lblTitle.font = [UIFont systemFontOfSize:28 weight:UIFontWeightThin];
+    [lblTitle sizeToFit];
+    lblTitle.center = CGPointMake((self.view.frame.size.width  / 2) - 5, 15);
+    [navigationView addSubview:lblTitle];
+    pageController.navigationController.navigationBar.topItem.titleView = navigationView;
     
     //%%% example custom buttons example:
     /*
-    NSInteger width = (self.view.frame.size.width-(2*X_BUFFER))/3;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER, Y_BUFFER, width, HEIGHT)];
-    UIButton *middleButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+width, Y_BUFFER, width, HEIGHT)];
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+2*width, Y_BUFFER, width, HEIGHT)];
-    
-    [self.navigationBar addSubview:leftButton];
-    [self.navigationBar addSubview:middleButton];
-    [self.navigationBar addSubview:rightButton];
-    
-    leftButton.tag = 0;
-    middleButton.tag = 1;
-    rightButton.tag = 2;
-    
-    leftButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
-    middleButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
-    rightButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
-    
-    [leftButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [middleButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [leftButton setTitle:@"left" forState:UIControlStateNormal];
-    [middleButton setTitle:@"middle" forState:UIControlStateNormal];
-    [rightButton setTitle:@"right" forState:UIControlStateNormal];
+     NSInteger width = (self.view.frame.size.width-(2*X_BUFFER))/3;
+     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER, Y_BUFFER, width, HEIGHT)];
+     UIButton *middleButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+width, Y_BUFFER, width, HEIGHT)];
+     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+2*width, Y_BUFFER, width, HEIGHT)];
+     
+     [self.navigationBar addSubview:leftButton];
+     [self.navigationBar addSubview:middleButton];
+     [self.navigationBar addSubview:rightButton];
+     
+     leftButton.tag = 0;
+     middleButton.tag = 1;
+     rightButton.tag = 2;
+     
+     leftButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
+     middleButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
+     rightButton.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];
+     
+     [leftButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+     [middleButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+     [rightButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+     
+     [leftButton setTitle:@"left" forState:UIControlStateNormal];
+     [middleButton setTitle:@"middle" forState:UIControlStateNormal];
+     [rightButton setTitle:@"right" forState:UIControlStateNormal];
      */
     
     [self setupSelector];
@@ -146,10 +146,12 @@ static CGFloat const X_OFFSET = 8.0;
 
 -(void)viewWillAppear:(BOOL)animated {
     if (!self.hasAppearedFlag) {
-        [self prepCustomViews];
-        [self setupPageViewController];
-        [self setupSegmentButtons];
-        self.hasAppearedFlag = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self prepCustomViews];
+            [self setupPageViewController];
+            [self setupSegmentButtons];
+            self.hasAppearedFlag = YES;
+        });
     }
 }
 
@@ -168,7 +170,7 @@ static CGFloat const X_OFFSET = 8.0;
     UIViewController* stateElection = [storyboard instantiateViewControllerWithIdentifier:@"StateElectionController"];
     [viewControllerArray addObject:electionsView];
     [viewControllerArray addObject:stateElection];
-   
+    
 }
 
 //%%% this allows us to get information back from the scrollview, namely the coordinate information that we can link to the selection bar.
@@ -261,7 +263,7 @@ static CGFloat const X_OFFSET = 8.0;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     NSInteger index = [viewControllerArray indexOfObject:viewController];
-
+    
     if ((index == NSNotFound) || (index == 0)) {
         return nil;
     }
@@ -272,7 +274,7 @@ static CGFloat const X_OFFSET = 8.0;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     NSInteger index = [viewControllerArray indexOfObject:viewController];
-
+    
     if (index == NSNotFound) {
         return nil;
     }
