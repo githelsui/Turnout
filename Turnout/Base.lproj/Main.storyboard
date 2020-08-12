@@ -314,7 +314,7 @@
                         <viewLayoutGuide key="safeArea" id="JTc-dD-Pld"/>
                     </view>
                     <navigationItem key="navigationItem" id="HHc-vL-MRA">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Uey-UV-zUU">
+                        <barButtonItem key="leftBarButtonItem" image="signout" id="Uey-UV-zUU">
                             <color key="tintColor" red="0.99813979860000002" green="0.66345753919999995" blue="0.4839832463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="logoutTapped:" destination="03w-tc-kLs" id="t84-Ma-uFf"/>
@@ -2954,7 +2954,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LS-wz-cfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-969" y="978"/>
+            <point key="canvasLocation" x="-518" y="732"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -2964,7 +2964,7 @@
         <segue reference="xXQ-aT-JeO"/>
         <segue reference="n0F-KO-kwX"/>
         <segue reference="d2H-4g-ld3"/>
-        <segue reference="AMT-kr-M6G"/>
+        <segue reference="wdi-OM-u5K"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Orange Coral" width="1120" height="1792"/>
@@ -2986,6 +2986,7 @@
         <image name="place-marker--v1" width="550" height="550"/>
         <image name="register" width="500" height="500"/>
         <image name="settings-1" width="25" height="25"/>
+        <image name="signout" width="25" height="25"/>
         <image name="smallComment" width="25" height="25"/>
         <image name="turnoutAppIcon" width="500" height="500"/>
         <image name="votermenu" width="25" height="25"/>
