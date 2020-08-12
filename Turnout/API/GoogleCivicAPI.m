@@ -42,10 +42,54 @@ static NSString * const consumerSecret = @"s5ynGqXzstUZwFPxVyMDkYh197qvHOcVM3kwv
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSLog(@"data dictionary: %@", dataDictionary);
                NSArray *elections = dataDictionary[@"elections"];
-               completion(elections, nil);
+               NSArray *final = [self sortElections:elections];
+               NSLog(@"sorted elections: %@", final);
+               completion(final, nil);
            }
        }];
        [task resume];
+}
+
+- (NSArray *)sortElections:(NSArray *)fetched{
+    NSMutableArray *temp = [fetched mutableCopy];
+    [temp removeObjectAtIndex:0];
+    NSMutableArray *NSDates = [self createNSDateArr:temp];
+    NSMutableArray *sorted = [self sortNSDates:NSDates];
+    return [self getFinalElections:sorted];
+}
+
+- (NSArray *)getFinalElections:(NSMutableArray *)arr{
+    NSMutableArray *final = [[NSMutableArray alloc] init];
+    for(NSDictionary *election in arr){
+        NSDictionary *data = election[@"data"];
+        [final addObject:data];
+    }
+    return [final copy];
+}
+
+- (NSMutableArray *)sortNSDates:(NSMutableArray *)arr{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank" ascending:TRUE];
+    [arr sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    return arr;
+}
+
+- (NSMutableArray *)createNSDateArr:(NSMutableArray *)arr{
+    NSMutableArray *newArr = [[NSMutableArray alloc] init];
+    for(NSDictionary *election in arr){
+        NSDate *date = [self createNSDate:election[@"electionDay"]];
+        NSMutableDictionary *temp = [NSMutableDictionary new];
+        [temp setObject:election forKey:@"data"];
+        [temp setObject:date forKey:@"rank"];
+        [newArr addObject:temp];
+    }
+    return newArr;
+}
+
+- (NSDate *)createNSDate:(NSString *)strDate{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    NSDate *date = [dateFormat dateFromString:strDate];
+    return date;
 }
 
 - (void)fetchElectionDetails:(NSString *)zipcode election:(NSString *)election completion:(void(^)(NSMutableDictionary *info, NSError *error))completion{
