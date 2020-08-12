@@ -1716,6 +1716,9 @@
                                     <constraint firstAttribute="height" constant="38" id="u4c-GE-IAU"/>
                                 </constraints>
                                 <state key="normal" image="politician"/>
+                                <connections>
+                                    <action selector="tapWebsite:" destination="3Jv-bV-v4J" eventType="touchUpInside" id="8w7-Nt-B9W"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK4-Z3-UsG">
                                 <rect key="frame" x="211" y="326" width="38" height="38"/>
@@ -1726,6 +1729,9 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="wh4-pU-AyH"/>
                                 </constraints>
                                 <state key="normal" image="fbbtn"/>
+                                <connections>
+                                    <action selector="tapFacebook:" destination="3Jv-bV-v4J" eventType="touchUpInside" id="P6x-r4-OVP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

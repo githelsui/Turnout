@@ -106,14 +106,20 @@
 }
 
 - (void)setCandidate:(NSDictionary *)data{
-    self.sideHeaderLbl.alpha = 1;
-    self.sideHeaderLbl.text = data[@"candidateType"];
+    NSDictionary *candInfo = data[@"candidate"];
+    NSString *partyTemp = candInfo[@"party"];
+    self.sideHeaderLbl.alpha = 0;
     self.titleLbl.alpha = 1;
-    self.titleLbl.text = data[@"name"];
+    self.titleLbl.text = candInfo[@"name"];
     self.headerLabel.alpha = 1;
-    self.headerLabel.text = data[@"office"];
+    self.headerLabel.text = @"Congressional Candidate";
     self.subHeader.alpha = 1;
-    self.subHeader.text = data[@"party"];
+    self.subHeader.text = [self getParty:partyTemp];
+}
+
+- (NSString *)getParty:(NSString *)type{
+    if([type isEqualToString:@"DEM"]) return @"Democratic Party";
+    else return @"Republican Party";
 }
 
 - (void)setPropInfo:(NSDictionary *)data{

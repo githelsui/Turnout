@@ -9,6 +9,7 @@
 #import "CandidateDetailController.h"
 #import <CCActivityHUD.h>
 #import "OpenFECAPI.h"
+#import "VoteWebView.h"
 #import "ProPublicaAPI.h"
 
 @interface CandidateDetailController ()
@@ -103,6 +104,23 @@
             });
         }
     }];
+}
+
+- (IBAction)tapFacebook:(id)sender {
+    NSString *url = self.details[@"facebook_url"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    VoteWebView *web = [storyboard instantiateViewControllerWithIdentifier:@"VoteWebView"];
+    web.linkURL = url;
+    [self presentViewController:web animated:YES completion:nil];
+}
+
+- (IBAction)tapWebsite:(id)sender {
+    NSString *url = self.details[@"url"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    VoteWebView *web = [storyboard instantiateViewControllerWithIdentifier:@"VoteWebView"];
+    web.linkURL = url;
+    [self presentViewController:web animated:YES completion:nil];
+    
 }
 
 - (void)animateInfo{
