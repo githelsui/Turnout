@@ -27,7 +27,9 @@
 @property (nonatomic, strong) NSDictionary *details;
 @property (nonatomic, strong) NSDictionary *actualCand;
 @property (nonatomic, strong) NSData *bookmarkInfo;
+@property (weak, nonatomic) IBOutlet UIButton *fbBtn;
 @property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (weak, nonatomic) IBOutlet UIButton *websiteBtn;
 @property (nonatomic) BOOL didBookmark;
 @end
 
@@ -45,6 +47,8 @@
     [self checkBookmark];
     [self loadBookmarks];
     self.backColor.alpha = 0.70;
+    self.fbBtn.alpha = 0;
+    self.websiteBtn.alpha = 0;
     self.backColor.layer.cornerRadius = 15;
     self.nameView.layer.cornerRadius = 15;
     self.infoView.layer.cornerRadius = 15;
@@ -58,6 +62,7 @@
     self.activityHUD.cornerRadius = 30;
     self.activityHUD.indicatorColor = [UIColor systemPinkColor];
     self.activityHUD.backColor =  [UIColor whiteColor];
+    self.activityHUD.hidden = NO;
 }
 
 - (void)setInfoDetails{
@@ -87,28 +92,15 @@
 }
 
 - (void)fetchCandidateInfo{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
-    });
+    [self.activityHUD show];
     [[ProPublicaAPI shared]fetchSpecificCand:self.candidateId completion:^(NSDictionary *details, NSError *error){
         if(details){
             self.details = details;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setInfoDetails];
-                [self fetchDistrict];
+                [self animateInfo];
+                [self.activityHUD dismiss];
             });
-        }
-    }];
-}
-
-- (void)fetchDistrict{
-    [[ProPublicaAPI shared]fetchCommittee:self.details[@"committee"] completion:^(NSDictionary *details, NSError *error){
-        if(details){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                   self.districtLabel.text = details[@"name"];
-                   [self animateInfo];
-                   [self.activityHUD dismiss];
-               });
         }
     }];
 }
@@ -118,6 +110,8 @@
         self.infoView.alpha = 1;
         self.nameView.alpha = 1;
         self.bookmarkBtn.alpha = 1;
+        self.fbBtn.alpha = 1;
+        self.websiteBtn.alpha = 1;
     } completion:^(BOOL finished) {}];
 }
 

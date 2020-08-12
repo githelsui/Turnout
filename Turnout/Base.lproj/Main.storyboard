@@ -1625,11 +1625,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-h2-YRW">
                                 <rect key="frame" x="16" y="16" width="343" height="694"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYy-zw-irC">
-                                <rect key="frame" x="34" y="34" width="307" height="147.33333333333334"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fYy-zw-irC">
+                                <rect key="frame" x="34" y="34" width="307" height="67"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="un5-bo-C6f">
-                                        <rect key="frame" x="8" y="8" width="291" height="131.33333333333334"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="un5-bo-C6f">
+                                        <rect key="frame" x="8" y="8" width="291" height="51"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1643,8 +1643,8 @@
                                     <constraint firstAttribute="bottom" secondItem="un5-bo-C6f" secondAttribute="bottom" constant="8" id="yMP-C1-39c"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eX5-Xo-PG2">
-                                <rect key="frame" x="34" y="200.33333333333337" width="307" height="209.66666666666663"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eX5-Xo-PG2">
+                                <rect key="frame" x="34" y="126" width="307" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Office Full" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-50-Qws">
                                         <rect key="frame" x="8" y="15" width="291" height="21.666666666666671"/>
@@ -1657,13 +1657,6 @@
                                         <rect key="frame" x="8" y="54" width="291" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election District: #" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv6-FW-o0M">
-                                        <rect key="frame" x="8" y="147" width="291" height="19.333333333333343"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1690,9 +1683,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City, State" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juM-ts-egF">
-                                        <rect key="frame" x="8" y="174" width="291" height="19.333333333333343"/>
+                                        <rect key="frame" x="8" y="147" width="291" height="19.333333333333343"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1704,7 +1697,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXo-z9-MD5">
-                                <rect key="frame" x="309" y="418" width="38" height="38"/>
+                                <rect key="frame" x="303" y="326" width="38" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="YeB-Sb-Hvr"/>
                                     <constraint firstAttribute="height" constant="38" id="y15-L1-Kga"/>
@@ -1714,19 +1707,43 @@
                                     <action selector="tapBookmark:" destination="3Jv-bV-v4J" eventType="touchUpInside" id="TqI-mW-Rq3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bui-Ve-Pwi">
+                                <rect key="frame" x="257" y="326" width="38" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="2z3-AD-WGy"/>
+                                    <constraint firstAttribute="width" constant="38" id="L8r-tL-Tqs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="hmS-ne-7jv"/>
+                                    <constraint firstAttribute="height" constant="38" id="u4c-GE-IAU"/>
+                                </constraints>
+                                <state key="normal" image="politician"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK4-Z3-UsG">
+                                <rect key="frame" x="211" y="326" width="38" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="QsA-b3-qR4"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="cBQ-bt-PN2"/>
+                                    <constraint firstAttribute="width" constant="38" id="oAb-u9-Kl8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="wh4-pU-AyH"/>
+                                </constraints>
+                                <state key="normal" image="fbbtn"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fYy-zw-irC" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="34" id="1Xk-ih-NnJ"/>
-                            <constraint firstItem="eX5-Xo-PG2" firstAttribute="top" secondItem="fYy-zw-irC" secondAttribute="bottom" constant="19.000000000000028" id="30D-Dq-P9G"/>
+                            <constraint firstItem="eX5-Xo-PG2" firstAttribute="top" secondItem="fYy-zw-irC" secondAttribute="bottom" constant="25" id="30D-Dq-P9G"/>
                             <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="eX5-Xo-PG2" secondAttribute="trailing" constant="34" id="81a-Ab-EdO"/>
-                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="bottom" secondItem="CXo-z9-MD5" secondAttribute="bottom" constant="268" id="Fxe-QZ-2JK"/>
-                            <constraint firstItem="CXo-z9-MD5" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="309" id="IzO-Er-Nls"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="bottom" secondItem="CXo-z9-MD5" secondAttribute="bottom" constant="360" id="Fxe-QZ-2JK"/>
+                            <constraint firstItem="bui-Ve-Pwi" firstAttribute="leading" secondItem="aK4-Z3-UsG" secondAttribute="trailing" constant="8" id="HDM-ON-PBH"/>
+                            <constraint firstItem="aK4-Z3-UsG" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="211" id="MeA-rZ-aWL"/>
                             <constraint firstItem="tzQ-h2-YRW" firstAttribute="leading" secondItem="9Pp-cS-HTt" secondAttribute="leading" constant="16" id="N1b-PA-aqH"/>
                             <constraint firstItem="tzQ-h2-YRW" firstAttribute="top" secondItem="9Pp-cS-HTt" secondAttribute="top" constant="16" id="RZF-sr-iqu"/>
-                            <constraint firstItem="CXo-z9-MD5" firstAttribute="top" secondItem="eX5-Xo-PG2" secondAttribute="bottom" constant="8" id="Tbo-XV-5FB"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="bottom" secondItem="aK4-Z3-UsG" secondAttribute="bottom" constant="360" id="Rsf-dQ-4jJ"/>
+                            <constraint firstItem="CXo-z9-MD5" firstAttribute="top" secondItem="eX5-Xo-PG2" secondAttribute="bottom" constant="20" id="Tbo-XV-5FB"/>
                             <constraint firstAttribute="bottom" secondItem="tzQ-h2-YRW" secondAttribute="bottom" constant="48" id="cub-Ff-uJV"/>
-                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="CXo-z9-MD5" secondAttribute="trailing" constant="28" id="e35-Ps-a0J"/>
+                            <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="CXo-z9-MD5" secondAttribute="trailing" constant="34" id="e35-Ps-a0J"/>
+                            <constraint firstItem="CXo-z9-MD5" firstAttribute="leading" secondItem="bui-Ve-Pwi" secondAttribute="trailing" constant="8" id="ev8-Rs-tOh"/>
+                            <constraint firstItem="bui-Ve-Pwi" firstAttribute="top" secondItem="eX5-Xo-PG2" secondAttribute="bottom" constant="20" id="f4h-k9-8uE"/>
                             <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="tzQ-h2-YRW" secondAttribute="trailing" constant="16" id="fhW-8K-Jkt"/>
                             <constraint firstItem="fYy-zw-irC" firstAttribute="top" secondItem="9Pp-cS-HTt" secondAttribute="top" constant="34" id="koy-hq-gVS"/>
                             <constraint firstItem="9Pp-cS-HTt" firstAttribute="trailing" secondItem="fYy-zw-irC" secondAttribute="trailing" constant="34" id="tXP-Ho-T3L"/>
@@ -1739,13 +1756,14 @@
                         <outlet property="backColor" destination="tzQ-h2-YRW" id="syW-aB-bGV"/>
                         <outlet property="bookmarkBtn" destination="CXo-z9-MD5" id="9rL-pF-n1N"/>
                         <outlet property="candidateLabel" destination="q94-UW-fKS" id="BST-ic-hg7"/>
-                        <outlet property="districtLabel" destination="Dv6-FW-o0M" id="vQX-nu-GnT"/>
+                        <outlet property="fbBtn" destination="aK4-Z3-UsG" id="rEJ-fI-uIn"/>
                         <outlet property="infoView" destination="eX5-Xo-PG2" id="xo0-8n-HwG"/>
                         <outlet property="locLabel" destination="juM-ts-egF" id="8Jk-Bc-dXe"/>
                         <outlet property="nameLabel" destination="un5-bo-C6f" id="hG2-Vs-sLS"/>
                         <outlet property="nameView" destination="fYy-zw-irC" id="GMe-Tn-ZUg"/>
                         <outlet property="officeLabel" destination="sPO-50-Qws" id="hpD-AX-Slr"/>
                         <outlet property="partyLabel" destination="eHR-uE-2Jq" id="4mz-bw-cBc"/>
+                        <outlet property="websiteBtn" destination="bui-Ve-Pwi" id="Tnv-iC-BPc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyd-kz-nmm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2979,6 +2997,7 @@
         <image name="check" width="550" height="550"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="electionsmenu" width="30" height="30"/>
+        <image name="fbbtn" width="50" height="50"/>
         <image name="flipped_color" width="1792" height="1120"/>
         <image name="homemenu" width="25" height="25"/>
         <image name="icons8-user-30" width="30" height="30"/>
@@ -2988,6 +3007,7 @@
         <image name="notliked" width="25" height="25"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="place-marker--v1" width="550" height="550"/>
+        <image name="politician" width="50" height="50"/>
         <image name="register" width="500" height="500"/>
         <image name="settings-1" width="25" height="25"/>
         <image name="signout" width="25" height="25"/>
