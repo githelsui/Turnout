@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
 @property (nonatomic, strong) NSData *bookmarkInfo;
 @property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic, strong) NSString *state;
 @property (nonatomic) BOOL didBookmark;
 - (void)setCell;
 @end

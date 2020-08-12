@@ -12,6 +12,7 @@
 #import <CCActivityHUD/CCActivityHUD.h>
 #import "CandidateDetailController.h"
 #import <Parse/Parse.h>
+#import "ProPublicaAPI.h"
 #import "Zipcode.h"
 
 @interface CandidatesViewController () <CandidateDetailDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -82,13 +83,14 @@
     Zipcode *zip = PFUser.currentUser[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         NSString *stateStr = zipcode[@"shortState"];
-        [[OpenFECAPI shared] fetchCandidates:stateStr completion:^(NSArray *candidates, NSError *error){
+        self.currentState = zipcode[@"shortState"];
+        [[ProPublicaAPI shared] fetchCandidates:stateStr completion:^(NSArray *candidates, NSError *error){
             if(candidates){
                 self.candidates = candidates;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.activityHUD dismiss];
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                     [self startTimer];
+                    [self.activityHUD dismiss];
                 });
             }
         }];
@@ -111,6 +113,7 @@
     }
     NSMutableDictionary *candidate = self.candidates[indexPath.row];
     cell.candidate = candidate;
+    cell.state = self.currentState;
     [cell setCell];
     cell.alpha = 0;
     return cell;
@@ -130,6 +133,7 @@
     CandidateDetailController *detailController = [segue destinationViewController];
     detailController.candidate = candidate;
     detailController.delegate = self;
+    detailController.state = self.currentState;
 }
 
 @end

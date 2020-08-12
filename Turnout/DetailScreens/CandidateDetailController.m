@@ -7,7 +7,9 @@
 //
 
 #import "CandidateDetailController.h"
+#import <CCActivityHUD.h>
 #import "OpenFECAPI.h"
+#import "ProPublicaAPI.h"
 
 @interface CandidateDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -21,7 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *locLabel;
 @property (nonatomic, strong) NSString *candidateId;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
+@property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (nonatomic, strong) NSDictionary *details;
+@property (nonatomic, strong) NSDictionary *actualCand;
 @property (nonatomic, strong) NSData *bookmarkInfo;
 @property (nonatomic, strong) NSMutableArray *bookmarks;
 @property (nonatomic) BOOL didBookmark;
@@ -31,9 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.candidateId = self.candidate[@"candidate_id"];
+    self.actualCand = self.candidate[@"candidate"];
+    self.candidateId = self.actualCand[@"id"];
     [self setUI];
-    [self setNavigationBar];
     [self fetchCandidateInfo];
 }
 
@@ -49,41 +53,62 @@
     self.bookmarkBtn.alpha = 0;
 }
 
-- (void)setNavigationBar{
-    UILabel *lblTitle = [[UILabel alloc] init];
-    lblTitle.text = self.candidate[@"name"];
-    lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.textColor = [UIColor blackColor];
-    lblTitle.font = [UIFont systemFontOfSize:20 weight:UIFontWeightLight];
-    [lblTitle sizeToFit];
-    self.navigationItem.titleView = lblTitle;
+- (void)customizeActivityIndic{
+    self.activityHUD = [CCActivityHUD new];
+    self.activityHUD.cornerRadius = 30;
+    self.activityHUD.indicatorColor = [UIColor systemPinkColor];
+    self.activityHUD.backColor =  [UIColor whiteColor];
 }
 
 - (void)setInfoDetails{
-    NSString *name = self.details[@"name"];
-    NSString *office = self.candidate[@"office"];
-    NSString *party = self.candidate[@"party"];
-    NSString *candidateType = self.candidate[@"candidateType"];
-    NSString *state = self.details[@"address_state"];
-    NSString *city = self.details[@"address_city"];
+    NSString *name = self.details[@"display_name"];
+    NSString *party = [self getParty:self.details[@"party"]];
+    NSString *candidateType = [self getType:self.details[@"status"]];
+    NSString *state = self.state;
+    NSString *city = self.details[@"mailing_city"];
     NSString *loc = [NSString stringWithFormat:@"%@, %@", city, state];
     NSString *district = [NSString stringWithFormat:@"Election District: %@", self.details[@"district"]];
     self.nameLabel.text = name;
-    self.officeLabel.text = office;
+    self.officeLabel.text = @"Congressional Candidate";
     self.partyLabel.text = party;
     self.candidateLabel.text = candidateType;
     self.locLabel.text = loc;
     self.districtLabel.text = district;
 }
 
+- (NSString *)getType:(NSString *)type{
+    if([type isEqualToString:@"C"]) return @"Challenger";
+    else return @"Incumbent";
+}
+
+- (NSString *)getParty:(NSString *)type{
+    if([type isEqualToString:@"DEM"]) return @"Democratic Party";
+    else return @"Republican Party";
+}
+
 - (void)fetchCandidateInfo{
-    [[OpenFECAPI shared]fetchCandidateDetails:self.candidateId completion:^(NSArray *details, NSError *error){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
+    });
+    [[ProPublicaAPI shared]fetchSpecificCand:self.candidateId completion:^(NSDictionary *details, NSError *error){
         if(details){
-            self.details = details[0];
+            self.details = details;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setInfoDetails];
-                [self animateInfo];
+                [self fetchDistrict];
             });
+        }
+    }];
+}
+
+- (void)fetchDistrict{
+    [[ProPublicaAPI shared]fetchCommittee:self.details[@"committee"] completion:^(NSDictionary *details, NSError *error){
+        if(details){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                   self.districtLabel.text = details[@"name"];
+                   [self animateInfo];
+                   [self.activityHUD dismiss];
+               });
         }
     }];
 }

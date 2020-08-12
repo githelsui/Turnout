@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 - (void)fetchHouseBills:(void(^)(NSArray *info, NSError *error))completion;
 - (void)fetchBillInfo:(NSString *)billId completion:(void(^)(NSArray *info, NSError *error))completion;
-
+- (void)fetchCandidates:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion;
+- (void)fetchSpecificCand:(NSString *)candID completion:(void(^)(NSDictionary *info, NSError *error))completion;
+- (void)fetchDistrict:(NSString *)endpoint completion:(void(^)(NSDictionary *info, NSError *error))completion;
+- (void)fetchCommittee:(NSString *)endpoint completion:(void(^)(NSDictionary *info, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

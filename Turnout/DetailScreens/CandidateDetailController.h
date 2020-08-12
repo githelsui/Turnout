@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CandidateDetailController : UIViewController
 @property (nonatomic, strong) NSDictionary *candidate;
+@property (nonatomic, strong) NSString *state;
 @property (nonatomic, weak) id<CandidateDetailDelegate> delegate;
 @end
 

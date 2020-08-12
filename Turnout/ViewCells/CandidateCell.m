@@ -22,13 +22,19 @@
 }
 
 - (void)setCell{
+    NSDictionary *candInfo = self.candidate[@"candidate"];
     [self checkBookmark];
     [self loadBookmarks];
     [self createShadows];
-    self.typeLabel.text = self.candidate[@"candidateType"];
-    self.nameLabel.text = self.candidate[@"name"];
-    self.officeLabel.text = self.candidate[@"office"];
-    self.partyLabel.text = self.candidate[@"party"];
+    self.typeLabel.text = self.state;
+    self.nameLabel.text = candInfo[@"name"];
+    self.officeLabel.text = @"Congressional Candidate";
+    self.partyLabel.text = [self getParty:candInfo[@"party"]];
+}
+
+- (NSString *)getParty:(NSString *)type{
+    if([type isEqualToString:@"DEM"]) return @"Democratic Party";
+    else return @"Republican Party";
 }
 
 - (void)createShadows{
@@ -36,7 +42,6 @@
      self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
      self.bubbleView.layer.shadowRadius = 5;
      self.bubbleView.layer.shadowOpacity = 0.5;
-    
      self.backColor.clipsToBounds = YES;
      self.backColor.layer.cornerRadius = 15;
 }
