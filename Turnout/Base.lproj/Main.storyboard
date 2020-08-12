@@ -1733,6 +1733,10 @@
                                     <action selector="tapFacebook:" destination="3Jv-bV-v4J" eventType="touchUpInside" id="P6x-r4-OVP"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2mf-rW-ltl">
+                                <rect key="frame" x="169" y="361" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1759,6 +1763,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Vpq-Pf-exg"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="2mf-rW-ltl" id="ULH-Tk-1c9"/>
                         <outlet property="backColor" destination="tzQ-h2-YRW" id="syW-aB-bGV"/>
                         <outlet property="bookmarkBtn" destination="CXo-z9-MD5" id="9rL-pF-n1N"/>
                         <outlet property="candidateLabel" destination="q94-UW-fKS" id="BST-ic-hg7"/>

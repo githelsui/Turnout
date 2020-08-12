@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UILabel *locLabel;
 @property (nonatomic, strong) NSString *candidateId;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkBtn;
 @property (nonatomic, strong) CCActivityHUD *activityHUD;
 @property (nonatomic, strong) NSDictionary *details;
@@ -95,14 +96,15 @@
 }
 
 - (void)fetchCandidateInfo{
-    [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
+    [self.activityIndicator startAnimating];
     [[ProPublicaAPI shared]fetchSpecificCand:self.candidateId completion:^(NSDictionary *details, NSError *error){
         if(details){
             self.details = details;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setInfoDetails];
                 [self animateInfo];
-                [self.activityHUD dismiss];
+                [self.activityIndicator stopAnimating];
+                [self.activityIndicator setHidesWhenStopped:YES];
             });
         }
     }];
