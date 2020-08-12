@@ -1435,7 +1435,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="RwM-Wl-wRG" firstAttribute="bottom" secondItem="d1H-x0-Qfd" secondAttribute="bottom" constant="83" id="4gV-tu-cLq"/>
-                            <constraint firstItem="qhf-jl-zZu" firstAttribute="top" relation="lessThanOrEqual" secondItem="8Jh-tB-CFV" secondAttribute="bottom" constant="27" id="5Hi-Ms-lPn"/>
+                            <constraint firstItem="qhf-jl-zZu" firstAttribute="top" secondItem="8Jh-tB-CFV" secondAttribute="bottom" constant="27" id="5Hi-Ms-lPn"/>
                             <constraint firstItem="RwM-Wl-wRG" firstAttribute="top" secondItem="d1H-x0-Qfd" secondAttribute="top" constant="21" id="9uT-DQ-Ht1"/>
                             <constraint firstItem="d1H-x0-Qfd" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="NOh-Ya-D2m" secondAttribute="bottom" constant="408" id="E1M-59-sLD"/>
                             <constraint firstItem="NOh-Ya-D2m" firstAttribute="top" secondItem="8Jh-tB-CFV" secondAttribute="bottom" constant="27" id="F4a-gk-Ofc"/>
@@ -1766,7 +1766,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="612"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="RF0-Hn-gWQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="612"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="678"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Weo-uq-b3f">
                                                 <rect key="frame" x="292" y="499" width="38" height="38"/>
@@ -1933,7 +1933,7 @@
                                             <constraint firstItem="KxV-ZK-sm9" firstAttribute="leading" secondItem="2y5-fI-3g2" secondAttribute="leading" constant="18" id="hKM-zk-YfH"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Ouc-sW-Anx" secondAttribute="bottom" constant="415" id="iOf-eS-UkM"/>
                                             <constraint firstAttribute="trailing" secondItem="Weo-uq-b3f" secondAttribute="trailing" constant="13" id="kQ7-07-0rh"/>
-                                            <constraint firstAttribute="bottom" secondItem="RF0-Hn-gWQ" secondAttribute="bottom" id="kck-YX-cQY"/>
+                                            <constraint firstAttribute="bottom" secondItem="RF0-Hn-gWQ" secondAttribute="bottom" constant="-66" id="kck-YX-cQY"/>
                                             <constraint firstItem="3Uu-Ye-Aub" firstAttribute="top" secondItem="qNH-bU-Uwy" secondAttribute="bottom" constant="15" id="lpF-e0-MfQ"/>
                                             <constraint firstItem="qNH-bU-Uwy" firstAttribute="top" relation="lessThanOrEqual" secondItem="HRs-eQ-O3d" secondAttribute="bottom" constant="36.333333333333343" id="tM3-en-U40"/>
                                             <constraint firstItem="3Uu-Ye-Aub" firstAttribute="leading" secondItem="2y5-fI-3g2" secondAttribute="leading" constant="18" id="vd8-iW-iOM"/>
@@ -2003,7 +2003,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a8s-4F-kRx">
-                                                <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CandidateCell" rowHeight="148" id="nc5-zN-Jc6" customClass="CandidateCell">
@@ -2101,7 +2101,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="a8s-4F-kRx" firstAttribute="bottom" secondItem="Db5-ai-CLe" secondAttribute="bottom" id="AIN-Rh-bW1"/>
+                                            <constraint firstItem="a8s-4F-kRx" firstAttribute="bottom" secondItem="Db5-ai-CLe" secondAttribute="bottom" constant="200" id="AIN-Rh-bW1"/>
                                             <constraint firstItem="a8s-4F-kRx" firstAttribute="trailing" secondItem="Db5-ai-CLe" secondAttribute="trailing" id="Kuh-hE-umt"/>
                                             <constraint firstItem="a8s-4F-kRx" firstAttribute="top" secondItem="Db5-ai-CLe" secondAttribute="top" id="Xr5-OD-fQG"/>
                                             <constraint firstItem="a8s-4F-kRx" firstAttribute="leading" secondItem="Db5-ai-CLe" secondAttribute="leading" id="i1q-wd-8Xo"/>
@@ -2123,7 +2123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lqt-cz-Xqz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="1453"/>
+            <point key="canvasLocation" x="4976.8000000000002" y="1452.7093596059115"/>
         </scene>
         <!--Vote Web View-->
         <scene sceneID="0QE-WM-cXX">
@@ -2692,7 +2692,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="11I-in-GIX">
-                                <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="149" id="tze-4Q-nwk" customClass="VoterInfoCell">
@@ -2769,7 +2769,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="11I-in-GIX" firstAttribute="bottom" secondItem="PA6-5y-SMF" secondAttribute="bottom" id="19U-Ub-cT1"/>
+                            <constraint firstItem="11I-in-GIX" firstAttribute="bottom" secondItem="PA6-5y-SMF" secondAttribute="bottom" constant="200" id="19U-Ub-cT1"/>
                             <constraint firstItem="11I-in-GIX" firstAttribute="top" secondItem="PA6-5y-SMF" secondAttribute="top" id="F9F-0L-A6b"/>
                             <constraint firstItem="11I-in-GIX" firstAttribute="leading" secondItem="PA6-5y-SMF" secondAttribute="leading" id="gnb-uk-FxW"/>
                             <constraint firstItem="11I-in-GIX" firstAttribute="trailing" secondItem="PA6-5y-SMF" secondAttribute="trailing" id="uMA-Dw-Q1a"/>
@@ -2794,11 +2794,12 @@
                     <tabBar key="tabBar" contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" id="zoW-jp-aCV">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.99954394040000005" green="0.8652427842" blue="0.79182257160000002" alpha="0.9492722603" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" red="0.99813979860000002" green="0.68583655621278483" blue="0.53077580474029229" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                            <color key="value" red="0.96589467009999996" green="0.59467616769999998" blue="0.4576453278" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="value" red="0.99799042940000005" green="0.61334782840000002" blue="0.51369971039999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -2958,9 +2959,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="UAD-mI-QHt"/>
-        <segue reference="baP-kX-kvr"/>
-        <segue reference="92W-3G-qz0"/>
+        <segue reference="BzJ-Ck-f8S"/>
+        <segue reference="47q-a5-aTP"/>
+        <segue reference="xXQ-aT-JeO"/>
         <segue reference="n0F-KO-kwX"/>
         <segue reference="d2H-4g-ld3"/>
         <segue reference="AMT-kr-M6G"/>
