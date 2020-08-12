@@ -12,6 +12,7 @@
 #import <Parse/PFImageView.h>
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
+#import "ElectionsPageControl.h"
 
 @interface ElectionDetailController () <EKEventEditViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *nameView;
@@ -34,7 +35,7 @@
     [self setElectionData];
     [self checkBookmark];
     [self loadBookmarks];
-//    [self setNavigationBar];
+    [self setNavigationBar];
 }
 
 - (void)setViews{
@@ -63,10 +64,19 @@
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = self.election[@"name"];
     lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.textColor = [UIColor blackColor];
+    lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
     lblTitle.font = [UIFont systemFontOfSize:13 weight:UIFontWeightLight];
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+
+  if (self.isMovingFromParentViewController) {
+    [self dismissModalViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewController:YES];
+  }
 }
 
 - (void)loadBookmarks{

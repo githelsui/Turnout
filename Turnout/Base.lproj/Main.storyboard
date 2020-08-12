@@ -1210,7 +1210,7 @@
                                                     <outlet property="bookmarkBtn" destination="eTa-Ft-GGN" id="Wj6-b9-oyn"/>
                                                     <outlet property="bubbleView" destination="APL-7P-Bbz" id="0Hr-tI-Sp2"/>
                                                     <outlet property="titleLabel" destination="TSg-61-EMI" id="lDp-bj-qTf"/>
-                                                    <segue destination="nVj-HU-suN" kind="show" id="d2H-4g-ld3"/>
+                                                    <segue destination="nVj-HU-suN" kind="presentation" id="d2H-4g-ld3"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1335,7 +1335,7 @@
                                             <outlet property="header" destination="oL9-wM-GHO" id="xI6-8O-l7o"/>
                                             <outlet property="locLabel" destination="nrY-or-U4t" id="aaP-A0-ABG"/>
                                             <outlet property="title" destination="ctT-dE-8Dx" id="Yg8-bO-15f"/>
-                                            <segue destination="aG4-D0-LaI" kind="show" id="n0F-KO-kwX"/>
+                                            <segue destination="aG4-D0-LaI" kind="presentation" id="n0F-KO-kwX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1368,13 +1368,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-Wl-wRG">
-                                <rect key="frame" x="16" y="77" width="343" height="681"/>
+                                <rect key="frame" x="16" y="21" width="343" height="786"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNy-qb-4Uv">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xNy-qb-4Uv">
                                 <rect key="frame" x="31" y="101" width="307" height="41.666666666666657"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Election Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m44-sM-JeZ">
-                                        <rect key="frame" x="8" y="7.9999999999999982" width="291" height="26.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Election Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m44-sM-JeZ">
+                                        <rect key="frame" x="8" y="8" width="291" height="26.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1388,11 +1388,11 @@
                                     <constraint firstAttribute="bottom" secondItem="m44-sM-JeZ" secondAttribute="bottom" constant="7.3300000000000001" id="zCq-nT-NLe"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-tB-CFV">
-                                <rect key="frame" x="31" y="164.33333333333334" width="307" height="37.666666666666657"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-tB-CFV">
+                                <rect key="frame" x="31" y="164.33333333333337" width="307" height="37.666666666666657"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Election Date: m/d/y" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndB-zI-427">
-                                        <rect key="frame" x="8" y="8.0000000000000018" width="291" height="21.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Election Date: m/d/y" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndB-zI-427">
+                                        <rect key="frame" x="8" y="8" width="291" height="21.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1407,7 +1407,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhf-jl-zZu">
-                                <rect key="frame" x="306" y="229" width="38" height="38"/>
+                                <rect key="frame" x="306" y="278" width="38" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="2Bi-20-OQb"/>
                                     <constraint firstAttribute="height" constant="38" id="5qk-2j-39R"/>
@@ -1419,7 +1419,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOh-Ya-D2m">
-                                <rect key="frame" x="259" y="229" width="39" height="38"/>
+                                <rect key="frame" x="259" y="278" width="39" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="fT2-0s-CGy"/>
                                     <constraint firstAttribute="width" constant="39" id="ysR-12-MI5"/>
@@ -1467,7 +1467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNF-dm-hJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="2906.8965517241381"/>
+            <point key="canvasLocation" x="1844" y="3027"/>
         </scene>
         <!--State Election Detail-->
         <scene sceneID="94s-Kt-KSB">
@@ -1478,13 +1478,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUx-S8-WGI">
-                                <rect key="frame" x="16" y="72" width="343" height="625"/>
+                                <rect key="frame" x="16" y="16" width="343" height="730"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="KLS-TP-Uu8">
-                                        <rect key="frame" x="0.0" y="8" width="343" height="678"/>
+                                        <rect key="frame" x="0.0" y="8" width="343" height="783"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-3P-AGW">
-                                        <rect key="frame" x="254" y="234" width="25" height="22"/>
+                                        <rect key="frame" x="254" y="339" width="25" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="icc-hA-CgD"/>
                                             <constraint firstAttribute="height" constant="22" id="q3I-54-loJ"/>
@@ -1497,7 +1497,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMI-wG-LiV">
-                                        <rect key="frame" x="282" y="226" width="43" height="38"/>
+                                        <rect key="frame" x="282" y="331" width="43" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="9vO-ww-9D5"/>
                                             <constraint firstAttribute="width" constant="43" id="aIA-Dr-0Aw"/>
@@ -1509,10 +1509,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IKz-8i-z71">
-                                        <rect key="frame" x="18" y="36" width="307" height="170"/>
+                                        <rect key="frame" x="18" y="36" width="307" height="275"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cn5-Nk-Ry9">
-                                                <rect key="frame" x="0.0" y="0.0" width="307" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="307" height="155"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Election Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbm-ry-lxh">
                                                         <rect key="frame" x="88.000000000000014" y="7" width="130.33333333333337" height="34.666666666666664"/>
@@ -1530,7 +1530,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DR0-O7-wUy">
-                                                <rect key="frame" x="0.0" y="60" width="307" height="50"/>
+                                                <rect key="frame" x="0.0" y="165" width="307" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Details:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKQ-Mv-Dad">
                                                         <rect key="frame" x="8" y="8" width="291" height="33.666666666666664"/>
@@ -1548,7 +1548,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q1P-XB-nPh">
-                                                <rect key="frame" x="0.0" y="120" width="307" height="50"/>
+                                                <rect key="frame" x="0.0" y="225" width="307" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Election Date: m/d/y" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJd-hh-YpC">
                                                         <rect key="frame" x="10" y="10" width="288.66666666666669" height="31.333333333333329"/>
@@ -2353,7 +2353,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Dj-Km-2tQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1895" y="1453"/>
+            <point key="canvasLocation" x="1844" y="1453"/>
         </scene>
         <!--Profile-->
         <scene sceneID="0nu-Vf-Ux7">
