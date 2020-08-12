@@ -53,14 +53,24 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)goBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)setNavigationBar{
     UILabel *lblTitle = [[UILabel alloc] init];
     lblTitle.text = @"Profile";
     lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.textColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
     lblTitle.font = [UIFont systemFontOfSize:28 weight:UIFontWeightThin];
+    lblTitle.textAlignment = NSTextAlignmentCenter;
     [lblTitle sizeToFit];
     self.navigationItem.titleView = lblTitle;
+    UIBarButtonItem *myBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage
+    imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
+                                                                 action:@selector(goBack:)];
+    myBackButton.tintColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
+    self.navigationItem.backBarButtonItem = myBackButton;
 }
 
 - (void)setHeader{
