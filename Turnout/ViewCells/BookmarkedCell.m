@@ -106,9 +106,11 @@
 }
 
 - (void)setCandidate:(NSDictionary *)data{
+    self.sideHeaderLbl.alpha = 1;
+    NSString *state = self.bookmarkInfo[@"state"];
     NSDictionary *candInfo = data[@"candidate"];
     NSString *partyTemp = candInfo[@"party"];
-    self.sideHeaderLbl.alpha = 0;
+    self.sideHeaderLbl.text = state;
     self.titleLbl.alpha = 1;
     self.titleLbl.text = candInfo[@"name"];
     self.headerLabel.alpha = 1;

@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSArray *bookmarks;
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSString *zipcode;
+@property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -109,6 +110,7 @@
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
         if(zipcode){
             self.location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
+            self.state = zipcode[@"shortState"];
             self.zipcode = zipcode[@"zipcode"];
             self.header.locationStr = self.location;
             self.header.zipcodeStr = self.zipcode;
@@ -307,6 +309,7 @@
     else if([key isEqualToString:@"candidateInfo"]){
         CandidateDetailController *detailController = [storyboard instantiateViewControllerWithIdentifier:@"CandidateDetailController"];
         detailController.candidate = data;
+        detailController.state = self.state;
         [self presentViewController:detailController animated:YES completion:nil];
     }
     else if([key isEqualToString:@"propInfo"]){

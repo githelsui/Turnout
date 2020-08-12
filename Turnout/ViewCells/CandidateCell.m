@@ -74,6 +74,7 @@
 - (NSData *)getBookmarkInfo:(NSString *)type{
     NSMutableDictionary *bookmarkInfo = [NSMutableDictionary new];
     [bookmarkInfo setValue:type forKey:@"type"];
+    [bookmarkInfo setValue:self.state forKey:@"state"];
     [bookmarkInfo setValue:self.candidate forKey:@"data"];
     NSData *data =  [NSKeyedArchiver archivedDataWithRootObject:[bookmarkInfo copy]];
     return data;
