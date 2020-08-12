@@ -1145,7 +1145,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Lv-op-IVe">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="819"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="148" id="mFQ-wh-Ieb" customClass="VoterInfoCell">
@@ -1218,7 +1218,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="bottom" secondItem="UXi-2N-Cwa" secondAttribute="bottom" id="EBA-kS-G0V"/>
+                                    <constraint firstItem="9Lv-op-IVe" firstAttribute="bottom" secondItem="UXi-2N-Cwa" secondAttribute="bottom" constant="200" id="EBA-kS-G0V"/>
                                     <constraint firstItem="9Lv-op-IVe" firstAttribute="leading" secondItem="UXi-2N-Cwa" secondAttribute="leading" id="ebb-bG-xg8"/>
                                     <constraint firstItem="9Lv-op-IVe" firstAttribute="trailing" secondItem="UXi-2N-Cwa" secondAttribute="trailing" id="v20-qS-gyD"/>
                                     <constraint firstItem="9Lv-op-IVe" firstAttribute="top" secondItem="UXi-2N-Cwa" secondAttribute="top" id="zZy-Fa-H5Y"/>
@@ -1247,7 +1247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-b1-EBf">
-                                <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ElectionDetailCell" rowHeight="142" id="BLV-by-RT5" customClass="ElectionDetailCell">
@@ -1343,7 +1343,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="9NG-b1-EBf" firstAttribute="bottom" secondItem="bKT-RZ-Pe6" secondAttribute="bottom" id="0Qm-w2-4EP"/>
+                            <constraint firstItem="9NG-b1-EBf" firstAttribute="bottom" secondItem="bKT-RZ-Pe6" secondAttribute="bottom" constant="200" id="0Qm-w2-4EP"/>
                             <constraint firstItem="9NG-b1-EBf" firstAttribute="top" secondItem="bKT-RZ-Pe6" secondAttribute="top" id="696-PQ-6qT"/>
                             <constraint firstItem="9NG-b1-EBf" firstAttribute="leading" secondItem="bKT-RZ-Pe6" secondAttribute="leading" id="Xbh-WO-pdf"/>
                             <constraint firstItem="9NG-b1-EBf" firstAttribute="trailing" secondItem="bKT-RZ-Pe6" secondAttribute="trailing" id="b1r-rT-xlg"/>
@@ -1368,7 +1368,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-Wl-wRG">
-                                <rect key="frame" x="16" y="77" width="343" height="638"/>
+                                <rect key="frame" x="16" y="77" width="343" height="681"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNy-qb-4Uv">
                                 <rect key="frame" x="31" y="101" width="307" height="41.666666666666657"/>
@@ -1434,7 +1434,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="RwM-Wl-wRG" firstAttribute="bottom" secondItem="d1H-x0-Qfd" secondAttribute="bottom" constant="40" id="4gV-tu-cLq"/>
+                            <constraint firstItem="RwM-Wl-wRG" firstAttribute="bottom" secondItem="d1H-x0-Qfd" secondAttribute="bottom" constant="83" id="4gV-tu-cLq"/>
                             <constraint firstItem="RwM-Wl-wRG" firstAttribute="top" secondItem="d1H-x0-Qfd" secondAttribute="top" constant="21" id="9uT-DQ-Ht1"/>
                             <constraint firstItem="d1H-x0-Qfd" firstAttribute="bottom" secondItem="NOh-Ya-D2m" secondAttribute="bottom" constant="408" id="E1M-59-sLD"/>
                             <constraint firstItem="8Jh-tB-CFV" firstAttribute="leading" secondItem="d1H-x0-Qfd" secondAttribute="leading" constant="31" id="Iap-qy-cMT"/>
@@ -1480,7 +1480,7 @@
                                 <rect key="frame" x="16" y="72" width="343" height="625"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" image="Orange Coral" translatesAutoresizingMaskIntoConstraints="NO" id="KLS-TP-Uu8">
-                                        <rect key="frame" x="0.0" y="8" width="343" height="617"/>
+                                        <rect key="frame" x="0.0" y="8" width="343" height="678"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-3P-AGW">
                                         <rect key="frame" x="254" y="234" width="25" height="22"/>
@@ -1570,7 +1570,7 @@
                                 <constraints>
                                     <constraint firstItem="wMI-wG-LiV" firstAttribute="top" secondItem="q1P-XB-nPh" secondAttribute="bottom" constant="20" id="3Qj-36-E0h"/>
                                     <constraint firstItem="wMI-wG-LiV" firstAttribute="leading" secondItem="sXy-3P-AGW" secondAttribute="trailing" constant="3" id="3ak-BZ-vW2"/>
-                                    <constraint firstAttribute="bottom" secondItem="KLS-TP-Uu8" secondAttribute="bottom" id="3v5-aw-gnI"/>
+                                    <constraint firstAttribute="bottom" secondItem="KLS-TP-Uu8" secondAttribute="bottom" constant="-61" id="3v5-aw-gnI"/>
                                     <constraint firstItem="sXy-3P-AGW" firstAttribute="top" secondItem="IKz-8i-z71" secondAttribute="bottom" constant="28" id="BeZ-2J-eZK"/>
                                     <constraint firstItem="IKz-8i-z71" firstAttribute="leading" secondItem="qUx-S8-WGI" secondAttribute="leading" constant="18" id="MW7-G7-OcW"/>
                                     <constraint firstAttribute="trailing" secondItem="wMI-wG-LiV" secondAttribute="trailing" constant="18" id="QoC-8z-FH7"/>
@@ -2179,7 +2179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcr-90-YaV">
-                                <rect key="frame" x="0.0" y="56" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="819"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="VoterInfoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoterInfoCell" rowHeight="148" id="BD9-Rj-DP2" customClass="VoterInfoCell">
@@ -2274,7 +2274,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fcr-90-YaV" firstAttribute="trailing" secondItem="gHU-Kx-WWY" secondAttribute="trailing" id="5bs-qE-zlx"/>
-                            <constraint firstItem="fcr-90-YaV" firstAttribute="bottom" secondItem="gHU-Kx-WWY" secondAttribute="bottom" id="7SG-l2-kcV"/>
+                            <constraint firstItem="fcr-90-YaV" firstAttribute="bottom" secondItem="gHU-Kx-WWY" secondAttribute="bottom" constant="200" id="7SG-l2-kcV"/>
                             <constraint firstItem="fcr-90-YaV" firstAttribute="leading" secondItem="gHU-Kx-WWY" secondAttribute="leading" id="U6h-d3-wDY"/>
                             <constraint firstItem="fcr-90-YaV" firstAttribute="top" secondItem="gHU-Kx-WWY" secondAttribute="top" id="yRP-Nj-jMD"/>
                         </constraints>
@@ -2957,11 +2957,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CgJ-YU-J4g"/>
-        <segue reference="4kV-dX-LWj"/>
+        <segue reference="UAD-mI-QHt"/>
         <segue reference="baP-kX-kvr"/>
         <segue reference="92W-3G-qz0"/>
-        <segue reference="jgm-Rg-7bY"/>
-        <segue reference="ZST-2x-JmV"/>
+        <segue reference="n0F-KO-kwX"/>
+        <segue reference="d2H-4g-ld3"/>
         <segue reference="AMT-kr-M6G"/>
     </inferredMetricsTieBreakers>
     <resources>
