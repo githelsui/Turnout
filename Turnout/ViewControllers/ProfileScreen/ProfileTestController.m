@@ -115,6 +115,16 @@
     self.tableView.dragInteractionEnabled = YES;
     self.tableView.allowsSelection = YES;
     self.tableView.tableFooterView = [UIView new];
+    [self setUpFooter];
+}
+
+- (void)setUpFooter{
+    UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
+    loadView.alpha = 0;
+    self.tableView.tableFooterView = loadView;
+    [UIView animateWithDuration:4 animations:^{
+        loadView.alpha = 1;
+    }];
 }
 
 - (void)checkSegmentedControl{

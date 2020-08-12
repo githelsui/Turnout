@@ -77,7 +77,6 @@
     }];
 }
 
-
 - (void)fetchCandidates{
     [self.activityHUD showWithType:CCActivityHUDIndicatorTypeDynamicArc];
     Zipcode *zip = PFUser.currentUser[@"zipcode"];

@@ -68,6 +68,15 @@
     }];
 }
 
+- (void)setUpFooter{
+    UIView *loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 120)];
+    loadView.alpha = 0;
+    self.tableView.tableFooterView = loadView;
+    [UIView animateWithDuration:4 animations:^{
+        loadView.alpha = 1;
+    }];
+}
+
 - (void)fetchElections{
     Zipcode *zip = PFUser.currentUser[@"zipcode"];
     [zip fetchIfNeededInBackgroundWithBlock:^(PFObject *zipcode, NSError *error){
@@ -77,6 +86,7 @@
                 self.elections = elections;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    [self setUpFooter];
                     [self startTimer];
                 });
             }

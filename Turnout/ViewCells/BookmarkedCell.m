@@ -118,6 +118,7 @@
 
 - (void)setPropInfo:(NSDictionary *)data{
     self.headerLabel.alpha = 1;
+    self.sideHeaderLbl.alpha = 0;
     self.headerLabel.text =  [NSString stringWithFormat: @"Legislative Date: %@", data[@"legislative_day"]];
     [self setPropositionTitle:data];
 }
