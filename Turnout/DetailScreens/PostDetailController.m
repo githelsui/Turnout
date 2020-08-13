@@ -58,6 +58,7 @@
     [self setNavigationBar];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"goback" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createShadows];
+    [self prepComments];
     [self setUI];
     [self updateLikes];
     [self queryRecentComments];
@@ -70,11 +71,11 @@
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"objectId" equalTo:self.post.objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *post, NSError *error) {
-          if (post) {
+        if (post) {
             NSString *count = [post[0][@"commentCount"] stringValue];
             [self.commentCount setTitle:count forState:UIControlStateNormal];
-          }
-      }];
+        }
+    }];
 }
 
 - (void)prepComments{
@@ -137,13 +138,17 @@
 
 - (void)showComment{
     if(self.recentComments.count == 1){
-        self.firstCommLabel.text = self.recentComments[0];
-        self.firstCommView.hidden = false;
-        self.firstCommLabel.hidden = false;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.firstCommLabel.text = self.recentComments[0];
+            self.firstCommView.hidden = false;
+            self.firstCommLabel.hidden = false;
+        }];
     } else if(self.recentComments.count == 2){
-        self.secondCommLabel.text = self.recentComments[1];
-        self.secondCommView.hidden = false;
-        self.secondCommLabel.hidden = false;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.secondCommLabel.text = self.recentComments[1];
+            self.secondCommView.hidden = false;
+            self.secondCommLabel.hidden = false;
+        }];
     }
 }
 
@@ -177,6 +182,8 @@
 }
 
 - (void)createShadows{
+    self.locationLabel.alpha = 0;
+    self.zipcodeLabel.alpha = 0;
     self.bubbleView.clipsToBounds = NO;
     self.bubbleView.layer.cornerRadius = 15;
     self.bubbleView.layer.shadowOffset = CGSizeMake(0, 0);
@@ -226,6 +233,10 @@
             NSString *location = [NSString stringWithFormat:@"%@, %@", zipcode[@"city"], zipcode[@"shortState"]];
             self.locationLabel.text = location;
             self.zipcodeLabel.text = zipcode[@"zipcode"];
+            [UIView animateWithDuration:0.5 animations:^{
+                self.locationLabel.alpha = 1;
+                self.zipcodeLabel.alpha = 1;
+            }];
         }
     }];
 }
