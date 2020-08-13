@@ -67,7 +67,7 @@
     NSString *state = self.content[@"election_state"];
     NSString *district = self.content[@"election_district"];
     NSString *loc;
-    if(self.content[@"election_district"] == nil){
+    if([district isEqual:[NSNull null]] || district == nil){
         loc = state;
     } else {
         loc  = [NSString stringWithFormat:@"District %@, %@", district, state];
