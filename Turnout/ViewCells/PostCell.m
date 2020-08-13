@@ -205,23 +205,27 @@
 }
 
 - (void)loadLikeAnim{
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
-        self.likeAnimation.alpha = 1;
-        self.bubbleView.backgroundColor = [UIColor colorWithRed:255/255.0f
-                                                          green:170/255.0f
-                                                           blue:146/255.0f
-                                                          alpha:1.0f];
-    } completion:^(BOOL finished) {
-        [self returnOriginalState];
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+            self.likeAnimation.alpha = 1;
+            self.bubbleView.backgroundColor = [UIColor colorWithRed:255/255.0f
+                                                              green:170/255.0f
+                                                               blue:146/255.0f
+                                                              alpha:1.0f];
+        } completion:^(BOOL finished) {
+            [self returnOriginalState];
+        }];
+    });
 }
 
 - (void)returnOriginalState{
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
-        self.likeAnimation.alpha = 0;
-        self.bubbleView.backgroundColor = [UIColor whiteColor];
-    } completion:^(BOOL finished) {
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear  animations:^{
+               self.likeAnimation.alpha = 0;
+               self.bubbleView.backgroundColor = [UIColor whiteColor];
+           } completion:^(BOOL finished) {
+           }];
+    });
 }
 
 + (NSString *)reuseIdentifier {
