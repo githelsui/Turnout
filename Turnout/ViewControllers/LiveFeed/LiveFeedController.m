@@ -30,7 +30,7 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepNotifications];
-//    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
     [self loadBookmarks];
     self.pageNum = 1;
     [self initTableView];
@@ -59,6 +59,7 @@ NSIndexPath *lastIndexPath;
 }
 
 - (void)initTableView{
+    self.tableView.alpha = 0;
     [self setNavigationBar];
     [self setUpHeader];
     self.mutablePosts =  [NSMutableArray array];
@@ -78,11 +79,11 @@ NSIndexPath *lastIndexPath;
     alert.titleFont = [UIFont systemFontOfSize:25 weight:UIFontWeightThin];
     alert.subtitleFont = [UIFont systemFontOfSize:14 weight:UIFontWeightThin];
     [alert showAlertInView:self
-              withTitle:title
-           withSubtitle:msg
-        withCustomImage:nil
-    withDoneButtonTitle:@"OK"
-             andButtons:nil];
+                 withTitle:title
+              withSubtitle:msg
+           withCustomImage:nil
+       withDoneButtonTitle:@"OK"
+                andButtons:nil];
 }
 
 - (void)setUpHeader{
@@ -156,8 +157,8 @@ NSIndexPath *lastIndexPath;
     self.navigationItem.titleView = lblTitle;
     
     UIBarButtonItem *myBackButton = [[UIBarButtonItem alloc] initWithImage:[UIImage
-    imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
-                                                                 action:@selector(goBack:)];
+                                                                            imageNamed:@"yourImageName"] style:UIBarButtonItemStylePlain target:self
+                                                                    action:@selector(goBack:)];
     myBackButton.tintColor = [UIColor colorWithRed:255.0f/255.0f green:169.0f/255.0f blue:123.0f/255.0f alpha:1.0f];
     self.navigationItem.backBarButtonItem = myBackButton;
 }
@@ -171,8 +172,12 @@ NSIndexPath *lastIndexPath;
         if(posts.count > 0){
             self.posts = posts;
             [self loadLivefeed];
+            [self.tableView reloadData];
+            [self startTimer];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [UIView animateWithDuration:1.3 animations:^{
+                    self.tableView.alpha = 1;
+                }];
                 [self setUpFooter];
                 [self startTimer];
             });
@@ -212,7 +217,7 @@ NSIndexPath *lastIndexPath;
         livefeed = [self.posts subarrayWithRange:range];
         self.mutablePosts = [livefeed mutableCopy];
     } else if(self.posts.count == self.mutablePosts.count){
-         [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
+        [self presentAlert:@"Refresh the Live Feed" msg:@"No more posts left to fetch."];
     } else if(self.posts.count <= postsPerPage){
         self.mutablePosts = [self.posts mutableCopy];
     }
@@ -302,9 +307,9 @@ NSIndexPath *lastIndexPath;
 - (void)loadMore{
     [UIView animateWithDuration:1 animations:^{
         self.loadMoreBtn.backgroundColor = [UIColor colorWithRed:255.0f/255.0f
-                                                          green:180.0f/255.0f
-                                                           blue:171.0f/255.0f
-                                                          alpha:1.0f];
+                                                           green:180.0f/255.0f
+                                                            blue:171.0f/255.0f
+                                                           alpha:1.0f];
         [self.loadMoreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.3 animations:^{
             [self.loadMoreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -330,9 +335,9 @@ NSIndexPath *lastIndexPath;
 - (void)prepNotifications{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self
-           selector:@selector(receiveSettingUpdate:)
-           name:@"SettingNotification"
-           object:nil];
+                                             selector:@selector(receiveSettingUpdate:)
+                                                 name:@"SettingNotification"
+                                               object:nil];
 }
 
 - (void)postToTopFeed:(Post *)post {

@@ -35,6 +35,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.alpha = 0;
     [self getCurrentUserInfo];
     [self customizeActivityIndic];
     [self fetchCandidates];
@@ -97,7 +98,10 @@
             if(candidates){
                 self.candidates = candidates;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    [UIView animateWithDuration:1 animations:^{
+                           [self.tableView reloadData];
+                            self.tableView.alpha = 1;
+                       }];
                     [self startTimer];
                     [self setUpFooter];
                     [self.activityHUD dismiss];
