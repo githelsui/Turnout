@@ -60,7 +60,7 @@
     self.titleLbl.alpha = 1;
     self.titleLbl.text = data[@"title"];
     if(url == nil){
-//        self.userInteractionEnabled = NO;
+        //        self.userInteractionEnabled = NO;
         self.subHeader.text = data[@"address"];
         self.subHeader.alpha = 1;
     }
@@ -192,7 +192,7 @@
     NSString *state = data[@"election_state"];
     NSString *district = data[@"election_district"];
     NSString *loc;
-    if(data[@"election_district"] == nil){
+    if([district isEqual:[NSNull null]] || district == nil){
         loc = state;
     } else {
         loc  = [NSString stringWithFormat:@"District %@, %@", district, state];
