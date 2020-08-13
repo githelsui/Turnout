@@ -116,6 +116,8 @@
 }
 
 - (void)setPropFetchedInfo{
+    NSString *date = [NSString stringWithFormat: @"Legislative Date: %@", self.prop[@"legislative_day"]];
+    self.dateLabel.text = date;
     self.nameLabel.text = self.propInfo[@"short_title"];
     self.longTitleLabel.text = self.propInfo[@"title"];
     self.textsURL = self.propInfo[@"congressdotgov_url"];

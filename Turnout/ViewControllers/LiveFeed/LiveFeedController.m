@@ -30,7 +30,7 @@ NSIndexPath *lastIndexPath;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepNotifications];
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
+//    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]]; //resets userdefaults
     [self loadBookmarks];
     self.pageNum = 1;
     [self initTableView];
@@ -321,6 +321,7 @@ NSIndexPath *lastIndexPath;
 - (void)receiveSettingUpdate:(NSNotification *)notification{
     if ([[notification name] isEqualToString:@"SettingNotification"]){
         NSLog(@"Successfully received the test notification!");
+        [self.timer invalidate];
         [self setUpHeader];
         [self loadFeed];
     }
