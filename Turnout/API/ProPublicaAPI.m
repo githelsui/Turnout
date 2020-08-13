@@ -128,7 +128,7 @@ static NSString * const APIKey = @"elt4Im3mCpULdzVEZrnB9oI38gJEwkRKf9pjzvNB";
 
 
 - (void)fetchCandidates:(NSString *)state completion:(void(^)(NSArray *info, NSError *error))completion{
-    NSString *baseURL = [NSString stringWithFormat: @"https://api.propublica.org/campaign-finance/v1/2020/races/%@.json", state];
+    NSString *baseURL = [NSString stringWithFormat: @"https://api.propublica.org/campaign-finance/v1/2020/races/%@.json?offset=20", state];
     NSURL *url2 = [NSURL URLWithString:baseURL];
     NSURLSession *session = [NSURLSession sharedSession];
 
