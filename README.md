@@ -1,6 +1,5 @@
 Turnout iOS App - Githel Suico
 ===
-# Demo
 ## Video Demo
 [Watch Video: https://youtu.be/MOybIzq6yxY](https://youtu.be/MOybIzq6yxY)
 
