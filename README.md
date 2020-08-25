@@ -1,11 +1,8 @@
-Original App Design Project - Githel Suico
+Turnout iOS App - Githel Suico
 ===
-
-# Turnout 
-
 ## Demo
-#Video Demo
-[Watch Video](https://www.youtube.com/watch?v=MOybIzq6yxY&t=29s)
+# Video Demo
+[Watch Video](https://youtu.be/MOybIzq6yxY)
 
 ## Table of Contents
 1. [Overview](#Overview)
